@@ -32,8 +32,12 @@ function audios(): Plugin {
 // GitHub Pages sirve el sitio en /Sumas-y-cuentitas/
 const base = process.env.BASE_PATH ?? '/Sumas-y-cuentitas/';
 
+// Versión visible en Ajustes (fecha y hora de compilación, hora de Argentina).
+const version = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires', dateStyle: 'short', timeStyle: 'short' });
+
 export default defineConfig({
   base,
+  define: { __VERSION__: JSON.stringify(version) },
   plugins: [
     react(),
     audios(),

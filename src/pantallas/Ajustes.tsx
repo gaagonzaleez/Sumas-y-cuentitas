@@ -51,6 +51,9 @@ export function Ajustes() {
       <div className="empuja" />
       <button className="boton blanco ancho" onClick={() => ir('/adulta/entrar?a=/adulta/panel')}><Icono nombre="usuaria" /> Panel de la adulta</button>
       <button className="boton blanco ancho" onClick={() => { salir(); ir('/entrar'); }}><Icono nombre="salir" /> Salir</button>
+      <button className="boton-link" style={{ alignSelf: 'center', color: 'var(--tinta-suave)' }} onClick={() => location.reload()}>
+        Versión del {__VERSION__} · tocá para buscar actualización
+      </button>
     </main>
   );
 }
