@@ -31,7 +31,7 @@ export type Visual =
   | { tipo: 'billetes'; valores: number[] }
   | { tipo: 'productos'; productos: { objeto: string; nombre: string; precio: number }[] }
   | { tipo: 'escena'; objeto: string; cantidades: number[]; nombre?: string }
-  | { tipo: 'alcancia'; meta: number; guardado: number }
+  | { tipo: 'alcancia'; meta: number; guardado: number; titulo?: string }
   | { tipo: 'dibujo'; objeto: string };
 
 export interface DatosModo {

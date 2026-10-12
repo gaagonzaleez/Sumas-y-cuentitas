@@ -112,7 +112,7 @@ export const presupuesto: Generador = (az, ctx) => {
     tema: 'finanzas',
     modo: 'opciones',
     consigna: rellenar(texto(az, 'presupuesto', 'consigna'), { plata }),
-    visual: { tipo: 'alcancia', meta: plata, guardado: plata },
+    visual: { tipo: 'alcancia', meta: plata, guardado: plata, titulo: 'Tenés' },
     respuesta: ok,
     opciones: opcionesTexto(az, ok, [[malo1, 'finanzas.presupuesto'], [malo2, 'finanzas.presupuesto']], 3),
     errorTagPorDefecto: 'finanzas.presupuesto',

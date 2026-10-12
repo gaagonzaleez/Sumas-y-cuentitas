@@ -142,7 +142,7 @@ export function VisualEjercicio({ v }: { v: Visual }) {
           {v.productos.map((p, i) => (
             <div key={i} className="col centro" style={{ background: '#FFF4D1', borderRadius: 18, padding: '8px 14px', gap: 2 }}>
               <Objeto id={p.objeto} size={56} />
-              <span style={{ fontWeight: 800, textTransform: 'capitalize' }}>{p.nombre}</span>
+              <span style={{ fontWeight: 800 }}>{p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1)}</span>
               <span className="titulo" style={{ fontSize: 24 }}>${p.precio.toLocaleString('es-AR')}</span>
             </div>
           ))}
@@ -171,7 +171,7 @@ export function VisualEjercicio({ v }: { v: Visual }) {
         <div className="fila" style={{ justifyContent: 'center', gap: 16 }}>
           <Objeto id="alcancia" size={84} />
           <div className="col" style={{ gap: 4, minWidth: 140 }}>
-            <span className="suave chico">Meta</span>
+            <span className="suave chico">{v.titulo ?? 'Meta'}</span>
             <span className="titulo" style={{ fontSize: 28 }}>${v.meta.toLocaleString('es-AR')}</span>
             <div className="barra" style={{ height: 16 }}><span style={{ width: `${Math.min(100, (v.guardado / v.meta) * 100)}%`, background: 'var(--coral)' }} /></div>
           </div>
