@@ -1,0 +1,39 @@
+{
+ "elegidas": {
+  "chispa": {
+   "motor": "kokoro",
+   "voz": "ef_dora",
+   "velocidad": 1.05,
+   "semitonos": 2.0
+  },
+  "cande": {
+   "motor": "piper",
+   "modelo": "es/es_MX/claude/high/es_MX-claude-high",
+   "velocidad": 1.12,
+   "variacion": 0.6,
+   "semitonos": -0.5
+  }
+ },
+ "verificadas": {
+  "es/es_AR/daniela/high/es_AR-daniela-high": {
+   "motor": "piper",
+   "licencia": "Attribution-ShareAlike 4.0 International",
+   "tarjeta": "# Model card for daniela (high)\n\n* Language: es_ES (Spanish, Argentina)\n* Speakers: 1\n* Quality: high\n* Samplerate: 22,050Hz\n\n## Dataset\n\n* URL: https://www.openslr.org/61/\n* License: Attribution-ShareAlike 4.0 International\n\n## Training\n\nTrained by: https://huggingface.co/larcanio/piper-voices\nFinetuned from U.S. English lessac voice (high quality).\n"
+  },
+  "es/es_MX/claude/high/es_MX-claude-high": {
+   "motor": "piper",
+   "licencia": "apache-2.0",
+   "tarjeta": "# Model card for claude (high)\n\n* Language: es_MX (Spanish, Mexico)\n* Speakers: 1\n* Quality: high\n* Samplerate: 22,050Hz\n\n## Dataset\n\n* URL: https://huggingface.co/spaces/HirCoir/Piper-TTS-Spanish\n* License: apache-2.0\n\n## Training\n\nSee URL above\n"
+  },
+  "es/es_ES/sharvard/medium/es_ES-sharvard-medium": {
+   "motor": "piper",
+   "licencia": "http://creativecommons.org/licenses/by/3.0/",
+   "tarjeta": "# Model card for sharvard (medium)\n\n* Language: es_ES (Spanish, Spain)\n* Speakers: 2\n* Quality: medium\n* Samplerate: 22,050Hz\n\n## Dataset\n\n* URL: https://datashare.ed.ac.uk/handle/10283/574\n* License: http://creativecommons.org/licenses/by/3.0/\n* Paper: https://www.tandfonline.com/doi/abs/10.3109/14992027.2014.907507\n\n## Training\n\nFinetuned from U.S. English lessac voice (medium quality).\n"
+  },
+  "kokoro-v1.0": {
+   "motor": "kokoro",
+   "licencia": "Apache-2.0",
+   "fuente": "hexgrad/Kokoro-82M y thewh1teagle/kokoro-onnx"
+  }
+ }
+}
