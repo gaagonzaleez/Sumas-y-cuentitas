@@ -10,8 +10,8 @@
     "typecheck": "tsc -b",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "contenido": "node --experimental-strip-types scripts/validar-contenido.ts",
-    "audio:manifiesto": "node --experimental-strip-types scripts/voz/manifiesto.ts",
+    "contenido": "vite-node scripts/validar-contenido.ts",
+    "audio:manifiesto": "vite-node scripts/voz/manifiesto.ts",
     "iconos": "node scripts/iconos.mjs"
   },
   "dependencies": {

@@ -1,0 +1,28 @@
+{
+  "_nota": "Opciones gratis del avatar que no son ítems de la tienda.",
+  "pieles": ["#FBE0CC", "#F3C49A", "#E0A878", "#C98A5C", "#A86F4A", "#8A5638", "#6B3F27", "#4A2B1B"],
+  "ojos": [
+    { "id": "redondos", "nombre": "Redondos" },
+    { "id": "grandes", "nombre": "Grandes" },
+    { "id": "almendra", "nombre": "Almendra" },
+    { "id": "pestanas", "nombre": "Con pestañas" }
+  ],
+  "coloresOjos": ["#2B2350", "#5A3825", "#2E7D5B", "#3B6FD9", "#7A5BD9", "#8A5A3B"],
+  "expresiones": [
+    { "id": "sonrisa", "nombre": "Sonrisa" },
+    { "id": "feliz", "nombre": "Muy feliz" },
+    { "id": "timida", "nombre": "Tímida" }
+  ],
+  "inicial": {
+    "piel": "#F3C49A",
+    "ojos": "redondos",
+    "colorOjos": "#2B2350",
+    "expresion": "sonrisa",
+    "pelo": "pelo-largo",
+    "colorPelo": "color-castano",
+    "arriba": "remera-violeta",
+    "abajo": "pantalon-azul",
+    "calzado": "zapatillas-blancas",
+    "fondo": "fondo-rosa"
+  }
+}

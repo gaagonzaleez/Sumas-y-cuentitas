@@ -1,0 +1,618 @@
+{
+ "_nota": "Premios únicos por logro. grado1: al completar el grado 1 del nivel. todos: al completar los 5 grados (más la estampita). jefes.grados: lo que da cada versión del jefe. jefes.todos: versión dorada y marco.",
+ "niveles": {
+  "isla-1": {
+   "grado1": "premio-isla-1",
+   "todos": "raro-isla-1",
+   "estampita": "estampita-isla-1"
+  },
+  "isla-2": {
+   "grado1": "premio-isla-2",
+   "todos": "raro-isla-2",
+   "estampita": "estampita-isla-2"
+  },
+  "isla-3": {
+   "grado1": "premio-isla-3",
+   "todos": "raro-isla-3",
+   "estampita": "estampita-isla-3"
+  },
+  "isla-4": {
+   "grado1": "premio-isla-4",
+   "todos": "raro-isla-4",
+   "estampita": "estampita-isla-4"
+  },
+  "isla-5": {
+   "grado1": "premio-isla-5",
+   "todos": "raro-isla-5",
+   "estampita": "estampita-isla-5"
+  },
+  "isla-6": {
+   "grado1": "premio-isla-6",
+   "todos": "raro-isla-6",
+   "estampita": "estampita-isla-6"
+  },
+  "isla-7": {
+   "grado1": "premio-isla-7",
+   "todos": "raro-isla-7",
+   "estampita": "estampita-isla-7"
+  },
+  "isla-8": {
+   "grado1": "premio-isla-8",
+   "todos": "raro-isla-8",
+   "estampita": "estampita-isla-8"
+  },
+  "valle-1": {
+   "grado1": "premio-valle-1",
+   "todos": "raro-valle-1",
+   "estampita": "estampita-valle-1"
+  },
+  "valle-2": {
+   "grado1": "premio-valle-2",
+   "todos": "raro-valle-2",
+   "estampita": "estampita-valle-2"
+  },
+  "valle-3": {
+   "grado1": "premio-valle-3",
+   "todos": "raro-valle-3",
+   "estampita": "estampita-valle-3"
+  },
+  "valle-4": {
+   "grado1": "premio-valle-4",
+   "todos": "raro-valle-4",
+   "estampita": "estampita-valle-4"
+  },
+  "valle-5": {
+   "grado1": "premio-valle-5",
+   "todos": "raro-valle-5",
+   "estampita": "estampita-valle-5"
+  },
+  "valle-6": {
+   "grado1": "premio-valle-6",
+   "todos": "raro-valle-6",
+   "estampita": "estampita-valle-6"
+  },
+  "valle-7": {
+   "grado1": "premio-valle-7",
+   "todos": "raro-valle-7",
+   "estampita": "estampita-valle-7"
+  },
+  "valle-8": {
+   "grado1": "premio-valle-8",
+   "todos": "raro-valle-8",
+   "estampita": "estampita-valle-8"
+  },
+  "montana-1": {
+   "grado1": "premio-montana-1",
+   "todos": "raro-montana-1",
+   "estampita": "estampita-montana-1"
+  },
+  "montana-2": {
+   "grado1": "premio-montana-2",
+   "todos": "raro-montana-2",
+   "estampita": "estampita-montana-2"
+  },
+  "montana-3": {
+   "grado1": "premio-montana-3",
+   "todos": "raro-montana-3",
+   "estampita": "estampita-montana-3"
+  },
+  "montana-4": {
+   "grado1": "premio-montana-4",
+   "todos": "raro-montana-4",
+   "estampita": "estampita-montana-4"
+  },
+  "montana-5": {
+   "grado1": "premio-montana-5",
+   "todos": "raro-montana-5",
+   "estampita": "estampita-montana-5"
+  },
+  "montana-6": {
+   "grado1": "premio-montana-6",
+   "todos": "raro-montana-6",
+   "estampita": "estampita-montana-6"
+  },
+  "montana-7": {
+   "grado1": "premio-montana-7",
+   "todos": "raro-montana-7",
+   "estampita": "estampita-montana-7"
+  },
+  "montana-8": {
+   "grado1": "premio-montana-8",
+   "todos": "raro-montana-8",
+   "estampita": "estampita-montana-8"
+  },
+  "bosque-1": {
+   "grado1": "premio-bosque-1",
+   "todos": "raro-bosque-1",
+   "estampita": "estampita-bosque-1"
+  },
+  "bosque-2": {
+   "grado1": "premio-bosque-2",
+   "todos": "raro-bosque-2",
+   "estampita": "estampita-bosque-2"
+  },
+  "bosque-3": {
+   "grado1": "premio-bosque-3",
+   "todos": "raro-bosque-3",
+   "estampita": "estampita-bosque-3"
+  },
+  "bosque-4": {
+   "grado1": "premio-bosque-4",
+   "todos": "raro-bosque-4",
+   "estampita": "estampita-bosque-4"
+  },
+  "bosque-5": {
+   "grado1": "premio-bosque-5",
+   "todos": "raro-bosque-5",
+   "estampita": "estampita-bosque-5"
+  },
+  "bosque-6": {
+   "grado1": "premio-bosque-6",
+   "todos": "raro-bosque-6",
+   "estampita": "estampita-bosque-6"
+  },
+  "bosque-7": {
+   "grado1": "premio-bosque-7",
+   "todos": "raro-bosque-7",
+   "estampita": "estampita-bosque-7"
+  },
+  "bosque-8": {
+   "grado1": "premio-bosque-8",
+   "todos": "raro-bosque-8",
+   "estampita": "estampita-bosque-8"
+  },
+  "mercado-1": {
+   "grado1": "premio-mercado-1",
+   "todos": "raro-mercado-1",
+   "estampita": "estampita-mercado-1"
+  },
+  "mercado-2": {
+   "grado1": "premio-mercado-2",
+   "todos": "raro-mercado-2",
+   "estampita": "estampita-mercado-2"
+  },
+  "mercado-3": {
+   "grado1": "premio-mercado-3",
+   "todos": "raro-mercado-3",
+   "estampita": "estampita-mercado-3"
+  },
+  "mercado-4": {
+   "grado1": "premio-mercado-4",
+   "todos": "raro-mercado-4",
+   "estampita": "estampita-mercado-4"
+  },
+  "mercado-5": {
+   "grado1": "premio-mercado-5",
+   "todos": "raro-mercado-5",
+   "estampita": "estampita-mercado-5"
+  },
+  "mercado-6": {
+   "grado1": "premio-mercado-6",
+   "todos": "raro-mercado-6",
+   "estampita": "estampita-mercado-6"
+  },
+  "mercado-7": {
+   "grado1": "premio-mercado-7",
+   "todos": "raro-mercado-7",
+   "estampita": "estampita-mercado-7"
+  },
+  "mercado-8": {
+   "grado1": "premio-mercado-8",
+   "todos": "raro-mercado-8",
+   "estampita": "estampita-mercado-8"
+  },
+  "pueblo-1": {
+   "grado1": "premio-pueblo-1",
+   "todos": "raro-pueblo-1",
+   "estampita": "estampita-pueblo-1"
+  },
+  "pueblo-2": {
+   "grado1": "premio-pueblo-2",
+   "todos": "raro-pueblo-2",
+   "estampita": "estampita-pueblo-2"
+  },
+  "pueblo-3": {
+   "grado1": "premio-pueblo-3",
+   "todos": "raro-pueblo-3",
+   "estampita": "estampita-pueblo-3"
+  },
+  "pueblo-4": {
+   "grado1": "premio-pueblo-4",
+   "todos": "raro-pueblo-4",
+   "estampita": "estampita-pueblo-4"
+  },
+  "pueblo-5": {
+   "grado1": "premio-pueblo-5",
+   "todos": "raro-pueblo-5",
+   "estampita": "estampita-pueblo-5"
+  },
+  "pueblo-6": {
+   "grado1": "premio-pueblo-6",
+   "todos": "raro-pueblo-6",
+   "estampita": "estampita-pueblo-6"
+  },
+  "pueblo-7": {
+   "grado1": "premio-pueblo-7",
+   "todos": "raro-pueblo-7",
+   "estampita": "estampita-pueblo-7"
+  },
+  "pueblo-8": {
+   "grado1": "premio-pueblo-8",
+   "todos": "raro-pueblo-8",
+   "estampita": "estampita-pueblo-8"
+  },
+  "tesoro-1": {
+   "grado1": "premio-tesoro-1",
+   "todos": "raro-tesoro-1",
+   "estampita": "estampita-tesoro-1"
+  },
+  "tesoro-2": {
+   "grado1": "premio-tesoro-2",
+   "todos": "raro-tesoro-2",
+   "estampita": "estampita-tesoro-2"
+  },
+  "tesoro-3": {
+   "grado1": "premio-tesoro-3",
+   "todos": "raro-tesoro-3",
+   "estampita": "estampita-tesoro-3"
+  },
+  "tesoro-4": {
+   "grado1": "premio-tesoro-4",
+   "todos": "raro-tesoro-4",
+   "estampita": "estampita-tesoro-4"
+  },
+  "tesoro-5": {
+   "grado1": "premio-tesoro-5",
+   "todos": "raro-tesoro-5",
+   "estampita": "estampita-tesoro-5"
+  },
+  "tesoro-6": {
+   "grado1": "premio-tesoro-6",
+   "todos": "raro-tesoro-6",
+   "estampita": "estampita-tesoro-6"
+  },
+  "tesoro-7": {
+   "grado1": "premio-tesoro-7",
+   "todos": "raro-tesoro-7",
+   "estampita": "estampita-tesoro-7"
+  },
+  "tesoro-8": {
+   "grado1": "premio-tesoro-8",
+   "todos": "raro-tesoro-8",
+   "estampita": "estampita-tesoro-8"
+  }
+ },
+ "jefes": {
+  "isla": {
+   "grados": {
+    "1": [
+     "jefe-isla-1",
+     "jefe-isla-2",
+     "jefe-isla-3"
+    ],
+    "2": [
+     "jefe-isla-4"
+    ],
+    "3": [
+     "jefe-isla-5"
+    ],
+    "4": [
+     "jefe-isla-1-dorado"
+    ],
+    "5": [
+     "jefe-isla-2-dorado"
+    ]
+   },
+   "todos": [
+    "jefe-isla-3-dorado",
+    "jefe-isla-4-dorado",
+    "jefe-isla-5-dorado",
+    "marco-dorado-isla"
+   ]
+  },
+  "valle": {
+   "grados": {
+    "1": [
+     "jefe-valle-1",
+     "jefe-valle-2",
+     "jefe-valle-3"
+    ],
+    "2": [
+     "jefe-valle-4"
+    ],
+    "3": [
+     "jefe-valle-5"
+    ],
+    "4": [
+     "jefe-valle-1-dorado"
+    ],
+    "5": [
+     "jefe-valle-2-dorado"
+    ]
+   },
+   "todos": [
+    "jefe-valle-3-dorado",
+    "jefe-valle-4-dorado",
+    "jefe-valle-5-dorado",
+    "marco-dorado-valle"
+   ]
+  },
+  "montana": {
+   "grados": {
+    "1": [
+     "jefe-montana-1",
+     "jefe-montana-2",
+     "jefe-montana-3"
+    ],
+    "2": [
+     "jefe-montana-4"
+    ],
+    "3": [
+     "jefe-montana-5"
+    ],
+    "4": [
+     "jefe-montana-1-dorado"
+    ],
+    "5": [
+     "jefe-montana-2-dorado"
+    ]
+   },
+   "todos": [
+    "jefe-montana-3-dorado",
+    "jefe-montana-4-dorado",
+    "jefe-montana-5-dorado",
+    "marco-dorado-montana"
+   ]
+  },
+  "bosque": {
+   "grados": {
+    "1": [
+     "jefe-bosque-1",
+     "jefe-bosque-2",
+     "jefe-bosque-3"
+    ],
+    "2": [
+     "jefe-bosque-4"
+    ],
+    "3": [
+     "jefe-bosque-5"
+    ],
+    "4": [
+     "jefe-bosque-1-dorado"
+    ],
+    "5": [
+     "jefe-bosque-2-dorado"
+    ]
+   },
+   "todos": [
+    "jefe-bosque-3-dorado",
+    "jefe-bosque-4-dorado",
+    "jefe-bosque-5-dorado",
+    "marco-dorado-bosque"
+   ]
+  },
+  "mercado": {
+   "grados": {
+    "1": [
+     "jefe-mercado-1",
+     "jefe-mercado-2",
+     "jefe-mercado-3"
+    ],
+    "2": [
+     "jefe-mercado-4"
+    ],
+    "3": [
+     "jefe-mercado-5"
+    ],
+    "4": [
+     "jefe-mercado-1-dorado"
+    ],
+    "5": [
+     "jefe-mercado-2-dorado"
+    ]
+   },
+   "todos": [
+    "jefe-mercado-3-dorado",
+    "jefe-mercado-4-dorado",
+    "jefe-mercado-5-dorado",
+    "marco-dorado-mercado"
+   ]
+  },
+  "pueblo": {
+   "grados": {
+    "1": [
+     "jefe-pueblo-1",
+     "jefe-pueblo-2",
+     "jefe-pueblo-3"
+    ],
+    "2": [
+     "jefe-pueblo-4"
+    ],
+    "3": [
+     "jefe-pueblo-5"
+    ],
+    "4": [
+     "jefe-pueblo-1-dorado"
+    ],
+    "5": [
+     "jefe-pueblo-2-dorado"
+    ]
+   },
+   "todos": [
+    "jefe-pueblo-3-dorado",
+    "jefe-pueblo-4-dorado",
+    "jefe-pueblo-5-dorado",
+    "marco-dorado-pueblo"
+   ]
+  },
+  "tesoro": {
+   "grados": {
+    "1": [
+     "jefe-tesoro-1",
+     "jefe-tesoro-2",
+     "jefe-tesoro-3"
+    ],
+    "2": [
+     "jefe-tesoro-4"
+    ],
+    "3": [
+     "jefe-tesoro-5"
+    ],
+    "4": [
+     "jefe-tesoro-1-dorado"
+    ],
+    "5": [
+     "jefe-tesoro-2-dorado"
+    ]
+   },
+   "todos": [
+    "jefe-tesoro-3-dorado",
+    "jefe-tesoro-4-dorado",
+    "jefe-tesoro-5-dorado",
+    "marco-dorado-tesoro"
+   ]
+  }
+ },
+ "sets": [
+  {
+   "id": "set-isla",
+   "nombre": "Exploradora de la Isla",
+   "mundo": "isla",
+   "items": [
+    "jefe-isla-1",
+    "jefe-isla-2",
+    "jefe-isla-3",
+    "jefe-isla-4",
+    "jefe-isla-5"
+   ],
+   "dorado": [
+    "jefe-isla-1-dorado",
+    "jefe-isla-2-dorado",
+    "jefe-isla-3-dorado",
+    "jefe-isla-4-dorado",
+    "jefe-isla-5-dorado",
+    "marco-dorado-isla"
+   ]
+  },
+  {
+   "id": "set-valle",
+   "nombre": "Jardinera Mágica",
+   "mundo": "valle",
+   "items": [
+    "jefe-valle-1",
+    "jefe-valle-2",
+    "jefe-valle-3",
+    "jefe-valle-4",
+    "jefe-valle-5"
+   ],
+   "dorado": [
+    "jefe-valle-1-dorado",
+    "jefe-valle-2-dorado",
+    "jefe-valle-3-dorado",
+    "jefe-valle-4-dorado",
+    "jefe-valle-5-dorado",
+    "marco-dorado-valle"
+   ]
+  },
+  {
+   "id": "set-montana",
+   "nombre": "Alpinista",
+   "mundo": "montana",
+   "items": [
+    "jefe-montana-1",
+    "jefe-montana-2",
+    "jefe-montana-3",
+    "jefe-montana-4",
+    "jefe-montana-5"
+   ],
+   "dorado": [
+    "jefe-montana-1-dorado",
+    "jefe-montana-2-dorado",
+    "jefe-montana-3-dorado",
+    "jefe-montana-4-dorado",
+    "jefe-montana-5-dorado",
+    "marco-dorado-montana"
+   ]
+  },
+  {
+   "id": "set-bosque",
+   "nombre": "Hada del Bosque",
+   "mundo": "bosque",
+   "items": [
+    "jefe-bosque-1",
+    "jefe-bosque-2",
+    "jefe-bosque-3",
+    "jefe-bosque-4",
+    "jefe-bosque-5"
+   ],
+   "dorado": [
+    "jefe-bosque-1-dorado",
+    "jefe-bosque-2-dorado",
+    "jefe-bosque-3-dorado",
+    "jefe-bosque-4-dorado",
+    "jefe-bosque-5-dorado",
+    "marco-dorado-bosque"
+   ]
+  },
+  {
+   "id": "set-mercado",
+   "nombre": "Tendera del Mercado",
+   "mundo": "mercado",
+   "items": [
+    "jefe-mercado-1",
+    "jefe-mercado-2",
+    "jefe-mercado-3",
+    "jefe-mercado-4",
+    "jefe-mercado-5"
+   ],
+   "dorado": [
+    "jefe-mercado-1-dorado",
+    "jefe-mercado-2-dorado",
+    "jefe-mercado-3-dorado",
+    "jefe-mercado-4-dorado",
+    "jefe-mercado-5-dorado",
+    "marco-dorado-mercado"
+   ]
+  },
+  {
+   "id": "set-pueblo",
+   "nombre": "Detective",
+   "mundo": "pueblo",
+   "items": [
+    "jefe-pueblo-1",
+    "jefe-pueblo-2",
+    "jefe-pueblo-3",
+    "jefe-pueblo-4",
+    "jefe-pueblo-5"
+   ],
+   "dorado": [
+    "jefe-pueblo-1-dorado",
+    "jefe-pueblo-2-dorado",
+    "jefe-pueblo-3-dorado",
+    "jefe-pueblo-4-dorado",
+    "jefe-pueblo-5-dorado",
+    "marco-dorado-pueblo"
+   ]
+  },
+  {
+   "id": "set-tesoro",
+   "nombre": "Capitana del Tesoro",
+   "mundo": "tesoro",
+   "items": [
+    "jefe-tesoro-1",
+    "jefe-tesoro-2",
+    "jefe-tesoro-3",
+    "jefe-tesoro-4",
+    "jefe-tesoro-5"
+   ],
+   "dorado": [
+    "jefe-tesoro-1-dorado",
+    "jefe-tesoro-2-dorado",
+    "jefe-tesoro-3-dorado",
+    "jefe-tesoro-4-dorado",
+    "jefe-tesoro-5-dorado",
+    "marco-dorado-tesoro"
+   ]
+  }
+ ]
+}

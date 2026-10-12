@@ -1,0 +1,8 @@
+{
+  "_nota": "Grupos y tabla de posiciones. La meta del reto grupal es metaRetoPorJugadora × cantidad de jugadoras (ejemplo del diseño: 2.500 estrellas con 6 jugadoras).",
+  "maxJugadoras": 30,
+  "metaRetoPorJugadora": 420,
+  "premioRetoMonedas": 30,
+  "itemsSorpresa": ["brillos", "marco-flores", "flor-pelo", "estrella-pelo", "collar-perlas", "mono-violeta", "anteojos-rosas", "fondo-arcoiris"],
+  "sincronizarCadaSeg": 4
+}

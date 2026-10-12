@@ -1,0 +1,3660 @@
+{
+ "_nota": "Catálogo de ítems. capa: dónde va. desbloqueo: gratis, tienda (con monedas) o premio (no se compra). El precio sale de la rareza (content/config/economia.json) salvo que se indique \"precio\". colores: valores de --tela y --tela2 del SVG.",
+ "items": [
+  {
+   "id": "pelo-largo",
+   "capa": "pelo",
+   "nombre": "Largo",
+   "svg": "pelo-largo",
+   "svgAtras": "pelo-largo.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "pelo-corto",
+   "capa": "pelo",
+   "nombre": "Corto",
+   "svg": "pelo-corto",
+   "svgAtras": "pelo-corto.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "pelo-rulos",
+   "capa": "pelo",
+   "nombre": "Rulos",
+   "svg": "pelo-rulos",
+   "svgAtras": "pelo-rulos.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "pelo-colitas",
+   "capa": "pelo",
+   "nombre": "Colitas",
+   "svg": "pelo-colitas",
+   "svgAtras": "pelo-colitas.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "pelo-trenzas",
+   "capa": "pelo",
+   "nombre": "Trenzas",
+   "svg": "pelo-trenzas",
+   "svgAtras": "pelo-trenzas.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-rodete",
+   "capa": "pelo",
+   "nombre": "Rodete",
+   "svg": "pelo-rodete",
+   "svgAtras": "pelo-rodete.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-chonguitos",
+   "capa": "pelo",
+   "nombre": "Chonguitos",
+   "svg": "pelo-chonguitos",
+   "svgAtras": "pelo-chonguitos.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-ondas",
+   "capa": "pelo",
+   "nombre": "Ondas",
+   "svg": "pelo-ondas",
+   "svgAtras": "pelo-ondas.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-afro",
+   "capa": "pelo",
+   "nombre": "Afro",
+   "svg": "pelo-afro",
+   "svgAtras": "pelo-afro.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-carre",
+   "capa": "pelo",
+   "nombre": "Carré",
+   "svg": "pelo-carre",
+   "svgAtras": "pelo-carre.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-flequillo",
+   "capa": "pelo",
+   "nombre": "Flequillo recto",
+   "svg": "pelo-flequillo",
+   "svgAtras": "pelo-flequillo.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-media-cola",
+   "capa": "pelo",
+   "nombre": "Media cola",
+   "svg": "pelo-media-cola",
+   "svgAtras": "pelo-media-cola.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-cola-alta",
+   "capa": "pelo",
+   "nombre": "Cola alta",
+   "svg": "pelo-cola-alta",
+   "svgAtras": "pelo-cola-alta.atras",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pelo-rapado",
+   "capa": "pelo",
+   "nombre": "Cortito",
+   "svg": "pelo-rapado",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-negro",
+   "capa": "colorPelo",
+   "nombre": "Pelo negro",
+   "valor": "#2A2238",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "color-castano",
+   "capa": "colorPelo",
+   "nombre": "Pelo castaño",
+   "valor": "#6B3F27",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "color-rubio",
+   "capa": "colorPelo",
+   "nombre": "Pelo rubio",
+   "valor": "#E7C15A",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "color-colorado",
+   "capa": "colorPelo",
+   "nombre": "Pelo colorado",
+   "valor": "#C4572A",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "color-castano-oscuro",
+   "capa": "colorPelo",
+   "nombre": "Pelo castaño oscuro",
+   "valor": "#4B2E22",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-castano-claro",
+   "capa": "colorPelo",
+   "nombre": "Pelo castaño claro",
+   "valor": "#9A6236",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-rubio-claro",
+   "capa": "colorPelo",
+   "nombre": "Pelo rubio claro",
+   "valor": "#F2DC8C",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-cobre",
+   "capa": "colorPelo",
+   "nombre": "Pelo cobre",
+   "valor": "#A8431F",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-rosa",
+   "capa": "colorPelo",
+   "nombre": "Pelo rosa",
+   "valor": "#F28FB8",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-celeste",
+   "capa": "colorPelo",
+   "nombre": "Pelo celeste",
+   "valor": "#7CC6F2",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-violeta",
+   "capa": "colorPelo",
+   "nombre": "Pelo violeta",
+   "valor": "#9A7BF0",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "color-arcoiris",
+   "capa": "colorPelo",
+   "nombre": "Pelo arcoíris",
+   "valor": "arcoiris",
+   "rareza": "brillante",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "remera-violeta",
+   "capa": "arriba",
+   "nombre": "Remera violeta",
+   "svg": "remera",
+   "colores": {
+    "tela": "#5B3FE0"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "remera-turquesa",
+   "capa": "arriba",
+   "nombre": "Remera turquesa",
+   "svg": "remera",
+   "colores": {
+    "tela": "#0FA88F"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "remera-coral",
+   "capa": "arriba",
+   "nombre": "Remera coral",
+   "svg": "remera",
+   "colores": {
+    "tela": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "remera-rayada",
+   "capa": "arriba",
+   "nombre": "Remera rayada",
+   "svg": "remera-rayada",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "remera-rayada-rosa",
+   "capa": "arriba",
+   "nombre": "Remera rayada rosa",
+   "svg": "remera-rayada",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "remera-estrella",
+   "capa": "arriba",
+   "nombre": "Remera con estrella",
+   "svg": "remera-estrella",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "remera-corazon",
+   "capa": "arriba",
+   "nombre": "Remera con corazón",
+   "svg": "remera-corazon",
+   "colores": {
+    "tela": "#FFF4D1",
+    "tela2": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "musculosa-amarilla",
+   "capa": "arriba",
+   "nombre": "Musculosa amarilla",
+   "svg": "musculosa",
+   "colores": {
+    "tela": "#FFC93C"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "buzo-verde",
+   "capa": "arriba",
+   "nombre": "Buzo verde",
+   "svg": "buzo",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "buzo-rosa",
+   "capa": "arriba",
+   "nombre": "Buzo rosa",
+   "svg": "buzo",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "campera-azul",
+   "capa": "arriba",
+   "nombre": "Campera azul",
+   "svg": "campera",
+   "colores": {
+    "tela": "#3B6FD9",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "campera-roja",
+   "capa": "arriba",
+   "nombre": "Campera roja",
+   "svg": "campera",
+   "colores": {
+    "tela": "#D93A45",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "blusa-volados",
+   "capa": "arriba",
+   "nombre": "Blusa con volados",
+   "svg": "blusa-volados",
+   "colores": {
+    "tela": "#D7F5EE",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pantalon-azul",
+   "capa": "abajo",
+   "nombre": "Pantalón azul",
+   "svg": "pantalon",
+   "colores": {
+    "tela": "#3B6FD9"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "pollera-rosa",
+   "capa": "abajo",
+   "nombre": "Pollera rosa",
+   "svg": "pollera",
+   "colores": {
+    "tela": "#F28FB8"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "pantalon-negro",
+   "capa": "abajo",
+   "nombre": "Pantalón oscuro",
+   "svg": "pantalon",
+   "colores": {
+    "tela": "#3A3350"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "short-celeste",
+   "capa": "abajo",
+   "nombre": "Short celeste",
+   "svg": "short",
+   "colores": {
+    "tela": "#7CC6F2"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pollera-violeta",
+   "capa": "abajo",
+   "nombre": "Pollera violeta",
+   "svg": "pollera",
+   "colores": {
+    "tela": "#5B3FE0"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pollera-tul",
+   "capa": "abajo",
+   "nombre": "Pollera de tul",
+   "svg": "pollera-tul",
+   "colores": {
+    "tela": "#F7B6D2"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "calza-lila",
+   "capa": "abajo",
+   "nombre": "Calza lila",
+   "svg": "calza",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "jardinero",
+   "capa": "abajo",
+   "nombre": "Jardinero",
+   "svg": "jardinero",
+   "colores": {
+    "tela": "#3B6FD9",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "vestido-violeta",
+   "capa": "vestido",
+   "nombre": "Vestido violeta",
+   "svg": "vestido",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#9A7BF0"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "vestido-amarillo",
+   "capa": "vestido",
+   "nombre": "Vestido amarillo",
+   "svg": "vestido",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "vestido-volados",
+   "capa": "vestido",
+   "nombre": "Vestido con volados",
+   "svg": "vestido-volados",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "vestido-estrellas",
+   "capa": "vestido",
+   "nombre": "Vestido de estrellas",
+   "svg": "vestido-estrellas",
+   "colores": {
+    "tela": "#2B2350",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mameluco-turquesa",
+   "capa": "vestido",
+   "nombre": "Mameluco turquesa",
+   "svg": "mameluco",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "zapatillas-blancas",
+   "capa": "calzado",
+   "nombre": "Zapatillas",
+   "svg": "zapatillas",
+   "colores": {
+    "tela": "#5B3FE0"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "zapatitos-rojos",
+   "capa": "calzado",
+   "nombre": "Zapatitos rojos",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "zapatitos-rosas",
+   "capa": "calzado",
+   "nombre": "Zapatitos rosas",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "zapatillas-turquesa",
+   "capa": "calzado",
+   "nombre": "Zapatillas turquesa",
+   "svg": "zapatillas",
+   "colores": {
+    "tela": "#0FA88F"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "botas-marrones",
+   "capa": "calzado",
+   "nombre": "Botas",
+   "svg": "botas",
+   "colores": {
+    "tela": "#8A5A3B",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "botas-lluvia",
+   "capa": "calzado",
+   "nombre": "Botas de lluvia",
+   "svg": "botas",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "sandalias",
+   "capa": "calzado",
+   "nombre": "Sandalias",
+   "svg": "sandalias",
+   "colores": {
+    "tela": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mono-rojo",
+   "capa": "cabeza",
+   "nombre": "Moño rojo",
+   "svg": "mono",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mono-violeta",
+   "capa": "cabeza",
+   "nombre": "Moño violeta",
+   "svg": "mono",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "vincha-rosa",
+   "capa": "cabeza",
+   "nombre": "Vincha rosa",
+   "svg": "vincha",
+   "colores": {
+    "tela": "#F28FB8"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "vincha-gatito",
+   "capa": "cabeza",
+   "nombre": "Vincha de gatito",
+   "svg": "vincha-orejitas",
+   "colores": {
+    "tela": "#2B2350",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "gorro-turquesa",
+   "capa": "cabeza",
+   "nombre": "Gorro turquesa",
+   "svg": "gorro",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "gorra-violeta",
+   "capa": "cabeza",
+   "nombre": "Gorra",
+   "svg": "gorra",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "sombrero-paja",
+   "capa": "cabeza",
+   "nombre": "Sombrero de paja",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#F2DC8C",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "flor-pelo",
+   "capa": "cabeza",
+   "nombre": "Flor para el pelo",
+   "svg": "flor-pelo",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "estrella-pelo",
+   "capa": "cabeza",
+   "nombre": "Hebilla de estrella",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#FFC93C"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "tiara",
+   "capa": "cabeza",
+   "nombre": "Tiara",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "raro",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "auriculares",
+   "capa": "cabeza",
+   "nombre": "Auriculares",
+   "svg": "auriculares",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#2B2350"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "anteojos-lindos",
+   "capa": "cara",
+   "nombre": "Anteojos lindos",
+   "svg": "anteojos",
+   "colores": {
+    "tela": "#2B2350"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "anteojos-rosas",
+   "capa": "cara",
+   "nombre": "Anteojos rosas",
+   "svg": "anteojos",
+   "colores": {
+    "tela": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "anteojos-sol",
+   "capa": "cara",
+   "nombre": "Anteojos de sol",
+   "svg": "anteojos-sol",
+   "colores": {
+    "tela": "#2B2350"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "collar-perlas",
+   "capa": "cuello",
+   "nombre": "Collar de perlas",
+   "svg": "collar",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "collar-corazon",
+   "capa": "cuello",
+   "nombre": "Collar de corazón",
+   "svg": "collar-corazon",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "bufanda",
+   "capa": "cuello",
+   "nombre": "Bufanda",
+   "svg": "bufanda",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mochila-violeta",
+   "capa": "espalda",
+   "nombre": "Mochila",
+   "svg": "mochila",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda",
+   "svgFrente": "mochila-tiras"
+  },
+  {
+   "id": "alas-cristal",
+   "capa": "espalda",
+   "nombre": "Alas de cristal",
+   "svg": "alas",
+   "colores": {
+    "tela": "#CDE9FF"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio"
+  },
+  {
+   "id": "globo-rojo",
+   "capa": "mano",
+   "nombre": "Globo",
+   "svg": "globo",
+   "colores": {
+    "tela": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "varita",
+   "capa": "mano",
+   "nombre": "Varita mágica",
+   "svg": "varita",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#9A7BF0"
+   },
+   "rareza": "raro",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "ramo",
+   "capa": "mano",
+   "nombre": "Ramito de flores",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pecas",
+   "capa": "detalle",
+   "nombre": "Pecas",
+   "svg": "pecas",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "brillos",
+   "capa": "detalle",
+   "nombre": "Brillos de fiesta",
+   "svg": "brillos",
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "curita",
+   "capa": "detalle",
+   "nombre": "Curita",
+   "svg": "curita",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-lila",
+   "capa": "fondo",
+   "nombre": "Lila",
+   "svg": "fondo-lila",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "fondo-cielo",
+   "capa": "fondo",
+   "nombre": "Cielo",
+   "svg": "fondo-cielo",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "fondo-rosa",
+   "capa": "fondo",
+   "nombre": "Rosa",
+   "svg": "fondo-rosa",
+   "rareza": "comun",
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "fondo-jardin",
+   "capa": "fondo",
+   "nombre": "Jardín",
+   "svg": "fondo-jardin",
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-noche",
+   "capa": "fondo",
+   "nombre": "Noche estrellada",
+   "svg": "fondo-noche",
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-playa",
+   "capa": "fondo",
+   "nombre": "Playa",
+   "svg": "fondo-playa",
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-arcoiris",
+   "capa": "fondo",
+   "nombre": "Arcoíris",
+   "svg": "fondo-arcoiris",
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-castillo",
+   "capa": "fondo",
+   "nombre": "Castillo",
+   "svg": "fondo-castillo",
+   "rareza": "raro",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-mar",
+   "capa": "fondo",
+   "nombre": "Fondo del mar",
+   "svg": "fondo-mar",
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "marco-estrellas",
+   "capa": "marco",
+   "nombre": "Marco de estrellas",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "marco-flores",
+   "capa": "marco",
+   "nombre": "Marco de flores",
+   "svg": "marco-flores",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "marco-corazones",
+   "capa": "marco",
+   "nombre": "Marco de corazones",
+   "svg": "marco-corazones",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "premio-isla-1",
+   "capa": "arriba",
+   "nombre": "Remera marinera",
+   "svg": "remera-estrella",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-1",
+   "capa": "cabeza",
+   "nombre": "Corona de caracolas",
+   "svg": "corona",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-isla-2",
+   "capa": "cabeza",
+   "nombre": "Sombrero de la isla",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-2",
+   "capa": "mano",
+   "nombre": "Varita de coral",
+   "svg": "varita",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-isla-3",
+   "capa": "cuello",
+   "nombre": "Collar de caracolas",
+   "svg": "collar",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-3",
+   "capa": "cuello",
+   "nombre": "Collar de perlas del mar",
+   "svg": "collar",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-isla-4",
+   "capa": "calzado",
+   "nombre": "Sandalias de arena",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-4",
+   "capa": "espalda",
+   "nombre": "Alas de espuma",
+   "svg": "alas",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-isla-5",
+   "capa": "vestido",
+   "nombre": "Vestido de olas",
+   "svg": "vestido",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-5",
+   "capa": "cabeza",
+   "nombre": "Tiara de la isla",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-isla-6",
+   "capa": "cabeza",
+   "nombre": "Moño de estrella de mar",
+   "svg": "mono",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-6",
+   "capa": "mano",
+   "nombre": "Ramo de flores de la isla",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-isla-7",
+   "capa": "abajo",
+   "nombre": "Short de playa",
+   "svg": "short",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-7",
+   "capa": "cabeza",
+   "nombre": "Hebilla de estrella de mar",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-isla-8",
+   "capa": "cara",
+   "nombre": "Anteojos de sol isleños",
+   "svg": "anteojos-sol",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "raro-isla-8",
+   "capa": "espalda",
+   "nombre": "Capa de olas",
+   "svg": "capa",
+   "colores": {
+    "tela": "#7CC6F2",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-1",
+   "capa": "arriba",
+   "nombre": "Remera de flores",
+   "svg": "remera-estrella",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-1",
+   "capa": "cabeza",
+   "nombre": "Corona de flores",
+   "svg": "corona",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-2",
+   "capa": "cabeza",
+   "nombre": "Vincha de hojas",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-2",
+   "capa": "mano",
+   "nombre": "Varita de girasol",
+   "svg": "varita",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-3",
+   "capa": "cuello",
+   "nombre": "Pollera del valle",
+   "svg": "collar",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-3",
+   "capa": "cuello",
+   "nombre": "Alas de mariposa",
+   "svg": "collar",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-4",
+   "capa": "calzado",
+   "nombre": "Botas del jardín",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-4",
+   "capa": "espalda",
+   "nombre": "Tiara de rocío",
+   "svg": "alas",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-5",
+   "capa": "vestido",
+   "nombre": "Vestido de margaritas",
+   "svg": "vestido",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-5",
+   "capa": "cabeza",
+   "nombre": "Ramo encantado",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-6",
+   "capa": "cabeza",
+   "nombre": "Moño de pétalos",
+   "svg": "mono",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-6",
+   "capa": "mano",
+   "nombre": "Collar de capullos",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-7",
+   "capa": "abajo",
+   "nombre": "Buzo del valle",
+   "svg": "short",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-7",
+   "capa": "cabeza",
+   "nombre": "Hebilla de abeja",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-valle-8",
+   "capa": "cara",
+   "nombre": "Collar de semillas",
+   "svg": "anteojos-sol",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "raro-valle-8",
+   "capa": "espalda",
+   "nombre": "Capa de pétalos",
+   "svg": "capa",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-1",
+   "capa": "arriba",
+   "nombre": "Campera de nieve",
+   "svg": "campera",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "raro-montana-1",
+   "capa": "cabeza",
+   "nombre": "Corona de cristal de hielo",
+   "svg": "corona",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#9A7BF0"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-2",
+   "capa": "cabeza",
+   "nombre": "Gorro de montaña",
+   "svg": "gorro",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "raro-montana-2",
+   "capa": "mano",
+   "nombre": "Varita de copo de nieve",
+   "svg": "varita",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-3",
+   "capa": "cuello",
+   "nombre": "Bufanda de lana",
+   "svg": "bufanda",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "raro-montana-3",
+   "capa": "cuello",
+   "nombre": "Alas de nube",
+   "svg": "collar",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-4",
+   "capa": "calzado",
+   "nombre": "Botas de nieve",
+   "svg": "botas",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "raro-montana-4",
+   "capa": "espalda",
+   "nombre": "Tiara de escarcha",
+   "svg": "alas",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-5",
+   "capa": "abajo",
+   "nombre": "Pantalón de alpinista",
+   "svg": "pantalon",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "raro-montana-5",
+   "capa": "cabeza",
+   "nombre": "Collar de piedras brillantes",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#9A7BF0"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-6",
+   "capa": "espalda",
+   "nombre": "Mochila exploradora",
+   "svg": "mochila",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "svgFrente": "mochila-tiras"
+  },
+  {
+   "id": "raro-montana-6",
+   "capa": "mano",
+   "nombre": "Capa de la cumbre",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-7",
+   "capa": "abajo",
+   "nombre": "Remera de cumbre",
+   "svg": "short",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "raro-montana-7",
+   "capa": "cabeza",
+   "nombre": "Hebilla de copo",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-montana-8",
+   "capa": "cara",
+   "nombre": "Anteojos de nieve",
+   "svg": "anteojos",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "raro-montana-8",
+   "capa": "espalda",
+   "nombre": "Mochila dorada de cumbre",
+   "svg": "capa",
+   "colores": {
+    "tela": "#9A7BF0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-1",
+   "capa": "arriba",
+   "nombre": "Vestido del bosque",
+   "svg": "remera-estrella",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-1",
+   "capa": "cabeza",
+   "nombre": "Corona del bosque",
+   "svg": "corona",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#0FA88F"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-2",
+   "capa": "cabeza",
+   "nombre": "Gorrito de hongo",
+   "svg": "gorro",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-2",
+   "capa": "mano",
+   "nombre": "Varita de rama mágica",
+   "svg": "varita",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-3",
+   "capa": "cuello",
+   "nombre": "Mameluco de hojas",
+   "svg": "collar",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-3",
+   "capa": "cuello",
+   "nombre": "Alas de hada",
+   "svg": "collar",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-4",
+   "capa": "calzado",
+   "nombre": "Botas de musgo",
+   "svg": "botas",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-4",
+   "capa": "espalda",
+   "nombre": "Tiara de luciérnagas",
+   "svg": "alas",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-5",
+   "capa": "arriba",
+   "nombre": "Remera de bellotas",
+   "svg": "remera-estrella",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-5",
+   "capa": "cabeza",
+   "nombre": "Capa de hojas doradas",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#0FA88F"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-6",
+   "capa": "cuello",
+   "nombre": "Collar de bayas",
+   "svg": "collar-corazon",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-6",
+   "capa": "mano",
+   "nombre": "Collar de rocío",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-7",
+   "capa": "cabeza",
+   "nombre": "Vincha de ramitas",
+   "svg": "vincha",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-7",
+   "capa": "cabeza",
+   "nombre": "Ramo del bosque",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-bosque-8",
+   "capa": "abajo",
+   "nombre": "Pollera de hojas",
+   "svg": "pollera-tul",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "raro-bosque-8",
+   "capa": "espalda",
+   "nombre": "Hebilla de hongo",
+   "svg": "capa",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-1",
+   "capa": "arriba",
+   "nombre": "Delantal del mercado",
+   "svg": "remera-estrella",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-1",
+   "capa": "cabeza",
+   "nombre": "Corona de monedas",
+   "svg": "corona",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-2",
+   "capa": "cabeza",
+   "nombre": "Gorra de la feria",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-2",
+   "capa": "mano",
+   "nombre": "Varita de la balanza",
+   "svg": "varita",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-3",
+   "capa": "cuello",
+   "nombre": "Remera de frutas",
+   "svg": "collar",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-3",
+   "capa": "cuello",
+   "nombre": "Collar de monedas",
+   "svg": "collar",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-4",
+   "capa": "calzado",
+   "nombre": "Zapatitos de la feria",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-4",
+   "capa": "espalda",
+   "nombre": "Alas de billete",
+   "svg": "alas",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-5",
+   "capa": "vestido",
+   "nombre": "Pollera de rayas",
+   "svg": "vestido",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-5",
+   "capa": "cabeza",
+   "nombre": "Tiara de oro",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-6",
+   "capa": "cabeza",
+   "nombre": "Bolsito de compras",
+   "svg": "mono",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-6",
+   "capa": "mano",
+   "nombre": "Capa del mercado",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-7",
+   "capa": "abajo",
+   "nombre": "Pañuelo del puesto",
+   "svg": "short",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-7",
+   "capa": "cabeza",
+   "nombre": "Ramo de frutas",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-mercado-8",
+   "capa": "cara",
+   "nombre": "Vestido de la tendera",
+   "svg": "anteojos-sol",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "raro-mercado-8",
+   "capa": "espalda",
+   "nombre": "Hebilla de moneda",
+   "svg": "capa",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-1",
+   "capa": "arriba",
+   "nombre": "Piloto de detective",
+   "svg": "campera",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-1",
+   "capa": "cabeza",
+   "nombre": "Corona del pueblo",
+   "svg": "corona",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#5B3FE0"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-2",
+   "capa": "cabeza",
+   "nombre": "Sombrero del pueblo",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-2",
+   "capa": "mano",
+   "nombre": "Lupa mágica",
+   "svg": "varita",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-3",
+   "capa": "cuello",
+   "nombre": "Remera de lupas",
+   "svg": "collar",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-3",
+   "capa": "cuello",
+   "nombre": "Collar de llaves",
+   "svg": "collar-corazon",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-4",
+   "capa": "calzado",
+   "nombre": "Botas del pueblo",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-4",
+   "capa": "espalda",
+   "nombre": "Alas de farol",
+   "svg": "alas",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-5",
+   "capa": "abajo",
+   "nombre": "Jardinero del pueblo",
+   "svg": "jardinero",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-5",
+   "capa": "cabeza",
+   "nombre": "Tiara del reloj",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#5B3FE0"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-6",
+   "capa": "cara",
+   "nombre": "Anteojos de detective",
+   "svg": "anteojos",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-6",
+   "capa": "mano",
+   "nombre": "Capa de detective",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-7",
+   "capa": "cuello",
+   "nombre": "Bufanda de la plaza",
+   "svg": "bufanda",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-7",
+   "capa": "cabeza",
+   "nombre": "Ramo de la plaza",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-pueblo-8",
+   "capa": "cara",
+   "nombre": "Vestido de la plaza",
+   "svg": "anteojos-sol",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "raro-pueblo-8",
+   "capa": "espalda",
+   "nombre": "Hebilla de lupa",
+   "svg": "capa",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-1",
+   "capa": "arriba",
+   "nombre": "Remera pirata",
+   "svg": "remera-estrella",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-1",
+   "capa": "cabeza",
+   "nombre": "Corona del tesoro",
+   "svg": "corona",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#E8B21F"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-2",
+   "capa": "cabeza",
+   "nombre": "Pañuelo de capitana",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-2",
+   "capa": "mano",
+   "nombre": "Varita de brújula",
+   "svg": "varita",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-3",
+   "capa": "cuello",
+   "nombre": "Pantalón del barco",
+   "svg": "collar",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-3",
+   "capa": "cuello",
+   "nombre": "Collar de doblones",
+   "svg": "collar",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-4",
+   "capa": "calzado",
+   "nombre": "Botas del tesoro",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-4",
+   "capa": "espalda",
+   "nombre": "Alas de vela",
+   "svg": "alas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-5",
+   "capa": "vestido",
+   "nombre": "Vestido del cofre",
+   "svg": "vestido",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-5",
+   "capa": "cabeza",
+   "nombre": "Tiara de piedras preciosas",
+   "svg": "tiara",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#E8B21F"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-6",
+   "capa": "cabeza",
+   "nombre": "Collar del mapa",
+   "svg": "mono",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-6",
+   "capa": "mano",
+   "nombre": "Capa de capitana",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-7",
+   "capa": "abajo",
+   "nombre": "Gorra de marinera",
+   "svg": "short",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-7",
+   "capa": "cabeza",
+   "nombre": "Ramo de joyas",
+   "svg": "estrella-pelo",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "premio-tesoro-8",
+   "capa": "cara",
+   "nombre": "Chaleco del tesoro",
+   "svg": "anteojos-sol",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "raro-tesoro-8",
+   "capa": "espalda",
+   "nombre": "Hebilla de ancla",
+   "svg": "capa",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "raro",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "jefe-isla-1",
+   "capa": "vestido",
+   "nombre": "Traje de exploradora",
+   "svg": "tunica",
+   "colores": {
+    "tela": "#F2DC8C",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "jefe-isla-1-dorado",
+   "capa": "vestido",
+   "nombre": "Traje de exploradora dorado",
+   "svg": "tunica",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "jefe-isla-2",
+   "capa": "cabeza",
+   "nombre": "Sombrero de exploradora",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#F2DC8C",
+    "tela2": "#E8505B"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "jefe-isla-2-dorado",
+   "capa": "cabeza",
+   "nombre": "Sombrero de exploradora dorado",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "jefe-isla-3",
+   "capa": "calzado",
+   "nombre": "Botas de exploradora",
+   "svg": "botas",
+   "colores": {
+    "tela": "#8A5A3B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "jefe-isla-3-dorado",
+   "capa": "calzado",
+   "nombre": "Botas de exploradora dorado",
+   "svg": "botas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "jefe-isla-4",
+   "capa": "espalda",
+   "nombre": "Mochila de exploradora",
+   "svg": "mochila",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "svgFrente": "mochila-tiras"
+  },
+  {
+   "id": "jefe-isla-4-dorado",
+   "capa": "espalda",
+   "nombre": "Mochila de exploradora dorada",
+   "svg": "mochila",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true,
+   "svgFrente": "mochila-tiras"
+  },
+  {
+   "id": "jefe-isla-5",
+   "capa": "mano",
+   "nombre": "Catalejo de colores",
+   "svg": "globo",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#2B2350"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "jefe-isla-5-dorado",
+   "capa": "mano",
+   "nombre": "Catalejo de colores dorado",
+   "svg": "globo",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "isla",
+   "brilla": true
+  },
+  {
+   "id": "marco-dorado-isla",
+   "capa": "marco",
+   "nombre": "Marco dorado de Exploradora de la Isla",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "isla"
+  },
+  {
+   "id": "jefe-valle-1",
+   "capa": "vestido",
+   "nombre": "Vestido de jardinera",
+   "svg": "vestido-volados",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#F28FB8"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "jefe-valle-1-dorado",
+   "capa": "vestido",
+   "nombre": "Vestido de jardinera dorado",
+   "svg": "vestido-volados",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "jefe-valle-2",
+   "capa": "cabeza",
+   "nombre": "Flor mágica",
+   "svg": "flor-pelo",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "jefe-valle-2-dorado",
+   "capa": "cabeza",
+   "nombre": "Flor mágica dorado",
+   "svg": "flor-pelo",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "jefe-valle-3",
+   "capa": "calzado",
+   "nombre": "Zapatitos de pétalo",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "jefe-valle-3-dorado",
+   "capa": "calzado",
+   "nombre": "Zapatitos de pétalo dorado",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "jefe-valle-4",
+   "capa": "espalda",
+   "nombre": "Alas de mariposa mágica",
+   "svg": "alas",
+   "colores": {
+    "tela": "#F7B6D2",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "jefe-valle-4-dorado",
+   "capa": "espalda",
+   "nombre": "Alas de mariposa mágica dorado",
+   "svg": "alas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "jefe-valle-5",
+   "capa": "mano",
+   "nombre": "Regadera de flores",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#F28FB8",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "jefe-valle-5-dorado",
+   "capa": "mano",
+   "nombre": "Regadera de flores dorada",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "valle",
+   "brilla": true
+  },
+  {
+   "id": "marco-dorado-valle",
+   "capa": "marco",
+   "nombre": "Marco dorado de Jardinera Mágica",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "valle"
+  },
+  {
+   "id": "jefe-montana-1",
+   "capa": "arriba",
+   "nombre": "Campera de alpinista",
+   "svg": "campera",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "jefe-montana-1-dorado",
+   "capa": "arriba",
+   "nombre": "Campera de alpinista dorada",
+   "svg": "campera",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "jefe-montana-2",
+   "capa": "cabeza",
+   "nombre": "Gorro de alpinista",
+   "svg": "gorro",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "jefe-montana-2-dorado",
+   "capa": "cabeza",
+   "nombre": "Gorro de alpinista dorado",
+   "svg": "gorro",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "jefe-montana-3",
+   "capa": "calzado",
+   "nombre": "Botas de alpinista",
+   "svg": "botas",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "jefe-montana-3-dorado",
+   "capa": "calzado",
+   "nombre": "Botas de alpinista dorado",
+   "svg": "botas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "jefe-montana-4",
+   "capa": "espalda",
+   "nombre": "Mochila de alpinista",
+   "svg": "mochila",
+   "colores": {
+    "tela": "#5B3FE0",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "svgFrente": "mochila-tiras"
+  },
+  {
+   "id": "jefe-montana-4-dorado",
+   "capa": "espalda",
+   "nombre": "Mochila de alpinista dorada",
+   "svg": "mochila",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true,
+   "svgFrente": "mochila-tiras"
+  },
+  {
+   "id": "jefe-montana-5",
+   "capa": "mano",
+   "nombre": "Bastón de cumbre",
+   "svg": "varita",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "jefe-montana-5-dorado",
+   "capa": "mano",
+   "nombre": "Bastón de cumbre dorado",
+   "svg": "varita",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "montana",
+   "brilla": true
+  },
+  {
+   "id": "marco-dorado-montana",
+   "capa": "marco",
+   "nombre": "Marco dorado de Alpinista",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "montana"
+  },
+  {
+   "id": "jefe-bosque-1",
+   "capa": "vestido",
+   "nombre": "Vestido del hada",
+   "svg": "vestido-estrellas",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "jefe-bosque-1-dorado",
+   "capa": "vestido",
+   "nombre": "Vestido del hada dorado",
+   "svg": "vestido-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "jefe-bosque-2",
+   "capa": "cabeza",
+   "nombre": "Corona del Hada del Bosque",
+   "svg": "corona",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#E8505B"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "jefe-bosque-2-dorado",
+   "capa": "cabeza",
+   "nombre": "Corona del Hada del Bosque dorada",
+   "svg": "corona",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "jefe-bosque-3",
+   "capa": "calzado",
+   "nombre": "Zapatitos del hada",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#0FA88F",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "jefe-bosque-3-dorado",
+   "capa": "calzado",
+   "nombre": "Zapatitos del hada dorado",
+   "svg": "zapatitos",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "jefe-bosque-4",
+   "capa": "espalda",
+   "nombre": "Alas del hada",
+   "svg": "alas",
+   "colores": {
+    "tela": "#D7F5EE",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "jefe-bosque-4-dorado",
+   "capa": "espalda",
+   "nombre": "Alas del hada dorado",
+   "svg": "alas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "jefe-bosque-5",
+   "capa": "mano",
+   "nombre": "Varita del hada",
+   "svg": "varita",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "jefe-bosque-5-dorado",
+   "capa": "mano",
+   "nombre": "Varita del hada dorada",
+   "svg": "varita",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "bosque",
+   "brilla": true
+  },
+  {
+   "id": "marco-dorado-bosque",
+   "capa": "marco",
+   "nombre": "Marco dorado de Hada del Bosque",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "bosque"
+  },
+  {
+   "id": "jefe-mercado-1",
+   "capa": "arriba",
+   "nombre": "Blusa de la tendera",
+   "svg": "blusa-volados",
+   "colores": {
+    "tela": "#FFE3E6",
+    "tela2": "#E8505B"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "jefe-mercado-1-dorado",
+   "capa": "arriba",
+   "nombre": "Blusa de la tendera dorada",
+   "svg": "blusa-volados",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "jefe-mercado-2",
+   "capa": "cabeza",
+   "nombre": "Gorra de la tendera",
+   "svg": "gorra",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "jefe-mercado-2-dorado",
+   "capa": "cabeza",
+   "nombre": "Gorra de la tendera dorada",
+   "svg": "gorra",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "jefe-mercado-3",
+   "capa": "calzado",
+   "nombre": "Zapatillas de la tendera",
+   "svg": "zapatillas",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "jefe-mercado-3-dorado",
+   "capa": "calzado",
+   "nombre": "Zapatillas de la tendera dorado",
+   "svg": "zapatillas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "jefe-mercado-4",
+   "capa": "espalda",
+   "nombre": "Delantal largo",
+   "svg": "capa",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "jefe-mercado-4-dorado",
+   "capa": "espalda",
+   "nombre": "Delantal largo dorado",
+   "svg": "capa",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "jefe-mercado-5",
+   "capa": "mano",
+   "nombre": "Canasta de frutas",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "jefe-mercado-5-dorado",
+   "capa": "mano",
+   "nombre": "Canasta de frutas dorada",
+   "svg": "ramo",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "mercado",
+   "brilla": true
+  },
+  {
+   "id": "marco-dorado-mercado",
+   "capa": "marco",
+   "nombre": "Marco dorado de Tendera del Mercado",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "mercado"
+  },
+  {
+   "id": "jefe-pueblo-1",
+   "capa": "arriba",
+   "nombre": "Piloto de detective",
+   "svg": "campera",
+   "colores": {
+    "tela": "#C9A46A",
+    "tela2": "#8A5A3B"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "jefe-pueblo-1-dorado",
+   "capa": "arriba",
+   "nombre": "Piloto de detective dorado",
+   "svg": "campera",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "jefe-pueblo-2",
+   "capa": "cabeza",
+   "nombre": "Sombrero de detective",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#8A5A3B",
+    "tela2": "#2B2350"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "jefe-pueblo-2-dorado",
+   "capa": "cabeza",
+   "nombre": "Sombrero de detective dorado",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "jefe-pueblo-3",
+   "capa": "calzado",
+   "nombre": "Botas de detective",
+   "svg": "botas",
+   "colores": {
+    "tela": "#2B2350",
+    "tela2": "#8A5A3B"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "jefe-pueblo-3-dorado",
+   "capa": "calzado",
+   "nombre": "Botas de detective dorado",
+   "svg": "botas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "jefe-pueblo-4",
+   "capa": "espalda",
+   "nombre": "Capa de detective",
+   "svg": "capa",
+   "colores": {
+    "tela": "#8A5A3B",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "jefe-pueblo-4-dorado",
+   "capa": "espalda",
+   "nombre": "Capa de detective dorada",
+   "svg": "capa",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "jefe-pueblo-5",
+   "capa": "mano",
+   "nombre": "Lupa gigante",
+   "svg": "globo",
+   "colores": {
+    "tela": "#CDE9FF",
+    "tela2": "#2B2350"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "jefe-pueblo-5-dorado",
+   "capa": "mano",
+   "nombre": "Lupa gigante dorada",
+   "svg": "globo",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "pueblo",
+   "brilla": true
+  },
+  {
+   "id": "marco-dorado-pueblo",
+   "capa": "marco",
+   "nombre": "Marco dorado de Detective",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "pueblo"
+  },
+  {
+   "id": "jefe-tesoro-1",
+   "capa": "vestido",
+   "nombre": "Traje de capitana",
+   "svg": "tunica",
+   "colores": {
+    "tela": "#2B2350",
+    "tela2": "#E8B21F"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "jefe-tesoro-1-dorado",
+   "capa": "vestido",
+   "nombre": "Traje de capitana dorado",
+   "svg": "tunica",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "jefe-tesoro-2",
+   "capa": "cabeza",
+   "nombre": "Sombrero de capitana",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#2B2350",
+    "tela2": "#E8B21F"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "jefe-tesoro-2-dorado",
+   "capa": "cabeza",
+   "nombre": "Sombrero de capitana dorado",
+   "svg": "sombrero",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "jefe-tesoro-3",
+   "capa": "calzado",
+   "nombre": "Botas de capitana",
+   "svg": "botas",
+   "colores": {
+    "tela": "#2B2350",
+    "tela2": "#E8B21F"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "jefe-tesoro-3-dorado",
+   "capa": "calzado",
+   "nombre": "Botas de capitana dorado",
+   "svg": "botas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "jefe-tesoro-4",
+   "capa": "espalda",
+   "nombre": "Capa de capitana",
+   "svg": "capa",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "jefe-tesoro-4-dorado",
+   "capa": "espalda",
+   "nombre": "Capa de capitana dorada",
+   "svg": "capa",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "jefe-tesoro-5",
+   "capa": "mano",
+   "nombre": "Brújula mágica",
+   "svg": "varita",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#E8505B"
+   },
+   "rareza": "magico",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "jefe-tesoro-5-dorado",
+   "capa": "mano",
+   "nombre": "Brújula mágica dorada",
+   "svg": "varita",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "tesoro",
+   "brilla": true
+  },
+  {
+   "id": "marco-dorado-tesoro",
+   "capa": "marco",
+   "nombre": "Marco dorado de Capitana del Tesoro",
+   "svg": "marco-estrellas",
+   "colores": {
+    "tela": "#E8B21F",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "legendario",
+   "desbloqueo": "premio",
+   "mundo": "tesoro"
+  },
+  {
+   "id": "mascota-mono",
+   "capa": "mascota",
+   "nombre": "Moñito",
+   "svg": "mono",
+   "colores": {
+    "tela": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mascota-gorrito",
+   "capa": "mascota",
+   "nombre": "Gorrito de fiesta",
+   "svg": "gorrito",
+   "colores": {
+    "tela": "#5B3FE0"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mascota-anteojos",
+   "capa": "mascota",
+   "nombre": "Anteojitos",
+   "svg": "anteojos",
+   "colores": {
+    "tela": "#2B2350"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mascota-corona",
+   "capa": "mascota",
+   "nombre": "Coronita",
+   "svg": "corona",
+   "colores": {
+    "tela": "#FFC93C"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mascota-bufanda",
+   "capa": "mascota",
+   "nombre": "Bufandita",
+   "svg": "bufanda",
+   "colores": {
+    "tela": "#0FA88F"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "mascota-flor",
+   "capa": "mascota",
+   "nombre": "Florcita",
+   "svg": "flor",
+   "colores": {
+    "tela": "#F28FB8"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  }
+ ]
+}

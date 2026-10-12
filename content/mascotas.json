@@ -1,0 +1,21 @@
+{
+  "_nota": "Mascotas. tipo: real, fantasia o mar. precio 0 = gratis al empezar.",
+  "mascotas": [
+    { "id": "gatito", "nombre": "Gatito", "tipo": "real", "precio": 0, "color": "#F4A259", "color2": "#FFE3E6" },
+    { "id": "perrito", "nombre": "Perrito", "tipo": "real", "precio": 0, "color": "#C98A5C", "color2": "#FFF4D1" },
+    { "id": "conejito", "nombre": "Conejito", "tipo": "real", "precio": 0, "color": "#F7F3FF", "color2": "#F7B6D2" },
+    { "id": "dragoncito", "nombre": "Dragoncito", "tipo": "fantasia", "precio": 0, "color": "#3DBE7A", "color2": "#D7F5EE" },
+    { "id": "unicornio", "nombre": "Unicornio bebé", "tipo": "fantasia", "precio": 60, "color": "#FBF8FF", "color2": "#F7B6D2" },
+    { "id": "fenix", "nombre": "Fénix", "tipo": "fantasia", "precio": 80, "color": "#F29A2E", "color2": "#FFC93C" },
+    { "id": "tiburoncito", "nombre": "Tiburoncito", "tipo": "mar", "precio": 40, "color": "#9DB7E8", "color2": "#F3F7FF" },
+    { "id": "delfin", "nombre": "Delfín", "tipo": "mar", "precio": 50, "color": "#7CC6F2", "color2": "#E8F6FF" },
+    { "id": "pulpito", "nombre": "Pulpito", "tipo": "mar", "precio": 45, "color": "#E87AA0", "color2": "#FFE3E6" },
+    { "id": "tortuga", "nombre": "Tortuga marina", "tipo": "mar", "precio": 50, "color": "#5FBF8F", "color2": "#C9A46A" }
+  ],
+  "tipos": [
+    { "id": "todas", "nombre": "Todas" },
+    { "id": "real", "nombre": "Reales" },
+    { "id": "fantasia", "nombre": "Fantasía" },
+    { "id": "mar", "nombre": "Mar" }
+  ]
+}

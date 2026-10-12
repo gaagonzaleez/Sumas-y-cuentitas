@@ -1,0 +1,70 @@
+name: Voces de las guías
+
+# Genera los audios con voces abiertas (Piper / Kokoro) y los guarda en el repo.
+# Corre sola cuando cambia el contenido o la configuración de voces, o a mano desde Actions.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - '!content/audio/**'
+      - 'scripts/voz/**'
+      - 'src/engine/voz.ts'
+      - 'src/engine/generadores/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: voces
+  cancel-in-progress: true
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    outputs:
+      cambios: ${{ steps.commit.outputs.cambios }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Lista de frases
+        run: npm run audio:manifiesto
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Instalar voces y ffmpeg
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y ffmpeg
+          pip install piper-tts==1.3.0 kokoro-onnx==0.4.9 soundfile
+      - uses: actions/cache@v4
+        with:
+          path: scripts/voz/.modelos
+          key: modelos-voz-v1
+      - name: Generar audios
+        run: python scripts/voz/generar.py
+      - name: Guardar en el repo
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add content/audio docs/voces-muestras docs/voces-licencias.json
+          if git diff --cached --quiet; then echo "cambios=no" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -m "Voces de las guías generadas automáticamente"
+          for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main && break || sleep $((i*5)); done
+          echo "cambios=si" >> "$GITHUB_OUTPUT"
+
+  desplegar:
+    needs: generar
+    if: needs.generar.outputs.cambios == 'si'
+    uses: ./.github/workflows/ci-despliegue.yml
+    with:
+      ref: main
+    secrets: inherit

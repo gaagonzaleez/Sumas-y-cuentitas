@@ -26,10 +26,10 @@ export function validarApodo(apodo: string): ProblemaApodo | null {
   const limpio = apodo.trim().replace(/\s+/g, ' ');
   const n = normalizar(limpio);
   for (const c of lista.contacto) if (n.includes(c)) return 'contacto';
+  if ((limpio.match(/[0-9]/g) ?? []).length > 2) return 'numeros';
   if (limpio.length < config.app.apodo.min) return 'corto';
   if (limpio.length > config.app.apodo.max) return 'largo';
   if (!/^[\p{L} 0-9]+$/u.test(limpio)) return 'caracteres';
-  if ((limpio.match(/[0-9]/g) ?? []).length > 2) return 'numeros';
   const compacto = n.replace(/[^a-z]/g, '');
   const palabras = n.split(/[^a-z]+/).filter(Boolean);
   for (const g of lista.groserias) {

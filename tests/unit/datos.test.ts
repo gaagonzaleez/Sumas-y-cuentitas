@@ -1,0 +1,89 @@
+import 'fake-indexeddb/auto';
+import { beforeEach, describe, expect, it } from 'vitest';
+import * as db from '../../src/datos/db';
+import { borrarJugadora, crearCuenta, crearJugadora, elegirJugadora, iniciar, jugadoraActual, leerEstado, verificarAdulta } from '../../src/datos/estado';
+import { comprarItem, completarGrado, elegirMeta, guardarEnAlcancia, ofertasDeLaSemana, registrarIntento } from '../../src/datos/juego';
+import { ITEMS } from '../../src/content/catalogo';
+import { config } from '../../src/content';
+
+beforeEach(async () => {
+  await db.borrarTodo();
+  await iniciar();
+});
+
+describe('cuenta y perfiles', () => {
+  it('la contraseña de la adulta se guarda como hash', async () => {
+    await crearCuenta('mama@ejemplo.com', 'secreta123');
+    const c = await db.leerCuenta();
+    expect(c?.hash).not.toContain('secreta');
+    expect(await verificarAdulta('secreta123')).toBe(true);
+    expect(await verificarAdulta('otra')).toBe(false);
+  });
+
+  it('borrar un perfil elimina todos sus datos', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    const otra = await crearJugadora('Lunita', '2.º grado');
+    elegirJugadora(j.id);
+    await registrarIntento({ nivelId: 'valle-1', plantillaId: 'suma', params: '{}', respuesta: '5', correcta: true, pistas: 0, ms: 1000 });
+    elegirJugadora(otra.id);
+    await registrarIntento({ nivelId: 'valle-1', plantillaId: 'suma', params: '{}', respuesta: '7', correcta: false, errorTag: 'suma.calculo', pistas: 0, ms: 1000 });
+    await borrarJugadora(j.id);
+    expect(await db.intentosDe(j.id)).toHaveLength(0);
+    expect((await db.leerJugadoras()).map((x) => x.id)).toEqual([otra.id]);
+    expect(await db.intentosDe(otra.id)).toHaveLength(1);
+    expect(leerEstado().jugadoras.find((x) => x.id === j.id)).toBeUndefined();
+  });
+});
+
+describe('premios y economía', () => {
+  it('completar el grado 1 da monedas, estrellas y un ítem exclusivo; repetir da 10', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    elegirJugadora(j.id);
+    const antes = jugadoraActual()!.monedas;
+    const p = await completarGrado('isla-1', 1, 3, 20, 300);
+    expect(p.items).toEqual(['premio-isla-1']);
+    expect(p.estrellas).toBe(3);
+    expect(jugadoraActual()!.monedas).toBe(antes + config.economia.monedas.completarGrado);
+    expect(jugadoraActual()!.items).toContain('premio-isla-1');
+    const r = await completarGrado('isla-1', 1, 3, 20, 300);
+    expect(r.monedas).toBe(config.economia.monedas.repetirGrado);
+    expect(r.items).toEqual([]);
+    expect(r.estrellas).toBe(0);
+  });
+
+  it('los 5 grados dan el accesorio raro y la estampita; la jefa da su avatar y abre mundos', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    elegirJugadora(j.id);
+    for (let g = 1; g <= 4; g++) await completarGrado('isla-2', g, 2, 50, 300);
+    const p = await completarGrado('isla-2', 5, 2, 500, 300);
+    expect(p.items).toContain('raro-isla-2');
+    expect(p.estampita).toBe('estampita-isla-2');
+    const jefe = await completarGrado('isla-jefe', 1, 3, 100, 300);
+    expect(jefe.items.length).toBe(3);
+    expect(jefe.mundoNuevo).toBe('valle');
+    expect(jefe.monedas).toBeGreaterThanOrEqual(config.economia.monedas.completarGrado + config.economia.monedas.vencerJefe);
+  });
+
+  it('comprar descuenta monedas y no deja comprar sin saldo ni premios', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    elegirJugadora(j.id);
+    const barato = ITEMS.find((i) => i.desbloqueo === 'tienda' && !ofertasDeLaSemana().includes(i.id) && i.rareza === 'comun')!;
+    const m0 = jugadoraActual()!.monedas;
+    expect(await comprarItem(barato.id)).toBe('ok');
+    expect(jugadoraActual()!.monedas).toBe(m0 - 20);
+    expect(await comprarItem(barato.id)).toBe('ya-lo-tenes');
+    expect(await comprarItem('alas-cristal')).toBe('no-se-vende');
+    expect(await comprarItem('vestido-estrellas')).toBe('sin-monedas');
+  });
+
+  it('la alcancía guarda monedas y al llegar a la meta da el ítem y un bono', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    elegirJugadora(j.id);
+    const meta = ITEMS.find((i) => i.desbloqueo === 'tienda' && i.rareza === 'comun' && !ofertasDeLaSemana().includes(i.id))!;
+    await elegirMeta(meta.id);
+    expect(await guardarEnAlcancia(10)).toBe('ok');
+    expect(await guardarEnAlcancia(10)).toBe('meta');
+    expect(jugadoraActual()!.items).toContain(meta.id);
+    expect(jugadoraActual()!.monedas).toBe(config.economia.monedasIniciales - 20 + 2);
+  });
+});

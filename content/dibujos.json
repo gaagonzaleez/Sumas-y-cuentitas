@@ -1,0 +1,8 @@
+{
+  "_nota": "Los 9 dibujos para la contraseña de las nenas (se eligen 3 en orden).",
+  "dibujos": [
+    { "id": "sol", "nombre": "Sol" }, { "id": "luna", "nombre": "Luna" }, { "id": "corazon", "nombre": "Corazón" },
+    { "id": "pez", "nombre": "Pez" }, { "id": "flor", "nombre": "Flor" }, { "id": "gato", "nombre": "Gato" },
+    { "id": "arbol", "nombre": "Árbol" }, { "id": "casa", "nombre": "Casa" }, { "id": "nube", "nombre": "Nube" }
+  ]
+}
