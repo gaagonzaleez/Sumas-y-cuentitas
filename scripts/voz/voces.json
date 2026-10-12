@@ -1,31 +1,111 @@
 {
   "_nota": "Qué voz usa cada guía. Para cambiar de voz alcanza con editar este archivo (la app no cambia). 'candidatas' se prueban en orden: se usa la primera cuya licencia permita uso comercial. semitonos > 0 = más aguda. velocidad > 1 = más lenta (length_scale de Piper).",
-  "licenciasPermitidas": ["cc-by-4.0", "cc-by-sa-4.0", "cc0-1.0", "cc0", "public domain", "mit", "apache-2.0", "apache 2.0", "cc-by 4.0", "cc by 4.0", "cc by-sa 4.0"],
+  "licenciasPermitidas": [
+    "cc-by-4.0",
+    "cc-by-sa-4.0",
+    "cc0-1.0",
+    "cc0",
+    "public domain",
+    "mit",
+    "apache-2.0",
+    "apache 2.0",
+    "cc-by 4.0",
+    "cc by 4.0",
+    "cc by-sa 4.0",
+    "attribution 4.0 international",
+    "attribution-sharealike 4.0 international",
+    "creativecommons.org/licenses/by/4.0",
+    "creativecommons.org/licenses/by-sa/4.0",
+    "creativecommons.org/licenses/by/3.0",
+    "attribution 3.0"
+  ],
   "guias": {
     "chispa": {
       "descripcion": "Estrellita mágica: aguda, juguetona y un poco más rápida.",
       "candidatas": [
-        { "motor": "piper", "modelo": "es/es_AR/daniela/high/es_AR-daniela-high", "velocidad": 0.92, "variacion": 0.75, "semitonos": 3.0 },
-        { "motor": "kokoro", "voz": "ef_dora", "velocidad": 1.05, "semitonos": 2.0 }
+        {
+          "motor": "piper",
+          "modelo": "es/es_AR/daniela/high/es_AR-daniela-high",
+          "velocidad": 0.92,
+          "variacion": 0.75,
+          "semitonos": 3.0
+        },
+        {
+          "motor": "kokoro",
+          "voz": "ef_dora",
+          "velocidad": 1.05,
+          "semitonos": 2.0
+        }
       ]
     },
     "cande": {
       "descripcion": "Maestra: pausada, maternal y cálida. Voz base distinta de Chispa.",
       "candidatas": [
-        { "motor": "piper", "modelo": "es/es_MX/claude/high/es_MX-claude-high", "velocidad": 1.12, "variacion": 0.6, "semitonos": -0.5 },
-        { "motor": "kokoro", "voz": "ef_dora", "velocidad": 0.88, "semitonos": -1.0 },
-        { "motor": "piper", "modelo": "es/es_AR/daniela/high/es_AR-daniela-high", "velocidad": 1.18, "variacion": 0.55, "semitonos": -1.5 }
+        {
+          "motor": "piper",
+          "modelo": "es/es_MX/claude/high/es_MX-claude-high",
+          "velocidad": 1.12,
+          "variacion": 0.6,
+          "semitonos": -0.5
+        },
+        {
+          "motor": "kokoro",
+          "voz": "ef_dora",
+          "velocidad": 0.88,
+          "semitonos": -1.0
+        },
+        {
+          "motor": "piper",
+          "modelo": "es/es_AR/daniela/high/es_AR-daniela-high",
+          "velocidad": 1.18,
+          "variacion": 0.55,
+          "semitonos": -1.5
+        }
       ]
     }
   },
   "muestras": {
-    "frases": ["¡Hola, campeona! ¿Lista para contar estrellitas conmigo?", "¡Casi! No pasa nada, equivocarse también es aprender.", "Hay tres canastas con cuatro manzanas cada una. ¿Cuántas manzanas hay en total?"],
+    "frases": [
+      "¡Hola, campeona! ¿Lista para contar estrellitas conmigo?",
+      "¡Casi! No pasa nada, equivocarse también es aprender.",
+      "Hay tres canastas con cuatro manzanas cada una. ¿Cuántas manzanas hay en total?"
+    ],
     "candidatas": [
-      { "nombre": "piper-es_AR-daniela", "motor": "piper", "modelo": "es/es_AR/daniela/high/es_AR-daniela-high", "velocidad": 1.0, "variacion": 0.667, "semitonos": 0 },
-      { "nombre": "piper-es_MX-claude", "motor": "piper", "modelo": "es/es_MX/claude/high/es_MX-claude-high", "velocidad": 1.0, "variacion": 0.667, "semitonos": 0 },
-      { "nombre": "piper-es_ES-sharvard", "motor": "piper", "modelo": "es/es_ES/sharvard/medium/es_ES-sharvard-medium", "velocidad": 1.0, "variacion": 0.667, "semitonos": 0 },
-      { "nombre": "kokoro-ef_dora", "motor": "kokoro", "voz": "ef_dora", "velocidad": 1.0, "semitonos": 0 }
+      {
+        "nombre": "piper-es_AR-daniela",
+        "motor": "piper",
+        "modelo": "es/es_AR/daniela/high/es_AR-daniela-high",
+        "velocidad": 1.0,
+        "variacion": 0.667,
+        "semitonos": 0
+      },
+      {
+        "nombre": "piper-es_MX-claude",
+        "motor": "piper",
+        "modelo": "es/es_MX/claude/high/es_MX-claude-high",
+        "velocidad": 1.0,
+        "variacion": 0.667,
+        "semitonos": 0
+      },
+      {
+        "nombre": "piper-es_ES-sharvard",
+        "motor": "piper",
+        "modelo": "es/es_ES/sharvard/medium/es_ES-sharvard-medium",
+        "velocidad": 1.0,
+        "variacion": 0.667,
+        "semitonos": 0
+      },
+      {
+        "nombre": "kokoro-ef_dora",
+        "motor": "kokoro",
+        "voz": "ef_dora",
+        "velocidad": 1.0,
+        "semitonos": 0
+      }
     ]
   },
-  "mp3": { "bitrate": "32k", "frecuencia": 22050 }
+  "mp3": {
+    "bitrate": "32k",
+    "frecuencia": 22050
+  }
 }
