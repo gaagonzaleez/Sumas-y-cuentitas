@@ -16,9 +16,9 @@
     "vencerJefe": 3
   },
   "grado": {
-    "minutosActivos": 5,
+    "minutosActivos": 0,
     "ejerciciosMinimos": 15,
-    "aciertoMinimo": 0.7,
+    "aciertoMinimo": 0,
     "ventanaAcierto": 15
   },
   "monedasIniciales": 40,

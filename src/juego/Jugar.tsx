@@ -349,7 +349,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
       {salir && (
         <Modal titulo="¿Salir?" alCerrar={() => setSalir(false)}>
           <h2>¿Querés salir?</h2>
-          <p>Las monedas que ganaste ya están guardadas. Para completar el grado hay que jugar {config.economia.grado.minutosActivos} minutos y {config.economia.grado.ejerciciosMinimos} ejercicios.</p>
+          <p>Las monedas que ganaste ya están guardadas. Para completar el grado hay que contestar {config.economia.grado.ejerciciosMinimos} preguntas.</p>
           <button className="boton ancho" onClick={() => setSalir(false)}>Seguir jugando</button>
           <button className="boton blanco ancho" onClick={() => ir(repaso ? '/mapa' : `/nivel/${base.nivel.id}`, true)}>Salir</button>
         </Modal>

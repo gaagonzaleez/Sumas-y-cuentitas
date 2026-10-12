@@ -25,7 +25,7 @@ Se abre en pantalla completa y funciona sin internet (menos la tabla del grupo).
 | 5. Grupos | 🟡 Listo, falta activar | Tabla semanal y “siempre”, podio, reto grupal, código de grupo, copia en la nube. Se activa con el paso 2 de `NECESITO_DE_GA.md` |
 | 6. Dinero y finanzas | ✅ | Mundos 5 a 7 (Mercado, Pueblo, Isla del Tesoro), pagar con billetes, vuelto, presupuesto; panel de la adulta; alcancía con meta y bono; reto grupal |
 
-Truco para probar rápido: los mundos se abren en orden (el Mercado se abre al vencer a la jefa del Valle). Cada grado dura al menos 5 minutos y 15 ejercicios, como pide el spec.
+Truco para probar rápido: los mundos se abren en orden (el Mercado se abre al vencer a la jefa del Valle). Cada grado se completa al contestar 15 preguntas (sin esperar tiempo, decisión de Ga).
 
 ## Cómo está hecho
 

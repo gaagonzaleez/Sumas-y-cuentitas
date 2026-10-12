@@ -90,7 +90,10 @@ export function aciertoTotal(s: Sesion): number {
   return s.historial.length ? s.historial.filter(Boolean).length / s.historial.length : 0;
 }
 
-/** Un grado se completa con 5 minutos activos, 15 ejercicios y 70 % de aciertos o más. */
+/**
+ * Un grado se completa al resolver los ejercicios mínimos (15). Decisión de Ga: no se espera tiempo.
+ * minutosActivos y aciertoMinimo siguen en la configuración por si se quieren volver a usar (0 = apagado).
+ */
 export function gradoCompleto(s: Sesion): boolean {
   const g = config.economia.grado;
   return s.activoMs >= g.minutosActivos * 60_000 && s.resueltos >= g.ejerciciosMinimos && aciertoReciente(s) >= g.aciertoMinimo;
@@ -99,7 +102,7 @@ export function gradoCompleto(s: Sesion): boolean {
 /** Progreso del grado de 0 a 1 (para la barra): el mínimo entre tiempo y ejercicios. */
 export function avanceGrado(s: Sesion): number {
   const g = config.economia.grado;
-  const t = s.activoMs / (g.minutosActivos * 60_000);
+  const t = g.minutosActivos > 0 ? s.activoMs / (g.minutosActivos * 60_000) : 1;
   const e = s.resueltos / g.ejerciciosMinimos;
   return Math.max(0, Math.min(1, Math.min(t, e)));
 }

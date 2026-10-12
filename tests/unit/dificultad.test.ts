@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { config, MUNDOS } from '../../src/content';
 import { limitesGrado, nuevaEscalera, registrar } from '../../src/engine/escalera';
-import { aciertoReciente, estrellasDe, gradoCompleto, monedasPorAcierto, nuevaSesion, resolver, responder, sumarTiempo } from '../../src/engine/sesion';
+import { estrellasDe, gradoCompleto, monedasPorAcierto, nuevaSesion, resolver, responder, sumarTiempo } from '../../src/engine/sesion';
 
 const valle = MUNDOS[1];
 
@@ -83,23 +83,10 @@ describe('sesión de un grado', () => {
     return sumarTiempo(s, minutos * 60_000);
   }
 
-  it('exige 5 minutos activos, 15 ejercicios y 70 % de aciertos', () => {
-    expect(gradoCompleto(jugar(g.ejerciciosMinimos, () => true, g.minutosActivos))).toBe(true);
+  it('se completa al contestar las 15 preguntas, sin esperar tiempo (decisión de Ga)', () => {
+    expect(gradoCompleto(jugar(g.ejerciciosMinimos, () => true, 0))).toBe(true);
+    expect(gradoCompleto(jugar(g.ejerciciosMinimos, (i) => i % 2 === 0, 0))).toBe(true);
     expect(gradoCompleto(jugar(g.ejerciciosMinimos - 1, () => true, 10))).toBe(false);
-    expect(gradoCompleto(jugar(30, () => true, g.minutosActivos - 0.1))).toBe(false);
-    expect(gradoCompleto(jugar(15, (i) => i % 2 === 0, 6))).toBe(false);
-  });
-
-  it('si termina antes de los 5 minutos, sigue con más ejercicios', () => {
-    const s = jugar(20, () => true, 3);
-    expect(gradoCompleto(s)).toBe(false);
-    expect(gradoCompleto(sumarTiempo(s, 2 * 60_000))).toBe(true);
-  });
-
-  it('el porcentaje se mide sobre los últimos ejercicios, así puede recuperarse', () => {
-    const s = jugar(40, (i) => i >= 25, 6);
-    expect(aciertoReciente(s)).toBe(1);
-    expect(gradoCompleto(s)).toBe(true);
   });
 
   it('estrellas: 1 al completar, 2 con 75 %, 3 con 90 % y sin pistas', () => {

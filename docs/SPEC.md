@@ -654,6 +654,7 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
 - No hay tope diario de monedas ni de estrellas. Cuanto más juega, más gana (decisión de Ga).
 - Se mantienen los valores iniciales de la tabla de monedas y los precios de 20 a 300 monedas según rareza. Todo vive en `content/config/` para ajustarlo sin tocar código.
 - Las monedas por repetir un grado ya completado siguen siendo 10 y exigen terminar el grado.
+- **Cambio del 12/10/2026:** un grado se completa al contestar las 15 preguntas. No hace falta esperar 5 minutos ni llegar a un porcentaje de aciertos (las estrellas siguen dependiendo de los aciertos).
 
 **Jefes**
 
