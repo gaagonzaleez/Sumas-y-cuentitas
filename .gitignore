@@ -1,0 +1,11 @@
+node_modules
+dist
+dev-dist
+test-results
+playwright-report
+.cache
+*.log
+.env
+.env.local
+scripts/voz/.modelos
+scripts/voz/.venv

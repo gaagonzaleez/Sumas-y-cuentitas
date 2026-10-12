@@ -1,0 +1,76 @@
+name: Pruebas y despliegue
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: despliegue-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Si la llama otro flujo (por ejemplo, después de generar voces), usa lo último de main.
+          ref: ${{ github.event_name == 'pull_request' && github.sha || (github.event_name == 'push' && github.sha) || 'main' }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Revisar contenido
+        run: npm run contenido
+      - name: Tipos
+        run: npm run typecheck
+      - name: Pruebas de lógica (Vitest)
+        run: npm test
+      - name: Compilar
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      - name: Instalar navegador para pruebas
+        run: npx playwright install --with-deps chromium
+      - name: Pruebas de flujos (Playwright)
+        run: npm run test:e2e
+        env:
+          CI: 'true'
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: reporte-playwright
+          path: test-results
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sitio
+          path: dist
+          retention-days: 3
+
+  desplegar:
+    needs: pruebas
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: sitio
+          path: dist
+      - name: Publicar en GitHub Pages (rama gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Despliegue automático'
