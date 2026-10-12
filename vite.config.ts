@@ -74,7 +74,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'audios',
-              expiration: { maxEntries: 6000 },
+              expiration: { maxEntries: 12000, purgeOnQuotaError: true },
               cacheableResponse: { statuses: [0, 200] },
             },
           },

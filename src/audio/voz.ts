@@ -36,15 +36,22 @@ export function configurarVoz(guia: Guia, silencio: boolean) {
 }
 
 const base = () => `${import.meta.env.BASE_URL}audio/`;
-const indices: Partial<Record<Guia, Promise<Set<string>>>> = {};
+interface Indice {
+  claves: Set<string>;
+  /** Cambia cuando cambia la voz: se agrega a la dirección para no usar audios viejos guardados. */
+  version: string;
+}
+const indices: Partial<Record<Guia, Promise<Indice>>> = {};
 
-function indice(guia: Guia): Promise<Set<string>> {
-  indices[guia] ??= fetch(`${base()}${guia}/index.json`)
+function indice(guia: Guia): Promise<Indice> {
+  indices[guia] ??= fetch(`${base()}${guia}/index.json`, { cache: 'no-cache' })
     .then((r) => (r.ok ? r.json() : { claves: [] }))
-    .then((j: { claves: string[] }) => new Set(j.claves))
-    .catch(() => new Set<string>());
+    .then((j: { claves: string[]; hash?: string }) => ({ claves: new Set(j.claves), version: j.hash ?? '0' }))
+    .catch(() => ({ claves: new Set<string>(), version: '0' }));
   return indices[guia]!;
 }
+
+const urlAudio = (guia: Guia, clave: string, i: Indice) => `${base()}${guia}/${clave}.mp3?v=${i.version}`;
 
 let turno = 0;
 let actual: HTMLAudioElement | null = null;
@@ -79,12 +86,12 @@ export async function decir(texto: string | string[], op: { forzar?: boolean } =
   const disponibles = await indice(guia);
   const claves = (Array.isArray(texto) ? texto : [texto])
     .map((t) => partirTexto(t).flatMap(clavesAudio))
-    .filter((c) => c.length && c.every((k) => disponibles.has(k)))
+    .filter((c) => c.length && c.every((k) => disponibles.claves.has(k)))
     .flat();
   if (mio !== turno || !claves.length) return;
   emitir({ hablando: true });
   for (const c of claves) {
-    await reproducir(`${base()}${guia}/${c}.mp3`, mio);
+    await reproducir(urlAudio(guia, c, disponibles), mio);
     if (mio !== turno) return;
   }
   emitir({ hablando: false });
@@ -96,9 +103,9 @@ export async function precargar(textos: string[], numerosHasta = 100): Promise<v
   const disponibles = await indice(guia);
   const claves = new Set(textos.flatMap((t) => partirTexto(t).flatMap(clavesAudio)));
   for (let n = 0; n <= Math.min(1000, numerosHasta); n++) claves.add(`n-${n}`);
-  const lista = [...claves].filter((c) => disponibles.has(c));
+  const lista = [...claves].filter((c) => disponibles.claves.has(c));
   for (let i = 0; i < lista.length; i += 8) {
-    await Promise.all(lista.slice(i, i + 8).map((c) => fetch(`${base()}${guia}/${c}.mp3`).catch(() => undefined)));
+    await Promise.all(lista.slice(i, i + 8).map((c) => fetch(urlAudio(guia, c, disponibles)).catch(() => undefined)));
   }
 }
 
