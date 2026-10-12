@@ -101,8 +101,13 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
   await page.goto('./#/grupo');
   await expect(page.getByRole('heading', { name: 'Jugás sin grupo' })).toBeVisible();
 
-  // Al volver a abrir, entra con los 3 dibujos.
+  // Al recargar (por ejemplo, al actualizarse), sigue adentro sin pedir los dibujos.
   await page.reload();
+  await expect(page.getByRole('heading', { name: 'Jugás sin grupo' })).toBeVisible();
+
+  // Al salir, pide los 3 dibujos para volver a entrar.
+  await page.goto('./#/ajustes');
+  await page.getByRole('button', { name: 'Salir' }).click();
   await expect(page.getByText('Tocá tus 3 dibujos secretos')).toBeVisible();
   await foto(page, '15-entrar');
   await tocarDibujos(page, ['Sol', 'Sol', 'Sol']);

@@ -52,6 +52,26 @@ export function useJugadora(): Jugadora | undefined {
 }
 
 const CLAVE_ULTIMA = 'mateaventuras:ultima';
+// Mientras la app siga abierta (aunque se recargue o se actualice), la nena no tiene que
+// volver a poner sus dibujos. Se borra al cerrar la app o al tocar "Salir".
+const CLAVE_ADENTRO = 'mateaventuras:adentro';
+
+function leerSesion(clave: string): string | undefined {
+  try {
+    return sessionStorage.getItem(clave) ?? undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function guardarSesion(clave: string, valor: string | undefined) {
+  try {
+    if (valor) sessionStorage.setItem(clave, valor);
+    else sessionStorage.removeItem(clave);
+  } catch {
+    /* sin almacenamiento: se pedirán los dibujos otra vez */
+  }
+}
 
 export async function iniciar(): Promise<void> {
   try {
@@ -63,7 +83,8 @@ export async function iniciar(): Promise<void> {
       ultima = undefined;
     }
     const actualId = jugadoras.find((j) => j.id === ultima)?.id ?? (jugadoras.length === 1 ? jugadoras[0].id : undefined);
-    emitir({ cargando: false, cuenta, jugadoras, actualId });
+    const adentro = Boolean(actualId && leerSesion(CLAVE_ADENTRO) === actualId);
+    emitir({ cargando: false, cuenta, jugadoras, actualId, adentro });
   } catch (e) {
     emitir({ cargando: false, error: (e as Error).message });
   }
@@ -91,6 +112,7 @@ export function salirAdulta() {
 
 /** La nena sale (vuelve a la pantalla de dibujos). */
 export function salir() {
+  guardarSesion(CLAVE_ADENTRO, undefined);
   emitir({ adentro: false });
 }
 
@@ -139,6 +161,7 @@ function recordarUltima(id: string) {
 }
 
 export function elegirJugadora(id: string | undefined) {
+  guardarSesion(CLAVE_ADENTRO, undefined);
   emitir({ actualId: id, adentro: false });
   if (id) recordarUltima(id);
 }
@@ -183,6 +206,7 @@ export async function alEntrar(): Promise<void> {
   const hoy = diaArgentina();
   const ultimo = j.diasJugados[j.diasJugados.length - 1];
   const diasAusente = ultimo ? diasEntre(ultimo, hoy) : 0;
+  guardarSesion(CLAVE_ADENTRO, j.id);
   emitir({ diasAusente, adentro: true });
   await actualizar((x) => ({
     ...x,
