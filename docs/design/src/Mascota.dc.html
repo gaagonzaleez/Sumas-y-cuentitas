@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Elegir mascota</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3EEFF; font-family: 'Nunito', sans-serif; color: #2B2350; display: flex; flex-direction: column; padding: 32px 20px 28px 20px; gap: 14px; overflow: hidden">
+
+  <h1 style="margin: 0; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Elegí tu mascota</h1>
+
+  <div style="display: flex; gap: 8px">
+    <button type="button" style="height: 44px; padding: 0 16px; border-radius: 999px; border: none; background: #5B3FE0; color: #FFFFFF; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 15px">Todas</button>
+    <button type="button" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 3px solid #E0D8F7; background: #FFFFFF; color: #2B2350; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 15px">Reales</button>
+    <button type="button" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 3px solid #E0D8F7; background: #FFFFFF; color: #2B2350; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 15px">Fantasía</button>
+    <button type="button" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 3px solid #E0D8F7; background: #FFFFFF; color: #2B2350; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 15px">Mar</button>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+
+    <button type="button" style="height: 140px; border-radius: 22px; border: 3px solid #E0D8F7; background: #FFFFFF; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'Nunito', sans-serif; color: #2B2350">
+      <svg aria-hidden="true" width="80" height="80" viewBox="0 0 100 100"><polygon points="20,44 28,10 50,28" fill="#F0A04B"/><polygon points="80,44 72,10 50,28" fill="#F0A04B"/><polygon points="26,38 30,20 41,29" fill="#FFB7C5"/><polygon points="74,38 70,20 59,29" fill="#FFB7C5"/><circle cx="50" cy="56" r="32" fill="#F0A04B"/><circle cx="39" cy="52" r="4" fill="#2B2350"/><circle cx="61" cy="52" r="4" fill="#2B2350"/><path d="M45 62 L55 62 L50 68 Z" fill="#FF8FA3"/><path d="M50 68 Q44 74 38 70 M50 68 Q56 74 62 70" fill="none" stroke="#2B2350" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="font-weight: 800; font-size: 16px">Gatito</span>
+    </button>
+
+    <button type="button" style="height: 140px; border-radius: 22px; border: 3px solid #E0D8F7; background: #FFFFFF; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'Nunito', sans-serif; color: #2B2350">
+      <svg aria-hidden="true" width="80" height="80" viewBox="0 0 100 100"><ellipse cx="22" cy="48" rx="13" ry="22" fill="#9A6A3F" transform="rotate(12 22 48)"/><ellipse cx="78" cy="48" rx="13" ry="22" fill="#9A6A3F" transform="rotate(-12 78 48)"/><circle cx="50" cy="52" r="30" fill="#D9A36A"/><ellipse cx="50" cy="64" rx="15" ry="11" fill="#F3D9B5"/><circle cx="40" cy="48" r="4" fill="#2B2350"/><circle cx="60" cy="48" r="4" fill="#2B2350"/><ellipse cx="50" cy="60" rx="6" ry="4.5" fill="#2B2350"/><path d="M50 64 Q50 72 43 72 M50 64 Q50 72 57 72" fill="none" stroke="#2B2350" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="font-weight: 800; font-size: 16px">Perrito</span>
+    </button>
+
+    <button type="button" style="height: 140px; border-radius: 22px; border: 3px solid #E0D8F7; background: #FFFFFF; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'Nunito', sans-serif; color: #2B2350">
+      <svg aria-hidden="true" width="80" height="80" viewBox="0 0 100 100"><ellipse cx="36" cy="22" rx="9" ry="22" fill="#F4F0FF" stroke="#CFC6F5" stroke-width="3"/><ellipse cx="64" cy="22" rx="9" ry="22" fill="#F4F0FF" stroke="#CFC6F5" stroke-width="3"/><ellipse cx="36" cy="24" rx="4" ry="15" fill="#FFB7C5"/><ellipse cx="64" cy="24" rx="4" ry="15" fill="#FFB7C5"/><circle cx="50" cy="62" r="29" fill="#F4F0FF" stroke="#CFC6F5" stroke-width="3"/><circle cx="40" cy="58" r="3.8" fill="#2B2350"/><circle cx="60" cy="58" r="3.8" fill="#2B2350"/><ellipse cx="50" cy="67" rx="4.5" ry="3.5" fill="#FF8FA3"/><path d="M50 70 Q45 76 41 73 M50 70 Q55 76 59 73" fill="none" stroke="#2B2350" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span style="font-weight: 800; font-size: 16px">Conejito</span>
+    </button>
+
+    <button type="button" aria-pressed="true" style="height: 140px; border-radius: 22px; border: 4px solid #5B3FE0; background: #EFEAFF; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'Nunito', sans-serif; color: #2B2350; position: relative">
+      <svg aria-hidden="true" width="80" height="80" viewBox="0 0 100 100"><path d="M14 56 L6 30 L32 44 Z" fill="#F7A8C8"/><path d="M86 56 L94 30 L68 44 Z" fill="#F7A8C8"/><polygon points="30,26 34,6 44,22" fill="#FFC93C"/><polygon points="70,26 66,6 56,22" fill="#FFC93C"/><circle cx="50" cy="56" r="31" fill="#3FBF7F"/><ellipse cx="50" cy="68" rx="18" ry="13" fill="#9BE3B8"/><circle cx="39" cy="50" r="4.5" fill="#2B2350"/><circle cx="61" cy="50" r="4.5" fill="#2B2350"/><circle cx="44" cy="68" r="2.2" fill="#2B2350"/><circle cx="56" cy="68" r="2.2" fill="#2B2350"/><path d="M42 74 Q50 80 58 74" fill="none" stroke="#2B2350" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="font-weight: 800; font-size: 16px">Dragoncito</span>
+      <span style="position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; background: #5B3FE0; display: flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 L10 17.5 L19 7"/></svg>
+      </span>
+    </button>
+
+    <button type="button" aria-label="Tiburoncito, se desbloquea con 40 monedas" style="height: 140px; border-radius: 22px; border: 3px dashed #9A8FCB; background: #FFFFFF; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'Nunito', sans-serif; color: #2B2350; position: relative">
+      <svg aria-hidden="true" width="80" height="80" viewBox="0 0 100 100" style="opacity: 0.55"><polygon points="44,30 56,4 66,34" fill="#6C8CD5"/><ellipse cx="50" cy="58" rx="40" ry="30" fill="#6C8CD5"/><path d="M14 66 Q50 92 86 66 Q86 84 50 88 Q14 84 14 66 Z" fill="#FFFFFF"/><polygon points="88,52 99,40 99,70" fill="#6C8CD5"/><circle cx="34" cy="52" r="4.5" fill="#2B2350"/><path d="M30 68 Q42 74 54 68" fill="none" stroke="#2B2350" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="font-weight: 800; font-size: 16px">Tiburoncito</span>
+      <span style="position: absolute; top: 8px; right: 8px; height: 28px; padding: 0 10px; border-radius: 999px; background: #FFC93C; display: flex; align-items: center; gap: 4px; font-weight: 800; font-size: 13px">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2B2350" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2" fill="#FFFFFF"/><path d="M8 11 V8 a4 4 0 0 1 8 0 V11"/></svg>
+        40
+      </span>
+    </button>
+
+    <button type="button" aria-label="Unicornio bebé, se desbloquea con 60 monedas" style="height: 140px; border-radius: 22px; border: 3px dashed #9A8FCB; background: #FFFFFF; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: 'Nunito', sans-serif; color: #2B2350; position: relative">
+      <svg aria-hidden="true" width="80" height="80" viewBox="0 0 100 100" style="opacity: 0.55"><path d="M20 40 Q10 62 26 78 Q16 56 30 36 Z" fill="#B78CF0"/><path d="M80 40 Q90 62 74 78 Q84 56 70 36 Z" fill="#F7A8C8"/><polygon points="43,28 50,2 57,28" fill="#FFC93C"/><polygon points="28,34 32,14 44,26" fill="#F4F0FF" stroke="#CFC6F5" stroke-width="2"/><polygon points="72,34 68,14 56,26" fill="#F4F0FF" stroke="#CFC6F5" stroke-width="2"/><circle cx="50" cy="58" r="30" fill="#F4F0FF" stroke="#CFC6F5" stroke-width="3"/><circle cx="40" cy="56" r="4" fill="#2B2350"/><circle cx="60" cy="56" r="4" fill="#2B2350"/><path d="M43 68 Q50 74 57 68" fill="none" stroke="#2B2350" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="font-weight: 800; font-size: 16px">Unicornio bebé</span>
+      <span style="position: absolute; top: 8px; right: 8px; height: 28px; padding: 0 10px; border-radius: 999px; background: #FFC93C; display: flex; align-items: center; gap: 4px; font-weight: 800; font-size: 13px">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2B2350" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2" fill="#FFFFFF"/><path d="M8 11 V8 a4 4 0 0 1 8 0 V11"/></svg>
+        60
+      </span>
+    </button>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <label for="nombre" style="font-weight: 800; font-size: 15px">Ponele un nombre</label>
+    <input id="nombre" type="text" value="Dragui" style="height: 52px; box-sizing: border-box; border: 2px solid #CFC6F5; border-radius: 14px; padding: 0 16px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 700; color: #2B2350; background: #FFFFFF">
+  </div>
+
+  <div style="flex: 1"></div>
+
+  <button type="button" style="height: 60px; border: none; border-radius: 20px; background: #5B3FE0; color: #FFFFFF; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 22px; box-shadow: 0 5px 0 #3A22A8">Quiero a Dragui</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

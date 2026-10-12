@@ -1,0 +1,146 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-12T17:45:00Z"
+  },
+  "title": "mateAventuras",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "1 · Registro (mamá)"
+    },
+    "Avatar.dc.html": {
+      "x": 470,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "2 · Crear avatar"
+    },
+    "Mascota.dc.html": {
+      "x": 940,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "3 · Elegir mascota"
+    },
+    "Guia.dc.html": {
+      "x": 1410,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "4 · Elegir guía"
+    },
+    "Mapa.dc.html": {
+      "x": 1880,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "5 · Mapa de la aventura"
+    },
+    "Ejercicio.dc.html": {
+      "x": 2350,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "6 · Ejercicio"
+    },
+    "MiMascota.dc.html": {
+      "x": 2820,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "7 · Mi mascota"
+    },
+    "Posiciones.dc.html": {
+      "x": 3290,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "8 · Tabla de posiciones"
+    },
+    "Error.dc.html": {
+      "x": 3760,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "9 · Si se equivocan: mini lección"
+    },
+    "GradoElegir.dc.html": {
+      "x": 4230,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "10 · Elegir grado"
+    },
+    "Festejo.dc.html": {
+      "x": 4700,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "11 · Festejo de premio"
+    },
+    "Tienda.dc.html": {
+      "x": 5170,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "12 · Tienda"
+    },
+    "Dinero.dc.html": {
+      "x": 5640,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "13 · Ejercicio de dinero"
+    },
+    "Panel.dc.html": {
+      "x": 6110,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "14 · Panel de la adulta"
+    },
+    "LoginDibujos.dc.html": {
+      "x": 6580,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "15 · Entrar con dibujos"
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Avatar.dc.html",
+    "Mascota.dc.html",
+    "Guia.dc.html",
+    "Mapa.dc.html",
+    "Ejercicio.dc.html",
+    "MiMascota.dc.html",
+    "Posiciones.dc.html",
+    "Error.dc.html",
+    "GradoElegir.dc.html",
+    "Festejo.dc.html",
+    "Tienda.dc.html",
+    "Dinero.dc.html",
+    "Panel.dc.html",
+    "LoginDibujos.dc.html"
+  ],
+  "notes": {
+    "titulo": {
+      "x": 0,
+      "y": -300,
+      "text": "mateAventuras: pantallas",
+      "kind": "title1",
+      "maxW": 6900
+    }
+  },
+  "designSystems": []
+}
