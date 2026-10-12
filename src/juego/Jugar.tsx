@@ -67,7 +67,9 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   const [intento, setIntento] = useState(0);
   const [pista, setPista] = useState(0);
   const [despuesDeLeccion, setDespuesDeLeccion] = useState(false);
-  const [mensaje, setMensaje] = useState('');
+  // El mensaje de la guía va en partes: cada parte es una frase con su propio audio.
+  const [partes, setMensaje] = useState<string[]>([]);
+  const mensaje = partes.join(' ');
   const [opEstado, setOpEstado] = useState<EstadoOpcion>({ descartadas: [] });
   const [leccion, setLeccion] = useState<{ lec: LeccionArmada; respuesta?: string } | null>(null);
   const [ultimas, setUltimas] = useState(0);
@@ -94,7 +96,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
       setIntento(0);
       setPista(0);
       setOpEstado({ descartadas: [] });
-      setMensaje(e.consigna);
+      setMensaje([e.consigna]);
       setDespuesDeLeccion(Boolean(parecido));
       inicio.current = Date.now();
     },
@@ -111,8 +113,8 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
 
   // Lee la consigna (o el mensaje de la guía) cuando cambia.
   useEffect(() => {
-    if (mensaje && fase !== 'leccion') decir(mensaje);
-  }, [mensaje, fase]);
+    if (partes.length && fase !== 'leccion') decir(partes);
+  }, [partes, fase]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Tiempo activo: cuenta solo con la pantalla visible y si tocó algo en el último minuto.
   useEffect(() => {
@@ -198,7 +200,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
       setFase('acierto');
       setUltimas(r.monedas);
       await ganar(r.monedas);
-      setMensaje(`${frase(guia, 'aciertos')} ${ejercicio.explicacion}`);
+      setMensaje([frase(guia, 'aciertos'), ejercicio.explicacion]);
       registrarIntento({ nivelId: base!.nivel.id, plantillaId: ejercicio.plantillaId, params: JSON.stringify(ejercicio.params), respuesta: valor, correcta: true, pistas: pista, ms });
       return;
     }
@@ -215,7 +217,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
       return;
     }
     if (r.activarPista && pista === 0) setPista(1);
-    setMensaje(`${frase(guia, 'errores')} ${infoError(tag).frase}${r.activarPista && pista === 0 ? ` ${ejercicio.pista}` : ''}`);
+    setMensaje([frase(guia, 'errores'), infoError(tag).frase, ...(r.activarPista && pista === 0 ? [ejercicio.pista] : [])]);
   }
 
   function abrirLeccion(tag: string, respuesta?: string) {
@@ -223,7 +225,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     callar();
     setLeccion({ lec: armarLeccion(tag, ejercicio), respuesta });
     setFase('leccion');
-    setMensaje(frase(guia, 'leccion'));
+    setMensaje([frase(guia, 'leccion')]);
     decir(frase(guia, 'leccion'));
   }
 
@@ -235,15 +237,15 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     setLeccion(null);
     if (!repaso && gradoCompleto(s)) return terminarGrado(s);
     nuevoEjercicio(s, ejercicio);
-    setMensaje(frase(guia, 'parecida'));
+    setMensaje([frase(guia, 'parecida')]);
   }
 
   function pedirPista() {
     if (!ejercicio) return;
     const n = Math.min(config.progreso.pistas.maximo, pista + 1);
     setPista(n);
-    if (n === 1) setMensaje(`${frase(guia, 'pista')} ${ejercicio.pista}`);
-    else if (n === 2) setMensaje(`${frase(guia, 'pistaDibujo')} ${ejercicio.pista}`);
+    if (n === 1) setMensaje([frase(guia, 'pista'), ejercicio.pista]);
+    else if (n === 2) setMensaje([frase(guia, 'pistaDibujo'), ejercicio.pista]);
     else abrirLeccion(ejercicio.errorTagPorDefecto);
   }
 
@@ -289,7 +291,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
         <Guia guia={guia} size={54} expr={expr} />
         <div className="burbuja fila" style={{ alignItems: 'center', gap: 10 }}>
           <p style={{ flex: 1 }} aria-live="polite">{fase === 'leccion' ? frase(guia, 'leccion') : mensaje}</p>
-          <button className="boton-icono violeta" style={{ width: 54, height: 54 }} onClick={() => decir(fase === 'leccion' ? frase(guia, 'leccion') : mensaje, { forzar: true })} aria-label="Escuchar otra vez">
+          <button className="boton-icono violeta" style={{ width: 54, height: 54 }} onClick={() => decir(fase === 'leccion' ? frase(guia, 'leccion') : partes, { forzar: true })} aria-label="Escuchar otra vez">
             <Icono nombre="altavoz" />
           </button>
         </div>

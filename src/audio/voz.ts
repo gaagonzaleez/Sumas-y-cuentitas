@@ -30,6 +30,7 @@ export function useAudioEstado(): EstadoAudio {
 }
 
 export function configurarVoz(guia: Guia, silencio: boolean) {
+  indice(guia);
   if (guia !== est.guia || silencio !== est.silencio) emitir({ guia, silencio });
   if (silencio) callar();
 }
@@ -66,15 +67,21 @@ function reproducir(url: string, mio: number): Promise<void> {
   });
 }
 
-/** Lee un texto con la voz de la guía elegida. */
-export async function decir(texto: string, op: { forzar?: boolean } = {}): Promise<void> {
+/**
+ * Lee un texto (o varias frases seguidas) con la voz de la guía elegida.
+ * Cada frase se lee si tiene todos sus audios; si a una le falta alguno, se saltea solo esa.
+ */
+export async function decir(texto: string | string[], op: { forzar?: boolean } = {}): Promise<void> {
   if (est.silencio && !op.forzar) return;
   callar();
   const mio = turno;
   const guia = est.guia;
-  const claves = partirTexto(texto).flatMap(clavesAudio);
   const disponibles = await indice(guia);
-  if (mio !== turno || !claves.length || !claves.every((c) => disponibles.has(c))) return;
+  const claves = (Array.isArray(texto) ? texto : [texto])
+    .map((t) => partirTexto(t).flatMap(clavesAudio))
+    .filter((c) => c.length && c.every((k) => disponibles.has(k)))
+    .flat();
+  if (mio !== turno || !claves.length) return;
   emitir({ hablando: true });
   for (const c of claves) {
     await reproducir(`${base()}${guia}/${c}.mp3`, mio);
