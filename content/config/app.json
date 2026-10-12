@@ -1,1 +1,11 @@
-{ "nombre": "mateAventuras" }
+{
+  "nombre": "mateAventuras",
+  "zonaHoraria": "America/Argentina/Buenos_Aires",
+  "recordatorioDescansoMin": 30,
+  "pausaInactividadSeg": 60,
+  "apodo": { "min": 3, "max": 14 },
+  "contrasenaAdultaMin": 6,
+  "dibujosSecretos": 3,
+  "maxPerfiles": 6,
+  "grados": ["1.º grado", "2.º grado", "3.º grado"]
+}

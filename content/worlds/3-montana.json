@@ -1,0 +1,24 @@
+{
+  "id": "montana", "numero": 3, "nombre": "Montaña de las Restas", "escala": "restas",
+  "colores": { "cielo": "#E9E3FF", "suelo": "#C9C3E6", "acento": "#9A7BF0" },
+  "niveles": [
+    { "id": "montana-1", "nombre": "Restas hasta 10", "corto": "Restas", "inicio": 10,
+      "plantillas": [ { "id": "resta", "peso": 1, "params": { "modo": "hasta" } } ] },
+    { "id": "montana-2", "nombre": "Restas hasta 20", "corto": "Restas", "inicio": 20,
+      "plantillas": [ { "id": "resta", "peso": 1, "params": { "modo": "hasta" } } ] },
+    { "id": "montana-3", "nombre": "Restar decenas exactas", "corto": "Restas de decenas",
+      "plantillas": [ { "id": "resta", "peso": 1, "params": { "modo": "decenas" } } ] },
+    { "id": "montana-4", "nombre": "Restas sin pedir prestado", "corto": "Restas", "inicio": 50,
+      "plantillas": [ { "id": "resta", "peso": 1, "params": { "modo": "sin-prestamo" } } ] },
+    { "id": "montana-5", "nombre": "Restas pidiendo prestado", "corto": "Restas", "inicio": 50,
+      "plantillas": [ { "id": "resta", "peso": 1, "params": { "modo": "prestando" } } ] },
+    { "id": "montana-6", "nombre": "¿Cuánto falta?", "corto": "Completar",
+      "plantillas": [ { "id": "cuanto-falta", "peso": 1 } ] },
+    { "id": "montana-7", "nombre": "Restas de hasta 3 cifras", "corto": "Restas", "inicio": 200, "minimo": 200,
+      "plantillas": [ { "id": "resta", "peso": 1, "params": { "modo": "cualquiera" } } ] },
+    { "id": "montana-8", "nombre": "Sumas y restas juntas", "corto": "Sumas y restas",
+      "plantillas": [ { "id": "suma", "peso": 1, "params": { "modo": "cualquiera" } }, { "id": "resta", "peso": 1, "params": { "modo": "cualquiera" } }, { "id": "cuenta-inversa", "peso": 1 } ] }
+  ],
+  "jefe": { "id": "montana-jefe", "nombre": "La Alpinista", "corto": "Sumas y restas", "descripcion": "Cuentas de varios pasos con sumas y restas.", "inicio": 50, "avatar": "alpinista",
+    "plantillas": [ { "id": "problema", "peso": 2, "params": { "tipos": ["dos-pasos"] } }, { "id": "resta", "peso": 1, "params": { "modo": "prestando" } }, { "id": "suma", "peso": 1, "params": { "modo": "llevando" } } ] }
+}

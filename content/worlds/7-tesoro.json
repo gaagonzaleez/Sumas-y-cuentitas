@@ -1,0 +1,24 @@
+{
+  "id": "tesoro", "numero": 7, "nombre": "Isla del Tesoro", "escala": "finanzas", "etiqueta": "Finanzas",
+  "colores": { "cielo": "#FFF4D1", "suelo": "#FFE6A8", "acento": "#E8B21F" },
+  "niveles": [
+    { "id": "tesoro-1", "nombre": "¿Qué es el dinero?", "corto": "El dinero",
+      "plantillas": [ { "id": "finanzas", "peso": 1, "params": { "tema": "que-es-dinero" } }, { "id": "reconocer-billete", "peso": 1 } ] },
+    { "id": "tesoro-2", "nombre": "Ahorrar: la alcancía", "corto": "Ahorro",
+      "plantillas": [ { "id": "finanzas", "peso": 1, "params": { "tema": "ahorrar" } }, { "id": "plan-ahorro", "peso": 1 } ] },
+    { "id": "tesoro-3", "nombre": "Necesidad o deseo", "corto": "Necesidad o deseo",
+      "plantillas": [ { "id": "necesidad-deseo", "peso": 1 } ] },
+    { "id": "tesoro-4", "nombre": "La mejor compra", "corto": "Comparar compras",
+      "plantillas": [ { "id": "finanzas", "peso": 1, "params": { "tema": "comparar-compra" } }, { "id": "comparar-precios", "peso": 1 } ] },
+    { "id": "tesoro-5", "nombre": "Presupuesto simple", "corto": "Presupuesto", "inicio": 300,
+      "plantillas": [ { "id": "presupuesto", "peso": 1 } ] },
+    { "id": "tesoro-6", "nombre": "El trabajo y el dinero", "corto": "Trabajo",
+      "plantillas": [ { "id": "finanzas", "peso": 1, "params": { "tema": "trabajo" } } ] },
+    { "id": "tesoro-7", "nombre": "Compartir y donar", "corto": "Compartir",
+      "plantillas": [ { "id": "finanzas", "peso": 1, "params": { "tema": "compartir" } }, { "id": "repartir-ahorro", "peso": 1 } ] },
+    { "id": "tesoro-8", "nombre": "Plan de ahorro", "corto": "Plan de ahorro",
+      "plantillas": [ { "id": "plan-ahorro", "peso": 2 }, { "id": "repartir-ahorro", "peso": 1 } ] }
+  ],
+  "jefe": { "id": "tesoro-jefe", "nombre": "La Capitana del Tesoro", "corto": "Plan del tesoro", "descripcion": "Armá el plan del tesoro: presupuesto, ahorro y una parte para compartir.", "avatar": "capitana",
+    "plantillas": [ { "id": "presupuesto", "peso": 1 }, { "id": "plan-ahorro", "peso": 1 }, { "id": "repartir-ahorro", "peso": 1 }, { "id": "necesidad-deseo", "peso": 1 } ] }
+}

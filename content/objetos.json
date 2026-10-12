@@ -1,0 +1,138 @@
+{
+  "_nota": "Objetos que se dibujan en consignas y problemas. 'uno' y 'varios' se usan en los textos; 'f' indica si es femenino (para decir 'cuántas' o 'cuántos').",
+  "manzana": {
+    "uno": "manzana",
+    "varios": "manzanas",
+    "f": true
+  },
+  "estrella": {
+    "uno": "estrellita",
+    "varios": "estrellitas",
+    "f": true
+  },
+  "flor": {
+    "uno": "flor",
+    "varios": "flores",
+    "f": true
+  },
+  "pez": {
+    "uno": "pececito",
+    "varios": "pececitos",
+    "f": false
+  },
+  "caracol": {
+    "uno": "caracol",
+    "varios": "caracoles",
+    "f": false
+  },
+  "globo": {
+    "uno": "globo",
+    "varios": "globos",
+    "f": false
+  },
+  "galletita": {
+    "uno": "galletita",
+    "varios": "galletitas",
+    "f": true
+  },
+  "lapiz": {
+    "uno": "lápiz",
+    "varios": "lápices",
+    "f": false
+  },
+  "pelota": {
+    "uno": "pelota",
+    "varios": "pelotas",
+    "f": true
+  },
+  "mariposa": {
+    "uno": "mariposa",
+    "varios": "mariposas",
+    "f": true
+  },
+  "frutilla": {
+    "uno": "frutilla",
+    "varios": "frutillas",
+    "f": true
+  },
+  "hongo": {
+    "uno": "hongo",
+    "varios": "hongos",
+    "f": false
+  },
+  "figurita": {
+    "uno": "figurita",
+    "varios": "figuritas",
+    "f": true
+  },
+  "caramelo": {
+    "uno": "caramelo",
+    "varios": "caramelos",
+    "f": false
+  },
+  "moneda": {
+    "uno": "moneda",
+    "varios": "monedas",
+    "f": true
+  },
+  "helado": {
+    "uno": "helado",
+    "varios": "helados",
+    "f": false
+  },
+  "alfajor": {
+    "uno": "alfajor",
+    "varios": "alfajores",
+    "f": false
+  },
+  "jugo": {
+    "uno": "jugo",
+    "varios": "jugos",
+    "f": false
+  },
+  "cuaderno": {
+    "uno": "cuaderno",
+    "varios": "cuadernos",
+    "f": false
+  },
+  "libro": {
+    "uno": "libro",
+    "varios": "libros",
+    "f": false
+  },
+  "peluche": {
+    "uno": "peluche",
+    "varios": "peluches",
+    "f": false
+  },
+  "mochila": {
+    "uno": "mochila",
+    "varios": "mochilas",
+    "f": true
+  },
+  "banana": {
+    "uno": "banana",
+    "varios": "bananas",
+    "f": true
+  },
+  "chupetin": {
+    "uno": "chupetín",
+    "varios": "chupetines",
+    "f": false
+  },
+  "canasta": {
+    "uno": "canasta",
+    "varios": "canastas",
+    "f": true
+  },
+  "alcancia": {
+    "uno": "alcancía",
+    "varios": "alcancías",
+    "f": true
+  },
+  "cofre": {
+    "uno": "cofre",
+    "varios": "cofres",
+    "f": false
+  }
+}

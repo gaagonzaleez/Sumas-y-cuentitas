@@ -1,0 +1,22 @@
+{
+  "_nota": "Productos del kiosco y del mercado. Los precios se calculan según el rango; 'min' y 'max' marcan precios razonables.",
+  "productos": [
+    { "id": "chupetin", "nombre": "el chupetín", "min": 5, "max": 50 },
+    { "id": "caramelo", "nombre": "el caramelo", "min": 2, "max": 30 },
+    { "id": "galletita", "nombre": "el paquete de galletitas", "min": 20, "max": 300 },
+    { "id": "alfajor", "nombre": "el alfajor", "min": 20, "max": 300 },
+    { "id": "helado", "nombre": "el helado", "min": 30, "max": 500 },
+    { "id": "jugo", "nombre": "el jugo", "min": 20, "max": 400 },
+    { "id": "manzana", "nombre": "la manzana", "min": 5, "max": 200 },
+    { "id": "banana", "nombre": "la banana", "min": 5, "max": 200 },
+    { "id": "lapiz", "nombre": "el lápiz", "min": 10, "max": 300 },
+    { "id": "cuaderno", "nombre": "el cuaderno", "min": 40, "max": 900 },
+    { "id": "figurita", "nombre": "el sobre de figuritas", "min": 10, "max": 500 },
+    { "id": "pelota", "nombre": "la pelota", "min": 50, "max": 1000 },
+    { "id": "libro", "nombre": "el libro", "min": 80, "max": 1000 },
+    { "id": "peluche", "nombre": "el peluche", "min": 80, "max": 1000 },
+    { "id": "mochila", "nombre": "la mochila", "min": 200, "max": 1000 }
+  ],
+  "billetes": [1000, 500, 200, 100, 50, 20],
+  "monedas": [10, 5, 2, 1]
+}

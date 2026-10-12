@@ -1,0 +1,31 @@
+{
+  "monedas": {
+    "correctaPrimerIntento": 5,
+    "correctaConAyuda": 2,
+    "correctaDespuesDeLeccion": 5,
+    "completarGrado": 20,
+    "repetirGrado": 10,
+    "vencerJefe": 50,
+    "racha3Dias": 15,
+    "retoGrupal": 30
+  },
+  "estrellas": {
+    "completarGrado": 1,
+    "dosEstrellasPrimerIntento": 0.75,
+    "tresEstrellasPrimerIntento": 0.9,
+    "vencerJefe": 3
+  },
+  "grado": {
+    "minutosActivos": 5,
+    "ejerciciosMinimos": 15,
+    "aciertoMinimo": 0.7,
+    "ventanaAcierto": 15
+  },
+  "monedasIniciales": 40,
+  "tienda": {
+    "ofertasPorSemana": 4,
+    "descuentoOferta": 0.2
+  },
+  "alcancia": { "bonoAlLlegar": 0.1 },
+  "precioPorRareza": { "comun": 20, "lindo": 30, "especial": 45, "raro": 60, "brillante": 100, "magico": 150, "legendario": 300 }
+}

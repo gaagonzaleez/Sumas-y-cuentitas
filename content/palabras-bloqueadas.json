@@ -1,0 +1,6 @@
+{
+  "_nota": "Lista para validar apodos: groserías, insultos y palabras que suelen ser datos personales. Se compara sin tildes y en minúscula. Se pueden sumar palabras sin tocar el código.",
+  "groserias": ["boludo", "boluda", "pelotudo", "pelotuda", "puto", "puta", "mierda", "carajo", "concha", "pija", "verga", "culo", "forro", "forra", "tarado", "tarada", "idiota", "estupido", "estupida", "imbecil", "mogolico", "mogolica", "gil", "trolo", "orto", "chota", "garca", "cagon", "cagona", "sexo", "sexy", "porno", "droga", "matar", "muerte", "nazi", "fuck", "shit", "bitch", "ass", "dick"],
+  "contacto": ["@", "www", "http", ".com", "instagram", "insta", "tiktok", "whatsapp", "wsp", "telefono", "celular", "calle", "avenida", "colegio", "escuela"],
+  "nombresComunes": ["sofia", "martina", "valentina", "catalina", "emilia", "isabella", "olivia", "mia", "julieta", "camila", "lucia", "victoria", "delfina", "josefina", "agustina", "milagros", "abril", "paula", "florencia", "guadalupe", "maria", "ana", "lola", "renata", "alma", "francesca", "emma", "zoe", "malena", "jazmin", "morena", "candela", "luciana", "antonella", "bianca", "constanza", "pilar", "juana", "clara", "elena", "sol", "luz"]
+}

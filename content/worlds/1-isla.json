@@ -1,0 +1,24 @@
+{
+  "id": "isla", "numero": 1, "nombre": "Isla de los Números", "escala": "numeros",
+  "colores": { "cielo": "#CDE9FF", "suelo": "#FFE6A8", "acento": "#FFC93C" },
+  "niveles": [
+    { "id": "isla-1", "nombre": "Contar y escribir hasta 20", "corto": "Números", "inicio": 10, "techoNivel": 20,
+      "plantillas": [ { "id": "contar", "peso": 3 }, { "id": "leer-numero", "peso": 1 } ] },
+    { "id": "isla-2", "nombre": "Leer y escribir hasta 100", "corto": "Números",
+      "plantillas": [ { "id": "leer-numero", "peso": 2 }, { "id": "numero-en-letras", "peso": 1 }, { "id": "armar-bloques", "peso": 1 } ] },
+    { "id": "isla-3", "nombre": "Anterior y siguiente", "corto": "Números",
+      "plantillas": [ { "id": "anterior-siguiente", "peso": 1 } ] },
+    { "id": "isla-4", "nombre": "Comparar y ordenar", "corto": "Números",
+      "plantillas": [ { "id": "comparar", "peso": 2 }, { "id": "ordenar", "peso": 1 } ] },
+    { "id": "isla-5", "nombre": "Familias de los números", "corto": "Números",
+      "plantillas": [ { "id": "familia", "peso": 2 }, { "id": "anterior-siguiente", "peso": 1 } ] },
+    { "id": "isla-6", "nombre": "Decenas y unidades", "corto": "Números", "techoNivel": 99,
+      "plantillas": [ { "id": "descomponer", "peso": 2 }, { "id": "armar-bloques", "peso": 1 } ] },
+    { "id": "isla-7", "nombre": "Centenas, decenas y unidades", "corto": "Números", "inicio": 100, "minimo": 100,
+      "plantillas": [ { "id": "centenas", "peso": 2 }, { "id": "armar-bloques", "peso": 1 }, { "id": "descomponer", "peso": 1 } ] },
+    { "id": "isla-8", "nombre": "Números con letras", "corto": "Números", "techoNivel": 100,
+      "plantillas": [ { "id": "numero-en-letras", "peso": 2 }, { "id": "leer-numero", "peso": 1 } ] }
+  ],
+  "jefe": { "id": "isla-jefe", "nombre": "La Exploradora de la Isla", "corto": "Números", "descripcion": "Armá y escribí números de 3 cifras de muchas maneras.", "inicio": 100, "minimo": 100, "avatar": "exploradora",
+    "plantillas": [ { "id": "armar-bloques", "peso": 1 }, { "id": "centenas", "peso": 1 }, { "id": "numero-en-letras", "peso": 1 }, { "id": "leer-numero", "peso": 1 }, { "id": "descomponer", "peso": 1 } ] }
+}

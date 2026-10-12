@@ -1,0 +1,22 @@
+{
+  "maximo": 300,
+  "etapas": [
+    { "id": "bebe", "nombre": "bebé", "desde": 0 },
+    { "id": "joven", "nombre": "joven", "desde": 100 },
+    { "id": "grande", "nombre": "grande", "desde": 200 }
+  ],
+  "diasDeGracia": 3,
+  "perdidaPorDia": 5,
+  "puntosPorEstrella": 1,
+  "puntosAlimentar": 3,
+  "puntosJugar": 2,
+  "jugarVecesPorDia": 1,
+  "precioAlimentar": 10,
+  "diasRegresoFeliz": 3,
+  "multiplicadorRegreso": 2,
+  "avisoFaltaParaCrecer": 15,
+  "avisoCercaDeBajar": 15,
+  "contento": { "inicial": 80, "minimo": 30, "subeAlJugar": 15, "bajaPorDia": 10 },
+  "panza": { "inicial": 70, "minimo": 20, "subeAlAlimentar": 25, "bajaPorDia": 15 },
+  "estadoAnimo": { "extrananoDesdeDias": 2, "contentaDesdeContento": 70 }
+}

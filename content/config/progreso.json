@@ -1,0 +1,14 @@
+{
+  "mundosOrden": ["isla", "valle", "montana", "bosque", "mercado", "pueblo", "tesoro"],
+  "desbloqueoMundos": {
+    "isla": null,
+    "valle": "isla",
+    "montana": "valle",
+    "bosque": "montana",
+    "mercado": "valle",
+    "pueblo": "bosque",
+    "tesoro": "mercado"
+  },
+  "repaso": { "erroresParaSugerir": 3, "dias": 7, "ejercicios": 8 },
+  "pistas": { "maximo": 3 }
+}

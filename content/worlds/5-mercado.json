@@ -1,0 +1,24 @@
+{
+  "id": "mercado", "numero": 5, "nombre": "Mercado de Monedas", "escala": "dinero", "etiqueta": "Dinero",
+  "colores": { "cielo": "#FFF4D1", "suelo": "#FFD9B0", "acento": "#E8505B" },
+  "niveles": [
+    { "id": "mercado-1", "nombre": "Billetes y monedas", "corto": "Billetes",
+      "plantillas": [ { "id": "reconocer-billete", "peso": 1 } ] },
+    { "id": "mercado-2", "nombre": "Contar monedas", "corto": "Contar plata", "inicio": 20,
+      "plantillas": [ { "id": "contar-plata", "peso": 1, "params": { "soloMonedas": true } } ] },
+    { "id": "mercado-3", "nombre": "Armar un monto hasta $100", "corto": "Armar montos", "techoNivel": 100,
+      "plantillas": [ { "id": "armar-monto", "peso": 2 }, { "id": "contar-plata", "peso": 1 } ] },
+    { "id": "mercado-4", "nombre": "Pagar justo", "corto": "Pagar justo",
+      "plantillas": [ { "id": "armar-monto", "peso": 1, "params": { "producto": true } } ] },
+    { "id": "mercado-5", "nombre": "Montos hasta $1.000", "corto": "Montos grandes", "inicio": 200, "minimo": 200,
+      "plantillas": [ { "id": "armar-monto", "peso": 1, "params": { "producto": true } }, { "id": "contar-plata", "peso": 1 } ] },
+    { "id": "mercado-6", "nombre": "¿Cuál es más barato?", "corto": "Comparar precios",
+      "plantillas": [ { "id": "comparar-precios", "peso": 1 } ] },
+    { "id": "mercado-7", "nombre": "Dar vuelto", "corto": "Vuelto",
+      "plantillas": [ { "id": "dar-vuelto", "peso": 1 } ] },
+    { "id": "mercado-8", "nombre": "Compras con varios productos", "corto": "Compras",
+      "plantillas": [ { "id": "compra-varios", "peso": 1 } ] }
+  ],
+  "jefe": { "id": "mercado-jefe", "nombre": "La Tendera del Mercado", "corto": "La caja", "descripcion": "Atendé la caja del mercado con varios clientes seguidos.", "avatar": "tendera",
+    "plantillas": [ { "id": "armar-monto", "peso": 1, "params": { "producto": true } }, { "id": "dar-vuelto", "peso": 1 }, { "id": "compra-varios", "peso": 1 } ] }
+}

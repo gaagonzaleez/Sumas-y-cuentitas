@@ -1,0 +1,31 @@
+{
+  "aciertosParaSubir": 5,
+  "erroresParaBajar": 2,
+  "escaleras": {
+    "numeros": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    "sumas":   [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    "restas":  [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    "tablas":  [5, 6, 7, 8, 9, 10],
+    "dinero":  [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    "problemas": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    "finanzas": [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+  },
+  "grados": {
+    "numeros":   [{ "inicio": 20, "techo": 100 }, { "inicio": 50, "techo": 200 }, { "inicio": 100, "techo": 500 }, { "inicio": 200, "techo": 1000 }, { "inicio": 500, "techo": 1000 }],
+    "sumas":     [{ "inicio": 20, "techo": 100 }, { "inicio": 50, "techo": 200 }, { "inicio": 100, "techo": 500 }, { "inicio": 200, "techo": 1000 }, { "inicio": 500, "techo": 1000 }],
+    "restas":    [{ "inicio": 20, "techo": 100 }, { "inicio": 50, "techo": 200 }, { "inicio": 100, "techo": 500 }, { "inicio": 200, "techo": 1000 }, { "inicio": 500, "techo": 1000 }],
+    "tablas":    [{ "inicio": 5, "techo": 10 }, { "inicio": 6, "techo": 10 }, { "inicio": 8, "techo": 10 }, { "inicio": 10, "techo": 10 }, { "inicio": 10, "techo": 10 }],
+    "dinero":    [{ "inicio": 20, "techo": 100 }, { "inicio": 50, "techo": 200 }, { "inicio": 100, "techo": 500 }, { "inicio": 200, "techo": 1000 }, { "inicio": 500, "techo": 1000 }],
+    "problemas": [{ "inicio": 20, "techo": 100 }, { "inicio": 50, "techo": 200 }, { "inicio": 100, "techo": 500 }, { "inicio": 200, "techo": 1000 }, { "inicio": 500, "techo": 1000 }],
+    "finanzas":  [{ "inicio": 100, "techo": 300 }, { "inicio": 200, "techo": 500 }, { "inicio": 300, "techo": 700 }, { "inicio": 500, "techo": 1000 }, { "inicio": 700, "techo": 1000 }]
+  },
+  "caracterGrado": [
+    { "ayudas": "siempre", "problemas": 0, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "con ayudas" },
+    { "ayudas": "a-veces", "problemas": 0, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "menos ayudas" },
+    { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "con problemas" },
+    { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": true, "tresTerminos": false, "desafioTablas": true, "descripcion": "más pasos" },
+    { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": true, "tresTerminos": true, "desafioTablas": true, "descripcion": "desafío" }
+  ],
+  "tablasDesafio": [6, 7, 8, 9],
+  "desafioDiezMil": { "probabilidad": 0.15, "desdeGrado": 5 }
+}

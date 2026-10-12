@@ -1,0 +1,47 @@
+{
+  "_nota": "Historias cortas para los problemas. {nombre} y {nombre2} son nombres inventados; {a}, {b} y {c} son números; {objetos} sale de objetos.json. 'op' es la cuenta que resuelve el problema.",
+  "juntar": [
+    { "texto": "{nombre} tiene {a} {objetos} y {nombre2} tiene {b}. ¿{Cuantos} tienen en total?", "op": "+", "objetos": ["figurita", "caracol", "lapiz", "globo"] },
+    { "texto": "En un florero hay {a} flores y en otro hay {b}. ¿Cuántas flores hay en total?", "op": "+", "objeto": "flor" },
+    { "texto": "En la pecera grande hay {a} pececitos y en la chica hay {b}. ¿Cuántos pececitos hay?", "op": "+", "objeto": "pez" }
+  ],
+  "agregar": [
+    { "texto": "{nombre} tenía {a} {objetos}. Le regalaron {b} más. ¿{Cuantos} tiene ahora?", "op": "+", "objetos": ["figurita", "caramelo", "lapiz", "globo"] },
+    { "texto": "En el árbol había {a} mariposas y llegaron {b} más. ¿Cuántas mariposas hay ahora?", "op": "+", "objeto": "mariposa" },
+    { "texto": "{nombre} juntó {a} frutillas y después juntó {b} más. ¿Cuántas juntó en total?", "op": "+", "objeto": "frutilla" }
+  ],
+  "quitar": [
+    { "texto": "{nombre} tenía {a} {objetos} y regaló {b}. ¿{Cuantos} le quedan?", "op": "−", "objetos": ["figurita", "caramelo", "globo", "lapiz"] },
+    { "texto": "Había {a} galletitas en el plato y se comieron {b}. ¿Cuántas quedan?", "op": "−", "objeto": "galletita" },
+    { "texto": "En el jardín había {a} flores y {nombre} cortó {b} para un ramo. ¿Cuántas quedan en el jardín?", "op": "−", "objeto": "flor" }
+  ],
+  "comparar": [
+    { "texto": "{nombre} tiene {a} {objetos} y {nombre2} tiene {b}. ¿{Cuantos} más tiene {nombre}?", "op": "−", "objetos": ["figurita", "caracol", "caramelo"] },
+    { "texto": "Un camino mide {a} pasos y otro mide {b}. ¿Cuántos pasos más largo es el primero?", "op": "−", "objeto": "estrella" }
+  ],
+  "elegir-operacion": [
+    { "texto": "{nombre} tenía {a} globos y se le volaron {b}. ¿Qué cuenta hacemos?", "op": "−", "objeto": "globo" },
+    { "texto": "{nombre} tiene {a} pelotas y le regalan {b}. ¿Qué cuenta hacemos?", "op": "+", "objeto": "pelota" },
+    { "texto": "En la caja había {a} lápices y {nombre} sacó {b}. ¿Qué cuenta hacemos?", "op": "−", "objeto": "lapiz" },
+    { "texto": "{nombre} juntó {a} caracoles a la mañana y {b} a la tarde. ¿Qué cuenta hacemos?", "op": "+", "objeto": "caracol" }
+  ],
+  "dos-pasos": [
+    { "texto": "{nombre} tenía {a} figuritas, ganó {b} y después regaló {c}. ¿Cuántas tiene ahora?", "ops": ["+", "−"], "objeto": "figurita" },
+    { "texto": "En el colectivo iban {a} personas, subieron {b} y bajaron {c}. ¿Cuántas personas van ahora?", "ops": ["+", "−"], "objeto": "estrella" },
+    { "texto": "{nombre} tenía {a} caramelos, comió {b} y después le dieron {c}. ¿Cuántos tiene?", "ops": ["−", "+"], "objeto": "caramelo" }
+  ],
+  "dinero": [
+    { "texto": "{nombre} tenía {a} pesos y le regalaron {b} pesos. ¿Cuánta plata tiene ahora?", "op": "+", "objeto": "moneda", "pesos": true },
+    { "texto": "{nombre} tenía {a} pesos y gastó {b} pesos en un alfajor. ¿Cuánto le queda?", "op": "−", "objeto": "alfajor", "pesos": true },
+    { "texto": "Un cuaderno cuesta {a} pesos y un lápiz cuesta {b} pesos. ¿Cuánto cuestan los dos?", "op": "+", "objeto": "cuaderno", "pesos": true }
+  ],
+  "dato-que-sobra": [
+    { "texto": "{nombre} tiene {a} figuritas y {c} años. Le regalan {b} figuritas. ¿Cuántas figuritas tiene?", "op": "+", "objeto": "figurita", "sobra": "c" },
+    { "texto": "En la plaza hay {a} chicos y {c} perros. Se van {b} chicos. ¿Cuántos chicos quedan?", "op": "−", "objeto": "pelota", "sobra": "c" },
+    { "texto": "{nombre} compró {a} globos rojos y {b} azules. Era el día {c} del mes. ¿Cuántos globos compró?", "op": "+", "objeto": "globo", "sobra": "c" }
+  ],
+  "dato-que-falta": [
+    { "texto": "{nombre} tenía algunas figuritas y le regalaron {b}. ¿Cuántas tiene ahora?", "objeto": "figurita" },
+    { "texto": "En una caja hay {a} lápices. {nombre} sacó algunos. ¿Cuántos quedan?", "objeto": "lapiz" }
+  ]
+}
