@@ -71,7 +71,7 @@ function llevandoPar(az: Azar, max: number): [number, number] {
 }
 
 /** Datos para la lección de columnas (suma). */
-function datosSuma(a: number, b: number, c?: number) {
+export function datosSuma(a: number, b: number, c?: number) {
   const r = a + b + (c ?? 0);
   const u1 = a % 10;
   const u2 = b % 10;
@@ -92,7 +92,7 @@ function datosSuma(a: number, b: number, c?: number) {
   };
 }
 
-function datosResta(a: number, b: number) {
+export function datosResta(a: number, b: number) {
   const r = a - b;
   const u1 = a % 10;
   const u2 = b % 10;

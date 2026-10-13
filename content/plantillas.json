@@ -316,7 +316,8 @@
       "Completá la serie. ¿Qué número va en el lugar vacío?"
     ],
     "explicacion": "Van de {paso} en {paso}: falta el {r}.",
-    "pista": "Fijate cuánto aumenta de un número al siguiente."
+    "pista": "Fijate cuánto aumenta de un número al siguiente.",
+    "pistaTabla": "Sumá siempre la misma cantidad: es la tabla."
   },
   "contar-bloques": {
     "modo": "opciones",
@@ -335,5 +336,47 @@
     ],
     "explicacion": "El {n} se escribe {r}.",
     "pista": "Primero escribí las decenas y después las unidades."
+  },
+  "cuenta-faltante": {
+    "modo": "opciones",
+    "consigna": [
+      "¿Qué número falta en la cuenta?",
+      "Completá la cuenta: ¿qué número va en el hueco?"
+    ],
+    "explicacion": "{cuenta}. ¡Encontraste el número que faltaba!",
+    "pista": {
+      "+": "¿Cuánto le tenés que sumar para llegar al resultado?",
+      "−": "¿Cuánto le tenés que sacar para llegar al resultado?",
+      "×": "¿Cuántos grupos hacen falta para llegar al resultado?"
+    }
+  },
+  "verdadero-falso": {
+    "modo": "opciones",
+    "consigna": [
+      "¿Está bien esta cuenta?",
+      "Mirá la cuenta con atención. ¿Está bien?"
+    ],
+    "si": "Sí, está bien",
+    "no": "No, da otro número",
+    "explicacionBien": "¡Sí! {cuenta} = {r}.",
+    "explicacionMal": "¡Bien visto! {cuenta} no da {mostrado}: da {r}.",
+    "pista": "Hacé la cuenta vos y compará el resultado."
+  },
+  "memoria-cuentas": {
+    "modo": "memoria",
+    "consigna": [
+      "Uní cada cuenta con su resultado."
+    ],
+    "explicacion": "¡Encontraste todas las parejas!",
+    "pista": "Elegí una cuenta, resolvela y buscá su resultado."
+  },
+  "dobles": {
+    "modo": "opciones",
+    "consigna": [
+      "¡Dobles! ¿Cuánto es {n} + {n}?",
+      "El doble de {n}: ¿cuánto es {n} + {n}?"
+    ],
+    "explicacion": "El doble de {n} es {r}.",
+    "pista": "Es el mismo número dos veces. ¡Pensá en algo que viene de a pares!"
   }
 }

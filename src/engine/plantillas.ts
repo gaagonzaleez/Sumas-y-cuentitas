@@ -6,6 +6,7 @@ import * as tab from './generadores/tablas';
 import * as din from './generadores/dinero';
 import * as prob from './generadores/problemas';
 import * as fin from './generadores/finanzas';
+import * as varios from './generadores/variedad';
 
 export const GENERADORES: Record<string, Generador> = {
   contar: num.contar,
@@ -42,4 +43,8 @@ export const GENERADORES: Record<string, Generador> = {
   presupuesto: fin.presupuesto,
   'plan-ahorro': fin.planAhorro,
   'repartir-ahorro': fin.repartirAhorro,
+  'cuenta-faltante': varios.cuentaFaltante,
+  'verdadero-falso': varios.verdaderoFalso,
+  'memoria-cuentas': varios.memoriaCuentas,
+  dobles: varios.dobles,
 };

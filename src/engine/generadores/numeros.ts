@@ -401,10 +401,14 @@ export const centenas: Generador = (az, ctx) => {
 
 /** Series: "10, 20, __, 40". Avanza de a 1, 2, 5, 10 o 100 según el rango. */
 export const secuencia: Generador = (az, ctx) => {
-  const max = Math.max(20, ctx.rango);
-  const pasos = [1, 2, 5, 10, ...(max >= 300 ? [50, 100] : [])].filter((p) => p * 4 <= max);
+  const tablas = ctx.params.tablas as number[] | undefined;
+  // En el Bosque, la serie es la tabla: 3, 6, 9, __ (y el rango es hasta qué vez llega).
+  const max = tablas ? Math.max(...tablas) * Math.max(5, ctx.rango) : Math.max(20, ctx.rango);
+  const pasos = tablas ?? [1, 2, 5, 10, ...(max >= 300 ? [50, 100] : [])].filter((p) => p * 4 <= max);
   const paso = az.elegir(pasos);
-  const inicio = az.entero(0, Math.max(0, Math.floor((max - paso * 4) / paso))) * paso + (paso <= 2 ? az.entero(0, 1) * paso : 0);
+  const inicio = tablas
+    ? az.entero(0, Math.max(0, Math.floor(max / paso) - 4)) * paso
+    : az.entero(0, Math.max(0, Math.floor((max - paso * 4) / paso))) * paso + (paso <= 2 ? az.entero(0, 1) * paso : 0);
   const serie = Array.from({ length: 5 }, (_, i) => inicio + i * paso);
   const hueco = az.entero(1, 4);
   const r = serie[hueco];
@@ -438,7 +442,7 @@ export const secuencia: Generador = (az, ctx) => {
     errorTagPorDefecto: 'numeros.secuencia',
     leccion: { paso, a, b: a + paso, r },
     explicacion: rellenar(texto(az, 'secuencia', 'explicacion'), { paso, r }),
-    pista: texto(az, 'secuencia', 'pista'),
+    pista: texto(az, 'secuencia', tablas ? 'pistaTabla' : 'pista'),
     params: { inicio, paso, hueco },
   };
 };

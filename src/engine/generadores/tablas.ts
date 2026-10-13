@@ -6,12 +6,12 @@ import { genero, plural, type Generador, objeto, opcionesNumericas, opcionesText
 
 const OBJ_GRUPOS = ['manzana', 'frutilla', 'flor', 'hongo', 'estrella', 'caramelo'];
 
-function datosGrupos(g: number, p: number) {
+export function datosGrupos(g: number, p: number) {
   return { g, p, r: g * p, sumaRepetida: sumaRepetidaTexto(g, p), gTxt: plural(g, 'grupo', 'grupos') };
 }
 
 /** Elige la tabla: las del nivel y, en grados de desafío, a veces una del 6 al 9. */
-function elegirTabla(az: Azar, ctx: Contexto): number {
+export function elegirTabla(az: Azar, ctx: Contexto): number {
   const tablas = (ctx.params.tablas as number[]) ?? [2];
   const desafio = (ctx.params.desafio as boolean) || ctx.caracter.desafioTablas;
   if (desafio && az.chance(0.3)) return az.elegir(config.dificultad.tablasDesafio);
