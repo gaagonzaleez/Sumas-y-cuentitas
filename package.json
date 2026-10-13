@@ -12,7 +12,8 @@
     "test:e2e": "playwright test",
     "contenido": "vite-node scripts/validar-contenido.ts",
     "audio:manifiesto": "vite-node scripts/voz/manifiesto.ts",
-    "iconos": "node scripts/iconos.mjs"
+    "iconos": "node scripts/iconos.mjs",
+    "catalogo": "vite-node scripts/catalogo.ts"
   },
   "dependencies": {
     "@fontsource/fredoka": "^5.1.0",

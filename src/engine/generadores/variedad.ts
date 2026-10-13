@@ -1,5 +1,6 @@
 // Juegos que se suman a los niveles de sumas, restas y tablas para que no sea siempre lo mismo:
 // la cuenta con un hueco, "¿está bien esta cuenta?", la memoria de cuentas y los dobles.
+import { datosFalta } from '../explicar';
 import type { Azar } from '../azar';
 import type { Contexto, Ejercicio } from '../tipos';
 import { type Generador, opcionesNumericas, rellenar, texto, uid, usaTeclado } from './comun';
@@ -36,7 +37,7 @@ export const cuentaFaltante: Generador = (az, ctx): Ejercicio => {
     r = a + x;
     previstos = [[r, 'falta.da-el-total'], [r + a, 'falta.da-el-total'], [x + 1, 'falta.calculo'], [x - 1, 'falta.calculo'], [x + 10, 'falta.calculo']];
     tag = 'falta.calculo';
-    leccion = { a, meta: r, r: x };
+    leccion = datosFalta(a, r);
   } else {
     // a − x = r  → lo que falta es a − r
     let b: number;
@@ -45,7 +46,7 @@ export const cuentaFaltante: Generador = (az, ctx): Ejercicio => {
     r = a - b;
     previstos = [[a + r, 'falta.da-el-total'], [a, 'falta.da-el-total'], [x + 1, 'falta.calculo'], [x - 1, 'falta.calculo'], [x + 10, 'falta.calculo']];
     tag = 'falta.calculo';
-    leccion = { a: r, meta: a, r: x };
+    leccion = datosFalta(r, a);
   }
   // En las tablas, "__ × 5 = 20" se lee "¿cuántos grupos de 5 son 20?" (igual que 4 × 5 = 4 grupos de 5).
   const cuenta = op === '×' ? `__ × ${a} = ${r}` : `${a} ${op} __ = ${r}`;
@@ -168,7 +169,7 @@ export const dobles: Generador = (az, ctx): Ejercicio => {
   const n = az.entero(2, Math.max(3, Math.floor(Math.max(10, ctx.rango) / 2)));
   const r = n * 2;
   const tag = r <= 20 ? 'suma.uno-mas-menos' : 'suma.calculo';
-  const previstos: [number, string][] = [[r + 1, tag], [r - 1, tag], [n, 'suma.olvida-sumando']];
+  const previstos: [number, string][] = [[r + 1, tag], [r - 1, tag], [n, 'suma.doble']];
   if (hayLlevada(n, n)) previstos.unshift([sumaSinLlevar(n, n), 'suma.olvida-llevada']);
   const { opciones, erroresPrevistos } = opcionesNumericas(az, r, previstos, tag, 4, 0);
   const teclado = usaTeclado(az, ctx);

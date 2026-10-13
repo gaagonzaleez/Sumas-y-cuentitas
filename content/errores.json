@@ -3,71 +3,71 @@
   "contar.uno-mas-menos": {
     "leccion": "contar",
     "tema": "Contar objetos",
-    "frase": "Contaste uno de más o de menos.",
+    "frase": "Contemos de nuevo, tocando cada dibujo una sola vez.",
     "consejo": "Contar tocando cada objeto."
   },
   "numeros.invierte-cifras": {
-    "leccion": "valor-posicional",
+    "leccion": "invierte",
     "tema": "Leer números",
-    "frase": "Diste vuelta las cifras.",
+    "frase": "¡Ojo con el orden! Las cifras se dieron vuelta.",
     "consejo": "Señalar primero las decenas."
   },
   "numeros.escribe-separado": {
-    "leccion": "valor-posicional",
+    "leccion": "escribe-separado",
     "tema": "Escribir números",
-    "frase": "Escribiste cada parte por separado.",
+    "frase": "Las cifras van todas juntas, sin ceros de más.",
     "consejo": "Usar un tablero de decenas y unidades."
   },
   "numeros.cifra-cercana": {
     "leccion": "valor-posicional",
     "tema": "Leer números",
-    "frase": "Era un número muy parecido.",
+    "frase": "Se parece, pero es otro número. Escuchalo otra vez.",
     "consejo": "Leer el número en voz alta."
   },
   "numeros.anterior-siguiente": {
     "leccion": "recta",
     "tema": "Anterior y siguiente",
-    "frase": "Confundiste el anterior con el siguiente.",
+    "frase": "El siguiente es uno más; el anterior, uno menos.",
     "consejo": "Caminar sobre una recta numérica."
   },
   "numeros.cambio-decena": {
-    "leccion": "recta",
+    "leccion": "cambio-decena",
     "tema": "Anterior y siguiente",
-    "frase": "Al pasar de decena cambia el número de adelante.",
+    "frase": "Al pasar el 9, cambia la decena.",
     "consejo": "Contar en voz alta pasando el 9."
   },
   "numeros.comparar": {
     "leccion": "comparar",
     "tema": "Comparar números",
-    "frase": "Miremos primero la cifra de la izquierda.",
+    "frase": "Mirá primero la cifra de más a la izquierda.",
     "consejo": "Comparar primero las decenas."
   },
   "numeros.ordenar": {
-    "leccion": "comparar",
+    "leccion": "ordenar",
     "tema": "Ordenar números",
-    "frase": "Hay un número fuera de lugar.",
+    "frase": "Empezá por el más chico de todos.",
     "consejo": "Buscar siempre el más chico primero."
   },
   "numeros.familia": {
-    "leccion": "valor-posicional",
+    "leccion": "familia",
     "tema": "Familias de números",
     "frase": "La familia la dice la cifra de las decenas.",
     "consejo": "Agrupar números por decena."
   },
   "valor.invierte": {
-    "leccion": "valor-posicional",
+    "leccion": "invierte",
     "tema": "Descomponer números",
-    "frase": "Cambiaste decenas por unidades.",
+    "frase": "¡Ojo! Las decenas y las unidades se cambiaron de lugar.",
     "consejo": "Jugar con bloques de 10."
   },
   "valor.posicion": {
     "leccion": "valor-posicional",
     "tema": "Centenas, decenas y unidades",
-    "frase": "Cada cifra tiene su lugar.",
+    "frase": "Cada cifra vale según el lugar donde está.",
     "consejo": "Usar un tablero de valor posicional."
   },
   "numeros.letras": {
-    "leccion": "valor-posicional",
+    "leccion": "escribir-letras",
     "tema": "Números con letras",
     "frase": "Leamos el número parte por parte.",
     "consejo": "Leer números de la vida diaria."
@@ -75,13 +75,13 @@
   "suma.olvida-llevada": {
     "leccion": "columnas-suma",
     "tema": "Sumas con llevada",
-    "frase": "Se te olvidó sumar la decena que nos llevamos.",
+    "frase": "¡No te olvides de la decena que te llevás!",
     "consejo": "Probá con bloques de 10."
   },
   "suma.uno-mas-menos": {
     "leccion": "contar-suma",
     "tema": "Sumas chicas",
-    "frase": "Te pasaste o te faltó uno.",
+    "frase": "Te pasaste o te faltó uno. Contá otra vez.",
     "consejo": "Contar para adelante desde el número grande."
   },
   "suma.decenas": {
@@ -93,67 +93,67 @@
   "suma.resta-en-vez": {
     "leccion": "operacion",
     "tema": "Sumar o restar",
-    "frase": "Hiciste una resta, pero era una suma.",
+    "frase": "Mirá el signo: es una suma, juntamos.",
     "consejo": "Mirar el signo antes de empezar."
   },
   "suma.olvida-sumando": {
     "leccion": "tres-sumandos",
     "tema": "Sumar 3 números",
-    "frase": "Te faltó sumar un número.",
+    "frase": "Hay que sumar todos los números.",
     "consejo": "Tachar cada número al sumarlo."
   },
   "suma.tres-calculo": {
     "leccion": "tres-sumandos",
     "tema": "Sumar 3 números",
-    "frase": "Casi. Sumemos de a dos números.",
+    "frase": "Sumemos de a dos números por vez.",
     "consejo": "Sumar primero dos números y después el tercero."
   },
   "suma.calculo": {
     "leccion": "columnas-suma",
     "tema": "Sumas",
-    "frase": "Casi. Revisemos la cuenta.",
+    "frase": "Revisemos la cuenta con calma.",
     "consejo": "Sumar por columnas con calma."
   },
   "resta.invierte-columna": {
     "leccion": "columnas-resta",
     "tema": "Restas pidiendo prestado",
-    "frase": "Restaste el número chico del grande en cada columna.",
+    "frase": "Si arriba hay menos, pedimos prestada una decena.",
     "consejo": "Desarmar una decena en 10 unidades con bloques."
   },
   "resta.olvida-prestamo": {
     "leccion": "columnas-resta",
     "tema": "Restas pidiendo prestado",
-    "frase": "Pediste prestado, pero no le restaste a las decenas.",
+    "frase": "La decena que prestaste ya no está: queda una menos.",
     "consejo": "Tachar la decena que se presta."
   },
   "resta.uno-mas-menos": {
     "leccion": "contar-resta",
     "tema": "Restas chicas",
-    "frase": "Te pasaste o te faltó uno.",
+    "frase": "Te pasaste o te faltó uno. Contá otra vez.",
     "consejo": "Contar para atrás de a uno."
   },
   "resta.suma-en-vez": {
     "leccion": "operacion",
     "tema": "Sumar o restar",
-    "frase": "Hiciste una suma, pero era una resta.",
+    "frase": "Mirá el signo: es una resta, quitamos.",
     "consejo": "Mirar el signo antes de empezar."
   },
   "resta.calculo": {
     "leccion": "columnas-resta",
     "tema": "Restas",
-    "frase": "Casi. Revisemos la cuenta.",
+    "frase": "Revisemos la cuenta con calma.",
     "consejo": "Restar por columnas con calma."
   },
   "falta.da-el-total": {
     "leccion": "completar",
     "tema": "¿Cuánto falta?",
-    "frase": "Eso es hasta dónde queremos llegar, no lo que falta.",
+    "frase": "Ese es el número al que queremos llegar. ¿Cuánto falta?",
     "consejo": "Contar desde el número chico hasta el grande."
   },
   "falta.calculo": {
     "leccion": "completar",
     "tema": "¿Cuánto falta?",
-    "frase": "Casi. Contemos lo que falta.",
+    "frase": "Contemos lo que falta, de a saltos.",
     "consejo": "Contar de a diez y después de a uno."
   },
   "inversa.operacion": {
@@ -163,13 +163,13 @@
     "consejo": "Comprobar restas sumando."
   },
   "tabla.suma-en-vez": {
-    "leccion": "grupos",
+    "leccion": "tabla-por",
     "tema": "Tablas",
-    "frase": "Sumaste los números en vez de multiplicar.",
+    "frase": "El × no es sumar los dos números: son grupos iguales.",
     "consejo": "Armar grupos iguales con fideos o botones."
   },
   "tabla.vecino": {
-    "leccion": "grupos",
+    "leccion": "tabla-vecino",
     "tema": "Tablas",
     "frase": "Te pasaste o te faltó un grupo.",
     "consejo": "Recitar la tabla en voz alta."
@@ -177,13 +177,13 @@
   "tabla.calculo": {
     "leccion": "grupos",
     "tema": "Tablas",
-    "frase": "Casi. Pensemos en grupos iguales.",
+    "frase": "Pensemos en grupos iguales.",
     "consejo": "Practicar la tabla en voz alta."
   },
   "grupos.cuenta-uno": {
     "leccion": "grupos",
     "tema": "Grupos iguales",
-    "frase": "Contaste un grupo de más o de menos.",
+    "frase": "Contá los grupos otra vez, señalando cada uno.",
     "consejo": "Contar los grupos señalándolos."
   },
   "dinero.valor-billete": {
@@ -195,13 +195,13 @@
   "dinero.contar": {
     "leccion": "billetes",
     "tema": "Contar plata",
-    "frase": "Casi. Sumemos billete por billete.",
+    "frase": "Sumemos billete por billete.",
     "consejo": "Ordenar los billetes de mayor a menor."
   },
   "dinero.se-pasa": {
     "leccion": "pagar",
     "tema": "Pagar justo",
-    "frase": "Te pasaste un poquito.",
+    "frase": "Te pasaste un poquito. Probá sacando uno.",
     "consejo": "Sacar el billete grande y probar con uno más chico."
   },
   "dinero.falta": {
@@ -213,91 +213,91 @@
   "vuelto.suma-en-vez": {
     "leccion": "vuelto",
     "tema": "Dar vuelto",
-    "frase": "Sumaste, pero el vuelto se calcula restando.",
+    "frase": "El vuelto es lo que sobra: restamos.",
     "consejo": "Jugar a la caja con monedas."
   },
   "vuelto.calculo": {
     "leccion": "vuelto",
     "tema": "Dar vuelto",
-    "frase": "Casi. Contemos lo que sobra.",
+    "frase": "Contemos desde el precio hasta lo que pagaste.",
     "consejo": "Contar desde el precio hasta lo que se pagó."
   },
   "precios.comparar": {
     "leccion": "comparar-precios",
     "tema": "Comparar precios",
-    "frase": "Ese cuesta más. Busquemos el que cuesta menos.",
+    "frase": "Ese cuesta más. Buscá el que cuesta menos.",
     "consejo": "Comparar precios en el súper."
   },
   "compra.olvida-producto": {
     "leccion": "compra-total",
     "tema": "Compras con varios productos",
-    "frase": "Te faltó sumar un producto.",
+    "frase": "Hay que sumar todos los productos.",
     "consejo": "Hacer la lista de compras juntas."
   },
   "compra.calculo": {
     "leccion": "compra-total",
     "tema": "Compras con varios productos",
-    "frase": "Casi. Sumemos los precios de a uno.",
+    "frase": "Sumemos los precios de a uno.",
     "consejo": "Sumar precios con monedas."
   },
   "problema.operacion": {
     "leccion": "historia",
     "tema": "Problemas: qué cuenta usar",
-    "frase": "Elegiste la cuenta contraria.",
+    "frase": "Pensá qué pasa en la historia: ¿se junta o se quita?",
     "consejo": "Dibujar la historia antes de calcular."
   },
   "problema.dato-que-sobra": {
     "leccion": "historia",
     "tema": "Problemas con datos de más",
-    "frase": "Usaste un número que no hacía falta.",
+    "frase": "Hay un número que la pregunta no necesita.",
     "consejo": "Subrayar solo los datos de la pregunta."
   },
   "problema.un-paso": {
     "leccion": "dos-pasos",
     "tema": "Problemas de 2 pasos",
-    "frase": "Hiciste solo un paso. ¡Faltaba otro!",
+    "frase": "¡Bien el primer paso! Falta uno más.",
     "consejo": "Resolver de a un paso por vez."
   },
   "problema.calculo": {
     "leccion": "historia",
     "tema": "Problemas",
-    "frase": "Casi. Leamos la historia otra vez.",
+    "frase": "Leamos la historia otra vez, despacito.",
     "consejo": "Leer el problema en voz alta."
   },
   "problema.dato-que-falta": {
     "leccion": "historia",
     "tema": "Problemas con datos que faltan",
-    "frase": "Fijate si tenemos todos los números.",
+    "frase": "Fijate si la historia dice todos los números.",
     "consejo": "Preguntar: ¿qué sabemos y qué no?"
   },
   "finanzas.concepto": {
     "leccion": "concepto",
     "tema": "Ideas del dinero",
-    "frase": "Pensemos juntas otra vez.",
+    "frase": "Pensémoslo otra vez, sin apuro.",
     "consejo": "Conversar sobre el dinero en casa."
   },
   "finanzas.necesidad-deseo": {
     "leccion": "necesidad-deseo",
     "tema": "Necesidad o deseo",
-    "frase": "Pensemos si nos hace falta o si solo lo queremos.",
+    "frase": "¿Nos hace falta, o solo tenemos ganas?",
     "consejo": "Clasificar la lista del súper juntas."
   },
   "finanzas.presupuesto": {
     "leccion": "presupuesto",
     "tema": "Presupuesto",
-    "frase": "Esa compra se pasa de lo que tenemos.",
+    "frase": "Esa compra se pasa de la plata que tenemos.",
     "consejo": "Armar un presupuesto para una salida."
   },
   "finanzas.repartir": {
     "leccion": "repartir",
     "tema": "Guardar, compartir y gastar",
-    "frase": "Casi. Restemos lo que guardamos y lo que compartimos.",
+    "frase": "Restemos lo que guardamos y lo que compartimos.",
     "consejo": "Usar tres frascos: guardar, compartir y gastar."
   },
   "finanzas.ahorro": {
     "leccion": "ahorro",
     "tema": "Plan de ahorro",
-    "frase": "Casi. Contemos semana por semana.",
+    "frase": "Contemos semana por semana.",
     "consejo": "Usar una alcancía con una meta."
   },
   "numeros.secuencia": {
@@ -309,17 +309,17 @@
   "numeros.ortografia": {
     "leccion": "escribir-letras",
     "tema": "Escribir números con letras",
-    "frase": "¡Casi! Revisá cómo se escribe.",
+    "frase": "¡Casi casi! Revisá cómo se escribe.",
     "consejo": "Escribir juntas los números del calendario o de la casa."
   },
   "igualdad.balanza": {
     "leccion": "balanza",
     "tema": "Igualdades (balanza)",
-    "frase": "La balanza tiene que quedar pareja: los dos lados dan lo mismo.",
+    "frase": "Los dos lados de la balanza tienen que dar lo mismo.",
     "consejo": "Jugar con una balanza de juguete o con bloques."
   },
   "dinero.alcanza": {
-    "leccion": "compra-total",
+    "leccion": "alcanza",
     "tema": "¿Me alcanza la plata?",
     "frase": "Sumemos los precios y comparemos con la plata.",
     "consejo": "Antes de comprar, sumar juntas los precios."
@@ -327,19 +327,31 @@
   "problema.pregunta": {
     "leccion": "historia",
     "tema": "Problemas: qué se puede preguntar",
-    "frase": "Esa pregunta no se puede responder con estos datos.",
+    "frase": "Esa pregunta no se puede responder con la historia.",
     "consejo": "Inventar preguntas para una misma historia."
   },
   "dinero.menos-piezas": {
-    "leccion": "pagar",
+    "leccion": "menos-piezas",
     "tema": "Pagar con pocos billetes",
     "frase": "Se puede pagar con menos billetes y monedas.",
     "consejo": "Pagar usando primero los billetes grandes."
   },
   "numeros.pistas": {
-    "leccion": "comparar",
+    "leccion": "pistas",
     "tema": "Adivinanzas de números",
     "frase": "Revisemos las pistas una por una.",
     "consejo": "Jugar a 'pensé un número' con pistas."
+  },
+  "suma.doble": {
+    "leccion": "dobles",
+    "tema": "Dobles",
+    "frase": "El doble es el mismo número dos veces.",
+    "consejo": "Buscar dobles en casa: dedos de las manos, ruedas de la bici."
+  },
+  "precios.ordenar": {
+    "leccion": "ordenar-precios",
+    "tema": "Ordenar precios",
+    "frase": "Empezá por el más barato de todos.",
+    "consejo": "Ordenar juntas los precios de un folleto del súper."
   }
 }

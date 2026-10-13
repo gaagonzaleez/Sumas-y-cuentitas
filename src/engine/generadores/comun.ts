@@ -6,7 +6,12 @@ export type Generador = (az: Azar, ctx: Contexto) => Ejercicio;
 
 /** Reemplaza {clave} por su valor. */
 export function rellenar(texto: string, vars: Record<string, unknown>): string {
-  return texto.replace(/\{(\w+)\}/g, (m, k: string) => (vars[k] === undefined ? m : String(vars[k])));
+  return (
+    texto
+      .replace(/\{(\w+)\}/g, (m, k: string) => (vars[k] === undefined ? m : String(vars[k])))
+      // "1 pesos" → "1 peso" (los números salen al azar).
+      .replace(/(^|[^\d.,$])1 pesos\b/g, (_m, antes: string) => `${antes}1 peso`)
+  );
 }
 
 export function mayuscula(s: string): string {

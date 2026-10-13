@@ -16,7 +16,7 @@
       "Buscá el número {letras}."
     ],
     "explicacion": "{letras} se escribe {r}.",
-    "pista": "Primero escuchá las decenas y después las unidades.",
+    "pista": "Escuchalo por partes, despacito: cada parte es una cifra.",
     "consignaTeclado": [
       "Escribí el número {letras}.",
       "Escuchá y escribí: {letras}."
@@ -202,13 +202,13 @@
   "reconocer-billete": {
     "modo": "opciones",
     "consigna": [
-      "¿Cuál es el billete de {v} pesos?",
-      "Tocá el billete de {v} pesos."
+      "¿Cuál es el billete de {pesos}?",
+      "Tocá el billete de {pesos}."
     ],
     "consignaMoneda": [
-      "¿Cuál es la moneda de {v} pesos?"
+      "¿Cuál es la moneda de {pesos}?"
     ],
-    "explicacion": "¡Ese es el de {v} pesos!",
+    "explicacion": "¡Ese es el de {pesos}!",
     "pista": "Mirá el número que tiene escrito."
   },
   "contar-plata": {
@@ -218,7 +218,7 @@
       "Sumá los billetes y las monedas. ¿Cuánto hay?"
     ],
     "explicacion": "Hay {r} pesos.",
-    "pista": "Empezá por el billete más grande y sumá de a uno."
+    "pista": "Empezá por el billete más grande y andá sumando los demás."
   },
   "armar-monto": {
     "modo": "dinero",
@@ -239,7 +239,7 @@
       "¿Qué es más barato?",
       "¿Cuál cuesta menos?"
     ],
-    "explicacion": "{Barato} cuesta {pb} y {caro} cuesta {pc}. ¡Es más barato!",
+    "explicacion": "{Barato} cuesta {pb} y {caro} cuesta {pc}. ¡{Barato} cuesta menos!",
     "pista": "Más barato quiere decir que cuesta menos plata."
   },
   "dar-vuelto": {
@@ -278,11 +278,11 @@
   "necesidad-deseo": {
     "modo": "opciones",
     "consigna": [
-      "¿{Cosa} es una necesidad o un deseo?"
+      "¿{Cosa} {verbo} una necesidad o un deseo?"
     ],
     "necesidad": "Necesidad",
     "deseo": "Deseo",
-    "explicacion": "{Cosa} es {tipo}.",
+    "explicacion": "{Cosa} {verbo} {tipo}.",
     "pista": "¿Nos hace falta para vivir bien, o es algo lindo que queremos?"
   },
   "presupuesto": {
@@ -391,7 +391,14 @@
     "vos": "Vos",
     "empate": "Empate",
     "explicacion": "{detalle} ¡Gana {ganador}!",
-    "pista": "Calculá lo de cada una y compará los resultados."
+    "pista": {
+      "num": "Si una carta tiene más cifras, es más grande. Si no, mirá la primera cifra.",
+      "+": "Sumá las cartas de cada una y después compará.",
+      "−": "Restá la carta grande menos la chica y después compará.",
+      "×": "Multiplicá las cartas de cada una y después compará.",
+      "$": "Sumá la plata de cada una y después compará."
+    },
+    "explicacionEmpate": "{detalle} ¡Empate: las dos sacaron lo mismo!"
   },
   "escoba": {
     "modo": "elegir",
@@ -401,7 +408,11 @@
       "num": "Tocá las cartas que juntas forman el {objetivo}."
     },
     "explicacion": "¡Escoba! {cuenta} = {objetivo}.",
-    "pista": "Empezá por la carta más grande que no se pase."
+    "pista": {
+      "+": "Elegí una carta y pensá cuánto le falta para llegar.",
+      "$": "Empezá por el billete más grande que no se pase.",
+      "num": "Usá una carta para cada lugar: centenas, decenas y unidades."
+    }
   },
   "loteria": {
     "modo": "opciones",
@@ -410,17 +421,24 @@
       "op": "¡Lotería! Salió {cuenta}. Buscá el resultado en tu cartón."
     },
     "explicacion": "¡Lo encontraste! Era el {r}.",
-    "pista": "Leé despacito los números del cartón."
+    "pista": {
+      "num": "Pensá cómo se escribe: primero va la cifra que se dice primero.",
+      "op": "Primero resolvé la cuenta y después buscá el resultado."
+    }
   },
   "dados": {
     "modo": "opciones",
     "consigna": {
       "+": "Tiraste los dados. ¿Cuántos puntos sacaste en total?",
-      "×": "Salieron {g} dados con {p} puntos cada uno. ¿Cuántos puntos son?",
+      "×": "Salieron {g} dados con {puntos} cada uno. ¿Cuántos puntos son?",
       "−": "¿Cuántos puntos más tiene el dado más alto?"
     },
     "explicacion": "{cuenta} = {r}. ¡Bien contado!",
-    "pista": "Contá los puntitos de cada dado y juntalos."
+    "pista": {
+      "+": "Contá los puntitos de cada dado y juntalos.",
+      "×": "Todos los dados son iguales: contá de {p} en {p}.",
+      "−": "Fijate cuántos puntitos tiene de más el dado grande."
+    }
   },
   "balanza": {
     "modo": "opciones",
@@ -457,9 +475,10 @@
     "si": "Sí, me alcanza",
     "no": "No, no me alcanza",
     "explicacion": "Todo cuesta {total} pesos y tenés {plata}. {cierre}",
-    "cierreSi": "¡Te alcanza y te sobran {sobra}!",
-    "cierreNo": "Te faltan {falta} pesos.",
-    "pista": "Sumá los precios y compará con tu plata."
+    "cierreSi": "¡Te alcanza y te {sobranTxt}!",
+    "cierreNo": "Te {faltanTxt}.",
+    "pista": "Sumá los precios y compará con tu plata.",
+    "cierreJusto": "¡Te alcanza justo, sin que sobre nada!"
   },
   "carrito": {
     "modo": "elegir",

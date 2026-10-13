@@ -673,3 +673,4 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
 
 - Ga dio libertad creativa total: quien desarrolle puede cambiar y mejorar cualquier parte del juego (pantallas, mecánicas, mundos, premios, textos, diseño). Se mantienen siempre: gratis y sin publicidad, privacidad de menores, arte propio, tono cálido y accesibilidad.
 - Cada nivel mezcla por lo menos 5 juegos distintos.
+- Explicaciones: cada cuenta se explica con la estrategia que conviene para esos números (contar, completar el 10, decenas, columnas con centenas, contar saltando como el vuelto; tablas contando de a saltos o con la cuenta vecina). Cada error tiene su propia minilección. Después del primer "¡Casi!" se muestra qué mirar y una pista. Una prueba verifica que toda cuenta escrita en una explicación esté bien hecha.

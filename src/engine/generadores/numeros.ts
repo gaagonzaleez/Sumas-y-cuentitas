@@ -23,8 +23,16 @@ const OBJETOS_CONTAR = ['manzana', 'estrella', 'flor', 'pez', 'caracol', 'globo'
 
 /** Datos de la lección de valor posicional para un número. */
 export function datosValor(n: number): Record<string, string | number | boolean> {
-  const [u, d = 0, c = 0] = cifras(n);
-  const partes = [c ? c * 100 : 0, d ? d * 10 : 0, u].filter((x) => x > 0);
+  const [u, d = 0, c = 0, m = 0] = cifras(n);
+  const partes = [m * 1000, c * 100, d * 10, u].filter((x) => x > 0);
+  // "2 unidades de mil, 2 centenas, 4 decenas y 3 unidades"
+  const lugares = [
+    ...(m ? [plural(m, 'unidad de mil', 'unidades de mil')] : []),
+    ...(n >= 100 ? [plural(c, 'centena', 'centenas')] : []),
+    plural(d, 'decena', 'decenas'),
+  ];
+  const inv = invertirCifras(n);
+  const letras = n <= 10000 ? enLetras(n) : String(n);
   return {
     n,
     c,
@@ -32,8 +40,15 @@ export function datosValor(n: number): Record<string, string | number | boolean>
     u,
     ...cdu(c, d, u),
     tieneCentenas: n >= 100,
+    variasPartes: partes.length > 1,
+    tieneTxt: `${lugares.join(', ')} y ${plural(u, 'unidad', 'unidades')}`,
     descompuesto: partes.length > 1 ? partes.join(' + ') : String(n),
-    letras: n <= 10000 ? enLetras(n) : String(n),
+    letras,
+    Letras: mayuscula(letras),
+    inv,
+    invDistinto: inv !== n && u !== 0,
+    fam: Math.floor(n / 10) * 10,
+    famFin: Math.floor(n / 10) * 10 + 9,
   };
 }
 
@@ -172,26 +187,30 @@ export const anteriorSiguiente: Generador = (az, ctx) => {
     opciones: teclado ? undefined : opciones,
     erroresPrevistos,
     errorTagPorDefecto: 'numeros.anterior-siguiente',
-    leccion: { n, r, cual },
+    leccion: { n, r, cual, vecinos: [n - 2, n - 1, n, n + 1, n + 2].filter((x) => x >= 0).join(', ') },
     explicacion: rellenar(texto(az, 'anterior-siguiente', 'explicacion', cual), { n, r }),
     pista: texto(az, 'anterior-siguiente', 'pista', cual),
     params: { n, cual },
   };
 };
 
-function frasesComparacion(a: number, b: number): string {
+/** Datos para explicar cuál de dos números es más grande. */
+export function datosComparar(a: number, b: number) {
   const [mayor, menor] = a > b ? [a, b] : [b, a];
   const cm = cifras(mayor);
   const cn = cifras(menor);
-  if (cm.length > cn.length) return `El ${mayor} tiene más cifras que el ${menor}.`;
+  const base = { mayor, menor, mismasCifras: cm.length === cn.length };
+  if (cm.length > cn.length) {
+    return { ...base, comparacion: `El ${mayor} tiene ${plural(cm.length, 'cifra', 'cifras')} y el ${menor}, ${cn.length}.` };
+  }
+  const nombres = ['unidades', 'decenas', 'centenas', 'unidades de mil'];
   for (let i = cm.length - 1; i >= 0; i--) {
     if (cm[i] !== cn[i]) {
-      const lugar = i === 2 ? 'centenas' : i === 1 ? 'decenas' : 'unidades';
-      const sing = lugar === 'unidades' ? 'unidad' : lugar.slice(0, -1);
-      return `${plural(cm[i], sing, lugar)} es más que ${plural(cn[i], sing, lugar)}.`;
+      const antes = i < cm.length - 1 ? `Las ${nombres[i + 1]} son iguales. ` : '';
+      return { ...base, comparacion: `${antes}En las ${nombres[i]}, ${cm[i]} es más que ${cn[i]}.` };
     }
   }
-  return `Los dos números son iguales.`;
+  return { ...base, comparacion: 'Los dos números son iguales.' };
 }
 
 export const comparar: Generador = (az, ctx) => {
@@ -232,7 +251,7 @@ export const comparar: Generador = (az, ctx) => {
     respuesta: correcta,
     opciones,
     errorTagPorDefecto: 'numeros.comparar',
-    leccion: { mayor: Math.max(a, b), menor: Math.min(a, b), comparacion: frasesComparacion(a, b), a, b, r: correcta },
+    leccion: { ...datosComparar(a, b), a, b, r: correcta },
     explicacion: iguales
       ? `${a} y ${b} son iguales.`
       : rellenar(texto(az, 'comparar', 'explicacion', variante), { r: correcta, otro }),
@@ -257,7 +276,7 @@ export const ordenar: Generador = (az, ctx) => {
     respuesta: orden.join(','),
     datos: { ordenar: az.mezclar(lista) },
     errorTagPorDefecto: 'numeros.ordenar',
-    leccion: { mayor, menor, comparacion: frasesComparacion(mayor, menor), r: orden.join(', ') },
+    leccion: { ...datosComparar(mayor, menor), r: orden.join(', ') },
     explicacion: rellenar(texto(az, 'ordenar', 'explicacion'), { r: orden.join(', ') }),
     pista: texto(az, 'ordenar', 'pista'),
     params: { l: orden.join('-') },

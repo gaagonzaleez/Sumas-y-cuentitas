@@ -67,12 +67,14 @@ export const necesidadDeseo: Generador = (az) => {
   const des = texto(az, 'necesidad-deseo', 'deseo');
   const correcta = item.tipo === 'necesidad' ? nec : des;
   const tipoTexto = item.tipo === 'necesidad' ? 'una necesidad' : 'un deseo';
+  // "Los útiles del cole son…", "Un helado es…".
+  const verbo = /^(los|las) /.test(item.cosa) ? 'son' : 'es';
   return {
     uid: uid('necesidad-deseo', { c: item.cosa }),
     plantillaId: 'necesidad-deseo',
     tema: 'finanzas',
     modo: 'opciones',
-    consigna: rellenar(texto(az, 'necesidad-deseo', 'consigna'), { Cosa: mayuscula(item.cosa) }),
+    consigna: rellenar(texto(az, 'necesidad-deseo', 'consigna'), { Cosa: mayuscula(item.cosa), verbo }),
     visual: { tipo: 'dibujo', objeto: item.objeto },
     respuesta: correcta,
     opciones: [
@@ -80,8 +82,8 @@ export const necesidadDeseo: Generador = (az) => {
       { valor: des, errorTag: item.tipo === 'deseo' ? undefined : 'finanzas.necesidad-deseo' },
     ],
     errorTagPorDefecto: 'finanzas.necesidad-deseo',
-    leccion: { cosa: item.cosa, tipoTexto },
-    explicacion: rellenar(texto(az, 'necesidad-deseo', 'explicacion'), { Cosa: mayuscula(item.cosa), tipo: tipoTexto }),
+    leccion: { cosa: item.cosa, tipoTexto, verbo },
+    explicacion: rellenar(texto(az, 'necesidad-deseo', 'explicacion'), { Cosa: mayuscula(item.cosa), tipo: tipoTexto, verbo }),
     pista: texto(az, 'necesidad-deseo', 'pista'),
     params: { c: item.cosa },
   };

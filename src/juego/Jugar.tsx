@@ -218,8 +218,9 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
       abrirLeccion(tag, valor);
       return;
     }
-    if (r.activarPista && pista === 0) setPista(1);
-    setMensaje([frase(guia, 'errores'), infoError(tag).frase, ...(r.activarPista && pista === 0 ? [ejercicio.pista] : [])]);
+    // Después del "¡Casi!" va qué mirar y una pista concreta para el segundo intento.
+    if (pista === 0) setPista(1);
+    setMensaje([frase(guia, 'errores'), infoError(tag).frase, ...(pista === 0 ? [ejercicio.pista] : [])]);
   }
 
   function abrirLeccion(tag: string, respuesta?: string) {

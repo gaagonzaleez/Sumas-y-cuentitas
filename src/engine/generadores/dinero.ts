@@ -1,4 +1,5 @@
 // Mundo 5: Mercado de Monedas. Billetes y monedas didácticos (no se reproducen billetes reales).
+import { saltos } from '../explicar';
 import { PRODUCTOS, type Producto } from '../../content';
 import type { Azar } from '../azar';
 import {
@@ -39,6 +40,7 @@ export const reconocerBillete: Generador = (az, ctx) => {
   const disponibles = VALORES_PLATA.filter((v) => v <= Math.max(100, ctx.rango));
   const v = az.elegir(disponibles);
   const moneda = esMoneda(v);
+  const pesos = v === 1 ? '1 peso' : `${v} pesos`;
   const mismos = disponibles.filter((x) => esMoneda(x) === moneda && x !== v);
   const otros = az.mezclar(mismos.length >= 3 ? mismos : disponibles.filter((x) => x !== v)).slice(0, 3);
   const opciones = az.mezclar([
@@ -50,12 +52,12 @@ export const reconocerBillete: Generador = (az, ctx) => {
     plantillaId: 'reconocer-billete',
     tema: 'dinero',
     modo: 'opciones',
-    consigna: rellenar(texto(az, 'reconocer-billete', moneda ? 'consignaMoneda' : 'consigna'), { v }),
+    consigna: rellenar(texto(az, 'reconocer-billete', moneda ? 'consignaMoneda' : 'consigna'), { pesos }),
     respuesta: String(v),
     opciones,
     errorTagPorDefecto: 'dinero.valor-billete',
-    leccion: { r: v, sumaTexto: String(v) },
-    explicacion: rellenar(texto(az, 'reconocer-billete', 'explicacion'), { v }),
+    leccion: { r: v, sumaTexto: String(v), pesosTxt: pesos },
+    explicacion: rellenar(texto(az, 'reconocer-billete', 'explicacion'), { pesos }),
     pista: texto(az, 'reconocer-billete', 'pista'),
     params: { v },
   };
@@ -210,7 +212,7 @@ export const darVuelto: Generador = (az, ctx) => {
     opciones: opciones.map((o) => ({ ...o, texto: `$${o.valor}` })),
     erroresPrevistos,
     errorTagPorDefecto: 'vuelto.calculo',
-    leccion: { precio, pago, r },
+    leccion: { precio, pago, r, ...saltos(precio, pago) },
     explicacion: rellenar(texto(az, 'dar-vuelto', 'explicacion'), vars),
     pista: texto(az, 'dar-vuelto', 'pista'),
     params: { precio, pago },

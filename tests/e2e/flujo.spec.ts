@@ -85,8 +85,10 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
       for (const t of ['9', '9', '9', '9']) await page.getByRole('button', { name: t, exact: true }).click();
       await page.getByRole('button', { name: 'Listo' }).click();
     } else {
-      const habilitada = page.locator('main button:enabled').filter({ hasText: /^\d+$/ }).first();
-      await habilitada.click();
+      const numerica = page.locator('main button:enabled').filter({ hasText: /^\d+$/ });
+      // Guerra de cartas: las opciones son nombres ("Vos", "Empate"), no números.
+      if (await numerica.count()) await numerica.first().click();
+      else await page.locator('main button:enabled').filter({ hasText: /^(Vos|Empate)$/ }).first().click();
     }
     await page.waitForTimeout(150);
     if (await page.getByText(/Casi/).first().isVisible()) await expect(page.getByText(/Casi/).first()).toBeVisible();

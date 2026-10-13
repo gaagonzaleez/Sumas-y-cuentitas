@@ -3,6 +3,7 @@
 // el carrito del súper, la alcancía, cobrar por un trabajo). Todo el arte y los textos son propios.
 import { FINANZAS, HISTORIAS, NOMBRES, PLANTILLAS, PRODUCTOS } from '../../content';
 import type { Azar } from '../azar';
+import { datosFalta } from '../explicar';
 import { enLetras } from '../numerosEnLetras';
 import type { Contexto, Ejercicio } from '../tipos';
 import {
@@ -19,7 +20,7 @@ import {
   texto,
   uid,
 } from './comun';
-import { datosValor } from './numeros';
+import { datosComparar, datosValor } from './numeros';
 import { datosResta, datosSuma } from './sumasRestas';
 import { datosGrupos, elegirTabla } from './tablas';
 import { VALORES_PLATA } from './dinero';
@@ -85,7 +86,7 @@ export const guerraCartas: Generador = (az, ctx): Ejercicio => {
     op === 'num' ? `${nombre}: ${v}.` : op === '$' ? `${nombre}: ${c.join(' + ')} = ${v}.` : `${nombre}: ${c[0]} ${op === '−' ? '−' : op} ${c[1]} = ${v}.`.replace(`${c[0]} − ${c[1]}`, `${Math.max(...c)} − ${Math.min(...c)}`);
   const tag = op === 'num' ? 'numeros.comparar' : op === '+' ? 'suma.calculo' : op === '−' ? 'resta.calculo' : op === '×' ? 'tabla.calculo' : 'dinero.contar';
   const leccion =
-    op === '+' ? datosSuma(mia[0], mia[1]) : op === '−' ? datosResta(Math.max(...mia), Math.min(...mia)) : op === '×' ? datosGrupos(mia[0], mia[1]) : op === '$' ? { r: a, sumaTexto: mia.join(' + ') } : { mayor: Math.max(a, b), menor: Math.min(a, b), comparacion: `Comparamos ${a} y ${b}.`, a, b, r: Math.max(a, b) };
+    op === '+' ? datosSuma(mia[0], mia[1]) : op === '−' ? datosResta(Math.max(...mia), Math.min(...mia)) : op === '×' ? datosGrupos(mia[0], mia[1]) : op === '$' ? { r: a, sumaTexto: mia.join(' + ') } : { ...datosComparar(a, b), a, b, r: Math.max(a, b) };
   return {
     uid: uid('guerra-cartas', { op, m: mia.join('-'), s: suya.join('-') }),
     plantillaId: 'guerra-cartas',
@@ -97,11 +98,11 @@ export const guerraCartas: Generador = (az, ctx): Ejercicio => {
     opciones: [vos, rival, empate].map((v) => ({ valor: v, errorTag: v === correcta ? undefined : tag })),
     errorTagPorDefecto: tag,
     leccion,
-    explicacion: rellenar(texto(az, 'guerra-cartas', 'explicacion'), {
+    explicacion: rellenar(texto(az, 'guerra-cartas', correcta === empate ? 'explicacionEmpate' : 'explicacion'), {
       detalle: `${detalle(vos, mia, a)} ${detalle(rival, suya, b)}`,
-      ganador: correcta === empate ? 'nadie: ¡empate' : correcta === vos ? 'vos' : rival,
-    }).replace('¡empate!', 'empate!'),
-    pista: texto(az, 'guerra-cartas', 'pista'),
+      ganador: correcta === vos ? 'vos' : rival,
+    }),
+    pista: texto(az, 'guerra-cartas', 'pista', op),
     params: { op, m: mia.join('-'), s: suya.join('-') },
   };
 };
@@ -119,7 +120,9 @@ export const escoba: Generador = (az, ctx): Ejercicio => {
     resto = Array.from({ length: Math.max(2, 6 - solucion.length) }, () => az.elegir(VALORES_PLATA.filter((v) => v <= objetivo)));
   } else if (op === 'num') {
     // Formar un número con cartas de centenas, decenas y unidades: 300 + 40 + 7.
-    objetivo = az.entero(11, Math.max(20, Math.min(999, ctx.rango)));
+    // Siempre con por lo menos dos cartas: nada de números redondos.
+    do objetivo = az.entero(11, Math.max(20, Math.min(999, ctx.rango)));
+    while (objetivo % 10 === 0);
     const [u, d, c = 0] = cifras(objetivo);
     solucion = [c * 100, d * 10, u].filter((x) => x > 0);
     resto = [u * 10, d, (d + 1) * 10, c ? c : u + 1].filter((x) => x > 0 && !solucion.includes(x)).slice(0, 3);
@@ -157,7 +160,7 @@ export const escoba: Generador = (az, ctx): Ejercicio => {
     leccion:
       op === '$' ? { precio: objetivo, sumaTexto: cuenta } : op === 'num' ? datosValor(objetivo) : solucion.length === 2 ? datosSuma(solucion[0], solucion[1]) : datosSuma(solucion[0], solucion[1], solucion[2]),
     explicacion: rellenar(texto(az, 'escoba', 'explicacion'), { cuenta, objetivo }),
-    pista: texto(az, 'escoba', 'pista'),
+    pista: texto(az, 'escoba', 'pista', op),
     params: { op, objetivo, v: valores.join('-') },
   };
 };
@@ -172,7 +175,7 @@ export const loteria: Generador = (az, ctx): Ejercicio => {
   let leccion: Ejercicio['leccion'];
   const previstos: [number, string][] = [];
   if (op === '+' || op === '−') {
-    const m = max(ctx, 20);
+    const m = max(ctx, 10);
     const a = az.entero(2, m - 1);
     const b = op === '+' ? az.entero(1, Math.max(1, m - a)) : az.entero(1, a - 1);
     r = op === '+' ? a + b : a - b;
@@ -210,7 +213,7 @@ export const loteria: Generador = (az, ctx): Ejercicio => {
     errorTagPorDefecto: tag,
     leccion,
     explicacion: rellenar(texto(az, 'loteria', 'explicacion'), { r }),
-    pista: texto(az, 'loteria', 'pista'),
+    pista: texto(az, 'loteria', 'pista', op === 'num' ? 'num' : 'op'),
     params: { op, r, cuenta },
   };
 };
@@ -257,7 +260,7 @@ export const dados: Generador = (az, ctx): Ejercicio => {
     plantillaId: 'dados',
     tema: op === '×' ? 'tablas' : op === '−' ? 'restas' : 'sumas',
     modo: 'opciones',
-    consigna: rellenar(texto(az, 'dados', 'consigna', op), { g: valores.length, p: valores[0] }),
+    consigna: rellenar(texto(az, 'dados', 'consigna', op), { g: valores.length, puntos: valores[0] === 1 ? '1 punto' : `${valores[0]} puntos` }),
     visual: { tipo: 'dados', valores },
     respuesta: String(r),
     opciones,
@@ -265,7 +268,7 @@ export const dados: Generador = (az, ctx): Ejercicio => {
     errorTagPorDefecto: tag,
     leccion,
     explicacion: rellenar(texto(az, 'dados', 'explicacion'), { cuenta, r }),
-    pista: texto(az, 'dados', 'pista'),
+    pista: rellenar(texto(az, 'dados', 'pista', op), { p: valores[0] }),
     params: { op, v: valores.join('-') },
   };
 };
@@ -274,7 +277,7 @@ export const dados: Generador = (az, ctx): Ejercicio => {
 // Balanza: 8 + 5 = 10 + __ (los dos lados dan lo mismo).
 export const balanza: Generador = (az, ctx): Ejercicio => {
   const op = opDe(ctx, '+') === '−' ? '−' : '+';
-  const m = max(ctx, 20);
+  const m = max(ctx, 10);
   let total: number, a: number, b: number, c: number, r: number;
   if (op === '+') {
     total = az.entero(6, m);
@@ -327,7 +330,7 @@ export const balanza: Generador = (az, ctx): Ejercicio => {
 // ---------------------------------------------------------------------------
 // Pirámide de sumas: el bloque de arriba es la suma de los dos de abajo.
 export const piramide: Generador = (az, ctx): Ejercicio => {
-  const m = max(ctx, 20);
+  const m = max(ctx, 10);
   const a = az.entero(1, Math.max(1, m - 2));
   const b = az.entero(1, Math.max(1, m - a));
   const s = a + b;
@@ -349,7 +352,7 @@ export const piramide: Generador = (az, ctx): Ejercicio => {
     opciones,
     erroresPrevistos,
     errorTagPorDefecto: tag,
-    leccion: arriba ? datosSuma(a, b) : { a, meta: s, r: b },
+    leccion: arriba ? datosSuma(a, b) : datosFalta(a, s),
     explicacion: rellenar(texto(az, 'piramide', 'explicacion'), { cuenta: `${a} + ${b} = ${s}` }),
     pista: texto(az, 'piramide', 'pista'),
     params: { a, b, arriba: arriba ? 1 : 0 },
@@ -388,7 +391,7 @@ export const adivinanza: Generador = (az, ctx): Ejercicio => {
     opciones: ops,
     erroresPrevistos,
     errorTagPorDefecto: 'numeros.pistas',
-    leccion: { mayor: r, menor: desde, comparacion: 'Probá cada pista: tiene que cumplir todas.', a: r, b: desde, r },
+    leccion: { pista1: listaTexto(pistas.slice(0, -1)), pista2: pistas[pistas.length - 1], desde, hasta: desde + 9, r },
     explicacion: rellenar(texto(az, 'adivinanza', 'explicacion'), { r }),
     pista: texto(az, 'adivinanza', 'pista'),
     params: { r },
@@ -419,11 +422,24 @@ export const alcanza: Generador = (az, ctx): Ejercicio => {
       { valor: noTexto, errorTag: alcanzaDe ? 'dinero.alcanza' : undefined },
     ],
     errorTagPorDefecto: 'dinero.alcanza',
-    leccion: { r: total, sumaTexto: prods.map((p) => p.precio).join(' + ') },
+    leccion: {
+      r: total,
+      total,
+      plata,
+      sumaTexto: prods.map((p) => p.precio).join(' + '),
+      variosProductos: prods.length > 1,
+      caso: plata > total ? 'sobra' : plata === total ? 'justo' : 'falta',
+      dif: Math.abs(plata - total),
+      sobranTxt: plata - total === 1 ? 'sobra 1 peso' : `sobran ${plata - total} pesos`,
+      faltanTxt: total - plata === 1 ? 'falta 1 peso' : `faltan ${total - plata} pesos`,
+    },
     explicacion: rellenar(texto(az, 'alcanza', 'explicacion'), {
       total,
       plata,
-      cierre: rellenar(texto(az, 'alcanza', alcanzaDe ? 'cierreSi' : 'cierreNo'), { sobra: plata - total, falta: total - plata }),
+      cierre: rellenar(texto(az, 'alcanza', plata === total ? 'cierreJusto' : alcanzaDe ? 'cierreSi' : 'cierreNo'), {
+        sobranTxt: plata - total === 1 ? 'sobra 1 peso' : `sobran ${plata - total} pesos`,
+        faltanTxt: total - plata === 1 ? 'falta 1 peso' : `faltan ${total - plata} pesos`,
+      }),
     }),
     pista: texto(az, 'alcanza', 'pista'),
     params: { plata, t: prods.map((p) => p.id + p.precio).join('-') },
@@ -478,8 +494,8 @@ export const ordenarPrecios: Generador = (az, ctx): Ejercicio => {
     consigna: texto(az, 'ordenar-precios', 'consigna'),
     respuesta: orden.join(','),
     datos: { ordenar: az.mezclar(lista) },
-    errorTagPorDefecto: 'precios.comparar',
-    leccion: { r: `$${orden[0]}`, comparacion: `El más barato es el de ${orden[0]} pesos y el más caro, el de ${orden[3]}.` },
+    errorTagPorDefecto: 'precios.ordenar',
+    leccion: { menor: orden[0], mayor: orden[3], r: orden.map((x) => `$${x}`).join(', ') },
     explicacion: rellenar(texto(az, 'ordenar-precios', 'explicacion'), { r: orden.map((p) => `$${p}`).join(', ') }),
     pista: texto(az, 'ordenar-precios', 'pista'),
     params: { l: orden.join('-') },
@@ -507,7 +523,7 @@ export const menosBilletes: Generador = (az, ctx): Ejercicio => {
     respuesta: correcta,
     opciones: opcionesTexto(az, correcta, incorrectas, 3),
     errorTagPorDefecto: 'dinero.menos-piezas',
-    leccion: { precio: p, sumaTexto: optimo.join(' + ') },
+    leccion: { precio: p, sumaTexto: optimo.join(' + '), k: optimo.length },
     explicacion: rellenar(texto(az, 'menos-billetes', 'explicacion'), { opcion: correcta }),
     pista: texto(az, 'menos-billetes', 'pista'),
     params: { p },
@@ -670,7 +686,7 @@ export const faltaMeta: Generador = (az, ctx): Ejercicio => {
     opciones: opciones.map((o) => ({ ...o, texto: `$${o.valor}` })),
     erroresPrevistos,
     errorTagPorDefecto: 'falta.calculo',
-    leccion: { a: tengo, meta, r },
+    leccion: datosFalta(tengo, meta),
     explicacion: rellenar(texto(az, 'falta-meta', 'explicacion'), { meta, tengo, r }),
     pista: texto(az, 'falta-meta', 'pista'),
     params: { meta, tengo },
@@ -730,7 +746,7 @@ export const clasificar: Generador = (az): Ejercicio => {
     datos: { elegir: { items, regla: 'conjunto', correctas, estilo: 'productos' } },
     erroresPrevistos: { mal: 'finanzas.necesidad-deseo' },
     errorTagPorDefecto: 'finanzas.necesidad-deseo',
-    leccion: { cosa: ejemplo.cosa, tipoTexto: tipo === 'necesidad' ? 'una necesidad' : 'un deseo' },
+    leccion: { cosa: ejemplo.cosa, verbo: /^(los|las) /.test(ejemplo.cosa) ? 'son' : 'es', tipoTexto: tipo === 'necesidad' ? 'una necesidad' : 'un deseo' },
     explicacion: rellenar(texto(az, 'clasificar', 'explicacion'), { tipoPlural: tipo === 'necesidad' ? 'necesidades' : 'deseos' }),
     pista: texto(az, 'clasificar', 'pista'),
     params: { tipo, l: lista.map((x) => x.cosa).join('|') },

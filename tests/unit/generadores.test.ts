@@ -9,6 +9,21 @@ import type { Ejercicio } from '../../src/engine/tipos';
 
 const SIN_LLAVES = /\{\w+\}/;
 
+/** Toda cuenta escrita en una explicación tiene que estar bien hecha: "13 − 4 = 9", "6 + 10 + 4 = 20". */
+function revisarCuentas(texto: string, donde: string) {
+  for (const m of texto.matchAll(/(?<![\d$])(\d+(?: [+−×] \d+)+) = (\d+)(?!\d| [+−×])/g)) {
+    const partes = m[1].split(' ');
+    let total = Number(partes[0]);
+    for (let i = 1; i < partes.length; i += 2) {
+      const n = Number(partes[i + 1]);
+      total = partes[i] === '+' ? total + n : partes[i] === '−' ? total - n : total * n;
+    }
+    expect(total, `${donde}: "${m[0]}" en "${texto}"`).toBe(Number(m[2]));
+  }
+  // Singular y plural: nada de "1 pesos", "faltan 1" ni "quedan 1".
+  expect(texto, donde).not.toMatch(/(?<![\d.])1 (pesos|decenas|centenas|unidades|puntos|grupos)\b|\b(faltan|quedan|sobran) 1\b/);
+}
+
 describe('variedad', () => {
   it('cada nivel tiene por lo menos 5 juegos distintos', () => {
     for (const m of MUNDOS) for (const n of [...m.niveles, m.jefe]) expect(new Set(n.plantillas.map((p) => p.id)).size, n.id).toBeGreaterThanOrEqual(5);
@@ -19,6 +34,7 @@ function revisar(ej: Ejercicio, donde: string) {
   const ctx = `${donde} → ${ej.uid}`;
   expect(ej.respuesta, ctx).toBeTruthy();
   for (const t of [ej.consigna, ej.explicacion, ej.pista]) {
+    revisarCuentas(t, ctx);
     expect(t, ctx).not.toMatch(SIN_LLAVES);
     expect(t, ctx).not.toContain('undefined');
     expect(t, ctx).not.toContain('NaN');
@@ -69,6 +85,7 @@ function revisar(ej: Ejercicio, donde: string) {
     expect(lec.pasos.length, `${ctx} ${t}`).toBeGreaterThanOrEqual(1);
     expect(lec.pasos.length, `${ctx} ${t}`).toBeLessThanOrEqual(3);
     for (const p of lec.pasos) {
+      revisarCuentas(p, `${ctx} ${t}`);
       expect(p, `${ctx} ${t} paso sin completar`).not.toMatch(SIN_LLAVES);
       expect(p, `${ctx} ${t}`).not.toContain('undefined');
       expect(contarPalabras(p), `${ctx} ${t} "${p}" tiene más de 15 palabras`).toBeLessThanOrEqual(15);

@@ -36,17 +36,25 @@ export function errorTagDe(ej: Ejercicio, respuesta: string): string {
 
 export function armarLeccion(errorTag: string, ej: Ejercicio): LeccionArmada {
   const info = infoError(errorTag);
-  const lec = LECCIONES[info.leccion];
-  if (!lec) throw new Error(`Falta la lección ${info.leccion}`);
+  let id = info.leccion;
+  let lec = LECCIONES[id];
+  if (!lec) throw new Error(`Falta la lección ${id}`);
+  // Algunas lecciones dependen de los números: 8 + 5 se explica completando el 10, 46 + 37 por columnas.
+  const otra = lec.segun ? ej.leccion[lec.segun] : undefined;
+  if (typeof otra === 'string' && LECCIONES[otra]) {
+    id = otra;
+    lec = LECCIONES[otra];
+  }
   const pasos = lec.pasos
     .map((p) => {
+      if (p.casos) return p.casos[String(ej.leccion[p.segun ?? ''])];
       if (p.si === undefined) return p.texto;
       return ej.leccion[p.si] ? p.texto : p.sino;
     })
     .filter((t): t is string => Boolean(t))
     .map((t) => rellenar(t, ej.leccion))
     .slice(0, 3);
-  return { id: info.leccion, visual: lec.visual, pasos, diagnostico: info.frase, errorTag };
+  return { id, visual: lec.visual, pasos, diagnostico: info.frase, errorTag };
 }
 
 /** Cuenta palabras (los signos sueltos como +, −, × o = no cuentan). */

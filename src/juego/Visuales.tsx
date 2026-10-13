@@ -75,12 +75,14 @@ export function Columnas({ a, b, c, op, resaltar, mostrarResultado }: { a: numbe
   );
 }
 
-export function Recta({ desde, hasta, marca, objetivo }: { desde: number; hasta: number; marca?: number; objetivo?: number }) {
+export function Recta({ desde, hasta, marca, objetivo, saltos }: { desde: number; hasta: number; marca?: number; objetivo?: number; saltos?: number[] }) {
   const total = hasta - desde;
   const paso = total > 12 ? Math.ceil(total / 10) : 1;
-  const marcas: number[] = [];
+  let marcas: number[] = [];
   for (let v = desde; v <= hasta; v += paso) marcas.push(v);
   if (marcas[marcas.length - 1] !== hasta) marcas.push(hasta);
+  // Con saltos (185 → 190 → 200 → 203) se marcan solo esos números.
+  if (saltos?.length) marcas = saltos;
   const x = (v: number) => 16 + ((v - desde) / Math.max(1, total)) * 288;
   return (
     <svg viewBox="0 0 320 76" width="100%" style={{ maxWidth: 420 }} aria-label={`Recta numérica del ${desde} al ${hasta}`}>
@@ -94,7 +96,10 @@ export function Recta({ desde, hasta, marca, objetivo }: { desde: number; hasta:
       ))}
       {marca !== undefined && <circle cx={x(marca)} cy="40" r="9" fill="#5B3FE0" stroke="#fff" strokeWidth="3" />}
       {objetivo !== undefined && <circle cx={x(objetivo)} cy="40" r="9" fill="#0FA88F" stroke="#fff" strokeWidth="3" />}
-      {marca !== undefined && objetivo !== undefined && (
+      {saltos?.slice(1).map((v, i) => (
+        <path key={`s${v}`} d={`M${x(saltos[i])} 26 Q${(x(saltos[i]) + x(v)) / 2} 4 ${x(v)} 26`} fill="none" stroke="#0FA88F" strokeWidth="3" strokeDasharray="5 4" />
+      ))}
+      {!saltos?.length && marca !== undefined && objetivo !== undefined && (
         <path d={`M${x(marca)} 26 Q${(x(marca) + x(objetivo)) / 2} 0 ${x(objetivo)} 26`} fill="none" stroke="#0FA88F" strokeWidth="3" strokeDasharray="5 4" />
       )}
     </svg>

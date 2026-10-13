@@ -118,14 +118,21 @@ export interface InfoError {
 export const ERRORES = Object.fromEntries(Object.entries(errores).filter(([k]) => !k.startsWith('_'))) as Record<string, InfoError>;
 
 export interface PasoLeccion {
-  texto: string;
+  texto?: string;
+  /** Muestra 'texto' si el dato es verdadero y 'sino' si no. */
   si?: string;
   sino?: string;
+  /** Elige el texto según el valor de un dato: { "segun": "caso", "casos": { "a": "…", "b": "…" } }. */
+  segun?: string;
+  casos?: Record<string, string>;
 }
-export const LECCIONES = Object.fromEntries(Object.entries(lecciones).filter(([k]) => !k.startsWith('_'))) as Record<
-  string,
-  { visual: string; pasos: PasoLeccion[] }
->;
+export interface Leccion {
+  visual: string;
+  pasos: PasoLeccion[];
+  /** Si el ejercicio trae este dato, se usa la lección que nombra (la estrategia según los números). */
+  segun?: string;
+}
+export const LECCIONES = Object.fromEntries(Object.entries(lecciones).filter(([k]) => !k.startsWith('_'))) as Record<string, Leccion>;
 
 export const OBJETOS = Object.fromEntries(Object.entries(objetos).filter(([k]) => !k.startsWith('_'))) as Record<
   string,

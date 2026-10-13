@@ -1,16 +1,16 @@
 {
-  "_nota": "Minilecciones: máximo 3 pasos de hasta 15 palabras. 'visual' elige el dibujo. 'si' muestra un texto solo cuando el dato es verdadero; 'sino' es el texto alternativo.",
+  "_nota": "Minilecciones: máximo 3 pasos de hasta 15 palabras. 'visual' elige el dibujo. 'si' muestra un texto solo cuando el dato es verdadero; 'sino' es el texto alternativo. 'segun' + 'casos' elige el texto según un dato. Una lección con 'segun' a nivel de lección se reemplaza por la que nombra ese dato del ejercicio (la estrategia que conviene para esos números, ver src/engine/explicar.ts).",
   "contar": {
     "visual": "contar",
     "pasos": [
       {
-        "texto": "Tocamos cada dibujo una sola vez."
+        "texto": "Tocamos cada dibujo una sola vez, sin saltear ninguno."
       },
       {
-        "texto": "Decimos un número por cada dibujo."
+        "texto": "Decimos un número por cada dibujo: uno, dos, tres…"
       },
       {
-        "texto": "El último número que decimos es el total: {r}."
+        "texto": "El último número que decimos es cuántos hay: {r}."
       }
     ]
   },
@@ -18,15 +18,15 @@
     "visual": "valor-posicional",
     "pasos": [
       {
-        "si": "tieneCentenas",
-        "texto": "El {n} tiene {cTxt}, {dTxt} y {uTxt}.",
-        "sino": "El {n} tiene {dTxt} y {uTxt}."
+        "texto": "Se lee {letras}."
       },
       {
-        "texto": "Cada lugar tiene su valor: {descompuesto}."
+        "texto": "Tiene {tieneTxt}."
       },
       {
-        "texto": "Se lee así: {letras}."
+        "si": "variasPartes",
+        "texto": "Por eso: {descompuesto} = {n}.",
+        "sino": "Por eso se escribe {n}."
       }
     ]
   },
@@ -48,13 +48,15 @@
     "visual": "comparar",
     "pasos": [
       {
-        "texto": "Miramos primero la cifra de más a la izquierda."
+        "si": "mismasCifras",
+        "texto": "Miramos primero la cifra de más a la izquierda.",
+        "sino": "Primero contamos las cifras: más cifras es más grande."
       },
       {
         "texto": "{comparacion}"
       },
       {
-        "texto": "Entonces {mayor} es más grande que {menor}."
+        "texto": "Entonces el {mayor} es más grande que el {menor}."
       }
     ]
   },
@@ -63,80 +65,85 @@
     "pasos": [
       {
         "si": "llevada",
-        "texto": "Sumamos las unidades: {u1} + {u2} = {su}. Escribimos {ru} y nos llevamos 1.",
-        "sino": "Sumamos las unidades: {u1} + {u2} = {su}."
+        "texto": "Unidades: {cuentaU}. Ponemos {ru} y nos llevamos 1.",
+        "sino": "Unidades: {cuentaU}."
       },
       {
-        "si": "llevada",
-        "texto": "Ahora las decenas: {d1} + {d2} + 1 que nos llevamos = {sd}.",
-        "sino": "Ahora las decenas: {d1} + {d2} = {sd}."
+        "texto": "Decenas: {cuentaD}."
       },
       {
-        "texto": "Juntamos todo y ¡listo! {a} + {b} = {r}."
+        "texto": "Juntamos todo: ¡{a} + {b} = {r}!"
       }
-    ]
+    ],
+    "segun": "estrategia"
   },
   "tres-sumandos": {
     "visual": "columnas-suma",
     "pasos": [
       {
-        "texto": "Primero sumamos dos números: {a} + {b} = {ab}."
+        "si": "llevada",
+        "texto": "Unidades: {cuentaU}. Ponemos {ru} y nos llevamos 1.",
+        "sino": "Unidades: {cuentaU}."
       },
       {
-        "texto": "Después sumamos el último: {ab} + {c} = {r}."
+        "texto": "Decenas: {cuentaD}."
       },
       {
-        "texto": "¡Son tres números! Tachamos cada uno al sumarlo."
+        "texto": "Juntamos todo: ¡{a} + {b} = {r}!"
       }
-    ]
+    ],
+    "segun": "estrategia"
   },
   "contar-suma": {
-    "visual": "recta",
+    "visual": "columnas-suma",
     "pasos": [
       {
-        "texto": "Empezamos en el número más grande: {mayor}."
+        "si": "llevada",
+        "texto": "Unidades: {cuentaU}. Ponemos {ru} y nos llevamos 1.",
+        "sino": "Unidades: {cuentaU}."
       },
       {
-        "texto": "Contamos {menor} más, de a uno, con los dedos."
+        "texto": "Decenas: {cuentaD}."
       },
       {
-        "texto": "Llegamos al {r}. ¡Ese es el resultado!"
+        "texto": "Juntamos todo: ¡{a} + {b} = {r}!"
       }
-    ]
+    ],
+    "segun": "estrategia"
   },
   "columnas-resta": {
     "visual": "columnas-resta",
     "pasos": [
       {
         "si": "prestamo",
-        "texto": "A {u1} no le podemos sacar {u2}: desarmamos una decena en 10 unidades.",
-        "sino": "Restamos las unidades: {u1} − {u2} = {ru}."
+        "texto": "Unidades: a {u1} no le podemos sacar {u2}. Pedimos una decena: {u1p} − {u2} = {ru}.",
+        "sino": "Unidades: {u1} − {u2} = {ru}."
       },
       {
-        "si": "prestamo",
-        "texto": "Ahora tenemos {u1p} unidades: {u1p} − {u2} = {ru}.",
-        "sino": "Restamos las decenas: {d1} − {d2} = {rd}."
+        "texto": "Decenas: {d1p} − {d2} = {rd}."
       },
       {
-        "si": "prestamo",
-        "texto": "Quedan {d1m} decenas: {d1m} − {d2} = {rd}. Resultado: {r}.",
-        "sino": "Juntamos todo y ¡listo! {a} − {b} = {r}."
+        "texto": "Juntamos todo: ¡{a} − {b} = {r}!"
       }
-    ]
+    ],
+    "segun": "estrategia"
   },
   "contar-resta": {
-    "visual": "recta",
+    "visual": "columnas-resta",
     "pasos": [
       {
-        "texto": "Empezamos en el {a}."
+        "si": "prestamo",
+        "texto": "Unidades: a {u1} no le podemos sacar {u2}. Pedimos una decena: {u1p} − {u2} = {ru}.",
+        "sino": "Unidades: {u1} − {u2} = {ru}."
       },
       {
-        "texto": "Contamos {b} para atrás, de a uno."
+        "texto": "Decenas: {d1p} − {d2} = {rd}."
       },
       {
-        "texto": "Llegamos al {r}. ¡Ese es el resultado!"
+        "texto": "Juntamos todo: ¡{a} − {b} = {r}!"
       }
-    ]
+    ],
+    "segun": "estrategia"
   },
   "operacion": {
     "visual": "operacion",
@@ -159,10 +166,12 @@
         "texto": "Empezamos en el {a} y queremos llegar al {meta}."
       },
       {
-        "texto": "Lo que falta es {meta} − {a}."
+        "texto": "Saltamos: {saltosTexto}."
       },
       {
-        "texto": "Faltan {r}. Comprobamos: {a} + {r} = {meta}."
+        "si": "variosSaltos",
+        "texto": "Faltan {sumaSaltos} = {r}. Comprobamos: {a} + {r} = {meta}.",
+        "sino": "Faltan {r}. Comprobamos: {a} + {r} = {meta}."
       }
     ]
   },
@@ -184,13 +193,13 @@
     "visual": "grupos",
     "pasos": [
       {
-        "texto": "Son {gTxt} de {p}."
+        "texto": "{g} × {p} son {gTxt} de {p}."
       },
       {
-        "texto": "Sumamos {p} una y otra vez: {sumaRepetida}."
+        "texto": "Contamos de {p} en {p}: {conteo}."
       },
       {
-        "texto": "Entonces {g} × {p} = {r}. ¡Multiplicar es sumar grupos iguales!"
+        "texto": "Llegamos al {r}: ¡{g} × {p} = {r}!"
       }
     ]
   },
@@ -218,7 +227,7 @@
         "texto": "Buscamos el que tiene escrito el {r}."
       },
       {
-        "texto": "¡Ese es el de {r} pesos!"
+        "texto": "¡Ese es el de {pesosTxt}!"
       }
     ]
   },
@@ -229,10 +238,10 @@
         "texto": "Hay que pagar {precio} pesos: ni más ni menos."
       },
       {
-        "texto": "Elegimos billetes grandes que no se pasen del precio."
+        "texto": "Empezamos por el billete más grande que no se pase."
       },
       {
-        "texto": "Por ejemplo: {sumaTexto} = {precio}."
+        "texto": "Por ejemplo, con {sumaTexto}."
       }
     ]
   },
@@ -243,10 +252,12 @@
         "texto": "Pagamos {pago} pesos y la compra cuesta {precio}."
       },
       {
-        "texto": "El vuelto es lo que sobra: restamos."
+        "texto": "Contamos desde {precio} hasta {pago}: {saltosTexto}."
       },
       {
-        "texto": "{pago} − {precio} = {r} pesos de vuelto."
+        "si": "variosSaltos",
+        "texto": "El vuelto es {sumaSaltos} = {r} pesos.",
+        "sino": "El vuelto es {r} pesos."
       }
     ]
   },
@@ -330,7 +341,7 @@
         "texto": "Un deseo es algo lindo que queremos, pero puede esperar."
       },
       {
-        "texto": "Por eso, {cosa} es {tipoTexto}."
+        "texto": "Por eso, {cosa} {verbo} {tipoTexto}."
       }
     ]
   },
@@ -344,7 +355,7 @@
         "texto": "Sumamos los precios de cada opción."
       },
       {
-        "texto": "{opcionCorrecta} suma {total}: ¡no se pasa de {plata}!"
+        "texto": "{opcionCorrecta} suman {total}: ¡no se pasa de {plata}!"
       }
     ]
   },
@@ -394,9 +405,7 @@
     "visual": "valor-posicional",
     "pasos": [
       {
-        "si": "tieneCentenas",
-        "texto": "El {n} tiene {cTxt}, {dTxt} y {uTxt}.",
-        "sino": "El {n} tiene {dTxt} y {uTxt}."
+        "texto": "El {n} tiene {tieneTxt}."
       },
       {
         "texto": "Lo decimos en voz alta, despacito, y escribimos lo que suena."
@@ -417,6 +426,353 @@
       },
       {
         "texto": "Entonces falta el {r}: {incompleto} = {total}."
+      }
+    ]
+  },
+  "invierte": {
+    "visual": "valor-posicional",
+    "pasos": [
+      {
+        "texto": "El {n} se lee {letras}."
+      },
+      {
+        "si": "tieneCentenas",
+        "texto": "Primero van las centenas, después las decenas y al final las unidades.",
+        "sino": "Primero va la decena, {d}, y después la unidad, {u}."
+      },
+      {
+        "si": "invDistinto",
+        "texto": "Si damos vuelta las cifras queda {inv}: ¡es otro número!",
+        "sino": "Cada cifra va en su lugar: {n}."
+      }
+    ]
+  },
+  "escribe-separado": {
+    "visual": "valor-posicional",
+    "pasos": [
+      {
+        "texto": "{Letras} es {descompuesto}."
+      },
+      {
+        "texto": "Las cifras van juntas, cada una en su lugar."
+      },
+      {
+        "texto": "Se escribe {n}, sin ceros de más."
+      }
+    ]
+  },
+  "familia": {
+    "visual": "valor-posicional",
+    "pasos": [
+      {
+        "texto": "La familia la dice la cifra de las decenas."
+      },
+      {
+        "texto": "El {n} tiene {dTxt}: es de la familia del {fam}."
+      },
+      {
+        "texto": "En esa familia están del {fam} al {famFin}."
+      }
+    ]
+  },
+  "pistas": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Primera pista: {pista1}."
+      },
+      {
+        "texto": "Quedan los números del {desde} al {hasta}."
+      },
+      {
+        "texto": "Segunda pista: {pista2}. ¡Es el {r}!"
+      }
+    ]
+  },
+  "ordenar": {
+    "visual": "comparar",
+    "pasos": [
+      {
+        "texto": "Buscamos el más chico de todos: el {menor}."
+      },
+      {
+        "texto": "Después el que le sigue, y así hasta el más grande."
+      },
+      {
+        "texto": "Quedan en orden: {r}."
+      }
+    ]
+  },
+  "ordenar-precios": {
+    "visual": "comparar",
+    "pasos": [
+      {
+        "texto": "Buscamos el más barato de todos: el de {menor} pesos."
+      },
+      {
+        "texto": "Después el que le sigue, y así hasta el más caro."
+      },
+      {
+        "texto": "Quedan en orden: {r}."
+      }
+    ]
+  },
+  "cambio-decena": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Miramos la recta: {vecinos}."
+      },
+      {
+        "segun": "cual",
+        "casos": {
+          "siguiente": "Después de un 9 se arma una decena nueva.",
+          "anterior": "Antes de un número redondo viene uno que termina en 9."
+        }
+      },
+      {
+        "texto": "El {cual} del {n} es el {r}."
+      }
+    ]
+  },
+  "suma-contando": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Empezamos en el {desde}, el número más grande."
+      },
+      {
+        "texto": "Contamos para adelante: {conteo}."
+      },
+      {
+        "texto": "Llegamos al {r}. ¡{a} + {b} = {r}!"
+      }
+    ]
+  },
+  "suma-diez": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Al {desde} le {faltan} {f} para llegar al {redondo}."
+      },
+      {
+        "texto": "Partimos el {menor} en {f} y {resto}."
+      },
+      {
+        "texto": "{redondo} + {resto} = {r}. ¡{a} + {b} = {r}!"
+      }
+    ]
+  },
+  "suma-grupos": {
+    "visual": "columnas-suma",
+    "pasos": [
+      {
+        "texto": "{a} son {grupoA} y {b} son {grupoB}."
+      },
+      {
+        "texto": "{ka} + {kb} = {grupoR}."
+      },
+      {
+        "texto": "{grupoR} son {r}. ¡{a} + {b} = {r}!"
+      }
+    ]
+  },
+  "suma-columnas": {
+    "visual": "columnas-suma",
+    "pasos": [
+      {
+        "si": "llevada",
+        "texto": "Unidades: {cuentaU}. Ponemos {ru} y nos llevamos 1.",
+        "sino": "Unidades: {cuentaU}."
+      },
+      {
+        "si": "llevaD",
+        "texto": "Decenas: {cuentaD}. Ponemos {rd} y nos llevamos 1.",
+        "sino": "Decenas: {cuentaD}."
+      },
+      {
+        "si": "tieneC",
+        "texto": "Centenas: {cuentaC}. ¡Da {r}!",
+        "sino": "Juntamos todo: ¡{a} + {b} = {r}!"
+      }
+    ]
+  },
+  "suma-tres": {
+    "visual": "columnas-suma",
+    "pasos": [
+      {
+        "si": "redondo",
+        "texto": "Buscamos dos que formen un número redondo: {x} + {y} = {xy}.",
+        "sino": "Primero sumamos dos: {x} + {y} = {xy}."
+      },
+      {
+        "texto": "Después sumamos el que queda: {xy} + {z} = {r}."
+      },
+      {
+        "texto": "¡Listo! {cuentaCompleta} = {r}."
+      }
+    ]
+  },
+  "dobles": {
+    "visual": "columnas-suma",
+    "pasos": [
+      {
+        "texto": "El doble es el mismo número dos veces."
+      },
+      {
+        "texto": "No es solo {a}: es {a} + {a}."
+      },
+      {
+        "texto": "{a} + {a} = {r}. ¡El doble de {a} es {r}!"
+      }
+    ]
+  },
+  "resta-contando": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Empezamos en el {a}."
+      },
+      {
+        "texto": "Contamos {b} para atrás: {conteo}."
+      },
+      {
+        "texto": "Llegamos al {r}. ¡{a} − {b} = {r}!"
+      }
+    ]
+  },
+  "resta-diez": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Del {a} sacamos {u1} y llegamos al {redondo}."
+      },
+      {
+        "texto": "Nos falta sacar {resto} más."
+      },
+      {
+        "texto": "{redondo} − {resto} = {r}. ¡{a} − {b} = {r}!"
+      }
+    ]
+  },
+  "resta-grupos": {
+    "visual": "columnas-resta",
+    "pasos": [
+      {
+        "texto": "{a} son {grupoA} y {b} son {grupoB}."
+      },
+      {
+        "texto": "{ka} − {kb} = {grupoR}."
+      },
+      {
+        "texto": "{grupoR} son {r}. ¡{a} − {b} = {r}!"
+      }
+    ]
+  },
+  "resta-saltando": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Contamos desde el {b} hasta llegar al {a}."
+      },
+      {
+        "texto": "Saltamos: {saltosTexto}."
+      },
+      {
+        "si": "variosSaltos",
+        "texto": "Los saltos suman {sumaSaltos} = {r}. ¡{a} − {b} = {r}!",
+        "sino": "Saltamos {r}: ¡{a} − {b} = {r}!"
+      }
+    ]
+  },
+  "resta-columnas": {
+    "visual": "columnas-resta",
+    "pasos": [
+      {
+        "si": "prestamo",
+        "texto": "Unidades: a {u1} no le podemos sacar {u2}. Pedimos una decena: {u1p} − {u2} = {ru}.",
+        "sino": "Unidades: {u1} − {u2} = {ru}."
+      },
+      {
+        "segun": "casoD",
+        "casos": {
+          "simple": "Decenas: {d1} − {d2} = {rd}.",
+          "quedan": "Decenas: {quedanD} {d1p}, y {d1p} − {d2} = {rd}.",
+          "pide": "Decenas: a {d1} no le sacamos {d2}. Pedimos una centena: {d1pp} − {d2} = {rd}.",
+          "quedanPide": "Decenas: {quedanD} {d1p}. Pedimos una centena: {d1pp} − {d2} = {rd}."
+        }
+      },
+      {
+        "segun": "casoC",
+        "casos": {
+          "sin": "Juntamos todo: ¡{a} − {b} = {r}!",
+          "simple": "Centenas: {c1} − {c2} = {rc}. ¡Da {r}!",
+          "quedan": "Centenas: {quedanC} {c1p}, y {c1p} − {c2} = {rc}. ¡Da {r}!",
+          "cero": "Centenas: {c1p} − {c2} = 0, así que no hay centenas. ¡Da {r}!"
+        }
+      }
+    ]
+  },
+  "tabla-vecino": {
+    "visual": "grupos",
+    "pasos": [
+      {
+        "texto": "{g} × {p} son {gTxt} de {p}."
+      },
+      {
+        "texto": "Si {gm} × {p} = {prev}, sumamos un grupo más."
+      },
+      {
+        "texto": "{prev} + {p} = {r}. ¡{g} × {p} = {r}!"
+      }
+    ]
+  },
+  "tabla-por": {
+    "visual": "grupos",
+    "pasos": [
+      {
+        "texto": "El × se lee «por» y quiere decir «veces»."
+      },
+      {
+        "texto": "{g} × {p} es el {p} repetido {g} veces, no {g} + {p}."
+      },
+      {
+        "texto": "Contamos de {p} en {p}: {conteo}. ¡Da {r}!"
+      }
+    ]
+  },
+  "alcanza": {
+    "visual": "historia",
+    "pasos": [
+      {
+        "si": "variosProductos",
+        "texto": "Sumamos los precios: {sumaTexto} = {total}.",
+        "sino": "Cuesta {total} pesos."
+      },
+      {
+        "texto": "Tenemos {plata} pesos."
+      },
+      {
+        "segun": "caso",
+        "casos": {
+          "sobra": "{plata} es más que {total}: ¡alcanza y {sobranTxt}!",
+          "justo": "Tenemos justo {total}: ¡alcanza!",
+          "falta": "{plata} es menos que {total}: no alcanza, {faltanTxt}."
+        }
+      }
+    ]
+  },
+  "menos-piezas": {
+    "visual": "billetes",
+    "pasos": [
+      {
+        "texto": "Para usar pocas piezas, empezamos por el billete más grande que entra."
+      },
+      {
+        "texto": "Para {precio} pesos: {sumaTexto}."
+      },
+      {
+        "texto": "Son {k} piezas. ¡Con menos no se puede!"
       }
     ]
   }

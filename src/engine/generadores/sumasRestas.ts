@@ -1,4 +1,5 @@
 // Mundos 2 y 3: Valle de las Sumas y Montaña de las Restas.
+import { datosFalta, explicarResta, explicarSuma } from '../explicar';
 import type { Azar } from '../azar';
 import type { Contexto, Ejercicio, Visual } from '../tipos';
 import { cifras, type Generador, opcionesNumericas, opcionesTexto, rellenar, texto, uid, usaTeclado, visualEsAyuda } from './comun';
@@ -72,44 +73,25 @@ function llevandoPar(az: Azar, max: number): [number, number] {
 
 /** Datos para la lección de columnas (suma). */
 export function datosSuma(a: number, b: number, c?: number) {
-  const r = a + b + (c ?? 0);
-  const u1 = a % 10;
-  const u2 = b % 10;
-  const su = u1 + u2;
-  const d1 = Math.floor(a / 10) % 10;
-  const d2 = Math.floor(b / 10) % 10;
-  const llevada = su >= 10;
   return {
-    a, b, c: c ?? 0, r, u1, u2, su, ru: su % 10, d1, d2,
-    sd: d1 + d2 + (llevada ? 1 : 0),
-    llevada,
+    a, b, c: c ?? 0,
     ab: a + b,
     mayor: Math.max(a, b),
     menor: Math.min(a, b),
     signo: '+',
     signoNombre: 'más',
     signoExplica: 'Sumar es juntar: el resultado es más grande.',
+    ...explicarSuma(a, b, c),
   };
 }
 
 export function datosResta(a: number, b: number) {
-  const r = a - b;
-  const u1 = a % 10;
-  const u2 = b % 10;
-  const d1 = Math.floor(a / 10) % 10;
-  const d2 = Math.floor(b / 10) % 10;
-  const prestamo = u1 < u2;
   return {
-    a, b, r, u1, u2,
-    ru: prestamo ? u1 + 10 - u2 : u1 - u2,
-    u1p: u1 + 10,
-    d1, d2,
-    d1m: d1 - 1,
-    rd: Math.floor(r / 10) % 10,
-    prestamo,
+    a, b,
     signo: '−',
     signoNombre: 'menos',
     signoExplica: 'Restar es quitar: el resultado es más chico.',
+    ...explicarResta(a, b),
   };
 }
 
@@ -288,7 +270,7 @@ export const cuantoFalta: Generador = (az, ctx) => {
     opciones: teclado ? undefined : opciones,
     erroresPrevistos,
     errorTagPorDefecto: 'falta.calculo',
-    leccion: { a, meta, r },
+    leccion: datosFalta(a, meta),
     explicacion: rellenar(texto(az, 'cuanto-falta', 'explicacion'), { a, meta, r }),
     pista: rellenar(texto(az, 'cuanto-falta', 'pista'), { a, meta }),
     params: { a, meta },

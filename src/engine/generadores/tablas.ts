@@ -1,4 +1,5 @@
 // Mundo 4: Bosque de las Tablas.
+import { explicarGrupos } from '../explicar';
 import { config } from '../../content';
 import type { Azar } from '../azar';
 import type { Contexto } from '../tipos';
@@ -7,7 +8,7 @@ import { genero, plural, type Generador, objeto, opcionesNumericas, opcionesText
 const OBJ_GRUPOS = ['manzana', 'frutilla', 'flor', 'hongo', 'estrella', 'caramelo'];
 
 export function datosGrupos(g: number, p: number) {
-  return { g, p, r: g * p, sumaRepetida: sumaRepetidaTexto(g, p), gTxt: plural(g, 'grupo', 'grupos') };
+  return { g, p, r: g * p, sumaRepetida: sumaRepetidaTexto(g, p), gTxt: plural(g, 'grupo', 'grupos'), ...explicarGrupos(g, p) };
 }
 
 /** Elige la tabla: las del nivel y, en grados de desafío, a veces una del 6 al 9. */

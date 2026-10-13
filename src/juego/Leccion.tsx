@@ -22,7 +22,7 @@ function Dibujo({ lec, ej, paso }: { lec: LeccionArmada; ej: Ejercicio; paso: nu
         </div>
       );
     case 'columnas-resta':
-      return <Columnas a={num(d.a)} b={num(d.b)} op="−" resaltar={paso === 0 ? 'u' : paso === 1 ? 'u' : 'd'} mostrarResultado={paso >= 2 ? num(d.r) : undefined} />;
+      return <Columnas a={num(d.a)} b={num(d.b)} op="−" resaltar={paso === 0 ? 'u' : paso === 1 ? 'd' : 'todo'} mostrarResultado={paso >= 2 ? num(d.r) : undefined} />;
     case 'valor-posicional':
       return (
         <div className="col centro" style={{ gap: 10 }}>
@@ -38,7 +38,14 @@ function Dibujo({ lec, ej, paso }: { lec: LeccionArmada; ej: Ejercicio; paso: nu
         </div>
       );
     case 'recta': {
-      const desde = num(d.a ?? d.n ?? d.mayor ?? 0);
+      // Adivinanza: la recta de la familia y el número que cumple las pistas.
+      if (d.pista1 !== undefined) return <Recta desde={num(d.desde)} hasta={num(d.hasta)} objetivo={paso >= 2 ? num(d.r) : undefined} />;
+      // Contar saltando de un número al otro (restas, vuelto, cuánto falta).
+      if (d.saltosTexto !== undefined) {
+        const puntos = String(d.saltosTexto).split(' → ').map(Number);
+        return <Recta desde={puntos[0]} hasta={puntos[puntos.length - 1]} marca={puntos[0]} saltos={paso >= 1 ? puntos : undefined} objetivo={paso >= 1 ? puntos[puntos.length - 1] : undefined} />;
+      }
+      const desde = num(d.desde ?? d.a ?? d.n ?? d.mayor ?? 0);
       if (d.meta !== undefined) return <Recta desde={num(d.a)} hasta={num(d.meta)} marca={num(d.a)} objetivo={paso >= 2 ? num(d.meta) : undefined} />;
       if (d.cual) return <Recta desde={Math.max(0, num(d.n) - 3)} hasta={num(d.n) + 3} marca={num(d.n)} objetivo={paso >= 1 ? num(d.r) : undefined} />;
       const r = num(d.r);
