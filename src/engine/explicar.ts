@@ -118,6 +118,8 @@ export function explicarResta(a: number, b: number): Record<string, string | num
       return { estrategia: 'resta-grupos', grupoA: ga.txt, grupoB: gb.txt, ka: ga.k, kb: gb.k, grupoR: grupo(r, lugar).txt, r };
     }
   }
+  // Si se saca más de la mitad (10 − 8), conviene contar desde el chico hasta el grande.
+  if (b > 3 && b > a / 2 && a <= 20) return { estrategia: 'resta-saltando', desde: b, hasta: a, ...saltos(b, a), r };
   if (a <= 10 || b <= 3) {
     return { estrategia: 'resta-contando', desde: a, conteo: conteo(lista(a - 1, r, -1)), r };
   }

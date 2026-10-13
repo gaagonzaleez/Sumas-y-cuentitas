@@ -351,6 +351,31 @@
       "cosa": "una pelota de colores",
       "tipo": "deseo",
       "objeto": "pelota"
+    },
+    {
+      "cosa": "la fruta para la merienda",
+      "tipo": "necesidad",
+      "objeto": "banana"
+    },
+    {
+      "cosa": "un alfajor de postre",
+      "tipo": "deseo",
+      "objeto": "alfajor"
+    },
+    {
+      "cosa": "un globo de colores",
+      "tipo": "deseo",
+      "objeto": "globo"
+    },
+    {
+      "cosa": "un cuaderno para la escuela",
+      "tipo": "necesidad",
+      "objeto": "cuaderno"
+    },
+    {
+      "cosa": "unos caramelos",
+      "tipo": "deseo",
+      "objeto": "caramelo"
     }
   ]
 }
