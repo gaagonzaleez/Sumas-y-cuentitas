@@ -1,20 +1,13 @@
 // Juegos que se suman a los niveles de sumas, restas y tablas para que no sea siempre lo mismo:
 // la cuenta con un hueco, "¿está bien esta cuenta?", la memoria de cuentas y los dobles.
 import { datosFalta } from '../explicar';
-import type { Azar } from '../azar';
 import type { Contexto, Ejercicio } from '../tipos';
 import { type Generador, opcionesNumericas, rellenar, texto, uid, usaTeclado } from './comun';
-import { datosResta, datosSuma, hayLlevada, hayPrestamo, resta, restaInvertida, sumaSinLlevar, suma } from './sumasRestas';
+import { datosResta, datosSuma, hayLlevada, hayPrestamo, par, restaInvertida, sumaSinLlevar } from './sumasRestas';
 import { datosGrupos, elegirTabla } from './tablas';
 
 type Op = '+' | '−' | '×';
 
-/** Dos números que respetan el modo del nivel (sin llevar, llevando, decenas…), sin convertirlos en problema. */
-function par(az: Azar, ctx: Contexto, op: '+' | '−'): [number, number] {
-  const limpio: Contexto = { ...ctx, caracter: { ...ctx.caracter, problemas: 0, tresTerminos: false } };
-  const e = (op === '+' ? suma : resta)(az, limpio);
-  return [Number(e.params.a), Number(e.params.b)];
-}
 
 function opDe(ctx: Contexto): Op {
   return (ctx.params.op as Op) ?? '+';

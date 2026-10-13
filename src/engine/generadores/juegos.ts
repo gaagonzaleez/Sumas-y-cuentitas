@@ -21,7 +21,7 @@ import {
   uid,
 } from './comun';
 import { datosComparar, datosValor } from './numeros';
-import { datosResta, datosSuma } from './sumasRestas';
+import { datosResta, datosSuma, par } from './sumasRestas';
 import { datosGrupos, elegirTabla } from './tablas';
 import { VALORES_PLATA } from './dinero';
 
@@ -63,8 +63,11 @@ export const guerraCartas: Generador = (az, ctx): Ejercicio => {
       const piezas = VALORES_PLATA.filter((v) => v <= Math.max(10, ctx.rango));
       return Array.from({ length: az.entero(2, 3) }, () => az.elegir(piezas)).sort((a, b) => b - a);
     }
-    if (op === '×') return [az.entero(1, Math.min(10, Math.max(3, ctx.rango))), az.entero(1, Math.min(10, Math.max(3, ctx.rango)))];
-    return op === 'num' ? [carta()] : [carta(), carta()];
+    // Tablas: una carta es siempre de la tabla del nivel.
+    if (op === '×') return az.mezclar([az.entero(1, Math.min(10, Math.max(3, ctx.rango))), elegirTabla(az, ctx)]);
+    // Sumas y restas: respetan el tema del nivel (decenas, sin llevar, llevando…).
+    if (op === '+' || op === '−') return par(az, ctx, op);
+    return [carta()];
   };
   let mia = mano();
   let suya = mano();
@@ -175,9 +178,7 @@ export const loteria: Generador = (az, ctx): Ejercicio => {
   let leccion: Ejercicio['leccion'];
   const previstos: [number, string][] = [];
   if (op === '+' || op === '−') {
-    const m = max(ctx, 10);
-    const a = az.entero(2, m - 1);
-    const b = op === '+' ? az.entero(1, Math.max(1, m - a)) : az.entero(1, a - 1);
+    const [a, b] = par(az, ctx, op);
     r = op === '+' ? a + b : a - b;
     cuenta = `${a} ${op} ${b}`;
     tag = op === '+' ? 'suma.calculo' : 'resta.calculo';
@@ -278,19 +279,20 @@ export const dados: Generador = (az, ctx): Ejercicio => {
 export const balanza: Generador = (az, ctx): Ejercicio => {
   const op = opDe(ctx, '+') === '−' ? '−' : '+';
   const m = max(ctx, 10);
-  let total: number, a: number, b: number, c: number, r: number;
+  // El lado completo respeta el tema del nivel; en "decenas" el otro lado también usa decenas.
+  const paso = ctx.params.modo === 'decenas' ? 10 : 1;
+  let [a, b] = par(az, ctx, op);
+  for (let i = 0; i < 20 && (op === '+' ? a + b < 2 * paso + 1 : a - b < 1); i++) [a, b] = par(az, ctx, op);
+  let total: number, c: number, r: number;
   if (op === '+') {
-    total = az.entero(6, m);
-    a = az.entero(1, total - 1);
-    b = total - a;
-    c = az.entero(1, total - 1);
-    while (c === a || c === b) c = az.entero(1, total - 1);
+    total = a + b;
+    const candidatos: number[] = [];
+    for (let x = paso; x < total; x += paso) if (x !== a && x !== b) candidatos.push(x);
+    c = candidatos.length ? az.elegir(candidatos) : Math.max(1, total - paso);
     r = total - c;
   } else {
-    a = az.entero(6, m);
-    b = az.entero(1, a - 2);
     total = a - b;
-    c = az.entero(total + 1, Math.max(total + 1, m));
+    c = total + paso * az.entero(1, Math.max(1, Math.floor((Math.max(m, total + paso) - total) / paso)));
     r = c - total;
   }
   const completo = `${a} ${op} ${b}`;
@@ -330,9 +332,7 @@ export const balanza: Generador = (az, ctx): Ejercicio => {
 // ---------------------------------------------------------------------------
 // Pirámide de sumas: el bloque de arriba es la suma de los dos de abajo.
 export const piramide: Generador = (az, ctx): Ejercicio => {
-  const m = max(ctx, 10);
-  const a = az.entero(1, Math.max(1, m - 2));
-  const b = az.entero(1, Math.max(1, m - a));
+  const [a, b] = par(az, ctx, '+');
   const s = a + b;
   const arriba = az.chance(0.5);
   const r = arriba ? s : b;

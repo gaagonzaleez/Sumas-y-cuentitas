@@ -2,7 +2,7 @@
   "id": "isla", "numero": 1, "nombre": "Isla de los Números", "escala": "numeros",
   "colores": { "cielo": "#CDE9FF", "suelo": "#FFE6A8", "acento": "#FFC93C" },
   "niveles": [
-    { "id": "isla-1", "nombre": "Contar y escribir hasta 20", "corto": "Números", "inicio": 20,
+    { "id": "isla-1", "nombre": "Contar y escribir números", "corto": "Números", "inicio": 20,
       "plantillas": [
         { "id": "contar", "peso": 2 },
         { "id": "contar-bloques", "peso": 2 },
@@ -13,7 +13,7 @@
         { "id": "loteria", "peso": 1 },
         { "id": "guerra-cartas", "peso": 1, "params": { "op": "num" } }
       ] },
-    { "id": "isla-2", "nombre": "Leer y escribir hasta 100", "corto": "Números",
+    { "id": "isla-2", "nombre": "Leer y escribir números", "corto": "Números", "inicio": 50,
       "plantillas": [
         { "id": "leer-numero", "peso": 2 },
         { "id": "numero-en-letras", "peso": 1 },

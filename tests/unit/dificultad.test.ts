@@ -6,21 +6,30 @@ import { estrellasDe, gradoCompleto, monedasPorAcierto, nuevaSesion, resolver, r
 const valle = MUNDOS[1];
 
 describe('escalera de dificultad', () => {
-  it('cada grado arranca en su rango inicial', () => {
-    const nivel = valle.niveles[4]; // sumas con llevada
-    expect(limitesGrado(nivel, 'sumas', 1).inicio).toBe(50);
-    expect(limitesGrado(nivel, 'sumas', 2).inicio).toBe(50);
-    expect(limitesGrado(nivel, 'sumas', 3).inicio).toBe(100);
-    expect(limitesGrado(nivel, 'sumas', 4).inicio).toBe(200);
-    expect(limitesGrado(nivel, 'sumas', 5).inicio).toBe(500);
-    expect(limitesGrado(nivel, 'sumas', 1).techo).toBe(100);
-    expect(limitesGrado(nivel, 'sumas', 4).techo).toBe(1000);
+  it('cada grado arranca más arriba que el anterior y puede subir 3 peldaños', () => {
+    const nivel = valle.niveles[4]; // sumas con llevada (empieza en 50)
+    const inicios = [1, 2, 3, 4, 5].map((g) => limitesGrado(nivel, 'sumas', g).inicio);
+    expect(inicios).toEqual([50, 70, 90, 200, 400]);
+    expect(limitesGrado(nivel, 'sumas', 1).techo).toBe(80);
+    expect(limitesGrado(nivel, 'sumas', 4).techo).toBe(500);
   });
 
-  it('"sumas hasta 10" es el punto de partida, no un tope', () => {
+  it('ningún grado queda trabado en un solo número (salvo en el techo del nivel)', () => {
+    for (const m of MUNDOS)
+      for (const n of [...m.niveles, m.jefe])
+        for (let g = 1; g <= 5; g++) {
+          const l = limitesGrado(n, m.escala, g);
+          expect(l.inicio, `${n.id} g${g}`).toBeLessThanOrEqual(l.techo);
+          if (g < 5 && l.techo < (n.techoNivel ?? Infinity) && l.techo < l.escalera[l.escalera.length - 1])
+            expect(l.techo, `${n.id} g${g}`).toBeGreaterThan(l.inicio);
+        }
+  });
+
+  it('las primeras sumas empiezan en 10 y crecen grado a grado', () => {
     const lim = limitesGrado(valle.niveles[0], 'sumas', 1);
     expect(lim.inicio).toBe(10);
-    expect(lim.techo).toBe(100);
+    expect(lim.techo).toBe(40);
+    expect(limitesGrado(valle.niveles[0], 'sumas', 5).techo).toBe(300);
   });
 
   it('sube un peldaño tras 5 aciertos seguidos sin ayuda', () => {
@@ -58,18 +67,18 @@ describe('escalera de dificultad', () => {
   });
 
   it('pasa de 100 a 200 (después de 100 sube de a 100) y no supera el techo', () => {
-    const lim = limitesGrado(valle.niveles[4], 'sumas', 2);
+    const lim = limitesGrado(valle.niveles[4], 'sumas', 3);
     let e = { ...nuevaEscalera(lim), rango: 100 };
     for (let i = 0; i < 5; i++) e = registrar(e, lim, true, false).estado;
     expect(e.rango).toBe(200);
     for (let i = 0; i < 20; i++) e = registrar(e, lim, true, false).estado;
-    expect(e.rango).toBe(200); // techo del grado 2
+    expect(e.rango).toBe(300); // techo del grado 3
   });
 
   it('las tablas suben los factores', () => {
     const lim = limitesGrado(MUNDOS[3].niveles[2], 'tablas', 1);
-    expect(lim.inicio).toBe(5);
-    expect(lim.techo).toBe(10);
+    expect(lim.inicio).toBe(6);
+    expect(lim.techo).toBe(9);
   });
 });
 

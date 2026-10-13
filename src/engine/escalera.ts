@@ -15,19 +15,22 @@ export interface LimitesGrado {
   minimo: number;
 }
 
-/** Calcula la escalera y los límites para un nivel y grado. */
+/**
+ * Calcula la escalera y los límites para un nivel y grado. Cada grado arranca unos peldaños más
+ * arriba que el anterior (desde el inicio del nivel) y puede subir algunos peldaños más, sin pasar
+ * el techo del nivel. Así cada grado es un poco más difícil y nunca queda trabado en un solo número.
+ */
 export function limitesGrado(nivel: Nivel, escalaMundo: Tema, grado: number): LimitesGrado {
+  const cfg = config.dificultad;
   const escala = nivel.escala ?? escalaMundo;
-  const escalera = config.dificultad.escaleras[escala];
-  const g = config.dificultad.grados[escala][grado - 1];
-  const techoNivel = nivel.techoNivel ?? Infinity;
+  const escalera = cfg.escaleras[escala];
+  const idx = (v: number) => escalera.indexOf(ajustar(escalera, v));
   const minimo = nivel.minimo ?? escalera[0];
-  // El rango que nombra el nivel ("sumas hasta 10") es el punto de partida del grado 1.
-  let inicio = grado === 1 && nivel.inicio !== undefined ? nivel.inicio : Math.max(g.inicio, nivel.inicio ?? 0);
-  let techo = Math.min(g.techo, techoNivel);
-  inicio = Math.max(minimo, Math.min(inicio, techo));
-  techo = Math.max(techo, inicio);
-  return { escalera, inicio: ajustar(escalera, inicio), techo: ajustar(escalera, techo), minimo: ajustar(escalera, minimo) };
+  const base = Math.max(minimo, nivel.inicio ?? cfg.inicioBase[escala]);
+  const tope = idx(Math.min(nivel.techoNivel ?? Infinity, escalera[escalera.length - 1]));
+  const i = Math.min(idx(base) + cfg.peldanosPorGrado[escala] * (grado - 1), tope);
+  const t = Math.min(i + cfg.peldanosDeSubida, tope);
+  return { escalera, inicio: escalera[i], techo: escalera[t], minimo: ajustar(escalera, minimo) };
 }
 
 /** Lleva un valor al peldaño más cercano (hacia abajo) de la escalera. */

@@ -234,6 +234,14 @@ function armarResta(az: Azar, ctx: Contexto, modo: ModoResta): Ejercicio {
 }
 
 export const suma: Generador = (az, ctx) => armarSuma(az, ctx, ((ctx.params.modo as ModoSuma) ?? 'cualquiera'));
+
+/** Dos números que respetan el modo del nivel (sin llevar, llevando, decenas…), sin convertirlos en problema. */
+export function par(az: Azar, ctx: Contexto, op: '+' | '−'): [number, number] {
+  const modo = ctx.params.modo === 'tres' ? 'cualquiera' : ctx.params.modo;
+  const limpio: Contexto = { ...ctx, params: { ...ctx.params, modo }, caracter: { ...ctx.caracter, problemas: 0, tresTerminos: false } };
+  const e = (op === '+' ? suma : resta)(az, limpio);
+  return [Number(e.params.a), Number(e.params.b)];
+}
 export const resta: Generador = (az, ctx) => armarResta(az, ctx, ((ctx.params.modo as ModoResta) ?? 'cualquiera'));
 
 export const cuantoFalta: Generador = (az, ctx) => {
