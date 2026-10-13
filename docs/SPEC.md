@@ -668,3 +668,8 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
 **Pantallas**
 
 - Ga delegó el diseño de las pantallas que faltan. Están en el lienzo de diseño (pantallas 10 a 15). Codex las toma como guía y puede mejorar detalles manteniendo la paleta, la tipografía y las reglas de accesibilidad.
+
+**Libertad creativa (octubre 2026)**
+
+- Ga dio libertad creativa total: quien desarrolle puede cambiar y mejorar cualquier parte del juego (pantallas, mecánicas, mundos, premios, textos, diseño). Se mantienen siempre: gratis y sin publicidad, privacidad de menores, arte propio, tono cálido y accesibilidad.
+- Cada nivel mezcla por lo menos 5 juegos distintos.

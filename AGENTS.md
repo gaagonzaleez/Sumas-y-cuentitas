@@ -2,6 +2,11 @@
 
 Estás construyendo **mateAventuras**, un juego educativo de matemáticas y finanzas para nenas de 8 años (2.º grado, Argentina). La dueña del proyecto es Ga, que **no programa y quiere hacer lo menos posible**. Trabajá con autonomía total.
 
+## Libertad creativa (decisión de Ga, octubre 2026)
+Ga dio **100 % de libertad creativa** para hacer y mejorar el juego. Este archivo, el spec y los diseños son **un punto de partida, no un contrato**: podés cambiar pantallas, mecánicas, mundos, premios, textos, paleta, estructura o lo que sea si eso hace que mateAventuras sea más divertida y enseñe mejor. Inspirate en los mejores juegos y apps para chicos (copiando mecánicas, no arte ni marcas), proponé y hacé sin pedir permiso. Si cambiás algo importante, anotalo en la sección “Decisiones finales” de `docs/SPEC.md`.
+
+Lo único que se mantiene siempre, porque cuida a las nenas: todo gratis y sin publicidad ni compras, privacidad de menores (sin datos reales ni chat), arte propio, tono cálido sin castigar errores y accesibilidad.
+
 ## Leé esto primero, en este orden
 1. `docs/SPEC.md` — especificación completa. La sección **“Decisiones finales”** (al final) prevalece sobre todo lo demás.
 2. `docs/design/README.md` y `docs/design/png/` — 15 pantallas de referencia (estructura, jerarquía, paleta, tipografía). Podés mejorar detalles, no cambiar la paleta, la tipografía ni las reglas de accesibilidad.
