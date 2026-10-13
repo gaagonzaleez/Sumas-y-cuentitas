@@ -48,6 +48,8 @@ export interface Mundo {
   escala: Tema;
   etiqueta?: string;
   colores: { cielo: string; suelo: string; acento: string };
+  /** Aclaración corta que se muestra al entrar al mundo. */
+  nota?: string;
   niveles: Nivel[];
   jefe: Jefe;
 }
@@ -146,6 +148,8 @@ export interface Producto {
   nombre: string;
   min: number;
   max: number;
+  /** Sirve como meta de ahorro (cosas que duran). */
+  ahorro?: boolean;
 }
 export const PRODUCTOS = productos as { productos: Producto[]; billetes: number[]; monedas: number[] };
 export const NOMBRES = nombres.nombres;

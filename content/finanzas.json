@@ -2,37 +2,355 @@
   "_nota": "Preguntas de la Isla del Tesoro. Pocas palabras y mucho dibujo. 'correcta' es el índice de la opción correcta.",
   "temas": {
     "que-es-dinero": [
-      { "pregunta": "¿Para qué sirve el dinero?", "dibujo": "moneda", "opciones": ["Para cambiarlo por cosas que necesitamos", "Para tirarlo", "Para comerlo"], "correcta": 0, "explicacion": "Con el dinero compramos cosas y pagamos servicios.", "explica1": "El dinero sirve para cambiarlo por cosas.", "explica2": "Lo ganamos trabajando y lo usamos con cuidado." },
-      { "pregunta": "¿Qué es más útil para comprar pan?", "dibujo": "moneda", "opciones": ["Billetes y monedas", "Una piedra", "Una hoja de árbol"], "correcta": 0, "explicacion": "En la panadería pagamos con billetes y monedas.", "explica1": "Para comprar, pagamos con dinero.", "explica2": "Las piedras y las hojas no sirven para pagar." },
-      { "pregunta": "¿Dónde se guarda el dinero para que no se pierda?", "dibujo": "alcancia", "opciones": ["En una alcancía o en el banco", "En el bolsillo roto", "Debajo de la lluvia"], "correcta": 0, "explicacion": "La alcancía y el banco cuidan nuestro dinero.", "explica1": "El dinero hay que cuidarlo.", "explica2": "La alcancía y el banco lo guardan seguro." }
+      {
+        "pregunta": "¿Para qué sirve la plata?",
+        "dibujo": "moneda",
+        "opciones": [
+          "Para cambiarla por cosas que necesitamos",
+          "Para jugar a tirarla",
+          "Para que la junte el viento"
+        ],
+        "correcta": 0,
+        "explicacion": "Con la plata compramos cosas y pagamos, por ejemplo, la luz o el colectivo.",
+        "explica1": "La plata sirve para cambiarla por cosas.",
+        "explica2": "La ganamos trabajando y la usamos con cuidado."
+      },
+      {
+        "pregunta": "¿Con qué se paga el pan en la panadería?",
+        "dibujo": "moneda",
+        "opciones": [
+          "Con billetes y monedas",
+          "Con figuritas",
+          "Con una sonrisa"
+        ],
+        "correcta": 0,
+        "explicacion": "En la panadería pagamos con billetes y monedas.",
+        "explica1": "Para comprar, pagamos con plata.",
+        "explica2": "Las figuritas son lindas, pero no sirven para pagar."
+      },
+      {
+        "pregunta": "¿Dónde se guarda la plata para que no se pierda?",
+        "dibujo": "alcancia",
+        "opciones": [
+          "En una alcancía o en el banco",
+          "En un bolsillo roto",
+          "Tirada en el piso"
+        ],
+        "correcta": 0,
+        "explicacion": "La alcancía y el banco cuidan nuestra plata.",
+        "explica1": "La plata hay que cuidarla.",
+        "explica2": "La alcancía y el banco la guardan seguro."
+      },
+      {
+        "pregunta": "¿Qué vale más: un billete de 100 o una moneda de 10?",
+        "dibujo": "moneda",
+        "opciones": [
+          "El billete de 100",
+          "La moneda de 10",
+          "Valen lo mismo"
+        ],
+        "correcta": 0,
+        "explicacion": "Vale más el billete de 100: el número dice cuánto vale.",
+        "explica1": "Cada billete y cada moneda tiene un número.",
+        "explica2": "Ese número dice cuánto vale, no su tamaño."
+      },
+      {
+        "pregunta": "Si pagás con tarjeta, ¿la plata es gratis?",
+        "dibujo": "moneda",
+        "opciones": [
+          "No: es plata que alguien tiene que pagar",
+          "Sí, la tarjeta regala plata",
+          "Sí, si la usás poquito"
+        ],
+        "correcta": 0,
+        "explicacion": "Con tarjeta también se paga: la plata sale de la cuenta de alguien.",
+        "explica1": "La tarjeta es otra forma de pagar.",
+        "explica2": "La plata sale igual, aunque no la veamos."
+      },
+      {
+        "pregunta": "¿De dónde sale la plata que tiene tu familia?",
+        "dibujo": "libro",
+        "opciones": [
+          "Del trabajo de las personas grandes",
+          "De una máquina mágica",
+          "Crece en los árboles"
+        ],
+        "correcta": 0,
+        "explicacion": "La plata sale del trabajo de las personas.",
+        "explica1": "Las personas grandes trabajan.",
+        "explica2": "Por su trabajo cobran plata."
+      }
     ],
     "ahorrar": [
-      { "pregunta": "¿Qué es ahorrar?", "dibujo": "alcancia", "opciones": ["Guardar un poco para después", "Gastar todo hoy", "Perder la plata"], "correcta": 0, "explicacion": "Ahorrar es guardar hoy para algo que queremos después.", "explica1": "Ahorrar es guardar un poquito cada vez.", "explica2": "Así juntamos para algo que queremos." },
-      { "pregunta": "Querés una pelota. ¿Qué te ayuda a llegar?", "dibujo": "pelota", "opciones": ["Guardar un poco cada semana", "Gastar todo en caramelos", "No guardar nada"], "correcta": 0, "explicacion": "Guardando un poco cada semana llegás a tu meta.", "explica1": "Una meta es algo que queremos juntar.", "explica2": "Guardando un poco cada semana, llegamos." },
-      { "pregunta": "¿Qué es una meta de ahorro?", "dibujo": "cofre", "opciones": ["Algo que queremos juntar", "Una golosina", "Un juego de pelota"], "correcta": 0, "explicacion": "La meta es lo que queremos lograr juntando plata.", "explica1": "Una meta es lo que queremos lograr.", "explica2": "Ahorramos para llegar a la meta." }
+      {
+        "pregunta": "¿Qué es ahorrar?",
+        "dibujo": "alcancia",
+        "opciones": [
+          "Guardar un poco para después",
+          "Gastar todo hoy",
+          "Prestar la plata y olvidarse"
+        ],
+        "correcta": 0,
+        "explicacion": "Ahorrar es guardar hoy para algo que queremos después.",
+        "explica1": "Ahorrar es guardar un poquito cada vez.",
+        "explica2": "Así juntamos para algo que queremos."
+      },
+      {
+        "pregunta": "Querés una pelota. ¿Qué te ayuda a llegar?",
+        "dibujo": "pelota",
+        "opciones": [
+          "Guardar un poco cada semana",
+          "Gastar todo en caramelos",
+          "Esperar sin guardar nada"
+        ],
+        "correcta": 0,
+        "explicacion": "Guardando un poco cada semana llegás a tu meta.",
+        "explica1": "Una meta es algo que queremos juntar.",
+        "explica2": "Guardando un poco cada semana, llegamos."
+      },
+      {
+        "pregunta": "¿Qué es una meta de ahorro?",
+        "dibujo": "cofre",
+        "opciones": [
+          "Algo que queremos juntar",
+          "Una golosina que comemos ya",
+          "La plata que gastamos hoy"
+        ],
+        "correcta": 0,
+        "explicacion": "La meta es lo que queremos lograr juntando plata.",
+        "explica1": "Una meta es lo que queremos lograr.",
+        "explica2": "Ahorramos para llegar a la meta."
+      },
+      {
+        "pregunta": "Tenés plata ahorrada y te dan ganas de un chupetín. ¿Qué podés pensar?",
+        "dibujo": "chupetin",
+        "opciones": [
+          "Si me lo compro, tardo más en llegar a mi meta",
+          "Ahorrar no sirve para nada",
+          "La alcancía se llena sola"
+        ],
+        "correcta": 0,
+        "explicacion": "Cada gasto chiquito hace que la meta tarde un poco más.",
+        "explica1": "Ahorrar es elegir.",
+        "explica2": "Si gastamos un poco, la meta tarda más."
+      },
+      {
+        "pregunta": "¿Qué pasa si guardás un poquito todas las semanas?",
+        "dibujo": "alcancia",
+        "opciones": [
+          "De a poco se junta mucho",
+          "No cambia nada",
+          "Se pierde la plata"
+        ],
+        "correcta": 0,
+        "explicacion": "De a poquito, la plata guardada crece.",
+        "explica1": "Un poquito más un poquito…",
+        "explica2": "…de a poco se junta mucho."
+      },
+      {
+        "pregunta": "¿Cuándo conviene ahorrar?",
+        "dibujo": "cofre",
+        "opciones": [
+          "Cuando queremos algo que cuesta mucho",
+          "Nunca, hay que gastar todo",
+          "Solo cuando sobra un montón"
+        ],
+        "correcta": 0,
+        "explicacion": "Ahorramos para cosas que no podemos comprar de una vez.",
+        "explica1": "Algunas cosas cuestan mucho.",
+        "explica2": "Ahorrando, igual podemos llegar."
+      }
     ],
     "trabajo": [
-      { "pregunta": "¿Cómo consigue dinero una maestra?", "dibujo": "libro", "opciones": ["Trabajando y cobrando un sueldo", "Lo encuentra en el piso", "Lo dibuja"], "correcta": 0, "explicacion": "Las personas trabajan y cobran por su trabajo.", "explica1": "Las personas trabajan en muchas cosas.", "explica2": "Por su trabajo cobran un sueldo." },
-      { "pregunta": "¿Quién cobra por arreglar caños?", "dibujo": "estrella", "opciones": ["La plomera", "El gato", "La luna"], "correcta": 0, "explicacion": "La plomera cobra por su trabajo.", "explica1": "Cada trabajo es útil para alguien.", "explica2": "Quien trabaja recibe un pago." },
-      { "pregunta": "¿Qué hace la panadera para ganar dinero?", "dibujo": "galletita", "opciones": ["Hace pan y lo vende", "Duerme todo el día", "Juega a la pelota"], "correcta": 0, "explicacion": "La panadera hace pan y lo vende.", "explica1": "Vender lo que hacemos es un trabajo.", "explica2": "Con lo que gana compra lo que necesita." }
+      {
+        "pregunta": "¿Cómo consigue plata una maestra?",
+        "dibujo": "libro",
+        "opciones": [
+          "Trabajando y cobrando un sueldo",
+          "La encuentra en el piso",
+          "La dibuja"
+        ],
+        "correcta": 0,
+        "explicacion": "Las personas trabajan y cobran por su trabajo.",
+        "explica1": "Las personas trabajan en muchas cosas.",
+        "explica2": "Por su trabajo cobran un sueldo."
+      },
+      {
+        "pregunta": "¿Quién cobra por arreglar caños que pierden agua?",
+        "dibujo": "estrella",
+        "opciones": [
+          "La plomera",
+          "El gato del barrio",
+          "La luna"
+        ],
+        "correcta": 0,
+        "explicacion": "La plomera cobra por su trabajo.",
+        "explica1": "Cada trabajo es útil para alguien.",
+        "explica2": "Quien trabaja recibe un pago."
+      },
+      {
+        "pregunta": "¿Qué hace la panadera para ganar plata?",
+        "dibujo": "galletita",
+        "opciones": [
+          "Hace pan y lo vende",
+          "Duerme todo el día",
+          "Pide que le regalen pan"
+        ],
+        "correcta": 0,
+        "explicacion": "La panadera hace pan y lo vende.",
+        "explica1": "Vender lo que hacemos es un trabajo.",
+        "explica2": "Con lo que gana compra lo que necesita."
+      },
+      {
+        "pregunta": "¿Qué es un sueldo?",
+        "dibujo": "moneda",
+        "opciones": [
+          "La plata que se cobra por trabajar",
+          "Un regalo de cumpleaños",
+          "Un tipo de alfajor"
+        ],
+        "correcta": 0,
+        "explicacion": "El sueldo es lo que cobran las personas por su trabajo.",
+        "explica1": "Las personas trabajan.",
+        "explica2": "Por ese trabajo reciben un sueldo."
+      },
+      {
+        "pregunta": "¿Por qué la gente trabaja?",
+        "dibujo": "libro",
+        "opciones": [
+          "Para ganar plata y ayudar a otros",
+          "Porque está aburrida",
+          "Para no ver a su familia"
+        ],
+        "correcta": 0,
+        "explicacion": "Trabajando se gana plata y se ayuda a otras personas.",
+        "explica1": "Cada trabajo ayuda a alguien.",
+        "explica2": "Y quien trabaja cobra por eso."
+      },
+      {
+        "pregunta": "Si ayudás a ordenar la casa, ¿es un trabajo?",
+        "dibujo": "estrella",
+        "opciones": [
+          "Sí, ayudar en casa también es trabajar",
+          "No, solo es trabajo si te pagan",
+          "No, solo trabajan los grandes"
+        ],
+        "correcta": 0,
+        "explicacion": "Ayudar en casa también es trabajar, aunque no siempre se cobre.",
+        "explica1": "Hay trabajos que se cobran y otros que no.",
+        "explica2": "Ayudar en casa es un trabajo muy importante."
+      }
     ],
     "compartir": [
-      { "pregunta": "Tenés muchos lápices y tu amiga no tiene. ¿Qué podés hacer?", "dibujo": "lapiz", "opciones": ["Prestarle o regalarle algunos", "Esconderlos", "Romperlos"], "correcta": 0, "explicacion": "Compartir hace bien a todas.", "explica1": "Compartir es dar una parte de lo que tenemos.", "explica2": "Así ayudamos a otras personas." },
-      { "pregunta": "¿Qué es donar?", "dibujo": "peluche", "opciones": ["Dar algo a quien lo necesita", "Comprar más juguetes", "Tirar las cosas"], "correcta": 0, "explicacion": "Donar es regalar algo a quien lo necesita.", "explica1": "Donar es regalar sin pedir nada a cambio.", "explica2": "Podemos donar ropa, juguetes o un poco de ahorro." }
+      {
+        "pregunta": "Tenés muchos lápices y tu amiga no tiene. ¿Qué podés hacer?",
+        "dibujo": "lapiz",
+        "opciones": [
+          "Prestarle o regalarle algunos",
+          "Esconderlos",
+          "Romperlos"
+        ],
+        "correcta": 0,
+        "explicacion": "Compartir hace bien a todas.",
+        "explica1": "Compartir es dar una parte de lo que tenemos.",
+        "explica2": "Así ayudamos a otras personas."
+      },
+      {
+        "pregunta": "¿Qué es donar?",
+        "dibujo": "peluche",
+        "opciones": [
+          "Dar algo a quien lo necesita",
+          "Comprar más juguetes",
+          "Tirar las cosas"
+        ],
+        "correcta": 0,
+        "explicacion": "Donar es regalar algo a quien lo necesita.",
+        "explica1": "Donar es regalar sin pedir nada a cambio.",
+        "explica2": "Podemos donar ropa, juguetes o un poco de ahorro."
+      },
+      {
+        "pregunta": "¿Qué cosas se pueden donar?",
+        "dibujo": "peluche",
+        "opciones": [
+          "Ropa, juguetes y libros en buen estado",
+          "Solo cosas rotas",
+          "Nada, donar es solo plata"
+        ],
+        "correcta": 0,
+        "explicacion": "Se puede donar ropa, juguetes y libros que estén lindos para usar.",
+        "explica1": "Donamos cosas que estén en buen estado.",
+        "explica2": "Así otra persona las puede disfrutar."
+      },
+      {
+        "pregunta": "Si guardás una parte para compartir, ¿qué estás haciendo?",
+        "dibujo": "alcancia",
+        "opciones": [
+          "Ayudando a otras personas",
+          "Perdiendo plata",
+          "Gastando de más"
+        ],
+        "correcta": 0,
+        "explicacion": "Compartir una parte ayuda a otras personas.",
+        "explica1": "Podemos separar la plata en tres:",
+        "explica2": "guardar, gastar y compartir."
+      }
     ],
     "comparar-compra": [
-      { "pregunta": "Un alfajor cuesta {p1} pesos. Dos alfajores iguales en oferta cuestan {p2}. ¿Qué conviene si querés dos?", "dibujo": "alfajor", "opcionesCalculadas": "oferta", "explicacion": "Comparamos el precio de los dos juntos.", "explica1": "Si comprás dos sueltos, pagás {p1} + {p1}.", "explica2": "La oferta cuesta {p2}: comparamos los dos precios." }
+      {
+        "pregunta": "Un alfajor cuesta {p1} pesos. Dos alfajores iguales en oferta cuestan {p2}. ¿Qué conviene si querés dos?",
+        "dibujo": "alfajor",
+        "opcionesCalculadas": "oferta",
+        "explicacion": "Dos sueltos cuestan {p1} + {p1} = {doble}. La oferta cuesta {p2}. ¡Conviene {cual}!",
+        "explica1": "Si comprás dos sueltos, pagás {p1} + {p1}.",
+        "explica2": "La oferta cuesta {p2}: comparamos los dos precios."
+      }
     ]
   },
   "necesidadDeseo": [
-    { "cosa": "la comida", "tipo": "necesidad", "objeto": "manzana" },
-    { "cosa": "el agua", "tipo": "necesidad", "objeto": "jugo" },
-    { "cosa": "la mochila para ir al cole", "tipo": "necesidad", "objeto": "mochila" },
-    { "cosa": "los útiles del cole", "tipo": "necesidad", "objeto": "cuaderno" },
-    { "cosa": "un peluche nuevo", "tipo": "deseo", "objeto": "peluche" },
-    { "cosa": "un chupetín", "tipo": "deseo", "objeto": "chupetin" },
-    { "cosa": "un sobre de figuritas", "tipo": "deseo", "objeto": "figurita" },
-    { "cosa": "un helado", "tipo": "deseo", "objeto": "helado" },
-    { "cosa": "una pelota de colores", "tipo": "deseo", "objeto": "pelota" }
+    {
+      "cosa": "la comida",
+      "tipo": "necesidad",
+      "objeto": "manzana"
+    },
+    {
+      "cosa": "los libros del cole",
+      "tipo": "necesidad",
+      "objeto": "libro"
+    },
+    {
+      "cosa": "la mochila para ir al cole",
+      "tipo": "necesidad",
+      "objeto": "mochila"
+    },
+    {
+      "cosa": "los útiles del cole",
+      "tipo": "necesidad",
+      "objeto": "cuaderno"
+    },
+    {
+      "cosa": "un peluche nuevo",
+      "tipo": "deseo",
+      "objeto": "peluche"
+    },
+    {
+      "cosa": "un chupetín",
+      "tipo": "deseo",
+      "objeto": "chupetin"
+    },
+    {
+      "cosa": "un sobre de figuritas",
+      "tipo": "deseo",
+      "objeto": "figurita"
+    },
+    {
+      "cosa": "un helado",
+      "tipo": "deseo",
+      "objeto": "helado"
+    },
+    {
+      "cosa": "una pelota de colores",
+      "tipo": "deseo",
+      "objeto": "pelota"
+    }
   ]
 }

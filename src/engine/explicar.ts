@@ -147,7 +147,7 @@ export function explicarResta(a: number, b: number): Record<string, string | num
     casoD: pideU ? (pideD ? 'quedanPide' : 'quedan') : pideD ? 'pide' : 'simple',
     quedanD: quedan(d1p),
     quedanC: quedan(c1p),
-    casoC: !tieneC ? 'sin' : c1p === c2 ? 'cero' : pideD ? 'quedan' : 'simple',
+    casoC: !tieneC ? 'sin' : c1p === 0 && c2 === 0 ? 'presto' : c1p === c2 ? 'cero' : pideD ? 'quedan' : 'simple',
     r,
   };
 }

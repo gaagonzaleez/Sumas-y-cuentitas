@@ -28,6 +28,7 @@ export function Mundo({ id }: { id: string }) {
         </div>
         <PildoraMonedas n={j.monedas} />
       </div>
+      {m.nota && <p className="aviso-caja amarillo" style={{ margin: 0 }}>{m.nota}</p>}
       <div style={{ position: 'relative', height: alto, borderRadius: 28, background: `linear-gradient(${m.colores.cielo}, ${m.colores.suelo})` }}>
         <Camino puntos={puntos} alto={alto} />
         <div style={{ position: 'absolute', right: 10, top: 10, opacity: 0.9 }}><EscenaMundo id={m.id} size={86} /></div>
@@ -39,7 +40,7 @@ export function Mundo({ id }: { id: string }) {
           const p = puntos[i];
           return (
             <button key={n.id} onClick={() => abierto && ir(`/nivel/${n.id}`)} aria-disabled={!abierto}
-              aria-label={`${esJefe ? 'Jefa: ' : `Nivel ${i + 1}: `}${n.nombre}${abierto ? `, ${est} estrellas de 15` : ', bloqueado'}`}
+              aria-label={`${esJefe ? 'Gran desafío: ' : `Nivel ${i + 1}: `}${n.nombre}${abierto ? `, ${est} estrellas de 15` : ', bloqueado'}`}
               className={actual ? 'late' : undefined}
               style={{ position: 'absolute', left: `${p.x}%`, top: p.y, transform: 'translate(-50%, -50%)', background: 'none', border: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, width: 110 }}>
               <span style={{

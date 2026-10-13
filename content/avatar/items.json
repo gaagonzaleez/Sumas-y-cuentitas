@@ -76,7 +76,7 @@
   {
    "id": "pelo-chonguitos",
    "capa": "pelo",
-   "nombre": "Chonguitos",
+   "nombre": "Dos rodetes",
    "svg": "pelo-chonguitos",
    "svgAtras": "pelo-chonguitos.atras",
    "colores": {
@@ -2404,7 +2404,7 @@
   {
    "id": "raro-tesoro-3",
    "capa": "cuello",
-   "nombre": "Collar de doblones",
+   "nombre": "Collar de monedas de oro",
    "svg": "collar",
    "colores": {
     "tela": "#E8B21F",
@@ -2620,7 +2620,7 @@
   {
    "id": "jefe-isla-3-dorado",
    "capa": "calzado",
-   "nombre": "Botas de exploradora dorado",
+   "nombre": "Botas de exploradora doradas",
    "svg": "botas",
    "colores": {
     "tela": "#E8B21F",
@@ -2690,7 +2690,7 @@
   {
    "id": "marco-dorado-isla",
    "capa": "marco",
-   "nombre": "Marco dorado de Exploradora de la Isla",
+   "nombre": "Marco dorado de la Exploradora de la Isla",
    "svg": "marco-estrellas",
    "colores": {
     "tela": "#E8B21F",
@@ -2743,7 +2743,7 @@
   {
    "id": "jefe-valle-2-dorado",
    "capa": "cabeza",
-   "nombre": "Flor mágica dorado",
+   "nombre": "Flor mágica dorada",
    "svg": "flor-pelo",
    "colores": {
     "tela": "#E8B21F",
@@ -2770,7 +2770,7 @@
   {
    "id": "jefe-valle-3-dorado",
    "capa": "calzado",
-   "nombre": "Zapatitos de pétalo dorado",
+   "nombre": "Zapatitos de pétalo dorados",
    "svg": "zapatitos",
    "colores": {
     "tela": "#E8B21F",
@@ -2797,7 +2797,7 @@
   {
    "id": "jefe-valle-4-dorado",
    "capa": "espalda",
-   "nombre": "Alas de mariposa mágica dorado",
+   "nombre": "Alas de mariposa mágica doradas",
    "svg": "alas",
    "colores": {
     "tela": "#E8B21F",
@@ -2838,7 +2838,7 @@
   {
    "id": "marco-dorado-valle",
    "capa": "marco",
-   "nombre": "Marco dorado de Jardinera Mágica",
+   "nombre": "Marco dorado de la Jardinera Mágica",
    "svg": "marco-estrellas",
    "colores": {
     "tela": "#E8B21F",
@@ -2918,7 +2918,7 @@
   {
    "id": "jefe-montana-3-dorado",
    "capa": "calzado",
-   "nombre": "Botas de alpinista dorado",
+   "nombre": "Botas de alpinista doradas",
    "svg": "botas",
    "colores": {
     "tela": "#E8B21F",
@@ -2988,7 +2988,7 @@
   {
    "id": "marco-dorado-montana",
    "capa": "marco",
-   "nombre": "Marco dorado de Alpinista",
+   "nombre": "Marco dorado de la Alpinista",
    "svg": "marco-estrellas",
    "colores": {
     "tela": "#E8B21F",
@@ -3068,7 +3068,7 @@
   {
    "id": "jefe-bosque-3-dorado",
    "capa": "calzado",
-   "nombre": "Zapatitos del hada dorado",
+   "nombre": "Zapatitos del hada dorados",
    "svg": "zapatitos",
    "colores": {
     "tela": "#E8B21F",
@@ -3095,7 +3095,7 @@
   {
    "id": "jefe-bosque-4-dorado",
    "capa": "espalda",
-   "nombre": "Alas del hada dorado",
+   "nombre": "Alas del hada doradas",
    "svg": "alas",
    "colores": {
     "tela": "#E8B21F",
@@ -3136,7 +3136,7 @@
   {
    "id": "marco-dorado-bosque",
    "capa": "marco",
-   "nombre": "Marco dorado de Hada del Bosque",
+   "nombre": "Marco dorado del Hada del Bosque",
    "svg": "marco-estrellas",
    "colores": {
     "tela": "#E8B21F",
@@ -3216,7 +3216,7 @@
   {
    "id": "jefe-mercado-3-dorado",
    "capa": "calzado",
-   "nombre": "Zapatillas de la tendera dorado",
+   "nombre": "Zapatillas de la tendera doradas",
    "svg": "zapatillas",
    "colores": {
     "tela": "#E8B21F",
@@ -3284,7 +3284,7 @@
   {
    "id": "marco-dorado-mercado",
    "capa": "marco",
-   "nombre": "Marco dorado de Tendera del Mercado",
+   "nombre": "Marco dorado de la Tendera del Mercado",
    "svg": "marco-estrellas",
    "colores": {
     "tela": "#E8B21F",
@@ -3364,7 +3364,7 @@
   {
    "id": "jefe-pueblo-3-dorado",
    "capa": "calzado",
-   "nombre": "Botas de detective dorado",
+   "nombre": "Botas de detective doradas",
    "svg": "botas",
    "colores": {
     "tela": "#E8B21F",
@@ -3432,7 +3432,7 @@
   {
    "id": "marco-dorado-pueblo",
    "capa": "marco",
-   "nombre": "Marco dorado de Detective",
+   "nombre": "Marco dorado de la Detective",
    "svg": "marco-estrellas",
    "colores": {
     "tela": "#E8B21F",
@@ -3512,7 +3512,7 @@
   {
    "id": "jefe-tesoro-3-dorado",
    "capa": "calzado",
-   "nombre": "Botas de capitana dorado",
+   "nombre": "Botas de capitana doradas",
    "svg": "botas",
    "colores": {
     "tela": "#E8B21F",
@@ -3580,7 +3580,7 @@
   {
    "id": "marco-dorado-tesoro",
    "capa": "marco",
-   "nombre": "Marco dorado de Capitana del Tesoro",
+   "nombre": "Marco dorado de la Capitana del Tesoro",
    "svg": "marco-estrellas",
    "colores": {
     "tela": "#E8B21F",

@@ -16,7 +16,7 @@
       "Buscá el número {letras}."
     ],
     "explicacion": "{letras} se escribe {r}.",
-    "pista": "Escuchalo por partes, despacito: cada parte es una cifra.",
+    "pista": "Escuchalo despacito y pensá cuántas centenas, decenas y unidades tiene.",
     "consignaTeclado": [
       "Escribí el número {letras}.",
       "Escuchá y escribí: {letras}."
@@ -40,8 +40,8 @@
   "comparar": {
     "modo": "opciones",
     "consigna": {
-      "mayor": "¿Cuál número es más grande?",
-      "menor": "¿Cuál número es más chico?"
+      "mayor": "¿Qué número es más grande?",
+      "menor": "¿Qué número es más chico?"
     },
     "explicacion": {
       "mayor": "{r} es más grande que {otro}.",
@@ -107,7 +107,7 @@
       "¿Cómo se escribe el {n} con letras?"
     ],
     "explicacion": "El {n} se escribe {r}.",
-    "pista": "Primero decimos las decenas, después las unidades."
+    "pista": "Primero las centenas, después las decenas y al final las unidades."
   },
   "suma": {
     "modo": "opciones",
@@ -209,7 +209,8 @@
       "¿Cuál es la moneda de {pesos}?"
     ],
     "explicacion": "¡Ese es el de {pesos}!",
-    "pista": "Mirá el número que tiene escrito."
+    "pista": "Mirá el número que tiene escrito.",
+    "explicacionMoneda": "¡Esa es la moneda de {pesos}!"
   },
   "contar-plata": {
     "modo": "opciones",
@@ -245,10 +246,10 @@
   "dar-vuelto": {
     "modo": "opciones",
     "consigna": [
-      "{Producto} cuesta {precio} pesos. Pagaste con {pago}. ¿Cuánto vuelto te dan?"
+      "{Producto} cuesta {precio} pesos. Pagaste con {pago} pesos. ¿Cuánto vuelto te dan?"
     ],
     "explicacion": "{pago} − {precio} = {r} pesos de vuelto.",
-    "pista": "El vuelto es lo que sobra: restá."
+    "pista": "Contá desde el precio hasta lo que pagaste: eso es el vuelto."
   },
   "compra-varios": {
     "modo": "opciones",
@@ -290,7 +291,7 @@
     "consigna": [
       "Tenés {plata} pesos. ¿Qué podés comprar sin pasarte?"
     ],
-    "explicacion": "{opcion} suma {total}. ¡No te pasaste!",
+    "explicacion": "{opcion} suman {total}. ¡No te pasaste!",
     "pista": "Sumá los precios de cada opción y fijate que no pase de {plata}."
   },
   "plan-ahorro": {
@@ -326,7 +327,7 @@
       "Contá los bloques. ¿Qué número es?"
     ],
     "explicacion": "{descompuesto} = {r}. ¡Muy bien contado!",
-    "pista": "Cada barra vale 10. Contá las barras de a 10 y después los cuadraditos."
+    "pista": "Cada placa vale 100, cada barra vale 10 y cada cuadradito vale 1."
   },
   "escribir-en-letras": {
     "modo": "letras",
@@ -335,7 +336,7 @@
       "¿Cómo se escribe el {n}? Escribilo con letras."
     ],
     "explicacion": "El {n} se escribe {r}.",
-    "pista": "Primero escribí las decenas y después las unidades."
+    "pista": "Escribí primero las centenas, después las decenas y al final las unidades."
   },
   "cuenta-faltante": {
     "modo": "opciones",
@@ -377,28 +378,30 @@
       "El doble de {n}: ¿cuánto es {n} + {n}?"
     ],
     "explicacion": "El doble de {n} es {r}.",
-    "pista": "Es el mismo número dos veces. ¡Pensá en algo que viene de a pares!"
+    "pista": "Es el mismo número dos veces: sumalo con él mismo."
   },
   "guerra-cartas": {
     "modo": "opciones",
     "consigna": {
       "num": "¡Guerra de cartas! Gana la carta más alta. ¿Quién gana?",
-      "+": "¡Guerra de cartas! Cada una suma sus dos cartas. ¿Quién gana?",
-      "−": "¡Guerra de cartas! Cada una resta sus cartas: la grande menos la chica. ¿Quién gana?",
-      "×": "¡Guerra de multiplicar! Cada una multiplica sus cartas. ¿Quién gana?",
+      "+": "¡Guerra de cartas! Se suman las dos cartas de cada mano. ¿Quién gana?",
+      "−": "¡Guerra de cartas! En cada mano se resta la carta grande menos la chica. ¿Quién gana?",
+      "×": "¡Guerra de multiplicar! Se multiplican las cartas de cada mano. ¿Quién gana?",
       "$": "¿Quién tiene más plata?"
     },
     "vos": "Vos",
     "empate": "Empate",
-    "explicacion": "{detalle} ¡Gana {ganador}!",
+    "explicacion": "{detalle} {cierre}",
     "pista": {
       "num": "Si una carta tiene más cifras, es más grande. Si no, mirá la primera cifra.",
-      "+": "Sumá las cartas de cada una y después compará.",
+      "+": "Sumá las cartas de cada mano y después compará.",
       "−": "Restá la carta grande menos la chica y después compará.",
-      "×": "Multiplicá las cartas de cada una y después compará.",
-      "$": "Sumá la plata de cada una y después compará."
+      "×": "Multiplicá las cartas de cada mano y después compará.",
+      "$": "Sumá la plata de cada mano y después compará."
     },
-    "explicacionEmpate": "{detalle} ¡Empate: las dos sacaron lo mismo!"
+    "explicacionEmpate": "{detalle} ¡Empate: sacaron lo mismo!",
+    "cierreVos": "¡Ganaste vos!",
+    "cierreRival": "¡Gana {ganador}!"
   },
   "escoba": {
     "modo": "elegir",
@@ -412,7 +415,8 @@
       "+": "Elegí una carta y pensá cuánto le falta para llegar.",
       "$": "Empezá por el billete más grande que no se pase.",
       "num": "Usá una carta para cada lugar: centenas, decenas y unidades."
-    }
+    },
+    "explicacionUna": "¡Escoba! Justo {objetivo} pesos."
   },
   "loteria": {
     "modo": "opciones",
@@ -422,7 +426,7 @@
     },
     "explicacion": "¡Lo encontraste! Era el {r}.",
     "pista": {
-      "num": "Pensá cómo se escribe: primero va la cifra que se dice primero.",
+      "num": "Pensá cuántas decenas y unidades tiene ese número.",
       "op": "Primero resolvé la cuenta y después buscá el resultado."
     }
   },
@@ -431,13 +435,13 @@
     "consigna": {
       "+": "Tiraste los dados. ¿Cuántos puntos sacaste en total?",
       "×": "Salieron {g} dados con {puntos} cada uno. ¿Cuántos puntos son?",
-      "−": "¿Cuántos puntos más tiene el dado más alto?"
+      "−": "¿Cuántos puntos de diferencia hay entre los dos dados?"
     },
     "explicacion": "{cuenta} = {r}. ¡Bien contado!",
     "pista": {
       "+": "Contá los puntitos de cada dado y juntalos.",
       "×": "Todos los dados son iguales: contá de {p} en {p}.",
-      "−": "Fijate cuántos puntitos tiene de más el dado grande."
+      "−": "Contá cuántos puntitos tiene de más el dado que tiene más."
     }
   },
   "balanza": {
@@ -561,7 +565,7 @@
       "pasea al perro de la vecina",
       "riega las plantas",
       "ayuda a ordenar la librería",
-      "hace pulseras para vender"
+      "vende una pulsera que hizo"
     ],
     "explicacion": "{veces} veces {pago} pesos son {r} pesos.",
     "pista": "Sumá {pago} pesos una vez por cada vez que trabaja."
@@ -572,7 +576,7 @@
       "necesidad": "Tocá todas las cosas que son una necesidad.",
       "deseo": "Tocá todas las cosas que son un deseo."
     },
-    "explicacion": "¡Muy bien! Esas son {tipoPlural}.",
+    "explicacion": "¡Muy bien! Todas esas cosas son {tipoPlural}.",
     "pista": "Una necesidad nos hace falta para vivir bien; un deseo puede esperar."
   }
 }

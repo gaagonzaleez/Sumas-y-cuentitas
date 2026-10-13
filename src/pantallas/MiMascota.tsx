@@ -48,7 +48,7 @@ export function MiMascota() {
   async function jugar() {
     const sumo = await jugarConMascota();
     sonido('festejo');
-    setMensaje(sumo ? '¡Qué divertido! ¡Me encanta jugar con vos!' : '¡Otra vez! Hoy ya sumamos puntos jugando, pero igual me pongo contenta.');
+    setMensaje(sumo ? '¡Qué divertido! ¡Me encanta jugar con vos!' : '¡Otra vez! Hoy ya sumamos puntos jugando, pero igual me encanta jugar con vos.');
     saltar();
   }
   function saltar() {

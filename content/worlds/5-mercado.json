@@ -1,5 +1,5 @@
 {
-  "id": "mercado", "numero": 5, "nombre": "Mercado de Monedas", "escala": "dinero", "etiqueta": "Dinero",
+  "id": "mercado", "numero": 5, "nombre": "Mercado de Monedas", "escala": "dinero", "etiqueta": "Dinero", "nota": "En el Mercado los precios son de juguete, para practicar cuentas.",
   "colores": { "cielo": "#FFF4D1", "suelo": "#FFD9B0", "acento": "#E8505B" },
   "niveles": [
     { "id": "mercado-1", "nombre": "Billetes y monedas", "corto": "Billetes",

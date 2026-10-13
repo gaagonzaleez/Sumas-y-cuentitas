@@ -149,7 +149,7 @@
     "visual": "operacion",
     "pasos": [
       {
-        "texto": "Miramos el signo: es un {signoNombre}."
+        "texto": "Miramos el signo: es el signo {signoNombre}."
       },
       {
         "texto": "{signoExplica}"
@@ -241,7 +241,7 @@
         "texto": "Empezamos por el billete más grande que no se pase."
       },
       {
-        "texto": "Por ejemplo, con {sumaTexto}."
+        "texto": "Por ejemplo, con {sumaTexto} pesos."
       }
     ]
   },
@@ -271,7 +271,7 @@
         "texto": "{comparacion}"
       },
       {
-        "texto": "Lo más barato es lo que cuesta menos: {r}."
+        "texto": "¡{Barato} es lo más barato!"
       }
     ]
   },
@@ -327,7 +327,7 @@
         "texto": "{explica2}"
       },
       {
-        "texto": "La respuesta es: {respuestaTexto}."
+        "texto": "La respuesta es «{respuestaTexto}»."
       }
     ]
   },
@@ -708,7 +708,8 @@
           "sin": "Juntamos todo: ¡{a} − {b} = {r}!",
           "simple": "Centenas: {c1} − {c2} = {rc}. ¡Da {r}!",
           "quedan": "Centenas: {quedanC} {c1p}, y {c1p} − {c2} = {rc}. ¡Da {r}!",
-          "cero": "Centenas: {c1p} − {c2} = 0, así que no hay centenas. ¡Da {r}!"
+          "cero": "Centenas: {c1p} − {c2} = 0, así que no hay centenas. ¡Da {r}!",
+          "presto": "Prestamos la única centena, así que no quedan centenas. ¡Da {r}!"
         }
       }
     ]
@@ -773,6 +774,20 @@
       },
       {
         "texto": "Son {k} piezas. ¡Con menos no se puede!"
+      }
+    ]
+  },
+  "dato-que-sobra": {
+    "visual": "historia",
+    "pasos": [
+      {
+        "texto": "La pregunta es: {pregunta}"
+      },
+      {
+        "texto": "El {c} no sirve para esta pregunta: ¡es un dato de más!"
+      },
+      {
+        "texto": "{cuentaTexto}. ¡Esa es la respuesta!"
       }
     ]
   }

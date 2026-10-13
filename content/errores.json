@@ -247,7 +247,7 @@
     "consejo": "Dibujar la historia antes de calcular."
   },
   "problema.dato-que-sobra": {
-    "leccion": "historia",
+    "leccion": "dato-que-sobra",
     "tema": "Problemas con datos de más",
     "frase": "Hay un número que la pregunta no necesita.",
     "consejo": "Subrayar solo los datos de la pregunta."

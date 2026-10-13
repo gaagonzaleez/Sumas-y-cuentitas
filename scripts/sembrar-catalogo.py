@@ -6,6 +6,10 @@ C = {'violeta':'#5B3FE0','turquesa':'#0FA88F','coral':'#E8505B','amarillo':'#FFC
      'lila':'#9A7BF0','verde':'#3DBE7A','naranja':'#F29A2E','blanco':'#FFFFFF','tinta':'#2B2350','azul':'#3B6FD9','marron':'#8A5A3B',
      'crema':'#FFF4D1','dorado':'#E8B21F','menta':'#D7F5EE','rojo':'#D93A45','negro':'#3A3350'}
 items = []
+def dorado(n):
+    # Concuerda con la primera palabra: botas doradas, zapatitos dorados, flor dorada.
+    w = n.split()[0]
+    return 'doradas' if w.endswith('as') else 'dorados' if w.endswith('os') else 'dorada' if w.endswith('a') or w == 'Flor' else 'dorado'
 def it(id, capa, nombre, svg, rareza='comun', desbloqueo='tienda', tela=None, tela2=None, atras=None, **kw):
     d = {'id': id, 'capa': capa, 'nombre': nombre, 'svg': svg}
     if atras: d['svgAtras'] = atras
@@ -18,7 +22,7 @@ def it(id, capa, nombre, svg, rareza='comun', desbloqueo='tienda', tela=None, te
     items.append(d)
 # --- Pelo ---
 pelos = [('largo','Largo','gratis'),('corto','Corto','gratis'),('rulos','Rulos','gratis'),('colitas','Colitas','gratis'),
-         ('trenzas','Trenzas','lindo'),('rodete','Rodete','comun'),('chonguitos','Chonguitos','lindo'),('ondas','Ondas','comun'),
+         ('trenzas','Trenzas','lindo'),('rodete','Rodete','comun'),('chonguitos','Dos rodetes','lindo'),('ondas','Ondas','comun'),
          ('afro','Afro','comun'),('carre','Carré','comun'),('flequillo','Flequillo recto','comun'),('media-cola','Media cola','lindo'),
          ('cola-alta','Cola alta','lindo'),('rapado','Cortito','comun')]
 for s,n,r in pelos:
@@ -114,7 +118,7 @@ MUNDOS = {
  'pueblo': ('#5B3FE0','#FFC93C', ['Piloto de detective','Sombrero del pueblo','Remera de lupas','Botas del pueblo','Jardinero del pueblo','Anteojos de detective','Bufanda de la plaza','Vestido de la plaza'],
             ['Corona del pueblo','Lupa mágica','Collar de llaves','Alas de farol','Tiara del reloj','Capa de detective','Ramo de la plaza','Hebilla de lupa']),
  'tesoro': ('#E8B21F','#E8505B', ['Remera pirata','Pañuelo de capitana','Pantalón del barco','Botas del tesoro','Vestido del cofre','Collar del mapa','Gorra de marinera','Chaleco del tesoro'],
-            ['Corona del tesoro','Varita de brújula','Collar de doblones','Alas de vela','Tiara de piedras preciosas','Capa de capitana','Ramo de joyas','Hebilla de ancla']),
+            ['Corona del tesoro','Varita de brújula','Collar de monedas de oro','Alas de vela','Tiara de piedras preciosas','Capa de capitana','Ramo de joyas','Hebilla de ancla']),
 }
 FORMAS_NIVEL = [('remera-estrella','arriba'),('sombrero','cabeza'),('collar','cuello'),('zapatitos','calzado'),('vestido','vestido'),('mono','cabeza'),('short','abajo'),('anteojos-sol','cara')]
 FORMAS_NIVEL_ALT = {'montana': {0:('campera','arriba'),1:('gorro','cabeza'),2:('bufanda','cuello'),3:('botas','calzado'),4:('pantalon','abajo'),5:('mochila','espalda'),7:('anteojos','cara')},
@@ -150,9 +154,9 @@ for mid,(nombre,piezas) in JEFES.items():
         it(iid, capa, n, forma, 'magico', 'premio', tela=t, tela2=t2 or '#FFFFFF', mundo=mid, **extra)
         ids.append(iid)
         did = f'jefe-{mid}-{g}-dorado'
-        it(did, capa, f'{n} dorado' if not n.split()[0].endswith('a') else f'{n} dorada', forma, 'legendario', 'premio', tela='#E8B21F', tela2='#FFF4D1', mundo=mid, brilla=True, **extra)
+        it(did, capa, f"{n} {dorado(n)}", forma, 'legendario', 'premio', tela='#E8B21F', tela2='#FFF4D1', mundo=mid, brilla=True, **extra)
         dorados.append(did)
-    it(f'marco-dorado-{mid}', 'marco', f'Marco dorado de {nombre}', 'marco-estrellas', 'legendario', 'premio', tela='#E8B21F', tela2='#FFF4D1', mundo=mid)
+    it(f'marco-dorado-{mid}', 'marco', f"Marco dorado {'del' if nombre.startswith('Hada') else 'de la'} {nombre}", 'marco-estrellas', 'legendario', 'premio', tela='#E8B21F', tela2='#FFF4D1', mundo=mid)
     sets.append({'id': f'set-{mid}', 'nombre': nombre, 'mundo': mid, 'items': ids, 'dorado': dorados + [f'marco-dorado-{mid}']})
     # Grado 1: el avatar completo de esa versión (ropa, cabeza y calzado). Cada grado siguiente suma una pieza más imponente.
     premios['jefes'][mid] = {'grados': {'1': ids[:3], '2': [ids[3]], '3': [ids[4]], '4': [f'jefe-{mid}-1-dorado'], '5': [f'jefe-{mid}-2-dorado']},

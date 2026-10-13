@@ -2,24 +2,57 @@
   "_nota": "Frases de cada guía. Todas tienen audio y subtítulo. Nunca 'mal' ni 'incorrecto': se dice 'casi'.",
   "chispa": {
     "presentacion": "¡Hola, campeona! ¿Lista para contar estrellitas conmigo?",
-    "bienvenida": ["¡Hola, campeona! ¡Qué lindo que volviste!", "¡Llegaste! Hoy vamos a brillar juntas.", "¡Hola! ¿Salimos de aventura?"],
-    "despedida": ["¡Chau, campeona! Hoy brillaste un montón.", "¡Nos vemos pronto! Te espero con más estrellitas."],
-    "avatar": "¡Ahora creá a tu personaje! Vas a verla en todo el juego.",
-    "avatarListo": ["¡Wow, quedaste divina!", "¡Qué personaje más lindo!"],
+    "bienvenida": [
+      "¡Hola, campeona! ¡Qué lindo que volviste!",
+      "¡Llegaste! Hoy vamos a brillar juntas.",
+      "¡Hola! ¿Salimos de aventura?"
+    ],
+    "despedida": [
+      "¡Chau, campeona! Hoy brillaste un montón.",
+      "¡Nos vemos pronto! Te espero con más estrellitas."
+    ],
+    "avatar": "¡Ahora creá tu personaje! Te va a acompañar en todo el juego.",
+    "avatarListo": [
+      "¡Wow, quedaste divina!",
+      "¡Qué personaje más lindo!"
+    ],
     "mascota": "¡Elegí a tu mascota y ponele un nombre!",
     "mascotaLista": "¡Qué linda mascota! Va a crecer con vos.",
     "mapa": "¡Tocá el mundo que brilla para jugar!",
-    "aciertos": ["¡Genial, lo lograste!", "¡Bien ahí, campeona!", "¡Sí! ¡Brillaste!", "¡Excelente!", "¡Qué grosa!", "¡Eso es!", "¡Perfecto!", "¡Re bien!", "¡Lo sabías!", "¡Sos una estrella!"],
-    "errores": ["¡Casi! No pasa nada, equivocarse también es aprender.", "¡Casi! Probemos de nuevo juntas.", "¡Uy, casi! Mirá otra vez.", "¡Casi casi! Vos podés.", "Tranqui, lo pensamos juntas.", "¡Casi! Ya estás muy cerca.", "Equivocarse es parte de aprender. ¡Otra vez!", "¡Casi! Respirá hondo y probá de nuevo."],
+    "aciertos": [
+      "¡Genial, lo lograste!",
+      "¡Bien ahí, campeona!",
+      "¡Sí! ¡Brillaste!",
+      "¡Excelente!",
+      "¡Qué grosa!",
+      "¡Eso es!",
+      "¡Perfecto!",
+      "¡Re bien!",
+      "¡Lo sabías!",
+      "¡Sos una estrella!"
+    ],
+    "errores": [
+      "¡Casi! No pasa nada, equivocarse también es aprender.",
+      "¡Casi! Probemos de nuevo juntas.",
+      "¡Uy, casi! Mirá otra vez.",
+      "¡Casi casi! Vos podés.",
+      "Tranqui, lo pensamos juntas.",
+      "¡Casi! Ya estás muy cerca.",
+      "Equivocarse es parte de aprender. ¡Otra vez!",
+      "¡Casi! Respirá hondo y probá de nuevo."
+    ],
     "leccion": "¡Casi! No pasa nada, equivocarse también es aprender. Vamos a verlo juntas.",
     "parecida": "¡Ahora probá con una parecida!",
     "pista": "¡Te doy una ayudita!",
     "pistaDibujo": "Mirá este dibujo, te va a ayudar.",
-    "subio": "¡Subiste de nivel de números! ¡Qué crack!",
-    "mascotaExtrana": ["¡Te extrañé! ¿Jugamos?", "¡Volviste! ¡Qué alegría!"],
+    "subio": "¡Los números ahora son un poquito más grandes! ¡Qué crack!",
+    "mascotaExtrana": [
+      "¡Te extrañé! ¿Jugamos?",
+      "¡Volviste! ¡Qué alegría!"
+    ],
     "festejoGrado": "¡Terminaste el grado! ¡Sos una estrella!",
     "festejoNivel": "¡Pasaste de nivel! ¡Ganaste un premio nuevo!",
-    "festejoJefe": "¡Venciste a la jefa! ¡Qué valiente!",
+    "festejoJefe": "¡Superaste el gran desafío! ¡Qué valiente!",
     "festejoReto": "¡Entre todas lo lograron! ¡Cofre sorpresa!",
     "descanso": "¡Hora de descansar! Tomá agua y estirá las piernas.",
     "repaso": "¿Repasamos juntas este tema?",
@@ -27,25 +60,58 @@
     "sinMonedas": "Te faltan algunas monedas. ¡Jugando las conseguís!"
   },
   "cande": {
-    "presentacion": "¡Muy bien, campeona! Vamos a resolverlo juntas.",
-    "bienvenida": ["¡Hola, campeona! Te estaba esperando.", "¡Qué alegría verte! Empecemos con calma.", "¡Bienvenida! Hoy vamos a aprender algo lindo."],
-    "despedida": ["Hasta la próxima, campeona. Estoy orgullosa de vos.", "Descansá. Mañana seguimos aprendiendo."],
-    "avatar": "Ahora vamos a crear a tu personaje. Vas a verla en todo el juego.",
-    "avatarListo": ["¡Qué linda quedaste!", "¡Me encanta tu personaje!"],
+    "presentacion": "¡Hola, campeona! Soy la Seño Cande. Vamos a aprender juntas, con calma.",
+    "bienvenida": [
+      "¡Hola, campeona! Te estaba esperando.",
+      "¡Qué alegría verte! Empecemos con calma.",
+      "¡Bienvenida! Hoy vamos a aprender algo lindo."
+    ],
+    "despedida": [
+      "Hasta la próxima, campeona. Estoy orgullosa de vos.",
+      "Descansá. Mañana seguimos aprendiendo."
+    ],
+    "avatar": "Ahora vamos a crear tu personaje. Te va a acompañar en todo el juego.",
+    "avatarListo": [
+      "¡Qué linda quedaste!",
+      "¡Me encanta tu personaje!"
+    ],
     "mascota": "Elegí a tu mascota y ponele un nombre lindo.",
     "mascotaLista": "Muy bien. Tu mascota va a crecer con vos.",
     "mapa": "Tocá el mundo que brilla para empezar.",
-    "aciertos": ["¡Muy bien, campeona!", "¡Excelente trabajo!", "¡Lo hiciste muy bien!", "¡Así se hace!", "¡Correcto, felicitaciones!", "¡Qué bien que pensaste!", "¡Perfecto!", "¡Bravo!", "¡Lo lograste!", "¡Muy bien pensado!"],
-    "errores": ["Casi. Probemos de nuevo, con calma.", "¡Casi! Equivocarse también es aprender.", "Estás muy cerca. Miremos otra vez.", "Casi. Vamos despacito, juntas.", "No pasa nada. Pensemos de nuevo.", "¡Casi! Vos podés.", "Tranquila, lo resolvemos juntas.", "Casi. Leamos otra vez la consigna."],
+    "aciertos": [
+      "¡Muy bien, campeona!",
+      "¡Excelente trabajo!",
+      "¡Lo hiciste muy bien!",
+      "¡Así se hace!",
+      "¡Correcto, felicitaciones!",
+      "¡Qué bien que pensaste!",
+      "¡Perfecto!",
+      "¡Bravo!",
+      "¡Lo lograste!",
+      "¡Muy bien pensado!"
+    ],
+    "errores": [
+      "Casi. Probemos de nuevo, con calma.",
+      "¡Casi! Equivocarse también es aprender.",
+      "Estás muy cerca. Miremos otra vez.",
+      "Casi. Vamos despacito, juntas.",
+      "No pasa nada. Pensemos de nuevo.",
+      "¡Casi! Vos podés.",
+      "Tranquila, lo resolvemos juntas.",
+      "Casi. Leamos otra vez la consigna."
+    ],
     "leccion": "Casi. No pasa nada, equivocarse también es aprender. Vamos a verlo juntas.",
     "parecida": "Ahora probá con una cuenta parecida.",
     "pista": "Te doy una pista.",
     "pistaDibujo": "Mirá este dibujo, te va a ayudar.",
     "subio": "¡Muy bien! Ahora los números son un poquito más grandes.",
-    "mascotaExtrana": ["¡Te extrañé! ¿Jugamos?", "¡Qué alegría que volviste!"],
+    "mascotaExtrana": [
+      "¡Te extrañé! ¿Jugamos?",
+      "¡Qué alegría que volviste!"
+    ],
     "festejoGrado": "¡Terminaste el grado! Estoy muy orgullosa.",
     "festejoNivel": "¡Pasaste de nivel! Ganaste un premio nuevo.",
-    "festejoJefe": "¡Venciste a la jefa! ¡Qué valiente!",
+    "festejoJefe": "¡Superaste el gran desafío! ¡Qué valiente!",
     "festejoReto": "¡Entre todas lo lograron! ¡Cofre sorpresa!",
     "descanso": "¡Hora de descansar! Tomá agua y estirá las piernas.",
     "repaso": "¿Repasamos juntas este tema?",

@@ -1,5 +1,5 @@
 {
-  "id": "tesoro", "numero": 7, "nombre": "Isla del Tesoro", "escala": "finanzas", "etiqueta": "Finanzas",
+  "id": "tesoro", "numero": 7, "nombre": "Isla del Tesoro", "escala": "finanzas", "etiqueta": "Finanzas", "nota": "Acá los precios son de juguete, para practicar.",
   "colores": { "cielo": "#FFF4D1", "suelo": "#FFE6A8", "acento": "#E8B21F" },
   "niveles": [
     { "id": "tesoro-1", "nombre": "¿Qué es el dinero?", "corto": "El dinero",

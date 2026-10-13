@@ -31,7 +31,7 @@ export const finanzas: Generador = (az, ctx) => {
         explica2: rellenar(q.explica2, vars),
         respuestaTexto: correcta,
       },
-      explicacion: `${q.explicacion} ${correcta}.`,
+      explicacion: rellenar(q.explicacion, { p1, p2, doble: p1 * 2, cual: conviene ? 'la oferta' : 'comprar dos sueltos' }),
       pista: texto(az, 'finanzas', 'pista'),
       params: { tema, p1, p2 },
     };
@@ -129,14 +129,15 @@ export const planAhorro: Generador = (az, ctx) => {
   const porSemana = az.elegir([10, 20, 50, 100].filter((p) => p * 2 <= Math.max(100, ctx.rango)));
   const semanas = az.entero(2, Math.min(8, Math.max(2, Math.floor(Math.max(100, ctx.rango) / porSemana))));
   const meta = porSemana * semanas;
-  const prod = az.elegir(PRODUCTOS.productos.filter((p) => p.max >= meta)) ?? PRODUCTOS.productos[0];
+  // Se ahorra para cosas que duran (una pelota, un libro), no para un alfajor.
+  const paraAhorrar = PRODUCTOS.productos.filter((p) => p.ahorro);
+  const prod = az.elegir(paraAhorrar.filter((p) => p.max >= meta).length ? paraAhorrar.filter((p) => p.max >= meta) : paraAhorrar);
   const { opciones, erroresPrevistos } = opcionesNumericas(
     az,
     semanas,
     [
       [semanas + 1, 'finanzas.ahorro'],
       [semanas - 1, 'finanzas.ahorro'],
-      [porSemana, 'finanzas.ahorro'],
     ],
     'finanzas.ahorro',
     4,

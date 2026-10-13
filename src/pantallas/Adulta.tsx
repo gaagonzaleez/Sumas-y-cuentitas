@@ -43,7 +43,7 @@ export function CrearCuenta() {
     <main className="pantalla angosta">
       <Encabezado />
       <h1>Creá tu cuenta de adulta</h1>
-      <p className="suave">Con esta contraseña vas a entrar al panel, ver el progreso y cuidar el perfil de tu hija.</p>
+      <p className="suave">Con esta contraseña vas a entrar al panel, ver el progreso y cuidar el perfil de la nena.</p>
       <form className="tarjeta col" style={{ gap: 16 }} onSubmit={enviar} noValidate>
         <div className="campo">
           <label htmlFor="correo">Tu correo</label>

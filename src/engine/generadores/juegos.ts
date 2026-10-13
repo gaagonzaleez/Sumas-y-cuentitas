@@ -104,7 +104,7 @@ export const guerraCartas: Generador = (az, ctx): Ejercicio => {
     leccion,
     explicacion: rellenar(texto(az, 'guerra-cartas', correcta === empate ? 'explicacionEmpate' : 'explicacion'), {
       detalle: `${detalle(vos, mia, a)} ${detalle(rival, suya, b)}`,
-      ganador: correcta === vos ? 'vos' : rival,
+      cierre: correcta === vos ? texto(az, 'guerra-cartas', 'cierreVos') : rellenar(texto(az, 'guerra-cartas', 'cierreRival'), { ganador: rival }),
     }),
     pista: texto(az, 'guerra-cartas', 'pista', op),
     params: { op, m: mia.join('-'), s: suya.join('-') },
@@ -163,7 +163,7 @@ export const escoba: Generador = (az, ctx): Ejercicio => {
     errorTagPorDefecto: tagMenos,
     leccion:
       op === '$' ? { precio: objetivo, sumaTexto: cuenta } : op === 'num' ? datosValor(objetivo) : solucion.length === 2 ? datosSuma(solucion[0], solucion[1]) : datosSuma(solucion[0], solucion[1], solucion[2]),
-    explicacion: rellenar(texto(az, 'escoba', 'explicacion'), { cuenta, objetivo }),
+    explicacion: rellenar(texto(az, 'escoba', solucion.length === 1 ? 'explicacionUna' : 'explicacion'), { cuenta, objetivo }),
     pista: texto(az, 'escoba', 'pista', op),
     params: { op, objetivo, v: valores.join('-') },
   };
@@ -240,7 +240,9 @@ export const dados: Generador = (az, ctx): Ejercicio => {
     tag = 'tabla.calculo';
     previstos = [[g + p, 'tabla.suma-en-vez'], [(g + 1) * p, 'grupos.cuenta-uno'], [(g - 1) * p, 'grupos.cuenta-uno']];
   } else if (op === '−') {
-    valores = [az.entero(2, 6), az.entero(1, 6)];
+    // Sin empates: siempre hay un dado con más puntos.
+    const alto = az.entero(2, 6);
+    valores = az.mezclar([alto, az.entero(1, alto - 1)]);
     const [a, b] = [Math.max(...valores), Math.min(...valores)];
     r = a - b;
     cuenta = `${a} − ${b}`;
@@ -369,7 +371,7 @@ export const adivinanza: Generador = (az, ctx): Ejercicio => {
   const pistas: string[] = [];
   if (r >= 100) pistas.push(`está entre ${desde} y ${desde + 10}`);
   else pistas.push(`es mayor que ${desde - 1 > 0 ? desde - 1 : 0}`, `es menor que ${desde + 10}`);
-  pistas.push(az.chance(0.5) ? `termina en ${u}` : u % 2 === 0 ? `es par y termina en ${u}` : `termina en ${u}`);
+  pistas.push(`termina en ${u}`);
   const opciones = [r, d * 10 + ((u + 5) % 10) + (r >= 100 ? Math.floor(r / 100) * 100 : 0), r + 10, u * 10 + d].filter((x, i, l) => x > 0 && l.indexOf(x) === i);
   const { opciones: ops, erroresPrevistos } = opcionesNumericas(
     az,

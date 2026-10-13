@@ -57,7 +57,7 @@ export const reconocerBillete: Generador = (az, ctx) => {
     opciones,
     errorTagPorDefecto: 'dinero.valor-billete',
     leccion: { r: v, sumaTexto: String(v), pesosTxt: pesos },
-    explicacion: rellenar(texto(az, 'reconocer-billete', 'explicacion'), { pesos }),
+    explicacion: rellenar(texto(az, 'reconocer-billete', moneda ? 'explicacionMoneda' : 'explicacion'), { pesos }),
     pista: texto(az, 'reconocer-billete', 'pista'),
     params: { v },
   };
@@ -164,6 +164,7 @@ export const compararPrecios: Generador = (az, ctx) => {
     errorTagPorDefecto: 'precios.comparar',
     leccion: {
       r: sinArticulo(barato.nombre),
+      Barato: mayuscula(barato.nombre),
       comparacion: `${mayuscula(barato.nombre)} cuesta ${pb} y ${caro.nombre} cuesta ${pc}.`,
       mayor: pc,
       menor: pb,

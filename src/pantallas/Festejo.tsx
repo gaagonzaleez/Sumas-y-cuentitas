@@ -53,7 +53,7 @@ export function Festejo() {
       <div className="col centro" style={{ zIndex: 1, gap: 10, width: '100%' }}>
         {info && !d.repaso && (
           <span className="pildora violeta" style={{ fontSize: 15 }}>
-            {d.esJefe ? `Jefa vencida · ${info.mundo.nombre}` : `Grado ${d.grado} completo · ${info.nivel.nombre}`}
+            {d.esJefe ? `Gran desafío superado · ${info.mundo.nombre}` : `Grado ${d.grado} completo · ${info.nivel.nombre}`}
           </span>
         )}
         <h1 style={{ fontSize: 38 }}>{item ? '¡Premio nuevo!' : d.repaso ? '¡Repaso listo!' : '¡Lo lograste!'}</h1>

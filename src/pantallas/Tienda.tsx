@@ -59,7 +59,7 @@ export function Tienda() {
     const oferta = ofertas.includes(id);
     return (
       <button className="tarjeta col centro" style={{ gap: 6, padding: 10, border: 0, position: 'relative' }} onClick={() => !tiene && !premio && setElegido({ tipo: 'item', id })}
-        aria-label={`${it.nombre}${tiene ? ', ya lo tenés' : premio ? ', premio de jefa, no se compra' : `, ${precioFinal(id)} monedas`}`}>
+        aria-label={`${it.nombre}${tiene ? ', ya lo tenés' : premio ? ', premio de un gran desafío, no se compra' : `, ${precioFinal(id)} monedas`}`}>
         {oferta && !tiene && <span className="pildora chica" style={{ position: 'absolute', top: 6, right: 6, background: 'var(--amarillo)' }}>Oferta</span>}
         <span style={{ background: FONDOS[i % FONDOS.length], borderRadius: 16, width: '100%', display: 'flex', justifyContent: 'center', padding: 6 }}>
           {it.capa === 'mascota' && j!.mascota ? <MascotaSVG especie={j!.mascota.especie} etapa="bebe" animo="contenta" size={72} accesorios={[id]} /> : <ItemSVG id={id} size={72} piel={j!.avatar?.piel} />}
@@ -68,7 +68,7 @@ export function Tienda() {
         {tiene ? (
           <span style={{ color: 'var(--turquesa-oscuro)', fontWeight: 800 }}>Ya lo tenés</span>
         ) : premio ? (
-          <span className="fila suave chico" style={{ gap: 4 }}><Icono nombre="candado" size={18} /> Premio de jefa</span>
+          <span className="fila suave chico" style={{ gap: 4 }}><Icono nombre="candado" size={18} /> Premio de desafío</span>
         ) : (
           <span className="fila" style={{ gap: 4, fontWeight: 800 }}>
             <Moneda size={22} /> {oferta && <s className="suave chico">{precioDe(it)}</s>} {precioFinal(id)}
@@ -183,7 +183,7 @@ function Alcancia() {
     const r = await guardarEnAlcancia(n);
     if (r === 'meta') {
       sonido('festejo');
-      setMsg(`¡Llegaste a la meta! ${ITEM[a!.itemId].nombre} ya es tuyo, y te ganaste un bono de monedas.`);
+      setMsg(`¡Llegaste a la meta! Ya tenés: ${ITEM[a!.itemId].nombre}. ¡Y te ganaste un bono de monedas!`);
     } else if (r === 'ok') {
       sonido('acierto');
       setMsg('¡Guardado! Cada monedita te acerca a tu meta.');

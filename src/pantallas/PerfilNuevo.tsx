@@ -35,7 +35,7 @@ export function PerfilNuevo() {
     <main className="pantalla angosta">
       <EncabezadoAdulta />
       <div className="col" style={{ gap: 6 }}>
-        <h1>Creá el perfil de tu hija</h1>
+        <h1>Creá el perfil de la nena</h1>
         <p className="suave">Solo lo hacés una vez. Después ella entra sola y empieza a jugar.</p>
       </div>
       <form className="col" style={{ gap: 16 }} onSubmit={enviar} noValidate>

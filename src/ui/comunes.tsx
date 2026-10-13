@@ -7,7 +7,7 @@ import { decir, useAudioEstado } from '../audio/voz';
 
 export function PildoraMonedas({ n }: { n: number }) {
   return (
-    <span className="pildora monedas" aria-label={`${n} monedas`}>
+    <span className="pildora monedas" aria-label={n === 1 ? '1 moneda' : `${n} monedas`}>
       <Moneda size={24} /> {n}
     </span>
   );
