@@ -378,5 +378,180 @@
     ],
     "explicacion": "El doble de {n} es {r}.",
     "pista": "Es el mismo número dos veces. ¡Pensá en algo que viene de a pares!"
+  },
+  "guerra-cartas": {
+    "modo": "opciones",
+    "consigna": {
+      "num": "¡Guerra de cartas! Gana la carta más alta. ¿Quién gana?",
+      "+": "¡Guerra de cartas! Cada una suma sus dos cartas. ¿Quién gana?",
+      "−": "¡Guerra de cartas! Cada una resta sus cartas: la grande menos la chica. ¿Quién gana?",
+      "×": "¡Guerra de multiplicar! Cada una multiplica sus cartas. ¿Quién gana?",
+      "$": "¿Quién tiene más plata?"
+    },
+    "vos": "Vos",
+    "empate": "Empate",
+    "explicacion": "{detalle} ¡Gana {ganador}!",
+    "pista": "Calculá lo de cada una y compará los resultados."
+  },
+  "escoba": {
+    "modo": "elegir",
+    "consigna": {
+      "+": "¡Escoba del {objetivo}! Tocá las cartas que suman justo {objetivo}.",
+      "$": "Elegí las monedas y billetes que suman justo {objetivo} pesos.",
+      "num": "Tocá las cartas que juntas forman el {objetivo}."
+    },
+    "explicacion": "¡Escoba! {cuenta} = {objetivo}.",
+    "pista": "Empezá por la carta más grande que no se pase."
+  },
+  "loteria": {
+    "modo": "opciones",
+    "consigna": {
+      "num": "¡Lotería! Salió el {letras}. Tocalo en tu cartón.",
+      "op": "¡Lotería! Salió {cuenta}. Buscá el resultado en tu cartón."
+    },
+    "explicacion": "¡Lo encontraste! Era el {r}.",
+    "pista": "Leé despacito los números del cartón."
+  },
+  "dados": {
+    "modo": "opciones",
+    "consigna": {
+      "+": "Tiraste los dados. ¿Cuántos puntos sacaste en total?",
+      "×": "Salieron {g} dados con {p} puntos cada uno. ¿Cuántos puntos son?",
+      "−": "¿Cuántos puntos más tiene el dado más alto?"
+    },
+    "explicacion": "{cuenta} = {r}. ¡Bien contado!",
+    "pista": "Contá los puntitos de cada dado y juntalos."
+  },
+  "balanza": {
+    "modo": "opciones",
+    "consigna": [
+      "La balanza está pareja. ¿Qué número falta para que pese lo mismo?",
+      "¿Qué número va en el hueco para que los dos lados den igual?"
+    ],
+    "explicacion": "Los dos lados dan {total}. ¡La balanza quedó pareja!",
+    "pista": "Calculá primero el lado completo."
+  },
+  "piramide": {
+    "modo": "opciones",
+    "consigna": {
+      "arriba": "En la pirámide, cada bloque es la suma de los dos de abajo. ¿Qué número va arriba?",
+      "abajo": "En la pirámide, el de arriba es la suma de los dos de abajo. ¿Qué número falta abajo?"
+    },
+    "explicacion": "{cuenta}. ¡La pirámide está completa!",
+    "pista": "Arriba va lo que suman los dos de abajo."
+  },
+  "adivinanza": {
+    "modo": "opciones",
+    "consigna": [
+      "Pensé un número: {pistas}. ¿Cuál es?",
+      "Adiviná mi número: {pistas}."
+    ],
+    "explicacion": "¡Sí! Era el {r}.",
+    "pista": "Andá probando una pista por vez."
+  },
+  "alcanza": {
+    "modo": "opciones",
+    "consigna": [
+      "Tenés {plata} pesos. ¿Te alcanza para comprar {lista}?"
+    ],
+    "si": "Sí, me alcanza",
+    "no": "No, no me alcanza",
+    "explicacion": "Todo cuesta {total} pesos y tenés {plata}. {cierre}",
+    "cierreSi": "¡Te alcanza y te sobran {sobra}!",
+    "cierreNo": "Te faltan {falta} pesos.",
+    "pista": "Sumá los precios y compará con tu plata."
+  },
+  "carrito": {
+    "modo": "elegir",
+    "consigna": [
+      "Tenés {plata} pesos. Elegí {cantidad} cosas que te alcancen.",
+      "¡Al súper! Con {plata} pesos, poné {cantidad} cosas en el carrito sin pasarte."
+    ],
+    "explicacion": "¡Buena compra! No te pasaste de {plata} pesos.",
+    "pista": "Elegí cosas baratas y sumá antes de pagar."
+  },
+  "ordenar-precios": {
+    "modo": "ordenar",
+    "consigna": [
+      "Ordená los precios del más barato al más caro.",
+      "Tocá los precios de menor a mayor."
+    ],
+    "explicacion": "¡En orden: {r}!",
+    "pista": "Buscá primero el que cuesta menos."
+  },
+  "menos-billetes": {
+    "modo": "opciones",
+    "consigna": [
+      "Tenés que pagar {precio} pesos. ¿Con qué pago usás menos billetes y monedas?"
+    ],
+    "explicacion": "Con {opcion} pagás justo con pocas piezas.",
+    "pista": "Usá los billetes más grandes que no se pasen."
+  },
+  "elegir-pregunta": {
+    "modo": "opciones",
+    "consigna": [
+      "Leé la historia: {historia} ¿Qué pregunta se puede responder con estos datos?"
+    ],
+    "explicacion": "Sí: esa pregunta se responde con {cuenta}.",
+    "pista": "Fijate qué datos da la historia."
+  },
+  "elegir-cuenta": {
+    "modo": "opciones",
+    "consigna": [
+      "{historia} ¿Qué cuenta resuelve el problema?"
+    ],
+    "explicacion": "{cuenta}. ¡Esa es la cuenta!",
+    "pista": "¿Se junta, se agrega, se quita o se compara?"
+  },
+  "estimar": {
+    "modo": "opciones",
+    "consigna": [
+      "{historia} Sin hacer la cuenta: ¿qué respuesta tiene más sentido?"
+    ],
+    "cerca": "Cerca de {v}",
+    "explicacion": "Da {r}, que está cerca de {v}.",
+    "pista": "Si se agrega, el resultado es más grande. Si se quita, es más chico."
+  },
+  "historia-vf": {
+    "modo": "opciones",
+    "consigna": [
+      "{historia} {nombre} dice que la respuesta es {dice}. ¿Tiene razón?"
+    ],
+    "si": "Sí, tiene razón",
+    "no": "No, es otro número",
+    "explicacionBien": "¡Sí! {cuentaTexto}.",
+    "explicacionMal": "¡Bien visto! No es {dice}: {cuentaTexto}.",
+    "pista": "Hacé la cuenta y compará."
+  },
+  "falta-meta": {
+    "modo": "opciones",
+    "consigna": [
+      "Tu meta es juntar {meta} pesos y ya tenés {tengo} en la alcancía. ¿Cuánto te falta?"
+    ],
+    "explicacion": "Te faltan {r} pesos: {tengo} + {r} = {meta}.",
+    "pista": "Contá desde lo que tenés hasta la meta."
+  },
+  "trabajo-cobro": {
+    "modo": "opciones",
+    "consigna": [
+      "{nombre} cobra {pago} pesos cada vez que {tarea}. Si lo hace {veces} veces, ¿cuánto gana?"
+    ],
+    "tareas": [
+      "pasea al perro de la vecina",
+      "riega las plantas",
+      "ayuda a ordenar la librería",
+      "hace pulseras para vender"
+    ],
+    "explicacion": "{veces} veces {pago} pesos son {r} pesos.",
+    "pista": "Sumá {pago} pesos una vez por cada vez que trabaja."
+  },
+  "clasificar": {
+    "modo": "elegir",
+    "consigna": {
+      "necesidad": "Tocá todas las cosas que son una necesidad.",
+      "deseo": "Tocá todas las cosas que son un deseo."
+    },
+    "explicacion": "¡Muy bien! Esas son {tipoPlural}.",
+    "pista": "Una necesidad nos hace falta para vivir bien; un deseo puede esperar."
   }
 }

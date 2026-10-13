@@ -1,348 +1,104 @@
 {
-  "id": "montana",
-  "numero": 3,
-  "nombre": "Montaña de las Restas",
-  "escala": "restas",
-  "colores": {
-    "cielo": "#E9E3FF",
-    "suelo": "#C9C3E6",
-    "acento": "#9A7BF0"
-  },
+  "id": "montana", "numero": 3, "nombre": "Montaña de las Restas", "escala": "restas",
+  "colores": { "cielo": "#E9E3FF", "suelo": "#C9C3E6", "acento": "#9A7BF0" },
   "niveles": [
-    {
-      "id": "montana-1",
-      "nombre": "Restas hasta 10",
-      "corto": "Restas",
-      "inicio": 10,
+    { "id": "montana-1", "nombre": "Restas hasta 10", "corto": "Restas", "inicio": 10,
       "plantillas": [
-        {
-          "id": "resta",
-          "peso": 3,
-          "params": {
-            "modo": "hasta"
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "hasta"
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "hasta"
-          }
-        },
-        {
-          "id": "memoria-cuentas",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "hasta"
-          }
-        }
-      ]
-    },
-    {
-      "id": "montana-2",
-      "nombre": "Restas hasta 20",
-      "corto": "Restas",
-      "inicio": 20,
+        { "id": "resta", "peso": 3, "params": { "modo": "hasta" } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "−", "modo": "hasta" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "hasta" } },
+        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "−", "modo": "hasta" } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "−" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "dados", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] },
+    { "id": "montana-2", "nombre": "Restas hasta 20", "corto": "Restas", "inicio": 20,
       "plantillas": [
-        {
-          "id": "resta",
-          "peso": 3,
-          "params": {
-            "modo": "hasta"
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "hasta"
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "hasta"
-          }
-        },
-        {
-          "id": "memoria-cuentas",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "hasta"
-          }
-        }
-      ]
-    },
-    {
-      "id": "montana-3",
-      "nombre": "Restar decenas exactas",
-      "corto": "Restas de decenas",
+        { "id": "resta", "peso": 3, "params": { "modo": "hasta" } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "−", "modo": "hasta" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "hasta" } },
+        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "−", "modo": "hasta" } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "−" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "dados", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] },
+    { "id": "montana-3", "nombre": "Restar decenas exactas", "corto": "Restas de decenas",
       "plantillas": [
-        {
-          "id": "resta",
-          "peso": 3,
-          "params": {
-            "modo": "decenas"
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "decenas"
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "decenas"
-          }
-        },
-        {
-          "id": "memoria-cuentas",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "decenas"
-          }
-        }
-      ]
-    },
-    {
-      "id": "montana-4",
-      "nombre": "Restas sin pedir prestado",
-      "corto": "Restas",
-      "inicio": 50,
+        { "id": "resta", "peso": 3, "params": { "modo": "decenas" } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "−", "modo": "decenas" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "decenas" } },
+        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "−", "modo": "decenas" } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "−" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "dados", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] },
+    { "id": "montana-4", "nombre": "Restas sin pedir prestado", "corto": "Restas", "inicio": 50,
       "plantillas": [
-        {
-          "id": "resta",
-          "peso": 3,
-          "params": {
-            "modo": "sin-prestamo"
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "sin-prestamo"
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "sin-prestamo"
-          }
-        },
-        {
-          "id": "memoria-cuentas",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "sin-prestamo"
-          }
-        }
-      ]
-    },
-    {
-      "id": "montana-5",
-      "nombre": "Restas pidiendo prestado",
-      "corto": "Restas",
-      "inicio": 50,
+        { "id": "resta", "peso": 3, "params": { "modo": "sin-prestamo" } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "−", "modo": "sin-prestamo" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "sin-prestamo" } },
+        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "−", "modo": "sin-prestamo" } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "−" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "dados", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] },
+    { "id": "montana-5", "nombre": "Restas pidiendo prestado", "corto": "Restas", "inicio": 50,
       "plantillas": [
-        {
-          "id": "resta",
-          "peso": 3,
-          "params": {
-            "modo": "prestando"
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "prestando"
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "prestando"
-          }
-        },
-        {
-          "id": "memoria-cuentas",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "prestando"
-          }
-        }
-      ]
-    },
-    {
-      "id": "montana-6",
-      "nombre": "¿Cuánto falta?",
-      "corto": "Completar",
+        { "id": "resta", "peso": 3, "params": { "modo": "prestando" } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "−", "modo": "prestando" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "prestando" } },
+        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "−", "modo": "prestando" } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "−" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "dados", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] },
+    { "id": "montana-6", "nombre": "¿Cuánto falta?", "corto": "Completar",
       "plantillas": [
-        {
-          "id": "cuanto-falta",
-          "peso": 3
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 2,
-          "params": {
-            "op": "+",
-            "modo": "cualquiera"
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "cualquiera"
-          }
-        }
-      ]
-    },
-    {
-      "id": "montana-7",
-      "nombre": "Restas de hasta 3 cifras",
-      "corto": "Restas",
-      "inicio": 200,
-      "minimo": 200,
+        { "id": "cuanto-falta", "peso": 3 },
+        { "id": "cuenta-faltante", "peso": 2, "params": { "op": "+", "modo": "cualquiera" } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "−", "modo": "cualquiera" } },
+        { "id": "piramide", "peso": 1 },
+        { "id": "balanza", "peso": 1, "params": { "op": "+" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "cualquiera" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] },
+    { "id": "montana-7", "nombre": "Restas de hasta 3 cifras", "corto": "Restas", "inicio": 200, "minimo": 200,
       "plantillas": [
-        {
-          "id": "resta",
-          "peso": 3,
-          "params": {
-            "modo": "cualquiera"
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "cualquiera"
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "cualquiera"
-          }
-        },
-        {
-          "id": "memoria-cuentas",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "cualquiera"
-          }
-        }
-      ]
-    },
-    {
-      "id": "montana-8",
-      "nombre": "Sumas y restas juntas",
-      "corto": "Sumas y restas",
+        { "id": "resta", "peso": 3, "params": { "modo": "cualquiera" } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "−", "modo": "cualquiera" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "cualquiera" } },
+        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "−", "modo": "cualquiera" } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "−" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "dados", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] },
+    { "id": "montana-8", "nombre": "Sumas y restas juntas", "corto": "Sumas y restas",
       "plantillas": [
-        {
-          "id": "suma",
-          "peso": 1,
-          "params": {
-            "modo": "cualquiera"
-          }
-        },
-        {
-          "id": "resta",
-          "peso": 1,
-          "params": {
-            "modo": "cualquiera"
-          }
-        },
-        {
-          "id": "cuenta-inversa",
-          "peso": 1
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "−",
-            "modo": "cualquiera"
-          }
-        }
-      ]
-    }
+        { "id": "suma", "peso": 1, "params": { "modo": "cualquiera" } },
+        { "id": "resta", "peso": 1, "params": { "modo": "cualquiera" } },
+        { "id": "cuenta-inversa", "peso": 1 },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "cualquiera" } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "−" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "dados", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } }
+      ] }
   ],
-  "jefe": {
-    "id": "montana-jefe",
-    "nombre": "La Alpinista",
-    "corto": "Sumas y restas",
-    "descripcion": "Cuentas de varios pasos con sumas y restas.",
-    "inicio": 50,
-    "avatar": "alpinista",
-    "plantillas": [
-      {
-        "id": "problema",
-        "peso": 2,
-        "params": {
-          "tipos": [
-            "dos-pasos"
-          ]
-        }
-      },
-      {
-        "id": "resta",
-        "peso": 1,
-        "params": {
-          "modo": "prestando"
-        }
-      },
-      {
-        "id": "suma",
-        "peso": 1,
-        "params": {
-          "modo": "llevando"
-        }
-      },
-      {
-        "id": "verdadero-falso",
-        "peso": 1,
-        "params": {
-          "op": "−",
-          "modo": "prestando"
-        }
-      }
-    ]
-  }
+  "jefe":
+    { "id": "montana-jefe", "nombre": "La Alpinista", "corto": "Sumas y restas", "descripcion": "Cuentas de varios pasos con sumas y restas.", "inicio": 50, "avatar": "alpinista",
+      "plantillas": [
+        { "id": "problema", "peso": 2, "params": { "tipos": ["dos-pasos"] } },
+        { "id": "resta", "peso": 1, "params": { "modo": "prestando" } },
+        { "id": "suma", "peso": 1, "params": { "modo": "llevando" } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "−", "modo": "prestando" } },
+        { "id": "balanza", "peso": 1, "params": { "op": "−" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "−" } },
+        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["quitar", "comparar"] } }
+      ] }
 }

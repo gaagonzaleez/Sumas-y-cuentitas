@@ -405,5 +405,19 @@
         "texto": "Se escribe así: {letras}."
       }
     ]
+  },
+  "balanza": {
+    "visual": "operacion",
+    "pasos": [
+      {
+        "texto": "Los dos lados de la balanza tienen que dar lo mismo."
+      },
+      {
+        "texto": "Calculamos el lado completo: {completo} = {total}."
+      },
+      {
+        "texto": "Entonces falta el {r}: {incompleto} = {total}."
+      }
+    ]
   }
 }

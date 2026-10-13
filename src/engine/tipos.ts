@@ -10,7 +10,8 @@ export type Modo =
   | 'dinero' // pagar con billetes y monedas
   | 'memoria' // unir cada cuenta con su resultado
   | 'arrastrar' // mover objetos a grupos
-  | 'letras'; // escribir el número con letras
+  | 'letras' // escribir el número con letras
+  | 'elegir'; // tocar varias cosas (cartas que suman 10, compras que alcanzan…)
 
 export interface Opcion {
   valor: string;
@@ -33,7 +34,11 @@ export type Visual =
   | { tipo: 'productos'; productos: { objeto: string; nombre: string; precio: number }[] }
   | { tipo: 'escena'; objeto: string; cantidades: number[]; nombre?: string }
   | { tipo: 'alcancia'; meta: number; guardado: number; titulo?: string }
-  | { tipo: 'dibujo'; objeto: string };
+  | { tipo: 'dibujo'; objeto: string }
+  | { tipo: 'cartas'; manos: { nombre: string; cartas: number[] }[] }
+  | { tipo: 'dados'; valores: number[] }
+  | { tipo: 'balanza'; izquierda: string; derecha: string }
+  | { tipo: 'piramide'; abajo: (number | null)[]; arriba: number | null };
 
 export interface DatosModo {
   /** modo 'ordenar': números a ordenar (desordenados). */
@@ -46,6 +51,17 @@ export interface DatosModo {
   arrastrar?: { grupos: number; porGrupo: number; objeto: string };
   /** modo 'bloques': número a armar. */
   bloques?: { numero: number };
+  /** modo 'elegir': cosas para tocar y la regla para saber si está bien. */
+  elegir?: {
+    items: { id: string; texto: string; valor: number; dibujo?: string }[];
+    /** suma: que sumen justo el objetivo · presupuesto: N cosas sin pasarse · conjunto: exactamente las correctas */
+    regla: 'suma' | 'presupuesto' | 'conjunto';
+    objetivo?: number;
+    cantidad?: number;
+    correctas?: string[];
+    /** Cómo se ven: cartas, monedas o productos. */
+    estilo: 'cartas' | 'plata' | 'productos' | 'palabras';
+  };
 }
 
 export interface Ejercicio {

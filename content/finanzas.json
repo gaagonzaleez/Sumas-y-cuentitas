@@ -27,7 +27,7 @@
   "necesidadDeseo": [
     { "cosa": "la comida", "tipo": "necesidad", "objeto": "manzana" },
     { "cosa": "el agua", "tipo": "necesidad", "objeto": "jugo" },
-    { "cosa": "un abrigo en invierno", "tipo": "necesidad", "objeto": "mochila" },
+    { "cosa": "la mochila para ir al cole", "tipo": "necesidad", "objeto": "mochila" },
     { "cosa": "los útiles del cole", "tipo": "necesidad", "objeto": "cuaderno" },
     { "cosa": "un peluche nuevo", "tipo": "deseo", "objeto": "peluche" },
     { "cosa": "un chupetín", "tipo": "deseo", "objeto": "chupetin" },

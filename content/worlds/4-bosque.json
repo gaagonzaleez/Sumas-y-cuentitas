@@ -1,466 +1,99 @@
 {
-  "id": "bosque",
-  "numero": 4,
-  "nombre": "Bosque de las Tablas",
-  "escala": "tablas",
-  "colores": {
-    "cielo": "#D7F5EE",
-    "suelo": "#9ED9A8",
-    "acento": "#0FA88F"
-  },
+  "id": "bosque", "numero": 4, "nombre": "Bosque de las Tablas", "escala": "tablas",
+  "colores": { "cielo": "#D7F5EE", "suelo": "#9ED9A8", "acento": "#0FA88F" },
   "niveles": [
-    {
-      "id": "bosque-1",
-      "nombre": "Grupos iguales",
-      "corto": "Grupos",
+    { "id": "bosque-1", "nombre": "Grupos iguales", "corto": "Grupos",
       "plantillas": [
-        {
-          "id": "grupos-iguales",
-          "peso": 2
-        },
-        {
-          "id": "armar-grupos",
-          "peso": 1
-        }
-      ]
-    },
-    {
-      "id": "bosque-2",
-      "nombre": "Suma repetida",
-      "corto": "Suma repetida",
+        { "id": "grupos-iguales", "peso": 2 },
+        { "id": "armar-grupos", "peso": 1 },
+        { "id": "suma-repetida", "peso": 1 },
+        { "id": "dados", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [2, 5, 10] } }
+      ] },
+    { "id": "bosque-2", "nombre": "Suma repetida", "corto": "Suma repetida",
       "plantillas": [
-        {
-          "id": "suma-repetida",
-          "peso": 2
-        },
-        {
-          "id": "grupos-iguales",
-          "peso": 1
-        },
-        {
-          "id": "armar-grupos",
-          "peso": 1
-        }
-      ]
-    },
-    {
-      "id": "bosque-3",
-      "nombre": "Tabla del 2",
-      "corto": "Tabla del 2",
+        { "id": "suma-repetida", "peso": 2 },
+        { "id": "grupos-iguales", "peso": 1 },
+        { "id": "armar-grupos", "peso": 1 },
+        { "id": "dados", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [2, 5, 10] } },
+        { "id": "trabajo-cobro", "peso": 1 }
+      ] },
+    { "id": "bosque-3", "nombre": "Tabla del 2", "corto": "Tabla del 2",
       "plantillas": [
-        {
-          "id": "tabla",
-          "peso": 3,
-          "params": {
-            "tablas": [
-              2
-            ]
-          }
-        },
-        {
-          "id": "memoria-tablas",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              2
-            ]
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              2
-            ]
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              2
-            ]
-          }
-        },
-        {
-          "id": "secuencia",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              2
-            ]
-          }
-        },
-        {
-          "id": "grupos-iguales",
-          "peso": 1
-        }
-      ]
-    },
-    {
-      "id": "bosque-4",
-      "nombre": "Tabla del 5",
-      "corto": "Tabla del 5",
+        { "id": "tabla", "peso": 3, "params": { "tablas": [2] } },
+        { "id": "memoria-tablas", "peso": 1, "params": { "tablas": [2] } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "×", "tablas": [2] } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "×", "tablas": [2] } },
+        { "id": "secuencia", "peso": 1, "params": { "tablas": [2] } },
+        { "id": "grupos-iguales", "peso": 1 },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [2] } }
+      ] },
+    { "id": "bosque-4", "nombre": "Tabla del 5", "corto": "Tabla del 5",
       "plantillas": [
-        {
-          "id": "tabla",
-          "peso": 3,
-          "params": {
-            "tablas": [
-              5
-            ]
-          }
-        },
-        {
-          "id": "memoria-tablas",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              5
-            ]
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              5
-            ]
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              5
-            ]
-          }
-        },
-        {
-          "id": "secuencia",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              5
-            ]
-          }
-        },
-        {
-          "id": "grupos-iguales",
-          "peso": 1
-        }
-      ]
-    },
-    {
-      "id": "bosque-5",
-      "nombre": "Tabla del 10",
-      "corto": "Tabla del 10",
+        { "id": "tabla", "peso": 3, "params": { "tablas": [5] } },
+        { "id": "memoria-tablas", "peso": 1, "params": { "tablas": [5] } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "×", "tablas": [5] } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "×", "tablas": [5] } },
+        { "id": "secuencia", "peso": 1, "params": { "tablas": [5] } },
+        { "id": "grupos-iguales", "peso": 1 },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [5] } }
+      ] },
+    { "id": "bosque-5", "nombre": "Tabla del 10", "corto": "Tabla del 10",
       "plantillas": [
-        {
-          "id": "tabla",
-          "peso": 3,
-          "params": {
-            "tablas": [
-              10
-            ]
-          }
-        },
-        {
-          "id": "memoria-tablas",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              10
-            ]
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              10
-            ]
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              10
-            ]
-          }
-        },
-        {
-          "id": "secuencia",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              10
-            ]
-          }
-        },
-        {
-          "id": "grupos-iguales",
-          "peso": 1
-        }
-      ]
-    },
-    {
-      "id": "bosque-6",
-      "nombre": "Tabla del 3",
-      "corto": "Tabla del 3",
+        { "id": "tabla", "peso": 3, "params": { "tablas": [10] } },
+        { "id": "memoria-tablas", "peso": 1, "params": { "tablas": [10] } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "×", "tablas": [10] } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "×", "tablas": [10] } },
+        { "id": "secuencia", "peso": 1, "params": { "tablas": [10] } },
+        { "id": "grupos-iguales", "peso": 1 },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [10] } }
+      ] },
+    { "id": "bosque-6", "nombre": "Tabla del 3", "corto": "Tabla del 3",
       "plantillas": [
-        {
-          "id": "tabla",
-          "peso": 3,
-          "params": {
-            "tablas": [
-              3
-            ]
-          }
-        },
-        {
-          "id": "memoria-tablas",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              3
-            ]
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              3
-            ]
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              3
-            ]
-          }
-        },
-        {
-          "id": "secuencia",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              3
-            ]
-          }
-        },
-        {
-          "id": "grupos-iguales",
-          "peso": 1
-        }
-      ]
-    },
-    {
-      "id": "bosque-7",
-      "nombre": "Tabla del 4",
-      "corto": "Tabla del 4",
+        { "id": "tabla", "peso": 3, "params": { "tablas": [3] } },
+        { "id": "memoria-tablas", "peso": 1, "params": { "tablas": [3] } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "×", "tablas": [3] } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "×", "tablas": [3] } },
+        { "id": "secuencia", "peso": 1, "params": { "tablas": [3] } },
+        { "id": "grupos-iguales", "peso": 1 },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [3] } }
+      ] },
+    { "id": "bosque-7", "nombre": "Tabla del 4", "corto": "Tabla del 4",
       "plantillas": [
-        {
-          "id": "tabla",
-          "peso": 3,
-          "params": {
-            "tablas": [
-              4
-            ]
-          }
-        },
-        {
-          "id": "memoria-tablas",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              4
-            ]
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              4
-            ]
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              4
-            ]
-          }
-        },
-        {
-          "id": "secuencia",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              4
-            ]
-          }
-        },
-        {
-          "id": "grupos-iguales",
-          "peso": 1
-        }
-      ]
-    },
-    {
-      "id": "bosque-8",
-      "nombre": "Repaso de todas las tablas",
-      "corto": "Tablas mezcladas",
+        { "id": "tabla", "peso": 3, "params": { "tablas": [4] } },
+        { "id": "memoria-tablas", "peso": 1, "params": { "tablas": [4] } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "×", "tablas": [4] } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "×", "tablas": [4] } },
+        { "id": "secuencia", "peso": 1, "params": { "tablas": [4] } },
+        { "id": "grupos-iguales", "peso": 1 },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [4] } }
+      ] },
+    { "id": "bosque-8", "nombre": "Repaso de todas las tablas", "corto": "Tablas mezcladas",
       "plantillas": [
-        {
-          "id": "tabla",
-          "peso": 3,
-          "params": {
-            "tablas": [
-              2,
-              3,
-              4,
-              5,
-              10
-            ]
-          }
-        },
-        {
-          "id": "memoria-tablas",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              2,
-              3,
-              4,
-              5,
-              10
-            ]
-          }
-        },
-        {
-          "id": "cuenta-faltante",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              2,
-              3,
-              4,
-              5,
-              10
-            ]
-          }
-        },
-        {
-          "id": "verdadero-falso",
-          "peso": 1,
-          "params": {
-            "op": "×",
-            "tablas": [
-              2,
-              3,
-              4,
-              5,
-              10
-            ]
-          }
-        },
-        {
-          "id": "secuencia",
-          "peso": 1,
-          "params": {
-            "tablas": [
-              2,
-              3,
-              4,
-              5,
-              10
-            ]
-          }
-        },
-        {
-          "id": "grupos-iguales",
-          "peso": 1
-        }
-      ]
-    }
+        { "id": "tabla", "peso": 3, "params": { "tablas": [2, 3, 4, 5, 10] } },
+        { "id": "memoria-tablas", "peso": 1, "params": { "tablas": [2, 3, 4, 5, 10] } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "×", "tablas": [2, 3, 4, 5, 10] } },
+        { "id": "verdadero-falso", "peso": 1, "params": { "op": "×", "tablas": [2, 3, 4, 5, 10] } },
+        { "id": "secuencia", "peso": 1, "params": { "tablas": [2, 3, 4, 5, 10] } },
+        { "id": "grupos-iguales", "peso": 1 },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [2, 3, 4, 5, 10] } }
+      ] }
   ],
-  "jefe": {
-    "id": "bosque-jefe",
-    "nombre": "El Hada del Bosque",
-    "corto": "Carrera de tablas",
-    "descripcion": "Carrera de tablas sin tiempo límite. Desafío: tablas del 6 al 9.",
-    "avatar": "hada",
-    "plantillas": [
-      {
-        "id": "tabla",
-        "peso": 3,
-        "params": {
-          "tablas": [
-            2,
-            3,
-            4,
-            5,
-            10
-          ],
-          "desafio": true
-        }
-      },
-      {
-        "id": "memoria-tablas",
-        "peso": 1,
-        "params": {
-          "tablas": [
-            2,
-            3,
-            4,
-            5,
-            10
-          ]
-        }
-      },
-      {
-        "id": "cuenta-faltante",
-        "peso": 1,
-        "params": {
-          "op": "×",
-          "tablas": [
-            2,
-            3,
-            4,
-            5,
-            10
-          ],
-          "desafio": true
-        }
-      }
-    ]
-  }
+  "jefe":
+    { "id": "bosque-jefe", "nombre": "El Hada del Bosque", "corto": "Carrera de tablas", "descripcion": "Carrera de tablas sin tiempo límite. Desafío: tablas del 6 al 9.", "avatar": "hada",
+      "plantillas": [
+        { "id": "tabla", "peso": 3, "params": { "tablas": [2, 3, 4, 5, 10], "desafio": true } },
+        { "id": "memoria-tablas", "peso": 1, "params": { "tablas": [2, 3, 4, 5, 10] } },
+        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "×", "tablas": [2, 3, 4, 5, 10], "desafio": true } },
+        { "id": "guerra-cartas", "peso": 1, "params": { "op": "×" } },
+        { "id": "loteria", "peso": 1, "params": { "op": "×", "tablas": [2, 3, 4, 5, 10] } },
+        { "id": "dados", "peso": 1, "params": { "op": "×" } }
+      ] }
 }

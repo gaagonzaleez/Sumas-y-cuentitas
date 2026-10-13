@@ -311,5 +311,35 @@
     "tema": "Escribir números con letras",
     "frase": "¡Casi! Revisá cómo se escribe.",
     "consejo": "Escribir juntas los números del calendario o de la casa."
+  },
+  "igualdad.balanza": {
+    "leccion": "balanza",
+    "tema": "Igualdades (balanza)",
+    "frase": "La balanza tiene que quedar pareja: los dos lados dan lo mismo.",
+    "consejo": "Jugar con una balanza de juguete o con bloques."
+  },
+  "dinero.alcanza": {
+    "leccion": "compra-total",
+    "tema": "¿Me alcanza la plata?",
+    "frase": "Sumemos los precios y comparemos con la plata.",
+    "consejo": "Antes de comprar, sumar juntas los precios."
+  },
+  "problema.pregunta": {
+    "leccion": "historia",
+    "tema": "Problemas: qué se puede preguntar",
+    "frase": "Esa pregunta no se puede responder con estos datos.",
+    "consejo": "Inventar preguntas para una misma historia."
+  },
+  "dinero.menos-piezas": {
+    "leccion": "pagar",
+    "tema": "Pagar con pocos billetes",
+    "frase": "Se puede pagar con menos billetes y monedas.",
+    "consejo": "Pagar usando primero los billetes grandes."
+  },
+  "numeros.pistas": {
+    "leccion": "comparar",
+    "tema": "Adivinanzas de números",
+    "frase": "Revisemos las pistas una por una.",
+    "consejo": "Jugar a 'pensé un número' con pistas."
   }
 }

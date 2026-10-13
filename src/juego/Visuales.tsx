@@ -179,5 +179,87 @@ export function VisualEjercicio({ v }: { v: Visual }) {
       );
     case 'dibujo':
       return <div className="centro" style={{ display: 'flex' }}><Objeto id={v.objeto} size={96} /></div>;
+    case 'cartas':
+      return (
+        <div className="fila" style={{ justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
+          {v.manos.map((m, i) => (
+            <div key={i} className="col centro" style={{ gap: 6, background: i === 0 ? 'var(--lavanda)' : '#FFF4D1', borderRadius: 18, padding: '8px 10px' }}>
+              <span style={{ fontWeight: 800 }}>{m.nombre}</span>
+              <div className="fila" style={{ gap: 6, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 170 }}>
+                {m.cartas.map((c, k) => (c < 0 ? <Plata key={k} valor={-c} size={0.7} /> : <Carta key={k} n={c} color={i === 0 ? '#7A5BD9' : '#D9603B'} />))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    case 'dados':
+      return (
+        <div className="fila" style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }} aria-label={`Dados: ${v.valores.join(', ')}`}>
+          {v.valores.map((n, i) => <Dado key={i} n={n} />)}
+        </div>
+      );
+    case 'balanza':
+      return <Balanza izquierda={v.izquierda} derecha={v.derecha} />;
+    case 'piramide':
+      return <Piramide abajo={v.abajo} arriba={v.arriba} />;
   }
+}
+
+/** Carta propia de mateAventuras: número grande y una estrellita en las esquinas. */
+function Carta({ n, color }: { n: number; color: string }) {
+  return (
+    <svg width="56" height="78" viewBox="0 0 56 78" role="img" aria-label={`Carta ${n}`}>
+      <rect x="2" y="2" width="52" height="74" rx="8" fill="#fff" stroke={T} strokeWidth="2.5" />
+      <rect x="7" y="7" width="42" height="64" rx="5" fill="none" stroke={color} strokeWidth="1.5" strokeDasharray="3 3" />
+      <path d="M12 10l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill={color} />
+      <path d="M44 58l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill={color} />
+      <text x="28" y="48" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight="600" fontSize={n >= 100 ? 20 : 28} fill={T}>{n}</text>
+    </svg>
+  );
+}
+
+const PUNTOS: Record<number, [number, number][]> = {
+  1: [[2, 2]], 2: [[1, 1], [3, 3]], 3: [[1, 1], [2, 2], [3, 3]], 4: [[1, 1], [3, 1], [1, 3], [3, 3]],
+  5: [[1, 1], [3, 1], [2, 2], [1, 3], [3, 3]], 6: [[1, 1], [3, 1], [1, 2], [3, 2], [1, 3], [3, 3]],
+};
+function Dado({ n }: { n: number }) {
+  return (
+    <svg width="58" height="58" viewBox="0 0 58 58" role="img" aria-label={`Dado con ${n}`}>
+      <rect x="3" y="3" width="52" height="52" rx="12" fill="#fff" stroke={T} strokeWidth="3" />
+      {(PUNTOS[n] ?? []).map(([x, y], i) => <circle key={i} cx={4 + x * 12.5} cy={4 + y * 12.5} r="5" fill={T} />)}
+    </svg>
+  );
+}
+
+function Balanza({ izquierda, derecha }: { izquierda: string; derecha: string }) {
+  const plato = (x: number, t: string) => (
+    <g>
+      <path d={`M${x} 34L${x - 50} 62M${x} 34L${x + 50} 62`} stroke={T} strokeWidth="2" />
+      <path d={`M${x - 58} 62h116l-12 30h-92z`} fill="#FFF4D1" stroke={T} strokeWidth="2.5" strokeLinejoin="round" />
+      <text x={x} y="85" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight="600" fontSize="22" fill={T}>{t}</text>
+    </g>
+  );
+  return (
+    <svg viewBox="0 0 300 140" width="100%" style={{ maxWidth: 340 }} role="img" aria-label={`Balanza: ${izquierda} pesa igual que ${derecha}`}>
+      <path d="M150 34v94M110 132h80" stroke={T} strokeWidth="5" strokeLinecap="round" />
+      <path d="M62 34h176" stroke="#7A5BD9" strokeWidth="6" strokeLinecap="round" />
+      <circle cx="150" cy="30" r="8" fill="#FFC93C" stroke={T} strokeWidth="2.5" />
+      {plato(62, izquierda)}
+      {plato(238, derecha)}
+    </svg>
+  );
+}
+
+function Piramide({ abajo, arriba }: { abajo: (number | null)[]; arriba: number | null }) {
+  const bloque = (n: number | null, key: string) => (
+    <span key={key} style={{ width: 80, height: 56, borderRadius: 12, border: `3px ${n === null ? 'dashed #9C8FC4' : `solid ${T}`}`, background: n === null ? '#fff' : '#FFF4D1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--fuente-titulo)', fontSize: 28, color: n === null ? '#9C8FC4' : T }}>
+      {n ?? '?'}
+    </span>
+  );
+  return (
+    <div className="col centro" style={{ gap: 6 }} aria-label={`Pirámide: arriba ${arriba ?? 'falta'}, abajo ${abajo.map((x) => x ?? 'falta').join(' y ')}`}>
+      <div className="fila" style={{ justifyContent: 'center' }}>{bloque(arriba, 'a')}</div>
+      <div className="fila" style={{ justifyContent: 'center', gap: 6 }}>{abajo.map((n, i) => bloque(n, `b${i}`))}</div>
+    </div>
+  );
 }

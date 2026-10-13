@@ -7,6 +7,7 @@ import * as din from './generadores/dinero';
 import * as prob from './generadores/problemas';
 import * as fin from './generadores/finanzas';
 import * as varios from './generadores/variedad';
+import * as j from './generadores/juegos';
 
 export const GENERADORES: Record<string, Generador> = {
   contar: num.contar,
@@ -47,4 +48,22 @@ export const GENERADORES: Record<string, Generador> = {
   'verdadero-falso': varios.verdaderoFalso,
   'memoria-cuentas': varios.memoriaCuentas,
   dobles: varios.dobles,
+  'guerra-cartas': j.guerraCartas,
+  escoba: j.escoba,
+  loteria: j.loteria,
+  dados: j.dados,
+  balanza: j.balanza,
+  piramide: j.piramide,
+  adivinanza: j.adivinanza,
+  alcanza: j.alcanza,
+  carrito: j.carrito,
+  'ordenar-precios': j.ordenarPrecios,
+  'menos-billetes': j.menosBilletes,
+  'elegir-pregunta': j.elegirPregunta,
+  'elegir-cuenta': j.elegirCuenta,
+  estimar: j.estimar,
+  'historia-vf': j.historiaVF,
+  'falta-meta': j.faltaMeta,
+  'trabajo-cobro': j.trabajoCobro,
+  clasificar: j.clasificar,
 };

@@ -27,6 +27,8 @@ Se abre en pantalla completa y funciona sin internet (menos la tabla del grupo).
 
 Truco para probar rápido: los mundos se abren en orden (el Mercado se abre al vencer a la jefa del Valle). Cada grado se completa al contestar 15 preguntas (sin esperar tiempo, decisión de Ga).
 
+**Variedad:** cada nivel mezcla por lo menos 5 juegos distintos (lo controla `npm run contenido`). Además de los ejercicios clásicos hay juegos de aula y de casa: guerra de cartas (de números, sumas, restas, tablas y plata), escoba (cartas o monedas que suman justo), lotería con cartón de 9, dados, balanza, pirámide de sumas, adivinanzas con pistas, escribir números con letras, memoria de cuentas, verdadero o falso, y para finanzas ¿me alcanza?, carrito del súper con presupuesto, ordenar precios, pagar con menos billetes, cobrar por un trabajo, cuánto falta para la meta y necesidades o deseos.
+
 ## Cómo está hecho
 
 - React + TypeScript + Vite, PWA instalable (service worker), datos en el dispositivo (IndexedDB).

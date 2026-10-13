@@ -49,6 +49,9 @@ for (const m of MUNDOS) {
   if (m.niveles.length !== 8) mal(`${m.nombre} tiene ${m.niveles.length} niveles (deben ser 8)`);
   for (const n of [...m.niveles, m.jefe]) {
     for (const p of n.plantillas) if (!GENERADORES[p.id]) mal(`${n.id}: plantilla sin generador ${p.id}`);
+    // Cada nivel tiene que tener por lo menos 5 juegos distintos (pedido de Ga).
+    const distintos = new Set(n.plantillas.map((p) => p.id)).size;
+    if (distintos < 5) mal(`${n.id}: tiene ${distintos} juegos distintos, mínimo 5`);
     if (n !== m.jefe && !PREMIOS.niveles[n.id]) mal(`${n.id}: no tiene premio`);
   }
   if (!PREMIOS.jefes[m.id]) mal(`La jefa de ${m.id} no tiene premios`);

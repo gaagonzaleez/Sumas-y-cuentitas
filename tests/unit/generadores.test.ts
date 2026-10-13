@@ -9,6 +9,12 @@ import type { Ejercicio } from '../../src/engine/tipos';
 
 const SIN_LLAVES = /\{\w+\}/;
 
+describe('variedad', () => {
+  it('cada nivel tiene por lo menos 5 juegos distintos', () => {
+    for (const m of MUNDOS) for (const n of [...m.niveles, m.jefe]) expect(new Set(n.plantillas.map((p) => p.id)).size, n.id).toBeGreaterThanOrEqual(5);
+  });
+});
+
 function revisar(ej: Ejercicio, donde: string) {
   const ctx = `${donde} → ${ej.uid}`;
   expect(ej.respuesta, ctx).toBeTruthy();
@@ -33,6 +39,18 @@ function revisar(ej: Ejercicio, donde: string) {
       }
       if (/^-?\d+$/.test(o.valor)) expect(Number(o.valor), ctx).toBeGreaterThanOrEqual(0);
     }
+  }
+  if (ej.modo === 'elegir') {
+    const e = ej.datos!.elegir!;
+    const valores = e.items.map((i) => i.valor);
+    if (e.regla === 'suma') {
+      // Tiene que haber alguna combinación que sume justo el objetivo.
+      const sumas = valores.reduce((acc, v) => new Set([...acc, ...[...acc].map((x) => x + v)]), new Set([0]));
+      expect(sumas.has(e.objetivo!), `${ctx} escoba sin solución`).toBe(true);
+    } else if (e.regla === 'presupuesto') {
+      const baratos = [...valores].sort((a, b) => a - b).slice(0, e.cantidad);
+      expect(baratos.reduce((a, b) => a + b, 0), `${ctx} carrito imposible`).toBeLessThanOrEqual(e.objetivo!);
+    } else expect(e.correctas?.length, ctx).toBeGreaterThan(0);
   }
   for (const [v, t] of Object.entries(ej.erroresPrevistos ?? {})) {
     expect(v, ctx).not.toBe(ej.respuesta);

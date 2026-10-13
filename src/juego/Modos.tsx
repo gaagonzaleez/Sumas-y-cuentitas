@@ -19,8 +19,10 @@ export interface EstadoOpcion {
 export function Opciones({ ej, responder, estado }: { ej: Ejercicio; responder: Responder; estado: EstadoOpcion }) {
   const ops = ej.opciones ?? [];
   const largas = ops.some((o) => (o.texto ?? o.valor).length > 14);
+  // Cartón de lotería: 9 números en una grilla de 3.
+  const carton = ops.length > 6 && !largas;
   return (
-    <div className={largas ? 'col' : 'grilla-2'} style={{ gap: 12 }}>
+    <div className={largas ? 'col' : carton ? 'grilla-3 carton' : 'grilla-2'} style={{ gap: carton ? 8 : 12 }}>
       {ops.map((o) => {
         const ok = estado.correcta === o.valor;
         const mal = estado.descartadas.includes(o.valor);
@@ -29,11 +31,11 @@ export function Opciones({ ej, responder, estado }: { ej: Ejercicio; responder: 
           <button key={o.valor} onClick={() => responder(o.valor)} disabled={!!estado.correcta || mal}
             aria-label={`${o.texto ?? o.valor}${ok ? ', correcta' : mal ? ', ya probaste esta' : ''}`}
             style={{
-              minHeight: 72, borderRadius: 20, padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+              minHeight: carton ? 64 : 72, borderRadius: 20, padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
               border: `4px solid ${ok ? 'var(--turquesa-oscuro)' : mal ? '#E9B8BC' : 'var(--lavanda)'}`,
               background: ok ? 'var(--turquesa-claro)' : mal ? '#FBF3F4' : '#fff',
               color: ok ? 'var(--turquesa-oscuro)' : mal ? '#8C7F9E' : 'var(--tinta)',
-              fontFamily: largas ? 'var(--fuente-texto)' : 'var(--fuente-titulo)', fontWeight: largas ? 800 : 600, fontSize: largas ? 19 : 32, textAlign: largas ? 'left' : 'center',
+              fontFamily: largas ? 'var(--fuente-texto)' : 'var(--fuente-titulo)', fontWeight: largas ? 800 : 600, fontSize: largas ? 19 : carton ? 28 : 32, textAlign: largas ? 'left' : 'center',
               textDecoration: mal ? 'line-through' : undefined,
             }}>
             {dibujo}
@@ -314,5 +316,60 @@ export function EscribirLetras({ ej, responder, bloqueado }: { ej: Ejercicio; re
       />
       <button className="boton ancho" disabled={!v.trim() || bloqueado}>Listo</button>
     </form>
+  );
+}
+
+/** Tocar varias cosas: cartas que suman justo un número, compras que entran en la plata, necesidades. */
+export function Elegir({ ej, responder, bloqueado }: { ej: Ejercicio; responder: Responder; bloqueado: boolean }) {
+  const e = ej.datos!.elegir!;
+  const [sel, setSel] = useState<string[]>([]);
+  const suma = e.items.filter((i) => sel.includes(i.id)).reduce((a, i) => a + i.valor, 0);
+  const mostrarSuma = e.regla !== 'conjunto';
+  function tocar(id: string) {
+    sonido('toque');
+    setSel((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+  }
+  function listo() {
+    let r = 'ok';
+    if (e.regla === 'suma') r = suma === e.objetivo ? 'ok' : suma > (e.objetivo ?? 0) ? 'se-pasa' : 'falta';
+    else if (e.regla === 'presupuesto') r = suma > (e.objetivo ?? 0) ? 'se-pasa' : sel.length < (e.cantidad ?? 1) ? 'falta' : 'ok';
+    else {
+      const bien = new Set(e.correctas ?? []);
+      r = sel.length === bien.size && sel.every((x) => bien.has(x)) ? 'ok' : 'mal';
+    }
+    responder(r);
+    if (r !== 'ok') setSel([]);
+  }
+  const estiloCarta = (on: boolean) => ({
+    minHeight: e.estilo === 'productos' ? 96 : 84, borderRadius: e.estilo === 'cartas' ? 14 : 20, padding: '8px 6px',
+    display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 4,
+    border: `4px solid ${on ? 'var(--violeta)' : 'var(--lavanda)'}`,
+    background: on ? 'var(--lavanda)' : '#fff', color: 'var(--tinta)',
+    transform: on ? 'translateY(-4px)' : undefined, boxShadow: on ? '0 6px 0 #C9BEF0' : '0 3px 0 #E4DDF7',
+    fontFamily: e.estilo === 'cartas' ? 'var(--fuente-titulo)' : 'var(--fuente-texto)', fontWeight: e.estilo === 'cartas' ? 600 : 800,
+    fontSize: e.estilo === 'cartas' ? 30 : 17,
+  });
+  return (
+    <div className="col" style={{ gap: 12 }}>
+      <div className={e.items.length > 4 ? 'grilla-3' : 'grilla-2'} style={{ gap: 8 }}>
+        {e.items.map((i) => {
+          const on = sel.includes(i.id);
+          return (
+            <button key={i.id} onClick={() => tocar(i.id)} disabled={bloqueado} aria-pressed={on} aria-label={`${i.texto}${on ? ', elegida' : ''}`} style={estiloCarta(on)}>
+              {i.dibujo?.startsWith('plata-') ? <Plata valor={Number(i.dibujo.slice(6))} size={0.8} /> : i.dibujo ? <Objeto id={i.dibujo} size={40} /> : null}
+              {!i.dibujo?.startsWith('plata-') && <span>{i.texto}</span>}
+              {on && <Icono nombre="tilde" size={20} grosor={3} />}
+            </button>
+          );
+        })}
+      </div>
+      {mostrarSuma && (
+        <p className="centro" aria-live="polite" style={{ margin: 0, fontWeight: 800, fontSize: 18 }}>
+          {e.estilo === 'cartas' ? 'Llevás' : 'Sumás'}: {e.estilo === 'cartas' ? suma : `$${suma}`}
+          {e.regla === 'presupuesto' && ` de $${e.objetivo} · ${sel.length} de ${e.cantidad} cosas`}
+        </p>
+      )}
+      <button className="boton ancho" disabled={!sel.length || bloqueado} onClick={listo}>Listo</button>
+    </div>
   );
 }

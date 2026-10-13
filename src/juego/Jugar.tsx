@@ -18,7 +18,7 @@ import { Modal } from '../ui/comunes';
 import { ir } from '../ui/router';
 import { guardarFestejo } from './festejo';
 import { Leccion } from './Leccion';
-import { ArmarBloques, ArmarGrupos, Dinero, EscribirLetras, type EstadoOpcion, Memoria, Opciones, Ordenar, Teclado } from './Modos';
+import { ArmarBloques, ArmarGrupos, Dinero, Elegir, EscribirLetras, type EstadoOpcion, Memoria, Opciones, Ordenar, Teclado } from './Modos';
 import { VisualEjercicio } from './Visuales';
 
 type Fase = 'pregunta' | 'acierto' | 'leccion';
@@ -321,6 +321,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
               <Memoria ej={ejercicio} responder={contestar} bloqueado={fase !== 'pregunta'} alError={() => contestar('x')} />
             )}
             {ejercicio.modo === 'arrastrar' && <ArmarGrupos ej={ejercicio} responder={contestar} bloqueado={fase !== 'pregunta'} />}
+            {ejercicio.modo === 'elegir' && <Elegir key={ejercicio.uid} ej={ejercicio} responder={contestar} bloqueado={fase !== 'pregunta'} />}
             {ejercicio.modo === 'letras' && <EscribirLetras ej={ejercicio} responder={contestar} bloqueado={fase !== 'pregunta'} />}
           </div>
           {fase === 'pregunta' && (
