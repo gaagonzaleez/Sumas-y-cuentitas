@@ -42,6 +42,7 @@ function Perfil({ r }: { r: ResumenPerfil }) {
         <span className="col" style={{ alignItems: 'flex-end', gap: 0, flex: 'none' }}>
           <span style={{ fontWeight: 800 }}>⭐ {r.estrellas}</span>
           <span className="suave chico">{minutos(r.minutos7)} esta semana</span>
+          <span className="suave chico">{minutos(r.minutosTotal)} en total</span>
           <span className="chico" style={{ color: 'var(--violeta)', fontWeight: 800 }}>{abierto ? 'Cerrar' : 'Ver más'}</span>
         </span>
       </button>
@@ -98,7 +99,9 @@ function Tablero({ perfiles }: { perfiles: ResumenPerfil[] }) {
         <Dato n={t.perfiles} texto="perfiles" />
         <Dato n={t.activos7} texto="jugaron esta semana" />
         <Dato n={minutos(t.minutos7)} texto="jugados esta semana" />
+        <Dato n={minutos(t.minutosTotal)} texto="jugados en total" />
         <Dato n={t.grados} texto="grados completados" />
+        <Dato n={t.perfiles ? minutos(Math.round(t.minutosTotal / t.perfiles)) : '0 min'} texto="en promedio por perfil" />
       </div>
       {t.temasDificiles.length > 0 && (
         <div className="tarjeta col" style={{ gap: 4 }}>

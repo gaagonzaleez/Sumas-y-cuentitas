@@ -125,6 +125,7 @@ export function totales(perfiles: ResumenPerfil[], hoy = diaArgentina()) {
     perfiles: perfiles.length,
     activos7,
     minutos7: perfiles.reduce((a, r) => a + r.minutos7, 0),
+    minutosTotal: perfiles.reduce((a, r) => a + r.minutosTotal, 0),
     grados: perfiles.reduce((a, r) => a + r.gradosCompletados, 0),
     temasDificiles: Object.entries(temas).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([tema, veces]) => ({ tema, veces })),
     porMundo,
