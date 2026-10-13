@@ -26,9 +26,10 @@ export function PerfilNuevo() {
     if (problema || codigoMal || !acepto || lleno || enviando) return;
     setEnviando(true);
     await crearJugadora(limpiarApodo(apodo), grado, codigo.trim() ? normalizarCodigo(codigo) : undefined);
-    // El celular pasa a la nena: lo de la adulta vuelve a pedir contraseña.
-    salirAdulta();
     ir('/dibujos', true);
+    // El celular pasa a la nena: lo de la adulta vuelve a pedir contraseña. Se cierra después de
+    // cambiar de pantalla (si no, la pantalla del perfil pedía la contraseña otra vez).
+    setTimeout(salirAdulta, 0);
   }
 
   return (

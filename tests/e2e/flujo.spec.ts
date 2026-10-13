@@ -23,7 +23,7 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
   await page.getByRole('button', { name: 'Seguir' }).click();
 
   // Pantalla 1: perfil de la nena (con validación de apodo)
-  await expect(page.getByRole('heading', { name: 'Creá el perfil de tu hija' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Creá el perfil de la nena' })).toBeVisible();
   await page.getByLabel('Apodo de juego').fill('Sofía');
   await page.getByRole('button', { name: 'Crear perfil' }).click();
   await expect(page.getByText('Parece un nombre real')).toBeVisible();

@@ -12,8 +12,10 @@ export default defineConfig({
     launchOptions: exe ? { executablePath: exe } : {},
   },
   webServer: {
-    command: 'npx vite preview --port 4173 --strictPort',
+    // En CI ya se compiló antes; en la compu se compila siempre, para no probar una versión vieja.
+    command: process.env.CI ? 'npx vite preview --port 4173 --strictPort' : 'npm run build && npx vite preview --port 4173 --strictPort',
     url: 'http://localhost:4173/Sumas-y-cuentitas/',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
+    timeout: 180_000,
   },
 });
