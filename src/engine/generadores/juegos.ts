@@ -21,6 +21,7 @@ import {
   uid,
 } from './comun';
 import { datosComparar, datosValor } from './numeros';
+import { numerosPara, rangoHistoria } from './problemas';
 import { datosResta, datosSuma, par } from './sumasRestas';
 import { datosGrupos, elegirTabla } from './tablas';
 import { VALORES_PLATA } from './dinero';
@@ -302,7 +303,6 @@ export const balanza: Generador = (az, ctx): Ejercicio => {
     r,
     [
       [total, 'igualdad.balanza'],
-      [op === '+' ? total + c : total + c, 'igualdad.balanza'],
       [r + 1, 'igualdad.balanza'],
       [r - 1, 'igualdad.balanza'],
     ],
@@ -339,7 +339,7 @@ export const piramide: Generador = (az, ctx): Ejercicio => {
   const tag = arriba ? (s <= 20 ? 'suma.uno-mas-menos' : 'suma.calculo') : 'falta.calculo';
   const previstos: [number, string][] = arriba
     ? [[Math.abs(a - b), 'suma.resta-en-vez'], [s + 1, tag], [s - 1, tag], [s + 10, tag]]
-    : [[s + a, 'falta.da-el-total'], [s, 'falta.da-el-total'], [b + 1, tag], [b - 1, tag]];
+    : [[s, 'falta.da-el-total'], [b + 1, tag], [b - 1, tag], [b + 2, tag]];
   const { opciones, erroresPrevistos } = opcionesNumericas(az, r, previstos, tag, 4, 0);
   return {
     uid: uid('piramide', { a, b, arriba: arriba ? 1 : 0 }),
@@ -404,10 +404,16 @@ export const alcanza: Generador = (az, ctx): Ejercicio => {
   const tope = Math.max(20, Math.min(1000, ctx.rango));
   const prods = productosCon(az, az.entero(1, 2), Math.floor(tope / 2));
   const total = prods.reduce((s, p) => s + p.precio, 0);
-  const si = az.chance(0.5);
-  const plata = si ? total + az.elegir([0, 1, 5, 10, 20].filter((x) => x <= tope)) : Math.max(1, total - az.elegir([1, 5, 10].filter((x) => x < total) .concat([1])));
-  const okTexto = texto(az, 'alcanza', 'si');
-  const noTexto = texto(az, 'alcanza', 'no');
+  // Tres casos parejos: sobra, justo o falta (así no se contesta al azar con sí o no).
+  const caso = az.elegir(['sobra', 'justo', 'falta'] as const);
+  const plata =
+    caso === 'justo'
+      ? total
+      : caso === 'sobra'
+        ? total + az.elegir([1, 2, 5, 10, 20].filter((x) => x <= Math.max(1, Math.floor(tope / 4))))
+        : Math.max(1, total - az.elegir([1, 2, 5, 10].filter((x) => x < total).concat([1])));
+  const textos = { sobra: texto(az, 'alcanza', 'si'), justo: texto(az, 'alcanza', 'justo'), falta: texto(az, 'alcanza', 'no') };
+  const real = plata > total ? 'sobra' : plata === total ? 'justo' : 'falta';
   const alcanzaDe = plata >= total;
   return {
     uid: uid('alcanza', { plata, t: prods.map((p) => p.id + p.precio).join('-') }),
@@ -416,11 +422,8 @@ export const alcanza: Generador = (az, ctx): Ejercicio => {
     modo: 'opciones',
     consigna: rellenar(texto(az, 'alcanza', 'consigna'), { plata, lista: listaTexto(prods.map((p) => p.nombre)) }),
     visual: { tipo: 'productos', productos: prods.map((p) => ({ objeto: p.id, nombre: sinArticulo(p.nombre), precio: p.precio })) },
-    respuesta: alcanzaDe ? okTexto : noTexto,
-    opciones: [
-      { valor: okTexto, errorTag: alcanzaDe ? undefined : 'dinero.alcanza' },
-      { valor: noTexto, errorTag: alcanzaDe ? 'dinero.alcanza' : undefined },
-    ],
+    respuesta: textos[real],
+    opciones: (['sobra', 'justo', 'falta'] as const).map((k) => ({ valor: textos[k], errorTag: k === real ? undefined : 'dinero.alcanza' })),
     errorTagPorDefecto: 'dinero.alcanza',
     leccion: {
       r: total,
@@ -433,7 +436,7 @@ export const alcanza: Generador = (az, ctx): Ejercicio => {
       sobranTxt: plata - total === 1 ? 'sobra 1 peso' : `sobran ${plata - total} pesos`,
       faltanTxt: total - plata === 1 ? 'falta 1 peso' : `faltan ${total - plata} pesos`,
     },
-    explicacion: rellenar(texto(az, 'alcanza', 'explicacion'), {
+    explicacion: rellenar(texto(az, 'alcanza', prods.length === 1 ? 'explicacionUno' : 'explicacion'), {
       total,
       plata,
       cierre: rellenar(texto(az, 'alcanza', plata === total ? 'cierreJusto' : alcanzaDe ? 'cierreSi' : 'cierreNo'), {
@@ -540,9 +543,8 @@ function historiaSimple(az: Azar, ctx: Contexto, excluir: string[] = []) {
   const tipo = az.elegir(tipos.length ? tipos : ['juntar', 'agregar', 'quitar']);
   const h = az.elegir(HISTORIAS[tipo].filter((x) => x.op));
   const op = h.op as '+' | '−';
-  const m = max(ctx, 10);
-  const a = op === '+' ? az.entero(2, Math.max(2, m - 2)) : az.entero(4, m);
-  const b = op === '+' ? az.entero(1, Math.max(1, m - a)) : az.entero(1, a - 1);
+  // Números con sentido para la historia (nada de 800 flores en un florero).
+  const [a, b] = numerosPara(az, rangoHistoria(h, ctx.rango), op);
   const obj = h.objeto ?? az.elegir(h.objetos ?? ['estrella']);
   const [nombre, nombre2] = dosNombres(az);
   const c = az.entero(3, 12);
@@ -552,7 +554,7 @@ function historiaSimple(az: Azar, ctx: Contexto, excluir: string[] = []) {
   const pregunta = completa.match(/¿[^¿?]*\?\s*$/)?.[0].trim() ?? '';
   const sinPregunta = completa.slice(0, completa.length - pregunta.length).trim();
   const r = op === '+' ? a + b : a - b;
-  return { op, a, b, r, completa, sinPregunta, pregunta, obj, nombre, tipo };
+  return { op, a, b, r, completa, sinPregunta, pregunta, obj, nombre, nombre2, tipo };
 }
 
 export const elegirPregunta: Generador = (az, ctx): Ejercicio => {
@@ -606,14 +608,18 @@ export const elegirCuenta: Generador = (az, ctx): Ejercicio => {
 };
 
 export const estimar: Generador = (az, ctx): Ejercicio => {
-  const h = historiaSimple(az, { ...ctx, rango: Math.max(30, ctx.rango) });
-  const redondo = (x: number) => Math.max(10, Math.round(x / 10) * 10);
+  // Estimar tiene sentido con resultados de 15 para arriba.
+  let h = historiaSimple(az, { ...ctx, rango: Math.max(30, ctx.rango) });
+  for (let i = 0; i < 20 && h.r < 15; i++) h = historiaSimple(az, { ...ctx, rango: Math.max(30, ctx.rango) });
+  const paso = h.r > 200 ? 50 : 10;
+  const redondo = (x: number) => Math.round(x / paso) * paso;
   const v = redondo(h.r);
   const otra = redondo(h.op === '+' ? Math.abs(h.a - h.b) : h.a + h.b);
   const cerca = (x: number) => rellenar(texto(az, 'estimar', 'cerca'), { v: x });
+  // Opciones que obligan a pensar: la cuenta contraria y números redondos vecinos (no ×10).
   const incorrectas: [string, string][] = [];
-  if (otra !== v) incorrectas.push([cerca(otra), 'problema.operacion']);
-  incorrectas.push([cerca(v * 10), 'problema.calculo'], [cerca(Math.max(1, Math.round(v / 10))), 'problema.calculo']);
+  if (otra !== v && otra > 0) incorrectas.push([cerca(otra), 'problema.operacion']);
+  for (const d of az.mezclar([2, -2, 3, -3])) if (v + d * paso > 0 && v + d * paso !== otra) incorrectas.push([cerca(v + d * paso), 'problema.calculo']);
   return {
     uid: uid('estimar', { a: h.a, b: h.b, t: h.tipo }),
     plantillaId: 'estimar',
@@ -636,7 +642,8 @@ export const historiaVF: Generador = (az, ctx): Ejercicio => {
   const bien = az.chance(0.5);
   const otra = h.op === '+' ? Math.abs(h.a - h.b) : h.a + h.b;
   const dice = bien ? h.r : otra !== h.r ? otra : h.r + 1;
-  const [quien] = az.mezclar(NOMBRES);
+  // Quien opina no es un personaje de la historia.
+  const [quien] = az.mezclar(NOMBRES.filter((n) => n !== h.nombre && n !== h.nombre2));
   const si = texto(az, 'historia-vf', 'si');
   const no = texto(az, 'historia-vf', 'no');
   const cuentaTexto = `${h.a} ${h.op} ${h.b} = ${h.r}`;

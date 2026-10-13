@@ -28,7 +28,7 @@ export const cuentaFaltante: Generador = (az, ctx): Ejercicio => {
   } else if (op === '+') {
     [a, x] = par(az, ctx, '+');
     r = a + x;
-    previstos = [[r, 'falta.da-el-total'], [r + a, 'falta.da-el-total'], [x + 1, 'falta.calculo'], [x - 1, 'falta.calculo'], [x + 10, 'falta.calculo']];
+    previstos = [[r, 'falta.da-el-total'], [x + 1, 'falta.calculo'], [x - 1, 'falta.calculo'], [x + 10, 'falta.calculo']];
     tag = 'falta.calculo';
     leccion = datosFalta(a, r);
   } else {
@@ -37,7 +37,7 @@ export const cuentaFaltante: Generador = (az, ctx): Ejercicio => {
     [a, b] = par(az, ctx, '−');
     x = b;
     r = a - b;
-    previstos = [[a + r, 'falta.da-el-total'], [a, 'falta.da-el-total'], [x + 1, 'falta.calculo'], [x - 1, 'falta.calculo'], [x + 10, 'falta.calculo']];
+    previstos = [[a, 'falta.da-el-total'], [x + 1, 'falta.calculo'], [x - 1, 'falta.calculo'], [x + 10, 'falta.calculo']];
     tag = 'falta.calculo';
     leccion = datosFalta(r, a);
   }
@@ -81,13 +81,13 @@ export const verdaderoFalso: Generador = (az, ctx): Ejercicio => {
   } else if (op === '+') {
     [a, b] = par(az, ctx, '+');
     real = a + b;
-    [falsa, tagFalsa] = hayLlevada(a, b) ? [sumaSinLlevar(a, b), 'suma.olvida-llevada'] : [real + az.elegir([1, -1, 10]), real <= 20 ? 'suma.uno-mas-menos' : 'suma.calculo'];
+    [falsa, tagFalsa] = hayLlevada(a, b) ? [sumaSinLlevar(a, b), 'suma.olvida-llevada'] : [real + az.elegir(real <= 20 ? [1, -1, 2] : [1, -1, 10]), real <= 20 ? 'suma.uno-mas-menos' : 'suma.calculo'];
     tagDefecto = real <= 20 ? 'suma.uno-mas-menos' : 'suma.calculo';
     leccion = datosSuma(a, b);
   } else {
     [a, b] = par(az, ctx, '−');
     real = a - b;
-    [falsa, tagFalsa] = hayPrestamo(a, b) ? [restaInvertida(a, b), 'resta.invierte-columna'] : [real + az.elegir([1, -1, 10]), a <= 20 ? 'resta.uno-mas-menos' : 'resta.calculo'];
+    [falsa, tagFalsa] = hayPrestamo(a, b) ? [restaInvertida(a, b), 'resta.invierte-columna'] : [Math.max(0, Math.min(a - 1, real + az.elegir(a <= 20 ? [1, -1, 2] : [1, -1, 10]))), a <= 20 ? 'resta.uno-mas-menos' : 'resta.calculo'];
     if (falsa < 0) falsa = real + 1;
     tagDefecto = a <= 20 ? 'resta.uno-mas-menos' : 'resta.calculo';
     leccion = datosResta(a, b);

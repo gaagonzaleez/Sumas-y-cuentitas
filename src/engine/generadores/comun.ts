@@ -73,30 +73,41 @@ export function opcionesNumericas(
   minimo = 0,
 ): { opciones: Opcion[]; erroresPrevistos: Record<string, string> } {
   const usados = new Set<number>([respuesta]);
-  const elegidos: Opcion[] = [];
   const erroresPrevistos: Record<string, string> = {};
+  const validos: [number, string][] = [];
   for (const [v, tag] of previstos) {
-    if (!Number.isInteger(v) || v < minimo || usados.has(v)) continue;
+    if (!Number.isInteger(v) || v < minimo || v === respuesta || erroresPrevistos[String(v)]) continue;
     erroresPrevistos[String(v)] = tag;
-    if (elegidos.length < cantidad - 1) {
-      usados.add(v);
-      elegidos.push({ valor: String(v), errorTag: tag });
-    }
+    validos.push([v, tag]);
   }
-  const saltos = respuesta >= 20 ? [1, -1, 10, -10, 2, -2, 20, 5] : [1, -1, 2, -2, 3, -3, 4];
-  for (const s of saltos) {
-    if (elegidos.length >= cantidad - 1) break;
-    const v = respuesta + s;
-    if (v < minimo || usados.has(v)) continue;
+  // Cuántas opciones van por debajo de la respuesta: al azar, para que la correcta no sea
+  // siempre "la del medio" (si no, se adivina por el tamaño sin hacer la cuenta).
+  const quieroAbajo = az.entero(0, cantidad - 1);
+  const elegidos: Opcion[] = [];
+  let abajo = 0;
+  let arriba = 0;
+  const poner = (v: number, tag: string) => {
     usados.add(v);
-    elegidos.push({ valor: String(v), errorTag: tagDefecto });
-  }
-  let extra = 3;
+    elegidos.push({ valor: String(v), errorTag: tag });
+    if (v < respuesta) abajo++;
+    else arriba++;
+  };
+  const entra = (v: number) => (v < respuesta ? abajo < quieroAbajo : arriba < cantidad - 1 - quieroAbajo);
+  // 1) Los errores previstos (tienen su minilección), respetando el reparto.
+  for (const [v, tag] of validos) if (elegidos.length < cantidad - 1 && !usados.has(v) && entra(v)) poner(v, tag);
+  // 2) Números cercanos de cada lado.
+  const pasos = respuesta >= 20 ? [1, 10, 2, 20, 5, 3, 30, 4] : [1, 2, 3, 4, 5, 6, 7];
+  for (const lado of [-1, 1])
+    for (const d of pasos) {
+      const v = respuesta + lado * d;
+      if (elegidos.length < cantidad - 1 && v >= minimo && !usados.has(v) && entra(v)) poner(v, tagDefecto);
+    }
+  // 3) Si abajo no entran (números chicos), se completa con previstos y números de arriba.
+  for (const [v, tag] of validos) if (elegidos.length < cantidad - 1 && !usados.has(v)) poner(v, tag);
+  let extra = 1;
   while (elegidos.length < cantidad - 1) {
     const v = respuesta + extra++;
-    if (usados.has(v)) continue;
-    usados.add(v);
-    elegidos.push({ valor: String(v), errorTag: tagDefecto });
+    if (!usados.has(v)) poner(v, tagDefecto);
   }
   return { opciones: az.mezclar([{ valor: String(respuesta) }, ...elegidos]), erroresPrevistos };
 }

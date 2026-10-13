@@ -45,7 +45,10 @@ export function problemaConNumeros(az: Azar, ctx: Contexto, op: Op, a: number, b
   const candidatos = (tipos ?? (op === '+' ? ['juntar', 'agregar'] : ['quitar', 'comparar']))
     .flatMap((t) => HISTORIAS[t] ?? [])
     .filter((h) => h.op === op);
-  const h = az.elegir(candidatos);
+  // Solo historias donde esos números tienen sentido (si no hay ninguna, las que no tienen tope).
+  const grande = op === '+' ? a + b : a;
+  const caben = candidatos.filter((h) => (h.max ?? Infinity) >= grande);
+  const h = az.elegir(caben.length ? caben : candidatos);
   const obj = objetoDe(az, h);
   const { consigna } = base(h, az, { a, b, objetos: objeto(obj), ...genero(obj) });
   const r = calcular(op, a, b);
@@ -75,14 +78,22 @@ export function problemaConNumeros(az: Azar, ctx: Contexto, op: Op, a: number, b
   };
 }
 
-function numerosPara(az: Azar, rango: number, op: Op): [number, number] {
+export function numerosPara(az: Azar, rango: number, op: Op): [number, number] {
   const max = Math.max(10, rango);
+  // Primero el resultado (repartido parejo) y después los números; el segundo, por lo menos 2.
   if (op === '+') {
-    const a = az.entero(2, Math.max(2, max - 2));
-    return [a, az.entero(1, Math.max(1, max - a))];
+    const r = az.entero(Math.max(5, Math.floor(max * 0.3)), max);
+    const b = az.entero(2, Math.max(2, r - 2));
+    return [r - b, b];
   }
-  const a = az.entero(3, max);
-  return [a, az.entero(1, a - 1)];
+  const r = az.entero(1, Math.max(1, max - 2));
+  const b = az.entero(2, Math.max(2, max - r));
+  return [r + b, b];
+}
+
+/** El rango del ejercicio, sin pasarse de lo que tiene sentido en la historia. */
+export function rangoHistoria(h: Historia, rango: number): number {
+  return Math.max(10, Math.min(rango, h.max ?? Infinity));
 }
 
 export const problema: Generador = (az, ctx): Ejercicio => {
@@ -95,7 +106,7 @@ export const problema: Generador = (az, ctx): Ejercicio => {
 
   if (tipo === 'dos-pasos') {
     const [op1, op2] = h.ops as [Op, Op];
-    const max = Math.max(10, ctx.rango);
+    const max = rangoHistoria(h, ctx.rango);
     let a = 0, b = 0, c = 0;
     for (let i = 0; i < 100; i++) {
       a = az.entero(3, Math.max(3, Math.floor(max * 0.6)));
@@ -146,7 +157,7 @@ export const problema: Generador = (az, ctx): Ejercicio => {
 
   if (tipo === 'elegir-operacion') {
     const op = h.op as Op;
-    const [a, b] = numerosPara(az, ctx.rango, op);
+    const [a, b] = numerosPara(az, rangoHistoria(h, ctx.rango), op);
     const { consigna } = base(h, az, { a, b });
     const sumar = texto(az, 'problema', 'opcionSuma');
     const restar = texto(az, 'problema', 'opcionResta');
@@ -209,7 +220,7 @@ export const problema: Generador = (az, ctx): Ejercicio => {
 
   // juntar, agregar, quitar, comparar, dinero, dato-que-sobra
   const op = h.op as Op;
-  const [a, b] = numerosPara(az, ctx.rango, op);
+  const [a, b] = numerosPara(az, rangoHistoria(h, ctx.rango), op);
   const c = az.entero(3, 12);
   const { consigna } = base(h, az, { a, b, c, objetos: objeto(obj), ...genero(obj) });
   const r = calcular(op, a, b);
@@ -220,7 +231,12 @@ export const problema: Generador = (az, ctx): Ejercicio => {
   const otra = calcular(contraria(op), a, b);
   if (otra >= 0) previstos.push([otra, 'problema.operacion']);
   previstos.push([r + 1, 'problema.calculo'], [r - 1, 'problema.calculo']);
-  const { opciones, erroresPrevistos } = opcionesNumericas(az, r, previstos, 'problema.calculo', 4, 0);
+  const numericas = opcionesNumericas(az, r, previstos, 'problema.calculo', tipos.includes('dato-que-falta') ? 3 : 4, 0);
+  const { erroresPrevistos } = numericas;
+  // En el nivel de "datos que faltan", «Falta un dato» aparece siempre (si no, se adivinaba).
+  const opciones = tipos.includes('dato-que-falta')
+    ? az.mezclar([...numericas.opciones, { valor: texto(az, 'problema', 'noSePuede'), errorTag: 'problema.dato-que-falta' }])
+    : numericas.opciones;
   const cuentaTexto = `${a} ${op} ${b} = ${r}`;
   return {
     uid: uid('problema', { tipo, a, b, t: h.texto.slice(0, 10) }),

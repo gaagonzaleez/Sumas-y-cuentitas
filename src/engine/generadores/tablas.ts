@@ -14,7 +14,8 @@ export function datosGrupos(g: number, p: number) {
 /** Elige la tabla: las del nivel y, en grados de desafío, a veces una del 6 al 9. */
 export function elegirTabla(az: Azar, ctx: Contexto): number {
   const tablas = (ctx.params.tablas as number[]) ?? [2];
-  const desafio = (ctx.params.desafio as boolean) || ctx.caracter.desafioTablas;
+  // En los niveles de una sola tabla ("Tabla del 2") no aparecen otras: el desafío es para el repaso y la jefa.
+  const desafio = (ctx.params.desafio as boolean) || (ctx.caracter.desafioTablas && tablas.length > 1);
   if (desafio && az.chance(0.3)) return az.elegir(config.dificultad.tablasDesafio);
   return az.elegir(tablas);
 }

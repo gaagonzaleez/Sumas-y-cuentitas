@@ -472,13 +472,15 @@
     "consigna": [
       "Tenés {plata} pesos. ¿Te alcanza para comprar {lista}?"
     ],
-    "si": "Sí, me alcanza",
-    "no": "No, no me alcanza",
+    "si": "Sí, y me sobra plata",
+    "no": "No, me falta plata",
     "explicacion": "Todo cuesta {total} pesos y tenés {plata}. {cierre}",
     "cierreSi": "¡Te alcanza y te {sobranTxt}!",
     "cierreNo": "Te {faltanTxt}.",
     "pista": "Sumá los precios y compará con tu plata.",
-    "cierreJusto": "¡Te alcanza justo, sin que sobre nada!"
+    "cierreJusto": "¡Te alcanza justo, sin que sobre nada!",
+    "justo": "Sí, justito",
+    "explicacionUno": "Cuesta {total} pesos y tenés {plata}. {cierre}"
   },
   "carrito": {
     "modo": "elegir",

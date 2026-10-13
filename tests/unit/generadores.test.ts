@@ -143,3 +143,24 @@ describe('errores típicos', () => {
   it('resta dando vuelta columnas: 52 − 27 = 35', () => expect(restaInvertida(52, 27)).toBe(35));
   it('olvida descontar el préstamo: 61 − 28 = 43', () => expect(restaOlvidaPrestamo(61, 28)).toBe(43));
 });
+
+describe('opciones sin pistas escondidas', () => {
+  it('la respuesta correcta no se adivina por su tamaño (ni siempre la del medio)', () => {
+    const az = crearAzar(77);
+    const pos = [0, 0, 0, 0];
+    for (const mundo of MUNDOS)
+      for (const nivel of mundo.niveles)
+        for (const grado of [1, 3, 5]) {
+          const lim = limitesGrado(nivel, mundo.escala, grado);
+          for (const p of nivel.plantillas)
+            for (let i = 0; i < 6; i++) {
+              const ej = generarEjercicio(az, mundo, nivel, grado, lim.inicio, new Set(), p);
+              const nums = ej.opciones?.map((o) => Number(o.valor));
+              if (!nums || nums.length !== 4 || nums.some(Number.isNaN)) continue;
+              pos[[...nums].sort((a, b) => a - b).indexOf(Number(ej.respuesta))]++;
+            }
+        }
+    const total = pos.reduce((a, b) => a + b, 0);
+    for (const n of pos) expect(n / total).toBeGreaterThan(0.15);
+  });
+});

@@ -98,7 +98,8 @@ export const contar: Generador = (az, ctx) => {
 
 export const leerNumero: Generador = (az, ctx) => {
   const d = config.dificultad.desafioDiezMil;
-  const desafio = ctx.grado >= d.desdeGrado && az.chance(d.probabilidad);
+  // Números de 4 cifras: solo en los niveles que lo piden (no en «Contar» ni en «Números con letras»).
+  const desafio = Boolean(ctx.params.desafioDiezMil) && ctx.grado >= d.desdeGrado && az.chance(d.probabilidad);
   const n = desafio ? az.entero(1001, 9999) : numeroEnRango(az, ctx.rango, 10);
   const previstos: [number, string][] = [];
   const inv = invertirCifras(n);
@@ -218,7 +219,8 @@ export const comparar: Generador = (az, ctx) => {
   const max = Math.max(20, ctx.rango);
   let a = az.entero(10, max);
   let b = az.entero(10, max);
-  const iguales = az.chance(0.08);
+  // Sin el caso "son iguales": con un solo número a la vista, la respuesta se adivinaba.
+  const iguales = false;
   if (iguales) b = a;
   else {
     // A veces las unidades "engañan": 47 contra 52.
@@ -284,8 +286,8 @@ export const ordenar: Generador = (az, ctx) => {
 };
 
 export const familia: Generador = (az, ctx) => {
-  const max = Math.min(99, Math.max(19, ctx.rango));
-  const n = az.entero(10, max);
+  // Todas las familias del 10 al 90 (antes casi siempre salía la del 10).
+  const n = az.entero(10, 99);
   const [u, d] = cifras(n);
   const f = d * 10;
   const op = (x: number) => rellenar(texto(az, 'familia', 'opcion'), { f: x });

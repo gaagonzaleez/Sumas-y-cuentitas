@@ -117,17 +117,21 @@ function armarSuma(az: Azar, ctx: Contexto, modo: ModoSuma): Ejercicio {
     b = az.entero(1, Math.max(1, Math.floor(max / 3)));
     c = az.entero(1, Math.max(1, max - a - b));
   } else if (modo === 'decenas') {
+    // Primero el resultado (así no sale casi siempre el mismo) y después cómo se parte.
     const paso = max > 100 && az.chance(0.5) ? 100 : 10;
     const tope = Math.max(max, paso === 10 ? 50 : 300);
-    a = az.entero(1, Math.max(1, Math.floor(tope / paso) - 1)) * paso;
-    b = az.entero(1, Math.max(1, Math.floor((tope - a) / paso))) * paso;
+    const r = az.entero(2, Math.max(2, Math.floor(tope / paso))) * paso;
+    a = az.entero(1, r / paso - 1) * paso;
+    b = r - a;
   } else if (modo === 'sin-llevar') {
     [a, b] = sinLlevarPar(az, Math.max(30, max));
   } else if (modo === 'llevando' || (llevadaForzada && az.chance(0.7))) {
     [a, b] = llevandoPar(az, Math.max(30, max));
   } else {
-    a = az.entero(1, max - 1);
-    b = az.entero(1, Math.max(1, max - a));
+    // Primero el resultado, repartido parejo, y después los dos números.
+    const r = az.entero(Math.max(2, Math.floor(max * 0.3)), max);
+    a = az.entero(1, r - 1);
+    b = r - a;
   }
   if (!tres && ctx.caracter.problemas > 0 && a + b <= 1000 && az.chance(ctx.caracter.problemas)) {
     return problemaConNumeros(az, ctx, '+', a, b);
@@ -177,8 +181,10 @@ function armarResta(az: Azar, ctx: Contexto, modo: ModoResta): Ejercicio {
   if (modo === 'decenas') {
     const paso = max > 100 && az.chance(0.5) ? 100 : 10;
     const tope = Math.max(max, paso === 10 ? 50 : 300);
-    a = az.entero(2, Math.max(2, Math.floor(tope / paso))) * paso;
-    b = az.entero(1, a / paso - 1) * paso;
+    const n = Math.floor(tope / paso);
+    const r = az.entero(1, Math.max(1, n - 1)) * paso;
+    b = az.entero(1, Math.max(1, n - r / paso)) * paso;
+    a = r + b;
   } else if (modo === 'sin-prestamo' || modo === 'prestando' || (prestamoForzado && az.chance(0.7))) {
     const quiere = modo !== 'sin-prestamo';
     const tope = Math.max(30, max);
@@ -194,8 +200,10 @@ function armarResta(az: Azar, ctx: Contexto, modo: ModoResta): Ejercicio {
       }
     }
   } else {
-    a = az.entero(2, max);
-    b = az.entero(1, a - 1);
+    // Primero el resultado, repartido parejo (antes salía 1 o 2 en la mitad de las restas).
+    const r = az.entero(1, max - 1);
+    b = az.entero(1, Math.max(1, max - r));
+    a = r + b;
   }
   if (ctx.caracter.problemas > 0 && az.chance(ctx.caracter.problemas)) {
     return problemaConNumeros(az, ctx, '−', a, b);
@@ -255,7 +263,6 @@ export const cuantoFalta: Generador = (az, ctx) => {
     r,
     [
       [meta, 'falta.da-el-total'],
-      [meta + a, 'falta.da-el-total'],
       [r + 1, 'falta.calculo'],
       [r - 1, 'falta.calculo'],
       [r + 10, 'falta.calculo'],

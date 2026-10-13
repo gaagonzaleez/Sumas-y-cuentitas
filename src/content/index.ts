@@ -91,6 +91,8 @@ export interface Historia {
   objetos?: string[];
   pesos?: boolean;
   sobra?: string;
+  /** Número más grande que tiene sentido en la historia (nadie tiene 800 flores en un florero). */
+  max?: number;
 }
 export const HISTORIAS = historias as unknown as Record<string, Historia[]>;
 

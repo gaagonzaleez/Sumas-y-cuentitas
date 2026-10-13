@@ -15,7 +15,7 @@
       ] },
     { "id": "isla-2", "nombre": "Leer y escribir números", "corto": "Números", "inicio": 50,
       "plantillas": [
-        { "id": "leer-numero", "peso": 2 },
+        { "id": "leer-numero", "peso": 2, "params": { "desafioDiezMil": true } },
         { "id": "numero-en-letras", "peso": 1 },
         { "id": "armar-bloques", "peso": 1 },
         { "id": "secuencia", "peso": 1 },
@@ -79,7 +79,7 @@
         { "id": "armar-bloques", "peso": 1 },
         { "id": "centenas", "peso": 1 },
         { "id": "numero-en-letras", "peso": 1 },
-        { "id": "leer-numero", "peso": 1 },
+        { "id": "leer-numero", "peso": 1, "params": { "desafioDiezMil": true } },
         { "id": "descomponer", "peso": 1 },
         { "id": "escribir-en-letras", "peso": 1 },
         { "id": "escoba", "peso": 1, "params": { "op": "num" } },
