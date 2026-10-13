@@ -1,109 +1,146 @@
 {
-  "id": "valle", "numero": 2, "nombre": "Valle de las Sumas", "escala": "sumas",
+  "id": "valle",
+  "numero": 2,
+  "nombre": "Valle de las Sumas",
+  "escala": "sumas",
   "colores": { "cielo": "#D7F5EE", "suelo": "#B7E8A0", "acento": "#3DBE7A" },
   "niveles": [
-    { "id": "valle-1", "nombre": "Primeras sumas", "corto": "Sumas", "inicio": 10,
+    {
+      "id": "valle-1",
+      "nombre": "Primeras sumas",
+      "corto": "Sumas",
       "plantillas": [
-        { "id": "suma", "peso": 3, "params": { "modo": "hasta" } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
-        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
+        { "id": "suma", "peso": 3, "params": {"modo": "hasta"} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "hasta"} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "hasta"} },
+        { "id": "memoria-cuentas", "peso": 2, "params": {"op": "+", "modo": "hasta"} },
         { "id": "dobles", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "dados", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "hasta" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "hasta" } }
-      ] },
-    { "id": "valle-2", "nombre": "Sumas más grandes", "corto": "Sumas", "inicio": 20,
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "+", "modo": "hasta"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+        { "id": "piramide", "peso": 3, "params": {"modo": "hasta"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "hasta"} }
+      ]
+    },
+    {
+      "id": "valle-2",
+      "nombre": "Sumas más grandes",
+      "corto": "Sumas",
       "plantillas": [
-        { "id": "suma", "peso": 3, "params": { "modo": "hasta" } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
-        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
+        { "id": "suma", "peso": 3, "params": {"modo": "hasta"} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "hasta"} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "hasta"} },
+        { "id": "memoria-cuentas", "peso": 2, "params": {"op": "+", "modo": "hasta"} },
         { "id": "dobles", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "+", "modo": "hasta" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "dados", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "hasta" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "hasta" } }
-      ] },
-    { "id": "valle-3", "nombre": "Sumar decenas exactas", "corto": "Sumas de decenas",
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "+", "modo": "hasta"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+        { "id": "piramide", "peso": 3, "params": {"modo": "hasta"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "hasta"} }
+      ]
+    },
+    {
+      "id": "valle-3",
+      "nombre": "Sumar decenas exactas",
+      "corto": "Sumas de decenas",
       "plantillas": [
-        { "id": "suma", "peso": 3, "params": { "modo": "decenas" } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "decenas" } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "decenas" } },
-        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "+", "modo": "decenas" } },
-        { "id": "secuencia", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "+", "modo": "decenas" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "decenas" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "decenas" } }
-      ] },
-    { "id": "valle-4", "nombre": "Sumas de 2 cifras sin llevar", "corto": "Sumas", "inicio": 50,
+        { "id": "suma", "peso": 3, "params": {"modo": "decenas"} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "decenas"} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "decenas"} },
+        { "id": "memoria-cuentas", "peso": 2, "params": {"op": "+", "modo": "decenas"} },
+        { "id": "secuencia", "peso": 2 },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "+", "modo": "decenas"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+        { "id": "piramide", "peso": 3, "params": {"modo": "decenas"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "decenas"} }
+      ]
+    },
+    {
+      "id": "valle-4",
+      "nombre": "Sumas sin llevar",
+      "corto": "Sumas",
       "plantillas": [
-        { "id": "suma", "peso": 3, "params": { "modo": "sin-llevar" } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "sin-llevar" } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "sin-llevar" } },
-        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "+", "modo": "sin-llevar" } },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "+", "modo": "sin-llevar" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "sin-llevar" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "sin-llevar" } }
-      ] },
-    { "id": "valle-5", "nombre": "Sumas con llevada", "corto": "Sumas", "inicio": 50,
+        { "id": "suma", "peso": 3, "params": {"modo": "sin-llevar"} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "sin-llevar"} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "sin-llevar"} },
+        { "id": "memoria-cuentas", "peso": 2, "params": {"op": "+", "modo": "sin-llevar"} },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "+", "modo": "sin-llevar"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+        { "id": "piramide", "peso": 3, "params": {"modo": "sin-llevar"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "sin-llevar"} }
+      ]
+    },
+    {
+      "id": "valle-5",
+      "nombre": "Sumas con llevada",
+      "corto": "Sumas",
       "plantillas": [
-        { "id": "suma", "peso": 3, "params": { "modo": "llevando" } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "llevando" } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "llevando" } },
-        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "+", "modo": "llevando" } },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "+", "modo": "llevando" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "llevando" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "llevando" } }
-      ] },
-    { "id": "valle-6", "nombre": "Sumar 3 números", "corto": "Sumas de 3 números",
+        { "id": "suma", "peso": 3, "params": {"modo": "llevando"} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "llevando"} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "llevando"} },
+        { "id": "memoria-cuentas", "peso": 2, "params": {"op": "+", "modo": "llevando"} },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "+", "modo": "llevando"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+        { "id": "piramide", "peso": 3, "params": {"modo": "llevando"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "llevando"} }
+      ]
+    },
+    {
+      "id": "valle-6",
+      "nombre": "Sumar 3 números",
+      "corto": "Sumas de 3 números",
       "plantillas": [
-        { "id": "suma", "peso": 3, "params": { "modo": "tres" } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "tres" } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "tres" } },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "+", "modo": "tres" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "dados", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "tres" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "tres" } }
-      ] },
-    { "id": "valle-7", "nombre": "Sumas de hasta 3 cifras", "corto": "Sumas", "inicio": 200, "minimo": 200,
+        { "id": "suma", "peso": 3, "params": {"modo": "tres"} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "tres"} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "tres"} },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "+", "modo": "tres"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+        { "id": "piramide", "peso": 3, "params": {"modo": "tres"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "tres"} }
+      ]
+    },
+    {
+      "id": "valle-7",
+      "nombre": "Sumas con centenas",
+      "corto": "Sumas",
       "plantillas": [
-        { "id": "suma", "peso": 3, "params": { "modo": "cualquiera" } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "cualquiera" } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "cualquiera" } },
-        { "id": "memoria-cuentas", "peso": 1, "params": { "op": "+", "modo": "cualquiera" } },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "+", "modo": "cualquiera" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "cualquiera" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "cualquiera" } }
-      ] },
-    { "id": "valle-8", "nombre": "Problemas de sumar", "corto": "Problemas de sumar",
+        { "id": "suma", "peso": 3, "params": {"modo": "cualquiera"} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "cualquiera"} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "cualquiera"} },
+        { "id": "memoria-cuentas", "peso": 2, "params": {"op": "+", "modo": "cualquiera"} },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "+", "modo": "cualquiera"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+        { "id": "piramide", "peso": 3, "params": {"modo": "cualquiera"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "cualquiera"} }
+      ]
+    },
+    {
+      "id": "valle-8",
+      "nombre": "Problemas de sumar",
+      "corto": "Problemas de sumar",
       "plantillas": [
-        { "id": "problema", "peso": 3, "params": { "tipos": ["juntar", "agregar"] } },
-        { "id": "cuenta-faltante", "peso": 1, "params": { "op": "+", "modo": "cualquiera" } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["juntar", "agregar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["juntar", "agregar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["juntar", "agregar"] } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "cualquiera" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+" } }
-      ] }
+        { "id": "problema", "peso": 3, "params": {"tipos": ["juntar", "agregar"]} },
+        { "id": "cuenta-faltante", "peso": 3, "params": {"op": "+", "modo": "cualquiera"} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["juntar", "agregar"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["juntar", "agregar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["juntar", "agregar"]} },
+        { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "cualquiera"} },
+        { "id": "balanza", "peso": 3, "params": {"op": "+"} }
+      ]
+    }
   ],
-  "jefe":
-    { "id": "valle-jefe", "nombre": "La Jardinera Mágica", "corto": "Sumas largas", "descripcion": "Una cuenta larga que combina todo lo que aprendiste.", "inicio": 100, "minimo": 100, "avatar": "jardinera",
-      "plantillas": [
-        { "id": "suma", "peso": 2, "params": { "modo": "llevando" } },
-        { "id": "suma", "peso": 1, "params": { "modo": "tres" } },
-        { "id": "problema", "peso": 1, "params": { "tipos": ["agregar", "juntar"] } },
-        { "id": "verdadero-falso", "peso": 1, "params": { "op": "+", "modo": "llevando" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "+" } },
-        { "id": "piramide", "peso": 1, "params": { "modo": "llevando" } },
-        { "id": "balanza", "peso": 1, "params": { "op": "+", "modo": "llevando" } }
-      ] }
+  "jefe": {
+    "id": "valle-jefe",
+    "nombre": "La Jardinera Mágica",
+    "corto": "Sumas largas",
+    "descripcion": "Una cuenta larga que combina todo lo que aprendiste.",
+    "avatar": "jardinera",
+    "plantillas": [
+      { "id": "suma", "peso": 3, "params": {"modo": "llevando"} },
+      { "id": "suma", "peso": 3, "params": {"modo": "tres"} },
+      { "id": "problema", "peso": 3, "params": {"tipos": ["agregar", "juntar"]} },
+      { "id": "verdadero-falso", "peso": 1, "params": {"op": "+", "modo": "llevando"} },
+      { "id": "escoba", "peso": 2, "params": {"op": "+"} },
+      { "id": "piramide", "peso": 3, "params": {"modo": "llevando"} },
+      { "id": "balanza", "peso": 3, "params": {"op": "+", "modo": "llevando"} }
+    ]
+  }
 }

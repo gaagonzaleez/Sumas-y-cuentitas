@@ -25,7 +25,7 @@ Se abre en pantalla completa y funciona sin internet (menos la tabla del grupo).
 | 5. Grupos | 🟡 Listo, falta activar | Tabla semanal y “siempre”, podio, reto grupal, código de grupo, copia en la nube. Se activa con el paso 2 de `NECESITO_DE_GA.md` |
 | 6. Dinero y finanzas | ✅ | Mundos 5 a 7 (Mercado, Pueblo, Isla del Tesoro), pagar con billetes, vuelto, presupuesto; panel de la adulta; alcancía con meta y bono; reto grupal |
 
-Truco para probar rápido: un perfil con el apodo **kimbo** tiene todo abierto (modo creadora). Para las nenas, cada mundo se abre al pasar el nivel 4 del anterior. Cada grado se completa al contestar 15 preguntas (sin esperar tiempo, decisión de Ga).
+Truco para probar rápido: un perfil con el apodo **kimbo** tiene todo abierto (modo creadora). Para las nenas, cada mundo se abre al pasar el nivel 4 del anterior. Cada grado se completa al contestar 10 preguntas (sin esperar tiempo, decisión de Ga). Los números arrancan en 200 en el grado 1 y suben de a 200 por grado (hasta 1000 en el grado 5); los juegos difíciles salen más seguido y «contar dibujitos» casi nunca.
 
 **Variedad:** cada nivel mezcla por lo menos 5 juegos distintos (lo controla `npm run contenido`). Además de los ejercicios clásicos hay juegos de aula y de casa: guerra de cartas (de números, sumas, restas, tablas y plata), escoba (cartas o monedas que suman justo), lotería con cartón de 9, dados, balanza, pirámide de sumas, adivinanzas con pistas, escribir números con letras, memoria de cuentas, verdadero o falso, y para finanzas ¿me alcanza?, carrito del súper con presupuesto, ordenar precios, pagar con menos billetes, cobrar por un trabajo, cuánto falta para la meta y necesidades o deseos.
 

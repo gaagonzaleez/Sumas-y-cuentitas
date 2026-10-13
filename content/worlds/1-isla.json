@@ -1,88 +1,128 @@
 {
-  "id": "isla", "numero": 1, "nombre": "Isla de los Números", "escala": "numeros",
+  "id": "isla",
+  "numero": 1,
+  "nombre": "Isla de los Números",
+  "escala": "numeros",
   "colores": { "cielo": "#CDE9FF", "suelo": "#FFE6A8", "acento": "#FFC93C" },
   "niveles": [
-    { "id": "isla-1", "nombre": "Contar y escribir números", "corto": "Números", "inicio": 20,
+    {
+      "id": "isla-1",
+      "nombre": "Contar y escribir números",
+      "corto": "Números",
       "plantillas": [
-        { "id": "contar", "peso": 2 },
+        { "id": "contar", "peso": 0.5 },
         { "id": "contar-bloques", "peso": 2 },
         { "id": "secuencia", "peso": 2 },
-        { "id": "leer-numero", "peso": 1, "params": { "teclado": true } },
-        { "id": "leer-numero", "peso": 1 },
-        { "id": "escribir-en-letras", "peso": 1 },
+        { "id": "leer-numero", "peso": 3, "params": {"teclado": true} },
+        { "id": "leer-numero", "peso": 2 },
+        { "id": "escribir-en-letras", "peso": 3 },
         { "id": "loteria", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "num" } }
-      ] },
-    { "id": "isla-2", "nombre": "Leer y escribir números", "corto": "Números", "inicio": 50,
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "num"} }
+      ]
+    },
+    {
+      "id": "isla-2",
+      "nombre": "Leer y escribir números",
+      "corto": "Números",
       "plantillas": [
-        { "id": "leer-numero", "peso": 2, "params": { "desafioDiezMil": true } },
-        { "id": "numero-en-letras", "peso": 1 },
-        { "id": "armar-bloques", "peso": 1 },
-        { "id": "secuencia", "peso": 1 },
-        { "id": "escribir-en-letras", "peso": 2 },
+        { "id": "leer-numero", "peso": 2, "params": {"desafioDiezMil": true} },
+        { "id": "numero-en-letras", "peso": 2 },
+        { "id": "armar-bloques", "peso": 2 },
+        { "id": "secuencia", "peso": 2 },
+        { "id": "escribir-en-letras", "peso": 3 },
         { "id": "loteria", "peso": 1 },
         { "id": "adivinanza", "peso": 1 }
-      ] },
-    { "id": "isla-3", "nombre": "Anterior y siguiente", "corto": "Números",
+      ]
+    },
+    {
+      "id": "isla-3",
+      "nombre": "Anterior y siguiente",
+      "corto": "Números",
       "plantillas": [
-        { "id": "anterior-siguiente", "peso": 1 },
-        { "id": "secuencia", "peso": 1 },
+        { "id": "anterior-siguiente", "peso": 2 },
+        { "id": "secuencia", "peso": 2 },
         { "id": "loteria", "peso": 1 },
         { "id": "adivinanza", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "num" } }
-      ] },
-    { "id": "isla-4", "nombre": "Comparar y ordenar", "corto": "Números",
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "num"} }
+      ]
+    },
+    {
+      "id": "isla-4",
+      "nombre": "Comparar y ordenar",
+      "corto": "Números",
       "plantillas": [
         { "id": "comparar", "peso": 2 },
-        { "id": "ordenar", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 2, "params": { "op": "num" } },
+        { "id": "ordenar", "peso": 2 },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "num"} },
         { "id": "adivinanza", "peso": 1 },
         { "id": "loteria", "peso": 1 }
-      ] },
-    { "id": "isla-5", "nombre": "Familias de los números", "corto": "Números",
+      ]
+    },
+    {
+      "id": "isla-5",
+      "nombre": "Familias de los números",
+      "corto": "Números",
       "plantillas": [
         { "id": "familia", "peso": 2 },
         { "id": "anterior-siguiente", "peso": 1 },
         { "id": "adivinanza", "peso": 1 },
         { "id": "loteria", "peso": 1 },
-        { "id": "contar-bloques", "peso": 1 }
-      ] },
-    { "id": "isla-6", "nombre": "Decenas y unidades", "corto": "Números", "techoNivel": 99,
+        { "id": "contar-bloques", "peso": 2 }
+      ]
+    },
+    {
+      "id": "isla-6",
+      "nombre": "Descomponer números",
+      "corto": "Números",
       "plantillas": [
-        { "id": "descomponer", "peso": 2 },
-        { "id": "armar-bloques", "peso": 1 },
-        { "id": "contar-bloques", "peso": 1 },
-        { "id": "escoba", "peso": 1, "params": { "op": "num" } },
+        { "id": "descomponer", "peso": 3 },
+        { "id": "armar-bloques", "peso": 2 },
+        { "id": "contar-bloques", "peso": 2 },
+        { "id": "escoba", "peso": 2, "params": {"op": "num"} },
         { "id": "adivinanza", "peso": 1 }
-      ] },
-    { "id": "isla-7", "nombre": "Centenas, decenas y unidades", "corto": "Números", "inicio": 100, "minimo": 100,
+      ]
+    },
+    {
+      "id": "isla-7",
+      "nombre": "Centenas, decenas y unidades",
+      "corto": "Números",
       "plantillas": [
-        { "id": "centenas", "peso": 2 },
-        { "id": "armar-bloques", "peso": 1 },
-        { "id": "descomponer", "peso": 1 },
-        { "id": "contar-bloques", "peso": 1 },
+        { "id": "centenas", "peso": 3 },
+        { "id": "armar-bloques", "peso": 2 },
+        { "id": "descomponer", "peso": 3 },
+        { "id": "contar-bloques", "peso": 2 },
         { "id": "loteria", "peso": 1 },
-        { "id": "escoba", "peso": 1, "params": { "op": "num" } }
-      ] },
-    { "id": "isla-8", "nombre": "Números con letras", "corto": "Números", "techoNivel": 100,
+        { "id": "escoba", "peso": 2, "params": {"op": "num"} }
+      ]
+    },
+    {
+      "id": "isla-8",
+      "nombre": "Números con letras",
+      "corto": "Números",
       "plantillas": [
         { "id": "numero-en-letras", "peso": 2 },
-        { "id": "leer-numero", "peso": 1 },
+        { "id": "leer-numero", "peso": 2 },
         { "id": "escribir-en-letras", "peso": 3 },
         { "id": "loteria", "peso": 1 },
         { "id": "adivinanza", "peso": 1 }
-      ] }
+      ]
+    }
   ],
-  "jefe":
-    { "id": "isla-jefe", "nombre": "La Exploradora de la Isla", "corto": "Números", "descripcion": "Armá y escribí números de 3 cifras de muchas maneras.", "inicio": 100, "minimo": 100, "avatar": "exploradora",
-      "plantillas": [
-        { "id": "armar-bloques", "peso": 1 },
-        { "id": "centenas", "peso": 1 },
-        { "id": "numero-en-letras", "peso": 1 },
-        { "id": "leer-numero", "peso": 1, "params": { "desafioDiezMil": true } },
-        { "id": "descomponer", "peso": 1 },
-        { "id": "escribir-en-letras", "peso": 1 },
-        { "id": "escoba", "peso": 1, "params": { "op": "num" } },
-        { "id": "loteria", "peso": 1 }
-      ] }
+  "jefe": {
+    "id": "isla-jefe",
+    "nombre": "La Exploradora de la Isla",
+    "corto": "Números",
+    "descripcion": "Armá y escribí números de 3 cifras de muchas maneras.",
+    "avatar": "exploradora",
+    "plantillas": [
+      { "id": "armar-bloques", "peso": 2 },
+      { "id": "centenas", "peso": 3 },
+      { "id": "numero-en-letras", "peso": 2 },
+      { "id": "leer-numero", "peso": 2, "params": {"desafioDiezMil": true} },
+      { "id": "descomponer", "peso": 3 },
+      { "id": "escribir-en-letras", "peso": 3 },
+      { "id": "escoba", "peso": 2, "params": {"op": "num"} },
+      { "id": "loteria", "peso": 1 }
+    ]
+  }
 }

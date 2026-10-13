@@ -5,6 +5,7 @@ import economia from '../../content/config/economia.json';
 import mascotaCfg from '../../content/config/mascota.json';
 import dificultad from '../../content/config/dificultad.json';
 import progresoCfg from '../../content/config/progreso.json';
+import juegos from '../../content/config/juegos.json';
 import plantillas from '../../content/plantillas.json';
 import historias from '../../content/historias.json';
 import finanzas from '../../content/finanzas.json';
@@ -58,6 +59,7 @@ export const config = {
   app,
   economia,
   mascota: mascotaCfg,
+  juegos,
   dificultad: dificultad as typeof dificultad & {
     escaleras: Record<Tema, number[]>;
     grados: Record<Tema, { inicio: number; techo: number }[]>;

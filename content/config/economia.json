@@ -15,17 +15,9 @@
     "tresEstrellasPrimerIntento": 0.9,
     "vencerJefe": 3
   },
-  "grado": {
-    "minutosActivos": 0,
-    "ejerciciosMinimos": 15,
-    "aciertoMinimo": 0,
-    "ventanaAcierto": 15
-  },
+  "grado": { "minutosActivos": 0, "ejerciciosMinimos": 10, "aciertoMinimo": 0, "ventanaAcierto": 10 },
   "monedasIniciales": 40,
-  "tienda": {
-    "ofertasPorSemana": 4,
-    "descuentoOferta": 0.2
-  },
+  "tienda": { "ofertasPorSemana": 4, "descuentoOferta": 0.2 },
   "alcancia": { "bonoAlLlegar": 0.1 },
   "precioPorRareza": { "comun": 20, "lindo": 30, "especial": 45, "raro": 60, "brillante": 100, "magico": 150, "legendario": 300 }
 }

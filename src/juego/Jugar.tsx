@@ -89,6 +89,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   const [segundos, setSegundos] = useState(0);
   const inicio = useRef(Date.now());
   const ejRef = useRef<Ejercicio | null>(null);
+  const recientes = useRef<string[]>([]);
   const ultimaAccion = useRef(Date.now());
   const continuoMs = useRef(0);
   const avisoDescanso = useRef(false);
@@ -102,13 +103,14 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     (s: Sesion, parecido?: Ejercicio) => {
       if (!base) return;
       const fija = parecido ? plantillaDe(base.nivel, parecido) : undefined;
-      let e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), fija, ejRef.current?.plantillaId);
+      let e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), fija, recientes.current);
       // En el repaso, se busca un ejercicio que practique justo ese error.
       const practica = (x: Ejercicio) =>
         x.errorTagPorDefecto === repasoTag || x.opciones?.some((o) => o.errorTag === repasoTag) || Object.values(x.erroresPrevistos ?? {}).includes(repasoTag!);
       for (let i = 0; repasoTag && !fija && i < 30 && !practica(e); i++)
-        e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), undefined, ejRef.current?.plantillaId);
+        e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), undefined, recientes.current);
       ejRef.current = e;
+      recientes.current = [...recientes.current, e.plantillaId].slice(-2);
       setEj(e);
       setFase('pregunta');
       setIntento(0);

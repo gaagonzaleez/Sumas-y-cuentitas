@@ -33,6 +33,11 @@
       "texto": "En el álbum, {nombre} pegó {a} figuritas y {nombre2} pegó {b}. ¿Cuántas figuritas pegaron entre las dos?",
       "op": "+",
       "objeto": "figurita"
+    },
+    {
+      "texto": "Para la kermés, el grado de {nombre} juntó {a} tapitas y el de {nombre2} juntó {b}. ¿Cuántas tapitas juntaron entre los dos grados?",
+      "op": "+",
+      "objeto": "estrella"
     }
   ],
   "agregar": [
@@ -68,6 +73,11 @@
       "texto": "{nombre} hizo {a} puntos en un jueguito y en la segunda vuelta hizo {b} más. ¿Cuántos puntos hizo en total?",
       "op": "+",
       "objeto": "estrella"
+    },
+    {
+      "texto": "La biblioteca del barrio tenía {a} libros y le donaron {b} más. ¿Cuántos libros tiene ahora?",
+      "op": "+",
+      "objeto": "libro"
     }
   ],
   "quitar": [
@@ -103,6 +113,11 @@
       "texto": "En el teatro había {a} personas y al terminar la obra se fueron {b}. ¿Cuántas personas quedan?",
       "op": "−",
       "objeto": "estrella"
+    },
+    {
+      "texto": "En el kiosco del club había {a} alfajores y en el partido vendieron {b}. ¿Cuántos alfajores quedan?",
+      "op": "−",
+      "objeto": "alfajor"
     }
   ],
   "comparar": [
@@ -123,6 +138,11 @@
     },
     {
       "texto": "En la escuela hay {a} chicos y en el jardín hay {b}. ¿Cuántos chicos más hay en la escuela?",
+      "op": "−",
+      "objeto": "estrella"
+    },
+    {
+      "texto": "En el recreo, {nombre} saltó la soga {a} veces y {nombre2}, {b} veces. ¿Cuántas veces más saltó {nombre}?",
       "op": "−",
       "objeto": "estrella"
     }
@@ -151,6 +171,16 @@
       "op": "+",
       "objeto": "caracol",
       "max": 100
+    },
+    {
+      "texto": "La biblioteca tenía {a} libros y prestó {b}. ¿Qué cuenta hacemos?",
+      "op": "−",
+      "objeto": "libro"
+    },
+    {
+      "texto": "En el estadio había {a} personas y entraron {b} más. ¿Qué cuenta hacemos?",
+      "op": "+",
+      "objeto": "estrella"
     }
   ],
   "dos-pasos": [
@@ -180,6 +210,22 @@
       ],
       "objeto": "caramelo",
       "max": 80
+    },
+    {
+      "texto": "La biblioteca tenía {a} libros, le donaron {b} y después prestó {c}. ¿Cuántos libros quedan?",
+      "ops": [
+        "+",
+        "−"
+      ],
+      "objeto": "libro"
+    },
+    {
+      "texto": "En el tren iban {a} personas, bajaron {b} y subieron {c}. ¿Cuántas personas van ahora?",
+      "ops": [
+        "−",
+        "+"
+      ],
+      "objeto": "estrella"
     }
   ],
   "dinero": [
@@ -223,6 +269,12 @@
       "objeto": "globo",
       "sobra": "c",
       "max": 60
+    },
+    {
+      "texto": "En el cole hay {a} chicos y {c} maestras. Llegan {b} chicos nuevos. ¿Cuántos chicos hay ahora?",
+      "op": "+",
+      "objeto": "estrella",
+      "sobra": "c"
     }
   ],
   "dato-que-falta": [

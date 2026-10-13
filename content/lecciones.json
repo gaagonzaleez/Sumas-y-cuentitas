@@ -465,10 +465,10 @@
     "visual": "valor-posicional",
     "pasos": [
       {
-        "texto": "La familia la dice la cifra de las decenas."
+        "texto": "Para saber la familia, cambiá la última cifra por un 0."
       },
       {
-        "texto": "El {n} tiene {dTxt}: es de la familia del {fam}."
+        "texto": "El {n} termina en {u}. Con un 0 queda {fam}: su familia."
       },
       {
         "texto": "En esa familia están del {fam} al {famFin}."

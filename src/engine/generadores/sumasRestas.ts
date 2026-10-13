@@ -2,7 +2,7 @@
 import { datosFalta, explicarResta, explicarSuma } from '../explicar';
 import type { Azar } from '../azar';
 import type { Contexto, Ejercicio, Visual } from '../tipos';
-import { cifras, type Generador, opcionesNumericas, opcionesTexto, rellenar, texto, uid, usaTeclado, visualEsAyuda } from './comun';
+import { cifras, type Generador, pisoRango, opcionesNumericas, opcionesTexto, rellenar, texto, uid, usaTeclado, visualEsAyuda } from './comun';
 import { problemaConNumeros } from './problemas';
 
 type ModoSuma = 'hasta' | 'decenas' | 'sin-llevar' | 'llevando' | 'tres' | 'cualquiera';
@@ -53,20 +53,20 @@ export function hayPrestamo(a: number, b: number): boolean {
   return cb.some((y, i) => y > (ca[i] ?? 0));
 }
 
-function sinLlevarPar(az: Azar, max: number): [number, number] {
-  for (let i = 0; i < 200; i++) {
+function sinLlevarPar(az: Azar, max: number, minSuma = 0): [number, number] {
+  for (let i = 0; i < 300; i++) {
     const a = az.entero(10, max - 10);
     const b = az.entero(10, max - a);
-    if (b >= 1 && !hayLlevada(a, b)) return [a, b];
+    if (b >= 1 && !hayLlevada(a, b) && (a + b >= minSuma || i > 200)) return [a, b];
   }
   return [12, 13];
 }
 
-function llevandoPar(az: Azar, max: number): [number, number] {
-  for (let i = 0; i < 200; i++) {
+function llevandoPar(az: Azar, max: number, minSuma = 0): [number, number] {
+  for (let i = 0; i < 300; i++) {
     const a = az.entero(11, max - 11);
     const b = az.entero(11, max - a);
-    if (b >= 1 && a % 10 + (b % 10) >= 10) return [a, b];
+    if (b >= 1 && a % 10 + (b % 10) >= 10 && (a + b >= minSuma || i > 200)) return [a, b];
   }
   return [17, 15];
 }
@@ -107,6 +107,7 @@ function visualResta(a: number, b: number): Visual {
 
 function armarSuma(az: Azar, ctx: Contexto, modo: ModoSuma): Ejercicio {
   const max = Math.max(10, ctx.rango);
+  const piso = Math.min(pisoRango(ctx, 2), max - 1);
   const llevadaForzada = ctx.caracter.llevadaForzada && max >= 30;
   const tres = modo === 'tres' || (ctx.caracter.tresTerminos && (modo === 'cualquiera' || modo === 'hasta') && az.chance(0.4));
   let a: number;
@@ -120,16 +121,17 @@ function armarSuma(az: Azar, ctx: Contexto, modo: ModoSuma): Ejercicio {
     // Primero el resultado (así no sale casi siempre el mismo) y después cómo se parte.
     const paso = max > 100 && az.chance(0.5) ? 100 : 10;
     const tope = Math.max(max, paso === 10 ? 50 : 300);
-    const r = az.entero(2, Math.max(2, Math.floor(tope / paso))) * paso;
+    const hasta = Math.max(2, Math.floor(tope / paso));
+    const r = az.entero(Math.min(hasta, Math.max(2, Math.ceil(piso / paso))), hasta) * paso;
     a = az.entero(1, r / paso - 1) * paso;
     b = r - a;
   } else if (modo === 'sin-llevar') {
-    [a, b] = sinLlevarPar(az, Math.max(30, max));
+    [a, b] = sinLlevarPar(az, Math.max(30, max), piso);
   } else if (modo === 'llevando' || (llevadaForzada && az.chance(0.7))) {
-    [a, b] = llevandoPar(az, Math.max(30, max));
+    [a, b] = llevandoPar(az, Math.max(30, max), piso);
   } else {
     // Primero el resultado, repartido parejo, y después los dos números.
-    const r = az.entero(Math.max(2, Math.floor(max * 0.3)), max);
+    const r = az.entero(piso, max);
     a = az.entero(1, r - 1);
     b = r - a;
   }
@@ -175,6 +177,7 @@ function armarSuma(az: Azar, ctx: Contexto, modo: ModoSuma): Ejercicio {
 
 function armarResta(az: Azar, ctx: Contexto, modo: ModoResta): Ejercicio {
   const max = Math.max(10, ctx.rango);
+  const piso = Math.min(pisoRango(ctx, 3), max - 1);
   let a: number;
   let b: number;
   const prestamoForzado = ctx.caracter.llevadaForzada && max >= 30;
@@ -191,7 +194,7 @@ function armarResta(az: Azar, ctx: Contexto, modo: ModoResta): Ejercicio {
     a = 21;
     b = 10;
     for (let i = 0; i < 300; i++) {
-      const x = az.entero(20, tope);
+      const x = az.entero(Math.min(Math.max(20, piso), tope), tope);
       const y = az.entero(10, x - 1);
       if (hayPrestamo(x, y) === quiere && y % 10 !== 0) {
         a = x;
@@ -201,9 +204,9 @@ function armarResta(az: Azar, ctx: Contexto, modo: ModoResta): Ejercicio {
     }
   } else {
     // Primero el resultado, repartido parejo (antes salía 1 o 2 en la mitad de las restas).
-    const r = az.entero(1, max - 1);
-    b = az.entero(1, Math.max(1, max - r));
-    a = r + b;
+    a = az.entero(piso, max);
+    const r = az.entero(1, a - 1);
+    b = a - r;
   }
   if (ctx.caracter.problemas > 0 && az.chance(ctx.caracter.problemas)) {
     return problemaConNumeros(az, ctx, '−', a, b);

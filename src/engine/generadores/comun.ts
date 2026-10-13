@@ -1,10 +1,15 @@
 import type { Azar } from '../azar';
 import type { Contexto, Ejercicio, Opcion } from '../tipos';
-import { NOMBRES, OBJETOS, PLANTILLAS } from '../../content';
+import { config, NOMBRES, OBJETOS, PLANTILLAS } from '../../content';
 
 export type Generador = (az: Azar, ctx: Contexto) => Ejercicio;
 
 /** Reemplaza {clave} por su valor. */
+/** El número más chico que tiene sentido en este grado (nada de 61 − 56 cuando el grado llega a 600). */
+export function pisoRango(ctx: Contexto, def = 1): number {
+  return Math.max(def, Number(ctx.params.minimo) || 0, Math.floor(ctx.rango * config.dificultad.pisoDelRango));
+}
+
 export function rellenar(texto: string, vars: Record<string, unknown>): string {
   return (
     texto

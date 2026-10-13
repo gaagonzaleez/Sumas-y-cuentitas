@@ -32,14 +32,17 @@ export function generarEjercicio(
   rango: number,
   evitar: Set<string> = new Set(),
   plantillaFija?: PlantillaNivel,
-  /** Plantilla del ejercicio anterior: se evita repetirla si el nivel tiene otras. */
-  anterior?: string,
+  /** Juegos de los últimos ejercicios (el más reciente al final): se evitan si el nivel tiene otros. */
+  anteriores: string | string[] = [],
 ): Ejercicio {
   let ultimo: Ejercicio | undefined;
-  const variadas = new Set(nivel.plantillas.map((p) => p.id)).size > 1;
+  const distintas = new Set(nivel.plantillas.map((p) => p.id)).size;
+  // Con pocos juegos solo se evita el último; con 4 o más, los dos últimos.
+  const evitarJuegos = [anteriores].flat().filter(Boolean).slice(distintas >= 4 ? -2 : distintas > 1 ? -1 : 0);
+  if (distintas <= 1) evitarJuegos.length = 0;
   for (let i = 0; i < 25; i++) {
     let p = plantillaFija ?? elegirPlantilla(az, nivel.plantillas);
-    for (let k = 0; !plantillaFija && variadas && anterior && p.id === anterior && k < 6; k++) p = elegirPlantilla(az, nivel.plantillas);
+    for (let k = 0; !plantillaFija && evitarJuegos.includes(p.id) && k < 10; k++) p = elegirPlantilla(az, nivel.plantillas);
     const gen = GENERADORES[p.id];
     if (!gen) throw new Error(`Plantilla sin generador: ${p.id}`);
     ultimo = gen(az, contextoPara(nivel, p, grado, rango));

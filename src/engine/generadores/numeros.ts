@@ -6,6 +6,7 @@ import {
   cdu,
   cifras,
   genero,
+  pisoRango,
   plural,
   type Generador,
   mayuscula,
@@ -57,7 +58,7 @@ function invertirCifras(n: number): number {
 }
 
 function numeroEnRango(az: ReturnType<typeof import('../azar').crearAzar>, rango: number, min = 1): number {
-  const bajo = Math.max(min, Math.floor(rango / 3));
+  const bajo = Math.max(min, Math.floor(rango * config.dificultad.pisoDelRango));
   return az.entero(bajo, Math.max(bajo, rango));
 }
 
@@ -164,10 +165,11 @@ export const anteriorSiguiente: Generador = (az, ctx) => {
   let n: number;
   if (az.chance(0.35)) {
     // Casos de cambio de decena: 39 → 40, 40 → 39.
-    const dec = az.entero(1, Math.max(1, Math.floor((max - 1) / 10))) * 10;
+    const hasta = Math.max(1, Math.floor((max - 1) / 10));
+    const dec = az.entero(Math.min(hasta, Math.max(1, Math.ceil(pisoRango(ctx) / 10))), hasta) * 10;
     n = cual === 'siguiente' ? dec - 1 : dec;
   } else {
-    n = az.entero(2, max - 1);
+    n = az.entero(Math.min(pisoRango(ctx, 2), max - 2), max - 1);
   }
   const r = cual === 'siguiente' ? n + 1 : n - 1;
   const previstos: [number, string][] = [[cual === 'siguiente' ? n - 1 : n + 1, 'numeros.anterior-siguiente']];
@@ -217,8 +219,9 @@ export function datosComparar(a: number, b: number) {
 export const comparar: Generador = (az, ctx) => {
   const variante = az.chance(0.5) ? 'mayor' : 'menor';
   const max = Math.max(20, ctx.rango);
-  let a = az.entero(10, max);
-  let b = az.entero(10, max);
+  const bajo = Math.min(pisoRango(ctx, 10), max - 10);
+  let a = az.entero(bajo, max);
+  let b = az.entero(bajo, max);
   // Sin el caso "son iguales": con un solo número a la vista, la respuesta se adivinaba.
   const iguales = false;
   if (iguales) b = a;
@@ -265,7 +268,8 @@ export const comparar: Generador = (az, ctx) => {
 export const ordenar: Generador = (az, ctx) => {
   const max = Math.max(20, ctx.rango);
   const nums = new Set<number>();
-  while (nums.size < 4) nums.add(az.entero(1, max));
+  const bajo = Math.min(pisoRango(ctx), max - 10);
+  while (nums.size < 4) nums.add(az.entero(bajo, max));
   const lista = [...nums];
   const orden = [...lista].sort((x, y) => x - y);
   const [menor, , , mayor] = orden;
@@ -286,16 +290,21 @@ export const ordenar: Generador = (az, ctx) => {
 };
 
 export const familia: Generador = (az, ctx) => {
-  // Todas las familias del 10 al 90 (antes casi siempre salía la del 10).
-  const n = az.entero(10, 99);
-  const [u, d] = cifras(n);
-  const f = d * 10;
+  // Familias de las decenas, también con números de 3 cifras: el 234 es de la familia del 230.
+  const hasta = Math.max(99, Math.min(999, ctx.rango));
+  const n = az.entero(Math.min(pisoRango(ctx, 10), hasta), hasta);
+  const [u, d, c = 0] = cifras(n);
+  const f = Math.floor(n / 10) * 10;
   const op = (x: number) => rellenar(texto(az, 'familia', 'opcion'), { f: x });
   const incorrectas: [string, string][] = [];
-  if (u !== d && u !== 0) incorrectas.push([op(u * 10), 'numeros.familia']);
-  if (d < 9) incorrectas.push([op(f + 10), 'numeros.familia']);
-  if (d > 1) incorrectas.push([op(f - 10), 'numeros.familia']);
-  if (d < 8) incorrectas.push([op(f + 20), 'numeros.familia']);
+  if (u !== d && u !== 0) incorrectas.push([op(c * 100 + u * 10), 'numeros.familia']);
+  if (f + 10 <= 990) incorrectas.push([op(f + 10), 'numeros.familia']);
+  if (f - 10 >= 10) incorrectas.push([op(f - 10), 'numeros.familia']);
+  if (n >= 100) {
+    if (f + 100 <= 990) incorrectas.push([op(f + 100), 'numeros.familia']);
+    if (f - 100 >= 100) incorrectas.push([op(f - 100), 'numeros.familia']);
+  }
+  if (f + 20 <= 990) incorrectas.push([op(f + 20), 'numeros.familia']);
   return {
     uid: uid('familia', { n }),
     plantillaId: 'familia',
@@ -315,8 +324,8 @@ export const familia: Generador = (az, ctx) => {
 };
 
 export const descomponer: Generador = (az, ctx) => {
-  const conCentenas = ctx.rango >= 100 && (ctx.params.minimo as number) >= 100;
-  const n = conCentenas ? az.entero(101, Math.min(999, ctx.rango)) : az.entero(11, Math.min(99, Math.max(20, ctx.rango)));
+  const conCentenas = ctx.rango >= 100;
+  const n = conCentenas ? az.entero(Math.min(pisoRango(ctx, 101), 990), Math.max(Math.min(pisoRango(ctx, 101), 990), Math.min(999, ctx.rango))) : az.entero(11, Math.min(99, Math.max(20, ctx.rango)));
   const [u, d, c = 0] = cifras(n);
   const t = (cc: number, dd: number, uu: number) =>
     rellenar(texto(az, 'descomponer', conCentenas ? 'opcionCentenas' : 'opcion'), cdu(cc, dd, uu));
@@ -347,7 +356,7 @@ export const descomponer: Generador = (az, ctx) => {
 };
 
 export const armarBloques: Generador = (az, ctx) => {
-  const min = Math.max(11, (ctx.params.minimo as number) ?? 0);
+  const min = pisoRango(ctx, 11);
   const n = az.entero(Math.min(min, 999), Math.max(min, Math.min(999, ctx.rango)));
   const [u, d, c = 0] = cifras(n);
   const previstos: Record<string, string> = {};
@@ -371,7 +380,8 @@ export const armarBloques: Generador = (az, ctx) => {
 };
 
 export const centenas: Generador = (az, ctx) => {
-  const n = az.entero(101, Math.max(120, Math.min(999, ctx.rango)));
+  const hasta = Math.max(120, Math.min(999, ctx.rango));
+  const n = az.entero(Math.min(pisoRango(ctx, 101), hasta), hasta);
   const [u, d, c] = cifras(n);
   const variante = az.elegir(['c', 'd', 'u', 'cien', 'cien'] as const);
   let ej: Pick<Ejercicio, 'respuesta' | 'opciones' | 'erroresPrevistos'>;
@@ -429,7 +439,8 @@ export const secuencia: Generador = (az, ctx) => {
   const paso = az.elegir(pasos);
   const inicio = tablas
     ? az.entero(0, Math.max(0, Math.floor(max / paso) - 4)) * paso
-    : az.entero(0, Math.max(0, Math.floor((max - paso * 4) / paso))) * paso + (paso <= 2 ? az.entero(0, 1) * paso : 0);
+    : az.entero(Math.min(Math.floor(pisoRango(ctx, 0) / paso), Math.max(0, Math.floor((max - paso * 4) / paso))), Math.max(0, Math.floor((max - paso * 4) / paso))) * paso +
+      (paso <= 2 ? az.entero(0, 1) * paso : 0);
   const serie = Array.from({ length: 5 }, (_, i) => inicio + i * paso);
   const hueco = az.entero(1, 4);
   const r = serie[hueco];
@@ -470,7 +481,8 @@ export const secuencia: Generador = (az, ctx) => {
 
 /** Contar bloques: barras de 10 y cuadraditos sueltos (y centenas desde 100). */
 export const contarBloques: Generador = (az, ctx) => {
-  const n = az.entero(11, Math.max(19, Math.min(999, ctx.rango)));
+  const hastaB = Math.max(19, Math.min(999, ctx.rango));
+  const n = az.entero(Math.min(pisoRango(ctx, 11), hastaB), hastaB);
   const [u, d, c = 0] = cifras(n);
   const previstos: [number, string][] = [];
   const inv = invertirCifras(n);

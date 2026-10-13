@@ -16,12 +16,13 @@ import {
   objeto,
   opcionesNumericas,
   opcionesTexto,
+  pisoRango,
   rellenar,
   texto,
   uid,
 } from './comun';
 import { datosComparar, datosValor } from './numeros';
-import { numerosPara, rangoHistoria } from './problemas';
+import { elegirHistoria, numerosPara, rangoHistoria } from './problemas';
 import { datosResta, datosSuma, par } from './sumasRestas';
 import { datosGrupos, elegirTabla } from './tablas';
 import { VALORES_PLATA } from './dinero';
@@ -29,7 +30,7 @@ import { VALORES_PLATA } from './dinero';
 type Op = '+' | '−' | '×' | 'num' | '$';
 const opDe = (ctx: Contexto, def: Op): Op => (ctx.params.op as Op) ?? def;
 /** Mínimo del nivel (por ejemplo, 100 en «Centenas»): los números no bajan de ahí. */
-const piso = (ctx: Contexto, def: number) => Math.max(def, Number(ctx.params.minimo) || 0);
+const piso = (ctx: Contexto, def: number) => pisoRango(ctx, def);
 const max = (ctx: Contexto, min = 10) => Math.max(min, ctx.rango);
 
 function sinArticulo(nombre: string): string {
@@ -133,7 +134,8 @@ export const escoba: Generador = (az, ctx): Ejercicio => {
     solucion = [c * 100, d * 10, u].filter((x) => x > 0);
     resto = [u * 10, d, (d + 1) * 10, c ? c : u + 1].filter((x) => x > 0 && !solucion.includes(x)).slice(0, 3);
   } else {
-    const opciones = [10, 15, 20, 50, 100, 200, 500, 1000].filter((x) => x <= Math.max(10, ctx.rango));
+    // Escobas que van con el grado: en el grado que llega a 600, del 100 en adelante (nada de «escoba del 10»).
+    const opciones = [10, 15, 20, 50, 100, 200, 500, 1000].filter((x) => x <= Math.max(10, ctx.rango) && x * 10 >= ctx.rango);
     objetivo = az.elegir(opciones.length ? opciones : [10]);
     const partes = az.chance(0.5) ? 2 : 3;
     solucion = [];
@@ -234,7 +236,7 @@ export const dados: Generador = (az, ctx): Ejercicio => {
   let tag: string;
   if (op === '×') {
     const g = az.entero(2, Math.min(6, Math.max(2, ctx.rango)));
-    const p = az.entero(1, 6);
+    const p = az.entero(2, 6);
     valores = Array.from({ length: g }, () => p);
     r = g * p;
     cuenta = `${g} × ${p}`;
@@ -545,7 +547,7 @@ function historiaSimple(az: Azar, ctx: Contexto, excluir: string[] = []) {
     (t) => t !== 'elegir-operacion' && !excluir.includes(t) && HISTORIAS[t]?.some((h) => h.op),
   );
   const tipo = az.elegir(tipos.length ? tipos : ['juntar', 'agregar', 'quitar']);
-  const h = az.elegir(HISTORIAS[tipo].filter((x) => x.op));
+  const h = elegirHistoria(az, HISTORIAS[tipo].filter((x) => x.op), ctx.rango);
   const op = h.op as '+' | '−';
   // Números con sentido para la historia (nada de 800 flores en un florero).
   const [a, b] = numerosPara(az, rangoHistoria(h, ctx.rango), op);

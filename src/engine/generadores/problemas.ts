@@ -92,6 +92,15 @@ export function numerosPara(az: Azar, rango: number, op: Op): [number, number] {
 }
 
 /** El rango del ejercicio, sin pasarse de lo que tiene sentido en la historia. */
+/**
+ * Elige una historia, prefiriendo las que aguantan números del tamaño del grado
+ * (así en los grados altos no quedan siempre las de números chicos).
+ */
+export function elegirHistoria(az: Azar, lista: Historia[], rango: number): Historia {
+  const grandes = lista.filter((h) => (h.max ?? Infinity) >= rango);
+  return grandes.length && az.chance(0.75) ? az.elegir(grandes) : az.elegir(lista);
+}
+
 export function rangoHistoria(h: Historia, rango: number): number {
   return Math.max(10, Math.min(rango, h.max ?? Infinity));
 }
@@ -101,7 +110,7 @@ export const problema: Generador = (az, ctx): Ejercicio => {
   const tipo = az.elegir(tipos);
   const historias = HISTORIAS[tipo];
   if (!historias?.length) throw new Error(`No hay historias del tipo ${tipo}`);
-  const h = az.elegir(historias);
+  const h = elegirHistoria(az, historias, ctx.rango);
   const obj = objetoDe(az, h);
 
   if (tipo === 'dos-pasos') {

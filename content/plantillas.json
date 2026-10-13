@@ -66,7 +66,7 @@
     ],
     "opcion": "familia del {f}",
     "explicacion": "El {n} es de la familia del {r}.",
-    "pista": "La familia la dice la cifra de las decenas."
+    "pista": "Tapá la última cifra y poné un 0 en su lugar: esa es la familia."
   },
   "descomponer": {
     "modo": "opciones",

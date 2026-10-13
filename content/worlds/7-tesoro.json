@@ -1,81 +1,123 @@
 {
-  "id": "tesoro", "numero": 7, "nombre": "Isla del Tesoro", "escala": "finanzas", "etiqueta": "Finanzas", "nota": "Acá los precios son de juguete, para practicar.",
+  "id": "tesoro",
+  "numero": 7,
+  "nombre": "Isla del Tesoro",
+  "escala": "finanzas",
+  "etiqueta": "Finanzas",
+  "nota": "Acá los precios son de juguete, para practicar.",
   "colores": { "cielo": "#FFF4D1", "suelo": "#FFE6A8", "acento": "#E8B21F" },
   "niveles": [
-    { "id": "tesoro-1", "nombre": "¿Qué es el dinero?", "corto": "El dinero",
+    {
+      "id": "tesoro-1",
+      "nombre": "¿Qué es el dinero?",
+      "corto": "El dinero",
       "plantillas": [
-        { "id": "finanzas", "peso": 1, "params": { "tema": "que-es-dinero" } },
+        { "id": "finanzas", "peso": 2, "params": {"tema": "que-es-dinero"} },
         { "id": "reconocer-billete", "peso": 1 },
-        { "id": "contar-plata", "peso": 1, "params": { "soloMonedas": true } },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "$" } },
-        { "id": "alcanza", "peso": 1 }
-      ] },
-    { "id": "tesoro-2", "nombre": "Ahorrar: la alcancía", "corto": "Ahorro",
+        { "id": "contar-plata", "peso": 1, "params": {"soloMonedas": true} },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "$"} },
+        { "id": "alcanza", "peso": 2 }
+      ]
+    },
+    {
+      "id": "tesoro-2",
+      "nombre": "Ahorrar: la alcancía",
+      "corto": "Ahorro",
       "plantillas": [
-        { "id": "finanzas", "peso": 1, "params": { "tema": "ahorrar" } },
-        { "id": "plan-ahorro", "peso": 1 },
-        { "id": "falta-meta", "peso": 1 },
-        { "id": "repartir-ahorro", "peso": 1 },
-        { "id": "alcanza", "peso": 1 }
-      ] },
-    { "id": "tesoro-3", "nombre": "Necesidad o deseo", "corto": "Necesidad o deseo",
+        { "id": "finanzas", "peso": 2, "params": {"tema": "ahorrar"} },
+        { "id": "plan-ahorro", "peso": 3 },
+        { "id": "falta-meta", "peso": 3 },
+        { "id": "repartir-ahorro", "peso": 3 },
+        { "id": "alcanza", "peso": 2 }
+      ]
+    },
+    {
+      "id": "tesoro-3",
+      "nombre": "Necesidad o deseo",
+      "corto": "Necesidad o deseo",
       "plantillas": [
-        { "id": "necesidad-deseo", "peso": 1 },
-        { "id": "clasificar", "peso": 2 },
-        { "id": "carrito", "peso": 1 },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "finanzas", "peso": 1, "params": { "tema": "ahorrar" } }
-      ] },
-    { "id": "tesoro-4", "nombre": "La mejor compra", "corto": "Comparar compras",
+        { "id": "necesidad-deseo", "peso": 2 },
+        { "id": "clasificar", "peso": 1 },
+        { "id": "carrito", "peso": 2 },
+        { "id": "alcanza", "peso": 2 },
+        { "id": "finanzas", "peso": 2, "params": {"tema": "ahorrar"} }
+      ]
+    },
+    {
+      "id": "tesoro-4",
+      "nombre": "La mejor compra",
+      "corto": "Comparar compras",
       "plantillas": [
-        { "id": "finanzas", "peso": 1, "params": { "tema": "comparar-compra" } },
+        { "id": "finanzas", "peso": 2, "params": {"tema": "comparar-compra"} },
         { "id": "comparar-precios", "peso": 1 },
         { "id": "ordenar-precios", "peso": 1 },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "carrito", "peso": 1 }
-      ] },
-    { "id": "tesoro-5", "nombre": "Presupuesto simple", "corto": "Presupuesto", "inicio": 300,
+        { "id": "alcanza", "peso": 2 },
+        { "id": "carrito", "peso": 2 }
+      ]
+    },
+    {
+      "id": "tesoro-5",
+      "nombre": "Presupuesto simple",
+      "corto": "Presupuesto",
       "plantillas": [
-        { "id": "presupuesto", "peso": 1 },
-        { "id": "carrito", "peso": 1 },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "compra-varios", "peso": 1 },
-        { "id": "dar-vuelto", "peso": 1 }
-      ] },
-    { "id": "tesoro-6", "nombre": "El trabajo y el dinero", "corto": "Trabajo",
+        { "id": "presupuesto", "peso": 3 },
+        { "id": "carrito", "peso": 2 },
+        { "id": "alcanza", "peso": 2 },
+        { "id": "compra-varios", "peso": 3 },
+        { "id": "dar-vuelto", "peso": 3 }
+      ]
+    },
+    {
+      "id": "tesoro-6",
+      "nombre": "El trabajo y el dinero",
+      "corto": "Trabajo",
       "plantillas": [
-        { "id": "finanzas", "peso": 1, "params": { "tema": "trabajo" } },
-        { "id": "trabajo-cobro", "peso": 2 },
-        { "id": "falta-meta", "peso": 1 },
-        { "id": "plan-ahorro", "peso": 1 },
-        { "id": "alcanza", "peso": 1 }
-      ] },
-    { "id": "tesoro-7", "nombre": "Compartir y donar", "corto": "Compartir",
+        { "id": "finanzas", "peso": 2, "params": {"tema": "trabajo"} },
+        { "id": "trabajo-cobro", "peso": 3 },
+        { "id": "falta-meta", "peso": 3 },
+        { "id": "plan-ahorro", "peso": 3 },
+        { "id": "alcanza", "peso": 2 }
+      ]
+    },
+    {
+      "id": "tesoro-7",
+      "nombre": "Compartir y donar",
+      "corto": "Compartir",
       "plantillas": [
-        { "id": "finanzas", "peso": 1, "params": { "tema": "compartir" } },
-        { "id": "repartir-ahorro", "peso": 1 },
-        { "id": "falta-meta", "peso": 1 },
+        { "id": "finanzas", "peso": 2, "params": {"tema": "compartir"} },
+        { "id": "repartir-ahorro", "peso": 3 },
+        { "id": "falta-meta", "peso": 3 },
         { "id": "clasificar", "peso": 1 },
-        { "id": "trabajo-cobro", "peso": 1 }
-      ] },
-    { "id": "tesoro-8", "nombre": "Plan de ahorro", "corto": "Plan de ahorro",
+        { "id": "trabajo-cobro", "peso": 3 }
+      ]
+    },
+    {
+      "id": "tesoro-8",
+      "nombre": "Plan de ahorro",
+      "corto": "Plan de ahorro",
       "plantillas": [
-        { "id": "plan-ahorro", "peso": 2 },
-        { "id": "repartir-ahorro", "peso": 1 },
-        { "id": "falta-meta", "peso": 1 },
-        { "id": "trabajo-cobro", "peso": 1 },
-        { "id": "alcanza", "peso": 1 }
-      ] }
+        { "id": "plan-ahorro", "peso": 3 },
+        { "id": "repartir-ahorro", "peso": 3 },
+        { "id": "falta-meta", "peso": 3 },
+        { "id": "trabajo-cobro", "peso": 3 },
+        { "id": "alcanza", "peso": 2 }
+      ]
+    }
   ],
-  "jefe":
-    { "id": "tesoro-jefe", "nombre": "La Capitana del Tesoro", "corto": "Plan del tesoro", "descripcion": "Armá el plan del tesoro: presupuesto, ahorro y una parte para compartir.", "avatar": "capitana",
-      "plantillas": [
-        { "id": "presupuesto", "peso": 1 },
-        { "id": "plan-ahorro", "peso": 1 },
-        { "id": "repartir-ahorro", "peso": 1 },
-        { "id": "necesidad-deseo", "peso": 1 },
-        { "id": "carrito", "peso": 1 },
-        { "id": "falta-meta", "peso": 1 },
-        { "id": "clasificar", "peso": 1 }
-      ] }
+  "jefe": {
+    "id": "tesoro-jefe",
+    "nombre": "La Capitana del Tesoro",
+    "corto": "Plan del tesoro",
+    "descripcion": "Armá el plan del tesoro: presupuesto, ahorro y una parte para compartir.",
+    "avatar": "capitana",
+    "plantillas": [
+      { "id": "presupuesto", "peso": 3 },
+      { "id": "plan-ahorro", "peso": 3 },
+      { "id": "repartir-ahorro", "peso": 3 },
+      { "id": "necesidad-deseo", "peso": 1 },
+      { "id": "carrito", "peso": 2 },
+      { "id": "falta-meta", "peso": 3 },
+      { "id": "clasificar", "peso": 1 }
+    ]
+  }
 }

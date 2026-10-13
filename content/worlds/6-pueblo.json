@@ -1,79 +1,127 @@
 {
-  "id": "pueblo", "numero": 6, "nombre": "Pueblo de los Problemas", "escala": "problemas",
+  "id": "pueblo",
+  "numero": 6,
+  "nombre": "Pueblo de los Problemas",
+  "escala": "problemas",
   "colores": { "cielo": "#CDE9FF", "suelo": "#D7F5EE", "acento": "#5B3FE0" },
   "niveles": [
-    { "id": "pueblo-1", "nombre": "Problemas de juntar", "corto": "Problemas",
+    {
+      "id": "pueblo-1",
+      "nombre": "Problemas de juntar",
+      "corto": "Problemas",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["juntar"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["juntar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["juntar"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["juntar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["juntar"] } }
-      ] },
-    { "id": "pueblo-2", "nombre": "Problemas de agregar", "corto": "Problemas",
+        { "id": "problema", "peso": 3, "params": {"tipos": ["juntar"]} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["juntar"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["juntar"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["juntar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["juntar"]} }
+      ]
+    },
+    {
+      "id": "pueblo-2",
+      "nombre": "Problemas de agregar",
+      "corto": "Problemas",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["agregar"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["agregar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["agregar"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["agregar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["agregar"] } }
-      ] },
-    { "id": "pueblo-3", "nombre": "Problemas de quitar", "corto": "Problemas",
+        { "id": "problema", "peso": 3, "params": {"tipos": ["agregar"]} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["agregar"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["agregar"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["agregar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["agregar"]} }
+      ]
+    },
+    {
+      "id": "pueblo-3",
+      "nombre": "Problemas de quitar",
+      "corto": "Problemas",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["quitar"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["quitar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["quitar"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["quitar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["quitar"] } }
-      ] },
-    { "id": "pueblo-4", "nombre": "Problemas de comparar", "corto": "Problemas",
+        { "id": "problema", "peso": 3, "params": {"tipos": ["quitar"]} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["quitar"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["quitar"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["quitar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["quitar"]} }
+      ]
+    },
+    {
+      "id": "pueblo-4",
+      "nombre": "Problemas de comparar",
+      "corto": "Problemas",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["comparar"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["comparar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["comparar"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["comparar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["comparar"] } }
-      ] },
-    { "id": "pueblo-5", "nombre": "¿Qué cuenta uso?", "corto": "Elegir la cuenta",
+        { "id": "problema", "peso": 3, "params": {"tipos": ["comparar"]} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["comparar"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["comparar"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["comparar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["comparar"]} }
+      ]
+    },
+    {
+      "id": "pueblo-5",
+      "nombre": "¿Qué cuenta uso?",
+      "corto": "Elegir la cuenta",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["elegir-operacion"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar", "comparar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar", "comparar"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar", "comparar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar", "comparar"] } }
-      ] },
-    { "id": "pueblo-6", "nombre": "Problemas de 2 pasos", "corto": "Problemas de 2 pasos",
+        { "id": "problema", "peso": 3, "params": {"tipos": ["elegir-operacion"]} },
+        {
+          "id": "elegir-pregunta",
+          "peso": 2,
+          "params": { "tipos": ["juntar", "agregar", "quitar", "comparar"] }
+        },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["juntar", "agregar", "quitar", "comparar"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["juntar", "agregar", "quitar", "comparar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["juntar", "agregar", "quitar", "comparar"]} }
+      ]
+    },
+    {
+      "id": "pueblo-6",
+      "nombre": "Problemas de 2 pasos",
+      "corto": "Problemas de 2 pasos",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["dos-pasos"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["juntar", "agregar", "quitar"] } }
-      ] },
-    { "id": "pueblo-7", "nombre": "Problemas con dinero", "corto": "Problemas con plata",
+        { "id": "problema", "peso": 3, "params": {"tipos": ["dos-pasos"]} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["juntar", "agregar", "quitar"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["juntar", "agregar", "quitar"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["juntar", "agregar", "quitar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["juntar", "agregar", "quitar"]} }
+      ]
+    },
+    {
+      "id": "pueblo-7",
+      "nombre": "Problemas con dinero",
+      "corto": "Problemas con plata",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["dinero"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["dinero"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["dinero"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["dinero"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["dinero"] } }
-      ] },
-    { "id": "pueblo-8", "nombre": "Datos que sobran o faltan", "corto": "Datos de más",
+        { "id": "problema", "peso": 3, "params": {"tipos": ["dinero"]} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["dinero"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["dinero"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["dinero"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["dinero"]} }
+      ]
+    },
+    {
+      "id": "pueblo-8",
+      "nombre": "Datos que sobran o faltan",
+      "corto": "Datos de más",
       "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["dato-que-sobra", "dato-que-falta"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["dato-que-sobra", "juntar", "quitar"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["dato-que-sobra", "juntar", "quitar"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["dato-que-sobra", "juntar", "quitar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["dato-que-sobra", "juntar", "quitar"] } }
-      ] }
+        { "id": "problema", "peso": 3, "params": {"tipos": ["dato-que-sobra", "dato-que-falta"]} },
+        { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["dato-que-sobra", "juntar", "quitar"]} },
+        { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["dato-que-sobra", "juntar", "quitar"]} },
+        { "id": "estimar", "peso": 2, "params": {"tipos": ["dato-que-sobra", "juntar", "quitar"]} },
+        { "id": "historia-vf", "peso": 1, "params": {"tipos": ["dato-que-sobra", "juntar", "quitar"]} }
+      ]
+    }
   ],
-  "jefe":
-    { "id": "pueblo-jefe", "nombre": "La Detective", "corto": "Misterios", "descripcion": "Un misterio con 3 problemas encadenados.", "avatar": "detective",
-      "plantillas": [
-        { "id": "problema", "peso": 1, "params": { "tipos": ["dos-pasos", "dato-que-sobra", "comparar", "dinero"] } },
-        { "id": "elegir-cuenta", "peso": 1, "params": { "tipos": ["comparar", "dinero", "quitar"] } },
-        { "id": "historia-vf", "peso": 1, "params": { "tipos": ["comparar", "dinero"] } },
-        { "id": "estimar", "peso": 1, "params": { "tipos": ["juntar", "dinero"] } },
-        { "id": "elegir-pregunta", "peso": 1, "params": { "tipos": ["comparar", "dinero", "quitar"] } }
-      ] }
+  "jefe": {
+    "id": "pueblo-jefe",
+    "nombre": "La Detective",
+    "corto": "Misterios",
+    "descripcion": "Un misterio con 3 problemas encadenados.",
+    "avatar": "detective",
+    "plantillas": [
+      {
+        "id": "problema",
+        "peso": 3,
+        "params": { "tipos": ["dos-pasos", "dato-que-sobra", "comparar", "dinero"] }
+      },
+      { "id": "elegir-cuenta", "peso": 2, "params": {"tipos": ["comparar", "dinero", "quitar"]} },
+      { "id": "historia-vf", "peso": 1, "params": {"tipos": ["comparar", "dinero"]} },
+      { "id": "estimar", "peso": 2, "params": {"tipos": ["juntar", "dinero"]} },
+      { "id": "elegir-pregunta", "peso": 2, "params": {"tipos": ["comparar", "dinero", "quitar"]} }
+    ]
+  }
 }

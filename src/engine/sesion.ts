@@ -91,7 +91,7 @@ export function aciertoTotal(s: Sesion): number {
 }
 
 /**
- * Un grado se completa al resolver los ejercicios mínimos (15). Decisión de Ga: no se espera tiempo.
+ * Un grado se completa al resolver los ejercicios mínimos (10). Decisión de Ga: no se espera tiempo.
  * minutosActivos y aciertoMinimo siguen en la configuración por si se quieren volver a usar (0 = apagado).
  */
 export function gradoCompleto(s: Sesion): boolean {

@@ -654,7 +654,7 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
 - No hay tope diario de monedas ni de estrellas. Cuanto más juega, más gana (decisión de Ga).
 - Se mantienen los valores iniciales de la tabla de monedas y los precios de 20 a 300 monedas según rareza. Todo vive en `content/config/` para ajustarlo sin tocar código.
 - Las monedas por repetir un grado ya completado siguen siendo 10 y exigen terminar el grado.
-- **Cambio del 12/10/2026:** un grado se completa al contestar las 15 preguntas. No hace falta esperar 5 minutos ni llegar a un porcentaje de aciertos (las estrellas siguen dependiendo de los aciertos).
+- **Cambio del 12/10/2026:** un grado se completa al contestar las preguntas del grado (15; desde el 13/10, 10). No hace falta esperar 5 minutos ni llegar a un porcentaje de aciertos (las estrellas siguen dependiendo de los aciertos).
 
 **Jefes**
 
@@ -678,3 +678,8 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
 - Desbloqueo (decisión de Ga): el mundo siguiente se abre al pasar el grado 1 del nivel 4 del mundo anterior (config.progreso.nivelQueAbreSiguiente); el Gran desafío sigue siendo opcional para abrirlo.
 - Modo creadora: los perfiles con apodo de config.app.perfilesCreadora ("kimbo") tienen todos los mundos, niveles y grados abiertos para probar.
 - Panel de creadora (perfil kimbo → Ajustes): perfiles de este celular y, con la nube, de todos los celulares (solo el correo de la creadora puede leerlos; tabla resumenes con RLS y funciones guardar_resumen / resumen_creadora). Muestra cantidad de perfiles, activos en la semana, minutos, grados, temas que más cuestan, hasta qué mundo llegó cada una y el detalle por perfil.
+- **Cambio del 13/10/2026 (pedido de Ga):** las nenas de 8 años ya cuentan hasta unos 700, así que:
+  - Cada grado tiene **10 preguntas** (antes 15).
+  - Los números arrancan en **200 en el grado 1 y suben de a 200 por grado** (400, 600, 800 y 1000) en todos los mundos (escaleras de 100 en 100, `inicioBase` 200, `peldanosPorGrado` 2, `peldanosDeSubida` 1). Los números de cada ejercicio no bajan del 40 % del rango del grado (`pisoDelRango`). Las tablas arrancan llegando hasta ×8 y suben hasta ×10.
+  - Qué juegos salen más: `content/config/juegos.json` clasifica cada juego en muy fácil, fácil, medio o difícil, y su peso en cada nivel sale de ahí (0,5 / 1 / 2 / 3). «Contar dibujitos» es el que menos sale y los difíciles (cuentas, pirámide, balanza, problemas, cuenta con hueco, escribir números) los que más. El juego del tema del nivel nunca queda entre los que menos salen. Una prueba lo verifica.
+  - Menos repetición: no sale el mismo juego dos preguntas seguidas (con 4 juegos o más, tampoco el de hace dos). Se sacaron los dados de Sumas y Restas (no pasan de 12) y hay historias nuevas para números grandes.

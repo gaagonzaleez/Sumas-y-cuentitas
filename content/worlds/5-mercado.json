@@ -1,80 +1,122 @@
 {
-  "id": "mercado", "numero": 5, "nombre": "Mercado de Monedas", "escala": "dinero", "etiqueta": "Dinero", "nota": "En el Mercado los precios son de juguete, para practicar cuentas.",
+  "id": "mercado",
+  "numero": 5,
+  "nombre": "Mercado de Monedas",
+  "escala": "dinero",
+  "etiqueta": "Dinero",
+  "nota": "En el Mercado los precios son de juguete, para practicar cuentas.",
   "colores": { "cielo": "#FFF4D1", "suelo": "#FFD9B0", "acento": "#E8505B" },
   "niveles": [
-    { "id": "mercado-1", "nombre": "Billetes y monedas", "corto": "Billetes",
+    {
+      "id": "mercado-1",
+      "nombre": "Billetes y monedas",
+      "corto": "Billetes",
       "plantillas": [
-        { "id": "reconocer-billete", "peso": 1 },
-        { "id": "contar-plata", "peso": 1, "params": { "soloMonedas": true } },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "$" } },
+        { "id": "reconocer-billete", "peso": 2 },
+        { "id": "contar-plata", "peso": 1, "params": {"soloMonedas": true} },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "$"} },
         { "id": "ordenar-precios", "peso": 1 },
-        { "id": "alcanza", "peso": 1 }
-      ] },
-    { "id": "mercado-2", "nombre": "Contar monedas", "corto": "Contar plata", "inicio": 20,
+        { "id": "alcanza", "peso": 2 }
+      ]
+    },
+    {
+      "id": "mercado-2",
+      "nombre": "Contar monedas",
+      "corto": "Contar plata",
       "plantillas": [
-        { "id": "contar-plata", "peso": 1, "params": { "soloMonedas": true } },
+        { "id": "contar-plata", "peso": 2, "params": {"soloMonedas": true} },
         { "id": "reconocer-billete", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "$" } },
-        { "id": "escoba", "peso": 1, "params": { "op": "$" } },
-        { "id": "alcanza", "peso": 1 }
-      ] },
-    { "id": "mercado-3", "nombre": "Armar un monto hasta $100", "corto": "Armar montos", "techoNivel": 100,
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "$"} },
+        { "id": "escoba", "peso": 2, "params": {"op": "$"} },
+        { "id": "alcanza", "peso": 2 }
+      ]
+    },
+    {
+      "id": "mercado-3",
+      "nombre": "Armar un monto",
+      "corto": "Armar montos",
       "plantillas": [
-        { "id": "armar-monto", "peso": 2 },
-        { "id": "contar-plata", "peso": 1 },
-        { "id": "escoba", "peso": 1, "params": { "op": "$" } },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "$" } },
-        { "id": "menos-billetes", "peso": 1 }
-      ] },
-    { "id": "mercado-4", "nombre": "Pagar justo", "corto": "Pagar justo",
+        { "id": "armar-monto", "peso": 3 },
+        { "id": "contar-plata", "peso": 2 },
+        { "id": "escoba", "peso": 2, "params": {"op": "$"} },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "$"} },
+        { "id": "menos-billetes", "peso": 2 }
+      ]
+    },
+    {
+      "id": "mercado-4",
+      "nombre": "Pagar justo",
+      "corto": "Pagar justo",
       "plantillas": [
-        { "id": "armar-monto", "peso": 1, "params": { "producto": true } },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "escoba", "peso": 1, "params": { "op": "$" } },
-        { "id": "contar-plata", "peso": 1 },
+        { "id": "armar-monto", "peso": 3, "params": {"producto": true} },
+        { "id": "alcanza", "peso": 2 },
+        { "id": "escoba", "peso": 2, "params": {"op": "$"} },
+        { "id": "contar-plata", "peso": 2 },
         { "id": "ordenar-precios", "peso": 1 }
-      ] },
-    { "id": "mercado-5", "nombre": "Montos hasta $1.000", "corto": "Montos grandes", "inicio": 200, "minimo": 200,
+      ]
+    },
+    {
+      "id": "mercado-5",
+      "nombre": "Montos grandes",
+      "corto": "Montos grandes",
       "plantillas": [
-        { "id": "armar-monto", "peso": 1, "params": { "producto": true } },
-        { "id": "contar-plata", "peso": 1 },
-        { "id": "menos-billetes", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "$" } },
-        { "id": "alcanza", "peso": 1 }
-      ] },
-    { "id": "mercado-6", "nombre": "¿Cuál es más barato?", "corto": "Comparar precios",
+        { "id": "armar-monto", "peso": 3, "params": {"producto": true} },
+        { "id": "contar-plata", "peso": 2 },
+        { "id": "menos-billetes", "peso": 2 },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "$"} },
+        { "id": "alcanza", "peso": 2 }
+      ]
+    },
+    {
+      "id": "mercado-6",
+      "nombre": "¿Cuál es más barato?",
+      "corto": "Comparar precios",
       "plantillas": [
-        { "id": "comparar-precios", "peso": 1 },
+        { "id": "comparar-precios", "peso": 2 },
         { "id": "ordenar-precios", "peso": 1 },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "guerra-cartas", "peso": 1, "params": { "op": "$" } },
-        { "id": "carrito", "peso": 1 }
-      ] },
-    { "id": "mercado-7", "nombre": "Dar vuelto", "corto": "Vuelto",
+        { "id": "alcanza", "peso": 2 },
+        { "id": "guerra-cartas", "peso": 1, "params": {"op": "$"} },
+        { "id": "carrito", "peso": 2 }
+      ]
+    },
+    {
+      "id": "mercado-7",
+      "nombre": "Dar vuelto",
+      "corto": "Vuelto",
       "plantillas": [
-        { "id": "dar-vuelto", "peso": 1 },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "contar-plata", "peso": 1 },
-        { "id": "menos-billetes", "peso": 1 },
-        { "id": "problema", "peso": 1, "params": { "tipos": ["dinero"] } }
-      ] },
-    { "id": "mercado-8", "nombre": "Compras con varios productos", "corto": "Compras",
+        { "id": "dar-vuelto", "peso": 3 },
+        { "id": "alcanza", "peso": 2 },
+        { "id": "contar-plata", "peso": 2 },
+        { "id": "menos-billetes", "peso": 2 },
+        { "id": "problema", "peso": 3, "params": {"tipos": ["dinero"]} }
+      ]
+    },
+    {
+      "id": "mercado-8",
+      "nombre": "Compras con varios productos",
+      "corto": "Compras",
       "plantillas": [
-        { "id": "compra-varios", "peso": 1 },
-        { "id": "carrito", "peso": 1 },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "dar-vuelto", "peso": 1 },
-        { "id": "problema", "peso": 1, "params": { "tipos": ["dinero"] } }
-      ] }
+        { "id": "compra-varios", "peso": 3 },
+        { "id": "carrito", "peso": 2 },
+        { "id": "alcanza", "peso": 2 },
+        { "id": "dar-vuelto", "peso": 3 },
+        { "id": "problema", "peso": 3, "params": {"tipos": ["dinero"]} }
+      ]
+    }
   ],
-  "jefe":
-    { "id": "mercado-jefe", "nombre": "La Tendera del Mercado", "corto": "La caja", "descripcion": "Atendé la caja del mercado con varios clientes seguidos.", "avatar": "tendera",
-      "plantillas": [
-        { "id": "armar-monto", "peso": 1, "params": { "producto": true } },
-        { "id": "dar-vuelto", "peso": 1 },
-        { "id": "compra-varios", "peso": 1 },
-        { "id": "carrito", "peso": 1 },
-        { "id": "alcanza", "peso": 1 },
-        { "id": "menos-billetes", "peso": 1 }
-      ] }
+  "jefe": {
+    "id": "mercado-jefe",
+    "nombre": "La Tendera del Mercado",
+    "corto": "La caja",
+    "descripcion": "Atendé la caja del mercado con varios clientes seguidos.",
+    "avatar": "tendera",
+    "plantillas": [
+      { "id": "armar-monto", "peso": 3, "params": {"producto": true} },
+      { "id": "dar-vuelto", "peso": 3 },
+      { "id": "compra-varios", "peso": 3 },
+      { "id": "carrito", "peso": 2 },
+      { "id": "alcanza", "peso": 2 },
+      { "id": "menos-billetes", "peso": 2 }
+    ]
+  }
 }
