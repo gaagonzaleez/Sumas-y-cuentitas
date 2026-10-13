@@ -5,6 +5,7 @@ import { Objeto } from '../art/Objetos';
 import { Plata } from '../art/Plata';
 import { sonido } from '../audio/voz';
 import type { Ejercicio } from '../engine/tipos';
+import { mismasLetras } from '../engine/letras';
 import { Bloques } from './Visuales';
 
 type Responder = (valor: string) => void;
@@ -281,5 +282,37 @@ export function ArmarGrupos({ ej, responder, bloqueado }: { ej: Ejercicio; respo
       )}
       <button className="boton ancho" disabled={usados === 0 || bloqueado} onClick={() => responder(canastas.join(','))}>Listo</button>
     </div>
+  );
+}
+
+/** Escribir el número con letras usando el teclado del celular (sin autocorrector). */
+export function EscribirLetras({ ej, responder, bloqueado }: { ej: Ejercicio; responder: Responder; bloqueado: boolean }) {
+  const [v, setV] = useState('');
+  function enviar() {
+    const t = v.trim();
+    if (!t) return;
+    // Mayúsculas, tildes y espacios de más no cuentan como error.
+    responder(mismasLetras(t, ej.respuesta) ? ej.respuesta : t);
+    setV('');
+  }
+  return (
+    <form className="col" style={{ gap: 10 }} onSubmit={(e) => { e.preventDefault(); enviar(); }}>
+      <label htmlFor="letras" className="sr-only">Escribí el número con letras</label>
+      <input
+        id="letras"
+        value={v}
+        onChange={(e) => setV(e.target.value)}
+        disabled={bloqueado}
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="none"
+        spellCheck={false}
+        inputMode="text"
+        enterKeyHint="done"
+        placeholder="Escribilo acá"
+        style={{ minHeight: 72, borderRadius: 20, border: '4px solid var(--violeta)', background: '#fff', fontFamily: 'var(--fuente-titulo)', fontSize: 30, textAlign: 'center', padding: '0 14px', width: '100%' }}
+      />
+      <button className="boton ancho" disabled={!v.trim() || bloqueado}>Listo</button>
+    </form>
   );
 }

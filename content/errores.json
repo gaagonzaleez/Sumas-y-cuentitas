@@ -305,5 +305,11 @@
     "tema": "Series de números",
     "frase": "Fijate de cuánto en cuánto avanza la serie.",
     "consejo": "Contar en voz alta de 2 en 2, de 5 en 5 y de 10 en 10."
+  },
+  "numeros.ortografia": {
+    "leccion": "escribir-letras",
+    "tema": "Escribir números con letras",
+    "frase": "¡Casi! Revisá cómo se escribe.",
+    "consejo": "Escribir juntas los números del calendario o de la casa."
   }
 }

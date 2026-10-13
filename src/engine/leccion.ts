@@ -2,6 +2,7 @@
 import { ERRORES, LECCIONES } from '../content';
 import type { Ejercicio } from './tipos';
 import { rellenar } from './generadores/comun';
+import { distancia, mismasLetras } from './letras';
 
 export interface LeccionArmada {
   id: string;
@@ -22,6 +23,13 @@ export function infoError(errorTag: string) {
 export function errorTagDe(ej: Ejercicio, respuesta: string): string {
   const op = ej.opciones?.find((o) => o.valor === respuesta);
   if (op?.errorTag) return op.errorTag;
+  if (ej.modo === 'letras') {
+    const previsto = Object.entries(ej.erroresPrevistos ?? {}).find(([v]) => mismasLetras(v, respuesta));
+    if (previsto) return previsto[1];
+    // Muy parecido: es un tema de ortografía, no de números.
+    if (distancia(respuesta, ej.respuesta) <= Math.max(2, Math.floor(ej.respuesta.length / 6))) return 'numeros.ortografia';
+    return ej.errorTagPorDefecto;
+  }
   if (ej.erroresPrevistos?.[respuesta]) return ej.erroresPrevistos[respuesta];
   return ej.errorTagPorDefecto;
 }

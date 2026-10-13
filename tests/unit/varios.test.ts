@@ -61,3 +61,24 @@ describe('voz por pedacitos', () => {
     expect(partirTexto('1.000')[0]).toEqual({ tipo: 'numero', n: 1000 });
   });
 });
+
+import { distancia, mismasLetras } from '../../src/engine/letras';
+import { errorTagDe } from '../../src/engine/leccion';
+import { escribirEnLetras } from '../../src/engine/generadores/numeros';
+import { crearAzar } from '../../src/engine/azar';
+import { caracterGrado } from '../../src/engine/escalera';
+
+describe('escribir números con letras', () => {
+  it('no importan mayúsculas, tildes ni espacios', () => {
+    expect(mismasLetras('Veintidos', 'veintidós')).toBe(true);
+    expect(mismasLetras('  VEINTIDÓS ', 'veintidós')).toBe(true);
+    expect(mismasLetras('veinti dos', 'veintidós')).toBe(true);
+    expect(mismasLetras('veintitrés', 'veintidós')).toBe(false);
+    expect(distancia('beintidos', 'veintidós')).toBe(1);
+  });
+  it('clasifica los errores', () => {
+    const ej = escribirEnLetras(crearAzar(1), { rango: 100, grado: 1, caracter: caracterGrado(1), params: {} });
+    expect(errorTagDe(ej, ej.respuesta.slice(0, -1))).toBe('numeros.ortografia');
+    expect(errorTagDe(ej, 'xyzxyzxyzxyz')).toBe('numeros.letras');
+  });
+});

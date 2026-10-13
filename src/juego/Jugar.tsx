@@ -18,7 +18,7 @@ import { Modal } from '../ui/comunes';
 import { ir } from '../ui/router';
 import { guardarFestejo } from './festejo';
 import { Leccion } from './Leccion';
-import { ArmarBloques, ArmarGrupos, Dinero, type EstadoOpcion, Memoria, Opciones, Ordenar, Teclado } from './Modos';
+import { ArmarBloques, ArmarGrupos, Dinero, EscribirLetras, type EstadoOpcion, Memoria, Opciones, Ordenar, Teclado } from './Modos';
 import { VisualEjercicio } from './Visuales';
 
 type Fase = 'pregunta' | 'acierto' | 'leccion';
@@ -309,12 +309,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
           {verVisual && ejercicio.visual && (
             <div className="tarjeta aparece" style={{ padding: 14 }}><VisualEjercicio v={ejercicio.visual} /></div>
           )}
-          {ejercicio.cuenta && (
-            <p className="titulo centro" style={{ fontSize: 40, textAlign: 'center' }} aria-label={ejercicio.cuenta.replace('?', 'cuánto')}>
-              {fase === 'acierto' ? ejercicio.cuenta.replace('?', '') : ejercicio.cuenta.replace(' = ?', ' = ')}
-              {fase === 'acierto' ? <span style={{ color: 'var(--turquesa-oscuro)' }}>{ejercicio.respuesta}</span> : <span style={{ color: '#9C8FC4' }}>?</span>}
-            </p>
-          )}
+          {ejercicio.cuenta && <Cuenta ej={ejercicio} resuelta={fase === 'acierto'} />}
           {reloj && fase === 'pregunta' && <Reloj key={ejercicio.uid} />}
           <div key={ejercicio.uid}>
             {ejercicio.modo === 'opciones' && <Opciones ej={ejercicio} responder={contestar} estado={opEstado} />}
@@ -326,6 +321,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
               <Memoria ej={ejercicio} responder={contestar} bloqueado={fase !== 'pregunta'} alError={() => contestar('x')} />
             )}
             {ejercicio.modo === 'arrastrar' && <ArmarGrupos ej={ejercicio} responder={contestar} bloqueado={fase !== 'pregunta'} />}
+            {ejercicio.modo === 'letras' && <EscribirLetras ej={ejercicio} responder={contestar} bloqueado={fase !== 'pregunta'} />}
           </div>
           {fase === 'pregunta' && (
             <button className="boton blanco chico" style={{ alignSelf: 'center' }} onClick={pedirPista}>
@@ -382,5 +378,30 @@ function Reloj() {
     <span className="pildora estrellas" style={{ alignSelf: 'center' }} aria-label={`${s} segundos`}>
       <Icono nombre="reloj" size={20} /> {s} s
     </span>
+  );
+}
+
+/** La cuenta grande: "3 × 4 = ?", una serie "10, 20, __, 40" o un número para escribir con letras. */
+function Cuenta({ ej, resuelta }: { ej: Ejercicio; resuelta: boolean }) {
+  const c = ej.cuenta!;
+  const ok = (t: string) => <span style={{ color: 'var(--turquesa-oscuro)' }}>{t}</span>;
+  const falta = <span style={{ color: '#9C8FC4' }}>?</span>;
+  let contenido;
+  if (c.includes('= ?')) contenido = <>{c.replace(' = ?', ' = ')}{resuelta ? ok(ej.respuesta) : falta}</>;
+  else if (c.includes('__')) {
+    const [antes, despues] = c.split('__');
+    contenido = <>{antes}{resuelta ? ok(ej.respuesta) : <span style={{ color: '#9C8FC4' }}>__</span>}{despues}</>;
+  } else if (ej.modo === 'letras') {
+    contenido = (
+      <>
+        <span style={{ fontSize: 72 }}>{c}</span>
+        {resuelta && <span style={{ display: 'block', fontSize: 30 }}>{ok(ej.respuesta)}</span>}
+      </>
+    );
+  } else contenido = c;
+  return (
+    <p className="titulo centro" style={{ fontSize: 36, textAlign: 'center', lineHeight: 1.15 }}>
+      {contenido}
+    </p>
   );
 }

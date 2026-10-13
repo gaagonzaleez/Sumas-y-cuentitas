@@ -326,5 +326,14 @@
     ],
     "explicacion": "{descompuesto} = {r}. ¡Muy bien contado!",
     "pista": "Cada barra vale 10. Contá las barras de a 10 y después los cuadraditos."
+  },
+  "escribir-en-letras": {
+    "modo": "letras",
+    "consigna": [
+      "Escribí con letras el número {n}.",
+      "¿Cómo se escribe el {n}? Escribilo con letras."
+    ],
+    "explicacion": "El {n} se escribe {r}.",
+    "pista": "Primero escribí las decenas y después las unidades."
   }
 }

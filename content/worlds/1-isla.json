@@ -37,6 +37,10 @@
         {
           "id": "leer-numero",
           "peso": 1
+        },
+        {
+          "id": "escribir-en-letras",
+          "peso": 1
         }
       ]
     },
@@ -60,6 +64,10 @@
         {
           "id": "secuencia",
           "peso": 1
+        },
+        {
+          "id": "escribir-en-letras",
+          "peso": 2
         }
       ]
     },
@@ -158,6 +166,10 @@
         {
           "id": "leer-numero",
           "peso": 1
+        },
+        {
+          "id": "escribir-en-letras",
+          "peso": 3
         }
       ]
     }
@@ -189,6 +201,10 @@
       },
       {
         "id": "descomponer",
+        "peso": 1
+      },
+      {
+        "id": "escribir-en-letras",
         "peso": 1
       }
     ]

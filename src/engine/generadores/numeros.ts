@@ -470,3 +470,29 @@ export const contarBloques: Generador = (az, ctx) => {
     params: { n },
   };
 };
+
+/** Escribir con letras: aparece el número (22) y se escribe "veintidós" con el teclado. */
+export const escribirEnLetras: Generador = (az, ctx) => {
+  const n = numeroEnRango(az, Math.min(ctx.rango, 1000), 11);
+  const letras = enLetras(n);
+  const previstos: Record<string, string> = {};
+  const inv = invertirCifras(n);
+  if (inv !== n && n % 10 !== 0 && inv <= 1000) previstos[enLetras(inv)] = 'numeros.invierte-cifras';
+  return {
+    uid: uid('escribir-en-letras', { n }),
+    plantillaId: 'escribir-en-letras',
+    tema: 'numeros',
+    modo: 'letras',
+    consigna: rellenar(texto(az, 'escribir-en-letras', 'consigna'), { n }),
+    cuenta: String(n),
+    visual: { tipo: 'bloques', numero: n },
+    visualEsAyuda: true,
+    respuesta: letras,
+    erroresPrevistos: previstos,
+    errorTagPorDefecto: 'numeros.letras',
+    leccion: datosValor(n),
+    explicacion: rellenar(texto(az, 'escribir-en-letras', 'explicacion'), { n, r: letras }),
+    pista: texto(az, 'escribir-en-letras', 'pista'),
+    params: { n },
+  };
+};

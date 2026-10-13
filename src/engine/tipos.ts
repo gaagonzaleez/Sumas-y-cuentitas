@@ -9,7 +9,8 @@ export type Modo =
   | 'ordenar' // ordenar de menor a mayor
   | 'dinero' // pagar con billetes y monedas
   | 'memoria' // unir cada cuenta con su resultado
-  | 'arrastrar'; // mover objetos a grupos
+  | 'arrastrar' // mover objetos a grupos
+  | 'letras'; // escribir el número con letras
 
 export interface Opcion {
   valor: string;

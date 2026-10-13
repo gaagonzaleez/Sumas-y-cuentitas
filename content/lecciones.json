@@ -389,5 +389,21 @@
         "texto": "Entonces el número que falta es el {r}."
       }
     ]
+  },
+  "escribir-letras": {
+    "visual": "valor-posicional",
+    "pasos": [
+      {
+        "si": "tieneCentenas",
+        "texto": "El {n} tiene {cTxt}, {dTxt} y {uTxt}.",
+        "sino": "El {n} tiene {dTxt} y {uTxt}."
+      },
+      {
+        "texto": "Lo decimos en voz alta, despacito, y escribimos lo que suena."
+      },
+      {
+        "texto": "Se escribe así: {letras}."
+      }
+    ]
   }
 }
