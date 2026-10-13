@@ -86,16 +86,19 @@ export function Leccion({
   ej,
   respuesta,
   alTerminar,
+  intro,
 }: {
   lec: LeccionArmada;
   ej: Ejercicio;
   respuesta?: string;
   alTerminar: () => void;
+  /** Frase de la guía que se dice antes del primer paso. */
+  intro?: string;
 }) {
   const [paso, setPaso] = useState(0);
   useEffect(() => {
-    decir(lec.pasos[paso]);
-  }, [paso, lec]);
+    decir(paso === 0 && intro ? [intro, lec.pasos[0]] : lec.pasos[paso]);
+  }, [paso, lec]); // eslint-disable-line react-hooks/exhaustive-deps
   const ultimo = paso >= lec.pasos.length - 1;
   return (
     <div className="col" style={{ gap: 12 }}>

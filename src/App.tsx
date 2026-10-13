@@ -3,6 +3,8 @@ import { Guia } from './art/Guias';
 import { configurarVoz } from './audio/voz';
 import { iniciar, useEstado, useJugadora } from './datos/estado';
 import { iniciarNube } from './datos/nube';
+import { nivelPorId } from './content';
+import { gradoDesbloqueado } from './engine/progreso';
 import { Jugar } from './juego/Jugar';
 import { Ajustes } from './pantallas/Ajustes';
 import { CrearCuenta, EntrarAdulta } from './pantallas/Adulta';
@@ -120,7 +122,13 @@ function Rutas() {
   p = coincide('/nivel/:id', camino);
   if (p) return <Nivel id={p.id} />;
   p = coincide('/jugar/:id/:grado', camino);
-  if (p) return <Jugar key={ruta} nivelId={p.id} grado={Math.min(5, Math.max(1, Number(p.grado) || 1))} />;
+  if (p) {
+    const grado = Math.min(5, Math.max(1, Number(p.grado) || 1));
+    const info = nivelPorId(p.id);
+    // Un grado bloqueado no se puede abrir con el link o volviendo atrás.
+    if (info && !gradoDesbloqueado(j.progreso, info.mundo, p.id, grado)) return (ir(`/nivel/${p.id}`, true), null);
+    return <Jugar key={ruta} nivelId={p.id} grado={grado} />;
+  }
   p = coincide('/repaso/:tag', camino);
   if (p) return <Jugar key={ruta} nivelId="repaso" grado={1} repasoTag={p.tag} />;
   if (!RUTAS_LIBRES.includes(camino)) ir('/mapa', true);

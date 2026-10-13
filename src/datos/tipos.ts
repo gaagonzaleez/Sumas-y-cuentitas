@@ -34,6 +34,8 @@ export interface Ajustes {
 export interface ErrorReciente {
   tag: string;
   dia: string;
+  /** Nivel donde pasó (para que el repaso practique lo mismo). */
+  nivelId?: string;
 }
 
 export interface Jugadora {

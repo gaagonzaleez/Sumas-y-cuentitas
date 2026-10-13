@@ -78,7 +78,9 @@ export function Festejo() {
             </div>
           </div>
         )}
-        {d.mundoNuevo && <p className="aviso-caja verde">¡Se abrió un mundo nuevo: {mundoPorId(d.mundoNuevo)?.nombre}!</p>}
+        {(d.mundosNuevos?.length ?? 0) > 1 ? (
+          <p className="aviso-caja verde">¡Se abrieron mundos nuevos: {d.mundosNuevos!.map((m) => mundoPorId(m)?.nombre).join(' y ')}!</p>
+        ) : d.mundoNuevo && <p className="aviso-caja verde">¡Se abrió un mundo nuevo: {mundoPorId(d.mundoNuevo)?.nombre}!</p>}
         {d.racha && <p className="aviso-caja amarillo">¡3 días seguidos jugando! Ganaste monedas extra.</p>}
         <div className="fila" style={{ justifyContent: 'center', gap: 10 }}>
           <span className="pildora monedas"><Moneda size={24} /> +{d.monedas}</span>

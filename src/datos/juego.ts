@@ -141,9 +141,9 @@ export async function ganar(monedas: number, estrellas = 0) {
   }));
 }
 
-export async function anotarError(tag: string) {
+export async function anotarError(tag: string, nivelId?: string) {
   const hoy = diaArgentina();
-  await actualizar((x) => ({ ...x, errores: [...x.errores, { tag, dia: hoy }].slice(-400) }));
+  await actualizar((x) => ({ ...x, errores: [...x.errores, { tag, dia: hoy, nivelId }].slice(-400) }));
 }
 
 export async function sumarTiempoDeJuego(segundos: number) {
@@ -161,6 +161,8 @@ export interface Premios {
   esJefe: boolean;
   primeraVez: boolean;
   mundoNuevo?: string;
+  /** Todos los mundos que se abrieron (vencer a una jefa puede abrir más de uno). */
+  mundosNuevos?: string[];
   racha: boolean;
 }
 
@@ -215,6 +217,7 @@ export async function completarGrado(nivelId: string, grado: number, estrellas: 
   const totalEstrellas = estrellasNuevas + estrellasJefe;
   const semana = lunesDeLaSemana();
   let mundoNuevo: string | undefined;
+  let mundosNuevos: string[] = [];
   await actualizar((x) => ({
     ...x,
     progreso,
@@ -229,8 +232,9 @@ export async function completarGrado(nivelId: string, grado: number, estrellas: 
   if (info.esJefe && grado === 1 && primeraVez) {
     const desbloqueados = Object.entries(config.progreso.desbloqueoMundos).filter(([, req]) => req === info.mundo.id).map(([m]) => m);
     mundoNuevo = desbloqueados[0];
+    mundosNuevos = desbloqueados;
   }
-  return { monedas, estrellas: totalEstrellas, estrellasNuevas, items: nuevosItems, estampita, esJefe: info.esJefe, primeraVez, mundoNuevo, racha };
+  return { monedas, estrellas: totalEstrellas, estrellasNuevas, items: nuevosItems, estampita, esJefe: info.esJefe, primeraVez, mundoNuevo, mundosNuevos, racha };
 }
 
 // ---------- Alcancía ----------

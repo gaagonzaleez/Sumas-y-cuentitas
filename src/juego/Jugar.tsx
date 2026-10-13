@@ -11,6 +11,8 @@ import { generarEjercicio, plantillaDe } from '../engine/generar';
 import { armarLeccion, errorTagDe, infoError, type LeccionArmada } from '../engine/leccion';
 import { avanceGrado, estrellasDe, gradoCompleto, nuevaSesion, resolver, responder, type Sesion, sumarTiempo } from '../engine/sesion';
 import type { Ejercicio } from '../engine/tipos';
+import { mundoDesbloqueado } from '../engine/progreso';
+import type { Jugadora } from '../datos/tipos';
 import { actualizar, useJugadora } from '../datos/estado';
 import { anotarError, completarGrado, ganar, registrarIntento, sumarTiempoDeJuego } from '../datos/juego';
 import { callar, configurarVoz, decir, precargar, sonido, useAudioEstado } from '../audio/voz';
@@ -31,10 +33,15 @@ interface Props {
 }
 
 /** Busca el nivel que mejor practica un errorTag (para el repaso). */
-export function nivelParaRepaso(tag: string): { mundo: Mundo; nivel: Nivel } {
+export function nivelParaRepaso(tag: string, j?: Jugadora): { mundo: Mundo; nivel: Nivel } {
+  // Primero, el último nivel donde se equivocó con eso.
+  const ultimo = j?.errores.filter((e) => e.tag === tag && e.nivelId).at(-1)?.nivelId;
+  const info = ultimo ? nivelPorId(ultimo) : undefined;
+  if (info && !info.esJefe) return { mundo: info.mundo, nivel: info.nivel };
   const az = crearAzar(42);
-  let mejor = { mundo: MUNDOS[1], nivel: MUNDOS[1].niveles[0], n: 0 };
-  for (const mundo of MUNDOS) {
+  let mejor = { mundo: MUNDOS[0], nivel: MUNDOS[0].niveles[0], n: 0 };
+  // Solo en mundos que ya tiene abiertos.
+  for (const mundo of MUNDOS.filter((m) => !j || mundoDesbloqueado(j.progreso, m.id))) {
     for (const nivel of mundo.niveles) {
       const lim = limitesGrado(nivel, mundo.escala, 1);
       let n = 0;
@@ -54,7 +61,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   const az = useMemo(() => crearAzar(), []);
   const base = useMemo(() => {
     if (repasoTag) {
-      const r = nivelParaRepaso(repasoTag);
+      const r = nivelParaRepaso(repasoTag, j);
       return { mundo: r.mundo, nivel: r.nivel, esJefe: false };
     }
     const info = nivelPorId(nivelId);
@@ -66,12 +73,16 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   const [fase, setFase] = useState<Fase>('pregunta');
   const [intento, setIntento] = useState(0);
   const [pista, setPista] = useState(0);
+  // Pistas que pidió ella (la que aparece sola después de un "¡Casi!" no le quita estrellas).
+  const [pidioPista, setPidioPista] = useState(false);
+  const terminando = useRef(false);
+  const respondiendo = useRef(false);
   const [despuesDeLeccion, setDespuesDeLeccion] = useState(false);
   // El mensaje de la guía va en partes: cada parte es una frase con su propio audio.
   const [partes, setMensaje] = useState<string[]>([]);
   const mensaje = partes.join(' ');
   const [opEstado, setOpEstado] = useState<EstadoOpcion>({ descartadas: [] });
-  const [leccion, setLeccion] = useState<{ lec: LeccionArmada; respuesta?: string } | null>(null);
+  const [leccion, setLeccion] = useState<{ lec: LeccionArmada; respuesta?: string; pedida: boolean } | null>(null);
   const [ultimas, setUltimas] = useState(0);
   const [salir, setSalir] = useState(false);
   const [descanso, setDescanso] = useState(false);
@@ -91,18 +102,26 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     (s: Sesion, parecido?: Ejercicio) => {
       if (!base) return;
       const fija = parecido ? plantillaDe(base.nivel, parecido) : undefined;
-      const e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), fija, ejRef.current?.plantillaId);
+      let e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), fija, ejRef.current?.plantillaId);
+      // En el repaso, se busca un ejercicio que practique justo ese error.
+      const practica = (x: Ejercicio) =>
+        x.errorTagPorDefecto === repasoTag || x.opciones?.some((o) => o.errorTag === repasoTag) || Object.values(x.erroresPrevistos ?? {}).includes(repasoTag!);
+      for (let i = 0; repasoTag && !fija && i < 30 && !practica(e); i++)
+        e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), undefined, ejRef.current?.plantillaId);
       ejRef.current = e;
       setEj(e);
       setFase('pregunta');
       setIntento(0);
       setPista(0);
+      setPidioPista(false);
+      respondiendo.current = false;
       setOpEstado({ descartadas: [] });
       setMensaje([e.consigna]);
       setDespuesDeLeccion(Boolean(parecido));
       inicio.current = Date.now();
+      return e;
     },
-    [az, base, grado],
+    [az, base, grado, repasoTag],
   );
 
   // Primer ejercicio y precarga de audios del nivel.
@@ -174,6 +193,9 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   const totalRepaso = config.progreso.repaso.ejercicios;
 
   async function terminarGrado(s: Sesion) {
+    // Un doble toque en "Seguir" no termina el grado dos veces.
+    if (terminando.current) return;
+    terminando.current = true;
     callar();
     if (repaso) {
       await actualizar((x) => ({ ...x, errores: x.errores.filter((e) => e.tag !== repasoTag) }));
@@ -188,26 +210,28 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   }
 
   async function contestar(valor: string) {
-    if (!ejercicio || fase !== 'pregunta') return;
+    if (!ejercicio || fase !== 'pregunta' || respondiendo.current) return;
     const correcta = valor === ejercicio.respuesta;
-    const conAyuda = intento > 0 || pista > 0;
+    const conAyuda = intento > 0 || pidioPista;
     const ms = Date.now() - inicio.current;
     const r = responder(sesion!, { correcta, conAyuda, despuesDeLeccion });
     let s = r.sesion;
     if (correcta) {
+      respondiendo.current = true;
       sonido('acierto');
-      s = resolver(s, intento === 0 && pista === 0, ejercicio.uid, pista > 0);
+      s = resolver(s, intento === 0 && !pidioPista, ejercicio.uid, pidioPista);
       setSesion(s);
       setOpEstado((o) => ({ ...o, correcta: valor }));
       setFase('acierto');
       setUltimas(r.monedas);
-      await ganar(r.monedas);
-      setMensaje([frase(guia, 'aciertos'), ejercicio.explicacion]);
+      // Si la escalera subió, la guía lo festeja.
+      setMensaje([frase(guia, 'aciertos'), ejercicio.explicacion, ...(r.subio ? [frase(guia, 'subio')] : [])]);
+      void ganar(r.monedas);
       registrarIntento({ nivelId: base!.nivel.id, plantillaId: ejercicio.plantillaId, params: JSON.stringify(ejercicio.params), respuesta: valor, correcta: true, pistas: pista, ms });
       return;
     }
     const tag = errorTagDe(ejercicio, valor);
-    anotarError(tag);
+    anotarError(tag, repaso ? undefined : base!.nivel.id);
     registrarIntento({ nivelId: base!.nivel.id, plantillaId: ejercicio.plantillaId, params: JSON.stringify(ejercicio.params), respuesta: valor, correcta: false, errorTag: tag, pistas: pista, ms });
     sonido('casi');
     setSesion(s);
@@ -215,7 +239,8 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     const n = intento + 1;
     setIntento(n);
     if (n >= 2) {
-      abrirLeccion(tag, valor);
+      // En memoria y "tocá varias" la respuesta es un código interno: no se muestra.
+      abrirLeccion(tag, ['memoria', 'elegir'].includes(ejercicio.modo) ? undefined : valor);
       return;
     }
     // Después del "¡Casi!" va qué mirar y una pista concreta para el segundo intento.
@@ -223,33 +248,37 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     setMensaje([frase(guia, 'errores'), infoError(tag).frase, ...(pista === 0 ? [ejercicio.pista] : [])]);
   }
 
-  function abrirLeccion(tag: string, respuesta?: string) {
+  function abrirLeccion(tag: string, respuesta?: string, pedida = false) {
     if (!ejercicio) return;
     callar();
-    setLeccion({ lec: armarLeccion(tag, ejercicio), respuesta });
+    // La lección dice la frase de la guía antes del primer paso.
+    setLeccion({ lec: armarLeccion(tag, ejercicio), respuesta, pedida });
     setFase('leccion');
     setMensaje([frase(guia, 'leccion')]);
-    decir(frase(guia, 'leccion'));
   }
 
   function terminarLeccion() {
     if (!ejercicio) return;
     // El ejercicio queda resuelto (no al primer intento) y se propone uno parecido.
-    const s = resolver(sesion!, false, ejercicio.uid, true);
+    const s = resolver(sesion!, false, ejercicio.uid, Boolean(leccion?.pedida));
     setSesion(s);
     setLeccion(null);
-    if (!repaso && gradoCompleto(s)) return terminarGrado(s);
-    nuevoEjercicio(s, ejercicio);
-    setMensaje([frase(guia, 'parecida')]);
+    if (repaso ? s.resueltos >= totalRepaso : gradoCompleto(s)) return terminarGrado(s);
+    const e = nuevoEjercicio(s, ejercicio);
+    setMensaje([frase(guia, 'parecida'), ...(e ? [e.consigna] : [])]);
   }
 
   function pedirPista() {
     if (!ejercicio) return;
-    const n = Math.min(config.progreso.pistas.maximo, pista + 1);
+    // Si ya vio la pista escrita (por ejemplo, después de un "¡Casi!"), pasa al dibujo.
+    let n = Math.min(config.progreso.pistas.maximo, pista + 1);
+    // Si no hay un dibujo escondido para mostrar, el segundo paso ya es la minilección.
+    if (n === 2 && !(ejercicio.visual && ejercicio.visualEsAyuda)) n = 3;
     setPista(n);
+    setPidioPista(true);
     if (n === 1) setMensaje([frase(guia, 'pista'), ejercicio.pista]);
     else if (n === 2) setMensaje([frase(guia, 'pistaDibujo'), ejercicio.pista]);
-    else abrirLeccion(ejercicio.errorTagPorDefecto);
+    else abrirLeccion(ejercicio.errorTagPorDefecto, undefined, true);
   }
 
   function seguir() {
@@ -265,7 +294,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   }
 
   const avance = repaso ? Math.min(1, sesion.resueltos / totalRepaso) : avanceGrado(sesion);
-  const numPregunta = sesion.resueltos + 1;
+  const numPregunta = sesion.resueltos + (fase === 'acierto' ? 0 : 1);
   const minimo = repaso ? totalRepaso : config.economia.grado.ejerciciosMinimos;
   const verVisual = ejercicio?.visual && (!ejercicio.visualEsAyuda || pista >= 2);
   const reloj = j.ajustes.reloj && ['tablas', 'sumas', 'restas'].includes(ejercicio?.tema ?? '');
@@ -294,14 +323,14 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
         <Guia guia={guia} size={54} expr={expr} />
         <div className="burbuja fila" style={{ alignItems: 'center', gap: 10 }}>
           <p style={{ flex: 1 }} aria-live="polite">{fase === 'leccion' ? frase(guia, 'leccion') : mensaje}</p>
-          <button className="boton-icono violeta" style={{ width: 54, height: 54 }} onClick={() => decir(fase === 'leccion' ? frase(guia, 'leccion') : partes, { forzar: true })} aria-label="Escuchar otra vez">
+          <button className="boton-icono violeta" style={{ width: 54, height: 54 }} onClick={() => decir(fase === 'leccion' ? frase(guia, 'leccion') : fase === 'pregunta' && ejercicio && !partes.includes(ejercicio.consigna) ? [...partes, ejercicio.consigna] : partes, { forzar: true })} aria-label="Escuchar otra vez">
             <Icono nombre="altavoz" />
           </button>
         </div>
       </div>
 
       {fase === 'leccion' && leccion && ejercicio ? (
-        <Leccion lec={leccion.lec} ej={ejercicio} respuesta={leccion.respuesta} alTerminar={terminarLeccion} />
+        <Leccion lec={leccion.lec} ej={ejercicio} respuesta={leccion.respuesta} alTerminar={terminarLeccion} intro={frase(guia, 'leccion')} />
       ) : ejercicio ? (
         <>
           {mensaje !== ejercicio.consigna && fase === 'pregunta' && (
