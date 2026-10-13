@@ -70,8 +70,6 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
   // Pantalla 6: ejercicio. Responde mal dos veces para ver la minilección (pantalla 9).
   await expect(page.getByText(/Pregunta 1 de 15/)).toBeVisible();
   await foto(page, '06-ejercicio');
-  const opciones = page.locator('main button').filter({ hasText: /^\d+$/ });
-  await expect(opciones.first()).toBeVisible();
   // Toca opciones hasta equivocarse dos veces en el mismo ejercicio (si acierta, sigue con otro).
   for (let intento = 0; intento < 20; intento++) {
     if (await page.getByRole('button', { name: 'Siguiente paso' }).isVisible()) break;
@@ -79,7 +77,10 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
       await page.getByRole('button', { name: 'Seguir' }).click();
       continue;
     }
-    if (await page.getByRole('button', { name: 'Listo' }).isVisible()) {
+    if (await page.getByLabel('Escribí el número con letras').isVisible()) {
+      await page.getByLabel('Escribí el número con letras').fill('xyz');
+      await page.getByRole('button', { name: 'Listo' }).click();
+    } else if (await page.getByRole('button', { name: 'Listo' }).isVisible()) {
       // Ejercicio con teclado: una respuesta que nunca es correcta en estos niveles.
       for (const t of ['9', '9', '9', '9']) await page.getByRole('button', { name: t, exact: true }).click();
       await page.getByRole('button', { name: 'Listo' }).click();
