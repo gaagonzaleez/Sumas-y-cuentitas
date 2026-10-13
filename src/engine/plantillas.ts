@@ -18,6 +18,8 @@ export const GENERADORES: Record<string, Generador> = {
   descomponer: num.descomponer,
   'armar-bloques': num.armarBloques,
   centenas: num.centenas,
+  secuencia: num.secuencia,
+  'contar-bloques': num.contarBloques,
   suma: sr.suma,
   resta: sr.resta,
   'cuanto-falta': sr.cuantoFalta,

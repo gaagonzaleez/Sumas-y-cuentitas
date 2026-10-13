@@ -77,6 +77,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   const [descanso, setDescanso] = useState(false);
   const [segundos, setSegundos] = useState(0);
   const inicio = useRef(Date.now());
+  const ejRef = useRef<Ejercicio | null>(null);
   const ultimaAccion = useRef(Date.now());
   const continuoMs = useRef(0);
   const avisoDescanso = useRef(false);
@@ -90,7 +91,8 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     (s: Sesion, parecido?: Ejercicio) => {
       if (!base) return;
       const fija = parecido ? plantillaDe(base.nivel, parecido) : undefined;
-      const e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), fija);
+      const e = generarEjercicio(az, base.mundo, base.nivel, grado, s.escalera.rango, new Set(s.uids), fija, ejRef.current?.plantillaId);
+      ejRef.current = e;
       setEj(e);
       setFase('pregunta');
       setIntento(0);

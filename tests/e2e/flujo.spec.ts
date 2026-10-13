@@ -79,8 +79,14 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
       await page.getByRole('button', { name: 'Seguir' }).click();
       continue;
     }
-    const habilitada = page.locator('main button:enabled').filter({ hasText: /^\d+$/ }).first();
-    await habilitada.click();
+    if (await page.getByRole('button', { name: 'Listo' }).isVisible()) {
+      // Ejercicio con teclado: una respuesta que nunca es correcta en estos niveles.
+      for (const t of ['9', '9', '9', '9']) await page.getByRole('button', { name: t, exact: true }).click();
+      await page.getByRole('button', { name: 'Listo' }).click();
+    } else {
+      const habilitada = page.locator('main button:enabled').filter({ hasText: /^\d+$/ }).first();
+      await habilitada.click();
+    }
     await page.waitForTimeout(150);
     if (await page.getByText(/Casi/).first().isVisible()) await expect(page.getByText(/Casi/).first()).toBeVisible();
   }

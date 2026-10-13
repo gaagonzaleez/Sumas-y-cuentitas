@@ -2,46 +2,80 @@
   "_nota": "Textos de cada plantilla de ejercicio. Las llaves {asi} se completan con los números del ejercicio.",
   "contar": {
     "modo": "opciones",
-    "consigna": ["¿{Cuantos} {objetos} hay?", "Contá {los} {objetos}. ¿{Cuantos} son?"],
+    "consigna": [
+      "¿{Cuantos} {objetos} hay?",
+      "Contá {los} {objetos}. ¿{Cuantos} son?"
+    ],
     "explicacion": "¡Hay {r} {objetos}!",
     "pista": "Tocá cada dibujo una sola vez mientras contás."
   },
   "leer-numero": {
     "modo": "opciones",
-    "consigna": ["¿Cuál es el número {letras}?", "Buscá el número {letras}."],
+    "consigna": [
+      "¿Cuál es el número {letras}?",
+      "Buscá el número {letras}."
+    ],
     "explicacion": "{letras} se escribe {r}.",
-    "pista": "Primero escuchá las decenas y después las unidades."
+    "pista": "Primero escuchá las decenas y después las unidades.",
+    "consignaTeclado": [
+      "Escribí el número {letras}.",
+      "Escuchá y escribí: {letras}."
+    ]
   },
   "anterior-siguiente": {
     "modo": "opciones",
-    "consigna": { "siguiente": "¿Qué número viene después del {n}?", "anterior": "¿Qué número viene antes del {n}?" },
-    "explicacion": { "siguiente": "Después del {n} viene el {r}.", "anterior": "Antes del {n} está el {r}." },
-    "pista": { "siguiente": "El siguiente es uno más.", "anterior": "El anterior es uno menos." }
+    "consigna": {
+      "siguiente": "¿Qué número viene después del {n}?",
+      "anterior": "¿Qué número viene antes del {n}?"
+    },
+    "explicacion": {
+      "siguiente": "Después del {n} viene el {r}.",
+      "anterior": "Antes del {n} está el {r}."
+    },
+    "pista": {
+      "siguiente": "El siguiente es uno más.",
+      "anterior": "El anterior es uno menos."
+    }
   },
   "comparar": {
     "modo": "opciones",
-    "consigna": { "mayor": "¿Cuál número es más grande?", "menor": "¿Cuál número es más chico?" },
-    "explicacion": { "mayor": "{r} es más grande que {otro}.", "menor": "{r} es más chico que {otro}." },
+    "consigna": {
+      "mayor": "¿Cuál número es más grande?",
+      "menor": "¿Cuál número es más chico?"
+    },
+    "explicacion": {
+      "mayor": "{r} es más grande que {otro}.",
+      "menor": "{r} es más chico que {otro}."
+    },
     "pista": "Mirá primero la cifra de más a la izquierda.",
     "iguales": "Son iguales"
   },
   "ordenar": {
     "modo": "ordenar",
-    "consigna": ["Ordená los números de menor a mayor.", "Tocá los números del más chico al más grande."],
+    "consigna": [
+      "Ordená los números de menor a mayor.",
+      "Tocá los números del más chico al más grande."
+    ],
     "explicacion": "¡Quedaron en orden: {r}!",
     "pista": "Buscá primero el más chico de todos."
   },
   "familia": {
     "modo": "opciones",
-    "consigna": ["¿De qué familia es el {n}?"],
+    "consigna": [
+      "¿De qué familia es el {n}?"
+    ],
     "opcion": "familia del {f}",
     "explicacion": "El {n} es de la familia del {r}.",
     "pista": "La familia la dice la cifra de las decenas."
   },
   "descomponer": {
     "modo": "opciones",
-    "consigna": ["¿Cuántas decenas y unidades tiene el {n}?"],
-    "consignaCentenas": ["¿Cómo se arma el {n}?"],
+    "consigna": [
+      "¿Cuántas decenas y unidades tiene el {n}?"
+    ],
+    "consignaCentenas": [
+      "¿Cómo se arma el {n}?"
+    ],
     "opcion": "{dTxt} y {uTxt}",
     "opcionCentenas": "{cTxt}, {dTxt} y {uTxt}",
     "explicacion": "El {n} tiene {texto}.",
@@ -49,118 +83,189 @@
   },
   "armar-bloques": {
     "modo": "bloques",
-    "consigna": ["Armá el número {n} con bloques.", "Juntá bloques hasta formar el {n}."],
+    "consigna": [
+      "Armá el número {n} con bloques.",
+      "Juntá bloques hasta formar el {n}."
+    ],
     "explicacion": "¡Armaste el {n}!",
     "pista": "Cada barra vale 10 y cada cuadrado grande vale 100."
   },
   "centenas": {
     "modo": "opciones",
-    "consigna": { "c": "¿Cuántas centenas tiene el {n}?", "d": "¿Cuántas decenas sueltas tiene el {n}?", "u": "¿Cuántas unidades tiene el {n}?", "cien": "¿Qué número es {cTxt}, {dTxt} y {uTxt}?" },
+    "consigna": {
+      "c": "¿Cuántas centenas tiene el {n}?",
+      "d": "¿Cuántas decenas sueltas tiene el {n}?",
+      "u": "¿Cuántas unidades tiene el {n}?",
+      "cien": "¿Qué número es {cTxt}, {dTxt} y {uTxt}?"
+    },
     "explicacion": "{n} = {cTxt}, {dTxt} y {uTxt}.",
     "pista": "Centenas, decenas y unidades: de izquierda a derecha."
   },
   "numero-en-letras": {
     "modo": "opciones",
-    "consigna": ["¿Cómo se escribe el {n} con letras?"],
+    "consigna": [
+      "¿Cómo se escribe el {n} con letras?"
+    ],
     "explicacion": "El {n} se escribe {r}.",
     "pista": "Primero decimos las decenas, después las unidades."
   },
   "suma": {
     "modo": "opciones",
-    "consigna": ["¿Cuánto es {cuenta}?", "Resolvé la suma.", "¿Cuánto da?"],
+    "consigna": [
+      "¿Cuánto es {cuenta}?",
+      "Resolvé la suma.",
+      "¿Cuánto da?"
+    ],
     "explicacion": "{cuenta} = {r}.",
-    "pista": { "llevada": "Sumá primero las unidades. Si pasa de 9, te llevás una decena.", "simple": "Sumá primero las unidades y después las decenas.", "chica": "Empezá en el número más grande y contá para adelante.", "tres": "Sumá dos números primero y después el tercero." }
+    "pista": {
+      "llevada": "Sumá primero las unidades. Si pasa de 9, te llevás una decena.",
+      "simple": "Sumá primero las unidades y después las decenas.",
+      "chica": "Empezá en el número más grande y contá para adelante.",
+      "tres": "Sumá dos números primero y después el tercero."
+    }
   },
   "resta": {
     "modo": "opciones",
-    "consigna": ["¿Cuánto es {cuenta}?", "Resolvé la resta.", "¿Cuánto da?"],
+    "consigna": [
+      "¿Cuánto es {cuenta}?",
+      "Resolvé la resta.",
+      "¿Cuánto da?"
+    ],
     "explicacion": "{cuenta} = {r}.",
-    "pista": { "prestamo": "Si arriba hay menos unidades, pedí prestada una decena.", "simple": "Restá primero las unidades y después las decenas.", "chica": "Empezá en el número grande y contá para atrás." }
+    "pista": {
+      "prestamo": "Si arriba hay menos unidades, pedí prestada una decena.",
+      "simple": "Restá primero las unidades y después las decenas.",
+      "chica": "Empezá en el número grande y contá para atrás."
+    }
   },
   "cuanto-falta": {
     "modo": "opciones",
-    "consigna": ["¿Cuánto le falta al {a} para llegar a {meta}?", "Tengo {a}. ¿Cuánto me falta para tener {meta}?"],
+    "consigna": [
+      "¿Cuánto le falta al {a} para llegar a {meta}?",
+      "Tengo {a}. ¿Cuánto me falta para tener {meta}?"
+    ],
     "explicacion": "Faltan {r}: {a} + {r} = {meta}.",
     "pista": "Contá desde {a} hasta llegar a {meta}."
   },
   "cuenta-inversa": {
     "modo": "opciones",
-    "consigna": ["Si {a} − {b} = {r}, ¿qué cuenta sirve para comprobarla?", "¿Con qué suma comprobamos que {a} − {b} = {r}?"],
+    "consigna": [
+      "Si {a} − {b} = {r}, ¿qué cuenta sirve para comprobarla?",
+      "¿Con qué suma comprobamos que {a} − {b} = {r}?"
+    ],
     "explicacion": "{opcion} da {a}. ¡Está comprobada!",
     "pista": "La suma es la cuenta amiga de la resta."
   },
   "grupos-iguales": {
     "modo": "opciones",
-    "consigna": ["Hay {g} {grupos} con {p} {objetos} cada una. ¿{Cuantos} {objetos} hay en total?"],
+    "consigna": [
+      "Hay {g} {grupos} con {p} {objetos} cada una. ¿{Cuantos} {objetos} hay en total?"
+    ],
     "explicacion": "{g} grupos de {p} son {r}.",
     "pista": "Contá cuántos hay en un grupo y sumalos todos."
   },
   "suma-repetida": {
     "modo": "opciones",
-    "consigna": { "resultado": "¿Cuánto es {suma}?", "multiplicacion": "¿Qué multiplicación es igual a {suma}?" },
+    "consigna": {
+      "resultado": "¿Cuánto es {suma}?",
+      "multiplicacion": "¿Qué multiplicación es igual a {suma}?"
+    },
     "explicacion": "{suma} = {g} × {p} = {r}.",
     "pista": "Contá cuántas veces se repite el mismo número."
   },
   "tabla": {
     "modo": "opciones",
-    "consigna": ["¿Cuánto es {cuenta}?", "¡Tabla del {t}! ¿Cuánto es {cuenta}?"],
+    "consigna": [
+      "¿Cuánto es {cuenta}?",
+      "¡Tabla del {t}! ¿Cuánto es {cuenta}?"
+    ],
     "explicacion": "{g} grupos de {p} son {r}.",
     "pista": "Pensalo como {g} grupos de {p}."
   },
   "memoria-tablas": {
     "modo": "memoria",
-    "consigna": ["Uní cada cuenta con su resultado."],
+    "consigna": [
+      "Uní cada cuenta con su resultado."
+    ],
     "explicacion": "¡Encontraste todas las parejas!",
     "pista": "Elegí una cuenta y pensá cuántos grupos son."
   },
   "armar-grupos": {
     "modo": "arrastrar",
-    "consigna": ["Poné {p} {objetos} en cada canasta.", "Repartí: {p} {objetos} en cada canasta."],
+    "consigna": [
+      "Poné {p} {objetos} en cada canasta.",
+      "Repartí: {p} {objetos} en cada canasta."
+    ],
     "explicacion": "{g} canastas con {p} son {r} {objetos}.",
     "pista": "Llená una canasta y después la siguiente."
   },
   "reconocer-billete": {
     "modo": "opciones",
-    "consigna": ["¿Cuál es el billete de {v} pesos?", "Tocá el billete de {v} pesos."],
-    "consignaMoneda": ["¿Cuál es la moneda de {v} pesos?"],
+    "consigna": [
+      "¿Cuál es el billete de {v} pesos?",
+      "Tocá el billete de {v} pesos."
+    ],
+    "consignaMoneda": [
+      "¿Cuál es la moneda de {v} pesos?"
+    ],
     "explicacion": "¡Ese es el de {v} pesos!",
     "pista": "Mirá el número que tiene escrito."
   },
   "contar-plata": {
     "modo": "opciones",
-    "consigna": ["¿Cuánta plata hay?", "Sumá los billetes y las monedas. ¿Cuánto hay?"],
+    "consigna": [
+      "¿Cuánta plata hay?",
+      "Sumá los billetes y las monedas. ¿Cuánto hay?"
+    ],
     "explicacion": "Hay {r} pesos.",
     "pista": "Empezá por el billete más grande y sumá de a uno."
   },
   "armar-monto": {
     "modo": "dinero",
-    "consigna": ["Armá {precio} pesos con tus billetes y monedas.", "Juntá justo {precio} pesos."],
-    "consignaProducto": ["{Producto} cuesta {precio} pesos. Armá ese pago con tus billetes y monedas.", "Pagá justo {producto}: cuesta {precio} pesos."],
+    "consigna": [
+      "Armá {precio} pesos con tus billetes y monedas.",
+      "Juntá justo {precio} pesos."
+    ],
+    "consignaProducto": [
+      "{Producto} cuesta {precio} pesos. Armá ese pago con tus billetes y monedas.",
+      "Pagá justo {producto}: cuesta {precio} pesos."
+    ],
     "explicacion": "¡Pagaste justo {precio} pesos!",
     "pista": "Usá primero los billetes grandes que no se pasen."
   },
   "comparar-precios": {
     "modo": "opciones",
-    "consigna": ["¿Qué es más barato?", "¿Cuál cuesta menos?"],
+    "consigna": [
+      "¿Qué es más barato?",
+      "¿Cuál cuesta menos?"
+    ],
     "explicacion": "{Barato} cuesta {pb} y {caro} cuesta {pc}. ¡Es más barato!",
     "pista": "Más barato quiere decir que cuesta menos plata."
   },
   "dar-vuelto": {
     "modo": "opciones",
-    "consigna": ["{Producto} cuesta {precio} pesos. Pagaste con {pago}. ¿Cuánto vuelto te dan?"],
+    "consigna": [
+      "{Producto} cuesta {precio} pesos. Pagaste con {pago}. ¿Cuánto vuelto te dan?"
+    ],
     "explicacion": "{pago} − {precio} = {r} pesos de vuelto.",
     "pista": "El vuelto es lo que sobra: restá."
   },
   "compra-varios": {
     "modo": "opciones",
-    "consigna": ["Comprás {lista}. ¿Cuánto pagás en total?"],
+    "consigna": [
+      "Comprás {lista}. ¿Cuánto pagás en total?"
+    ],
     "explicacion": "En total son {r} pesos.",
     "pista": "Sumá todos los precios."
   },
   "problema": {
     "modo": "opciones",
     "explicacion": "{cuentaTexto}. ¡Esa es la respuesta!",
-    "pista": { "+": "¿Se junta o se agrega? Entonces sumamos.", "−": "¿Se quita, se pierde o comparamos? Entonces restamos.", "dos": "Este problema tiene dos pasos. Hacé uno por vez." },
+    "pista": {
+      "+": "¿Se junta o se agrega? Entonces sumamos.",
+      "−": "¿Se quita, se pierde o comparamos? Entonces restamos.",
+      "dos": "Este problema tiene dos pasos. Hacé uno por vez."
+    },
     "opcionSuma": "Sumar",
     "opcionResta": "Restar",
     "noSePuede": "Falta un dato"
@@ -172,7 +277,9 @@
   },
   "necesidad-deseo": {
     "modo": "opciones",
-    "consigna": ["¿{Cosa} es una necesidad o un deseo?"],
+    "consigna": [
+      "¿{Cosa} es una necesidad o un deseo?"
+    ],
     "necesidad": "Necesidad",
     "deseo": "Deseo",
     "explicacion": "{Cosa} es {tipo}.",
@@ -180,20 +287,44 @@
   },
   "presupuesto": {
     "modo": "opciones",
-    "consigna": ["Tenés {plata} pesos. ¿Qué podés comprar sin pasarte?"],
+    "consigna": [
+      "Tenés {plata} pesos. ¿Qué podés comprar sin pasarte?"
+    ],
     "explicacion": "{opcion} suma {total}. ¡No te pasaste!",
     "pista": "Sumá los precios de cada opción y fijate que no pase de {plata}."
   },
   "plan-ahorro": {
     "modo": "opciones",
-    "consigna": ["Querés {producto} que cuesta {meta} pesos. Si guardás {porSemana} pesos por semana, ¿en cuántas semanas llegás?"],
+    "consigna": [
+      "Querés {producto} que cuesta {meta} pesos. Si guardás {porSemana} pesos por semana, ¿en cuántas semanas llegás?"
+    ],
     "explicacion": "En {r} semanas juntás {meta} pesos.",
     "pista": "Contá de a {porSemana} hasta llegar a {meta}."
   },
   "repartir-ahorro": {
     "modo": "opciones",
-    "consigna": ["Tenés {plata} pesos. Guardás {guardo} en la alcancía y compartís {comparto}. ¿Cuánto te queda para gastar?"],
+    "consigna": [
+      "Tenés {plata} pesos. Guardás {guardo} en la alcancía y compartís {comparto}. ¿Cuánto te queda para gastar?"
+    ],
     "explicacion": "{plata} − {guardo} − {comparto} = {r}. ¡Buen plan!",
     "pista": "Restá lo que guardás y lo que compartís."
+  },
+  "secuencia": {
+    "modo": "opciones",
+    "consigna": [
+      "¿Qué número falta?",
+      "Completá la serie. ¿Qué número va en el lugar vacío?"
+    ],
+    "explicacion": "Van de {paso} en {paso}: falta el {r}.",
+    "pista": "Fijate cuánto aumenta de un número al siguiente."
+  },
+  "contar-bloques": {
+    "modo": "opciones",
+    "consigna": [
+      "¿Qué número formaron los bloques?",
+      "Contá los bloques. ¿Qué número es?"
+    ],
+    "explicacion": "{descompuesto} = {r}. ¡Muy bien contado!",
+    "pista": "Cada barra vale 10. Contá las barras de a 10 y después los cuadraditos."
   }
 }

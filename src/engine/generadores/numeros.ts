@@ -93,13 +93,14 @@ export const leerNumero: Generador = (az, ctx) => {
   previstos.push([n + 10, 'numeros.cifra-cercana'], [n - 1, 'numeros.cifra-cercana']);
   const { opciones, erroresPrevistos } = opcionesNumericas(az, n, previstos, 'numeros.cifra-cercana', 4, 0);
   const letras = enLetras(n);
-  const teclado = usaTeclado(az, ctx);
+  const dictado = Boolean(ctx.params.teclado);
+  const teclado = dictado || usaTeclado(az, ctx);
   return {
-    uid: uid('leer-numero', { n }),
+    uid: uid('leer-numero', { n, dictado: dictado ? 1 : 0 }),
     plantillaId: 'leer-numero',
     tema: 'numeros',
     modo: teclado ? 'teclado' : 'opciones',
-    consigna: rellenar(texto(az, 'leer-numero', 'consigna'), { letras }),
+    consigna: rellenar(texto(az, 'leer-numero', dictado ? 'consignaTeclado' : 'consigna'), { letras }),
     visual: n <= 999 ? { tipo: 'bloques', numero: n } : undefined,
     visualEsAyuda: true,
     respuesta: String(n),
@@ -395,5 +396,77 @@ export const centenas: Generador = (az, ctx) => {
     explicacion: rellenar(texto(az, 'centenas', 'explicacion'), { n, ...cdu(c, d, u) }),
     pista: texto(az, 'centenas', 'pista'),
     params: { n, variante },
+  };
+};
+
+/** Series: "10, 20, __, 40". Avanza de a 1, 2, 5, 10 o 100 según el rango. */
+export const secuencia: Generador = (az, ctx) => {
+  const max = Math.max(20, ctx.rango);
+  const pasos = [1, 2, 5, 10, ...(max >= 300 ? [50, 100] : [])].filter((p) => p * 4 <= max);
+  const paso = az.elegir(pasos);
+  const inicio = az.entero(0, Math.max(0, Math.floor((max - paso * 4) / paso))) * paso + (paso <= 2 ? az.entero(0, 1) * paso : 0);
+  const serie = Array.from({ length: 5 }, (_, i) => inicio + i * paso);
+  const hueco = az.entero(1, 4);
+  const r = serie[hueco];
+  const { opciones, erroresPrevistos } = opcionesNumericas(
+    az,
+    r,
+    [
+      [r + paso, 'numeros.secuencia'],
+      [r - paso, 'numeros.secuencia'],
+      [paso === 1 ? r + 2 : r + 1, 'numeros.secuencia'],
+      [serie[hueco - 1] + 1, 'numeros.secuencia'],
+    ],
+    'numeros.secuencia',
+    4,
+    0,
+  );
+  const textoSerie = serie.map((x, i) => (i === hueco ? '__' : String(x))).join(', ');
+  const a = serie[hueco - 1];
+  return {
+    uid: uid('secuencia', { inicio, paso, hueco }),
+    plantillaId: 'secuencia',
+    tema: 'numeros',
+    modo: 'opciones',
+    consigna: texto(az, 'secuencia', 'consigna'),
+    cuenta: textoSerie,
+    visual: { tipo: 'recta', desde: serie[0], hasta: serie[4], marca: a },
+    visualEsAyuda: true,
+    respuesta: String(r),
+    opciones,
+    erroresPrevistos,
+    errorTagPorDefecto: 'numeros.secuencia',
+    leccion: { paso, a, b: a + paso, r },
+    explicacion: rellenar(texto(az, 'secuencia', 'explicacion'), { paso, r }),
+    pista: texto(az, 'secuencia', 'pista'),
+    params: { inicio, paso, hueco },
+  };
+};
+
+/** Contar bloques: barras de 10 y cuadraditos sueltos (y centenas desde 100). */
+export const contarBloques: Generador = (az, ctx) => {
+  const n = az.entero(11, Math.max(19, Math.min(999, ctx.rango)));
+  const [u, d, c = 0] = cifras(n);
+  const previstos: [number, string][] = [];
+  const inv = invertirCifras(n);
+  if (inv !== n && u !== 0) previstos.push([inv, 'valor.invierte']);
+  previstos.push([c + d + u, 'valor.posicion'], [n + 10, 'valor.posicion'], [n - 1, 'valor.posicion']);
+  const { opciones, erroresPrevistos } = opcionesNumericas(az, n, previstos, 'valor.posicion', 4, 1);
+  const teclado = usaTeclado(az, ctx);
+  return {
+    uid: uid('contar-bloques', { n }),
+    plantillaId: 'contar-bloques',
+    tema: 'numeros',
+    modo: teclado ? 'teclado' : 'opciones',
+    consigna: texto(az, 'contar-bloques', 'consigna'),
+    visual: { tipo: 'bloques', numero: n },
+    respuesta: String(n),
+    opciones: teclado ? undefined : opciones,
+    erroresPrevistos,
+    errorTagPorDefecto: 'valor.posicion',
+    leccion: datosValor(n),
+    explicacion: rellenar(texto(az, 'contar-bloques', 'explicacion'), { descompuesto: datosValor(n).descompuesto, r: n }),
+    pista: texto(az, 'contar-bloques', 'pista'),
+    params: { n },
   };
 };

@@ -1,107 +1,393 @@
 {
   "_nota": "Minilecciones: máximo 3 pasos de hasta 15 palabras. 'visual' elige el dibujo. 'si' muestra un texto solo cuando el dato es verdadero; 'sino' es el texto alternativo.",
-  "contar": { "visual": "contar", "pasos": [
-    { "texto": "Tocamos cada dibujo una sola vez." },
-    { "texto": "Decimos un número por cada dibujo." },
-    { "texto": "El último número que decimos es el total: {r}." } ] },
-  "valor-posicional": { "visual": "valor-posicional", "pasos": [
-    { "si": "tieneCentenas", "texto": "El {n} tiene {cTxt}, {dTxt} y {uTxt}.", "sino": "El {n} tiene {dTxt} y {uTxt}." },
-    { "texto": "Cada lugar tiene su valor: {descompuesto}." },
-    { "texto": "Se lee así: {letras}." } ] },
-  "recta": { "visual": "recta", "pasos": [
-    { "texto": "En la recta, el siguiente está a la derecha: es uno más." },
-    { "texto": "El anterior está a la izquierda: es uno menos." },
-    { "texto": "El {cual} del {n} es el {r}." } ] },
-  "comparar": { "visual": "comparar", "pasos": [
-    { "texto": "Miramos primero la cifra de más a la izquierda." },
-    { "texto": "{comparacion}" },
-    { "texto": "Entonces {mayor} es más grande que {menor}." } ] },
-  "columnas-suma": { "visual": "columnas-suma", "pasos": [
-    { "si": "llevada", "texto": "Sumamos las unidades: {u1} + {u2} = {su}. Escribimos {ru} y nos llevamos 1.", "sino": "Sumamos las unidades: {u1} + {u2} = {su}." },
-    { "si": "llevada", "texto": "Ahora las decenas: {d1} + {d2} + 1 que nos llevamos = {sd}.", "sino": "Ahora las decenas: {d1} + {d2} = {sd}." },
-    { "texto": "Juntamos todo y ¡listo! {a} + {b} = {r}." } ] },
-  "tres-sumandos": { "visual": "columnas-suma", "pasos": [
-    { "texto": "Primero sumamos dos números: {a} + {b} = {ab}." },
-    { "texto": "Después sumamos el último: {ab} + {c} = {r}." },
-    { "texto": "¡Son tres números! Tachamos cada uno al sumarlo." } ] },
-  "contar-suma": { "visual": "recta", "pasos": [
-    { "texto": "Empezamos en el número más grande: {mayor}." },
-    { "texto": "Contamos {menor} más, de a uno, con los dedos." },
-    { "texto": "Llegamos al {r}. ¡Ese es el resultado!" } ] },
-  "columnas-resta": { "visual": "columnas-resta", "pasos": [
-    { "si": "prestamo", "texto": "A {u1} no le podemos sacar {u2}: desarmamos una decena en 10 unidades.", "sino": "Restamos las unidades: {u1} − {u2} = {ru}." },
-    { "si": "prestamo", "texto": "Ahora tenemos {u1p} unidades: {u1p} − {u2} = {ru}.", "sino": "Restamos las decenas: {d1} − {d2} = {rd}." },
-    { "si": "prestamo", "texto": "Quedan {d1m} decenas: {d1m} − {d2} = {rd}. Resultado: {r}.", "sino": "Juntamos todo y ¡listo! {a} − {b} = {r}." } ] },
-  "contar-resta": { "visual": "recta", "pasos": [
-    { "texto": "Empezamos en el {a}." },
-    { "texto": "Contamos {b} para atrás, de a uno." },
-    { "texto": "Llegamos al {r}. ¡Ese es el resultado!" } ] },
-  "operacion": { "visual": "operacion", "pasos": [
-    { "texto": "Miramos el signo: es un {signoNombre}." },
-    { "texto": "{signoExplica}" },
-    { "texto": "Entonces {a} {signo} {b} = {r}." } ] },
-  "completar": { "visual": "recta", "pasos": [
-    { "texto": "Empezamos en el {a} y queremos llegar al {meta}." },
-    { "texto": "Lo que falta es {meta} − {a}." },
-    { "texto": "Faltan {r}. Comprobamos: {a} + {r} = {meta}." } ] },
-  "inversa": { "visual": "operacion", "pasos": [
-    { "texto": "La suma y la resta son cuentas amigas." },
-    { "texto": "Si {a} − {b} = {r}, entonces {r} + {b} = {a}." },
-    { "texto": "Con la cuenta amiga comprobamos que está bien." } ] },
-  "grupos": { "visual": "grupos", "pasos": [
-    { "texto": "Son {gTxt} de {p}." },
-    { "texto": "Sumamos {p} una y otra vez: {sumaRepetida}." },
-    { "texto": "Entonces {g} × {p} = {r}. ¡Multiplicar es sumar grupos iguales!" } ] },
-  "billetes": { "visual": "billetes", "pasos": [
-    { "texto": "Cada billete y cada moneda tiene su número: es su valor." },
-    { "texto": "Sumamos los valores de a uno: {sumaTexto}." },
-    { "texto": "En total hay {r} pesos." } ] },
-  "reconocer": { "visual": "billetes", "pasos": [
-    { "texto": "Cada billete y cada moneda tiene un número grande: es su valor." },
-    { "texto": "Buscamos el que tiene escrito el {r}." },
-    { "texto": "¡Ese es el de {r} pesos!" } ] },
-  "pagar": { "visual": "billetes", "pasos": [
-    { "texto": "Hay que pagar {precio} pesos: ni más ni menos." },
-    { "texto": "Elegimos billetes grandes que no se pasen del precio." },
-    { "texto": "Por ejemplo: {sumaTexto} = {precio}." } ] },
-  "vuelto": { "visual": "billetes", "pasos": [
-    { "texto": "Pagamos {pago} pesos y la compra cuesta {precio}." },
-    { "texto": "El vuelto es lo que sobra: restamos." },
-    { "texto": "{pago} − {precio} = {r} pesos de vuelto." } ] },
-  "comparar-precios": { "visual": "comparar", "pasos": [
-    { "texto": "Miramos los dos precios." },
-    { "texto": "{comparacion}" },
-    { "texto": "Lo más barato es lo que cuesta menos: {r}." } ] },
-  "compra-total": { "visual": "billetes", "pasos": [
-    { "texto": "Anotamos el precio de cada producto." },
-    { "texto": "Sumamos todos: {sumaTexto}." },
-    { "texto": "En total pagamos {r} pesos." } ] },
-  "historia": { "visual": "historia", "pasos": [
-    { "texto": "Leemos la historia despacito y buscamos los números." },
-    { "texto": "{pistaOperacion}" },
-    { "texto": "{cuentaTexto}. ¡Esa es la respuesta!" } ] },
-  "dos-pasos": { "visual": "historia", "pasos": [
-    { "texto": "Este problema tiene dos pasos." },
-    { "texto": "Primero: {paso1}." },
-    { "texto": "Después: {paso2}." } ] },
-  "concepto": { "visual": "concepto", "pasos": [
-    { "texto": "{explica1}" },
-    { "texto": "{explica2}" },
-    { "texto": "La respuesta es: {respuestaTexto}." } ] },
-  "necesidad-deseo": { "visual": "concepto", "pasos": [
-    { "texto": "Una necesidad es algo que nos hace falta para vivir bien." },
-    { "texto": "Un deseo es algo lindo que queremos, pero puede esperar." },
-    { "texto": "Por eso, {cosa} es {tipoTexto}." } ] },
-  "presupuesto": { "visual": "concepto", "pasos": [
-    { "texto": "Tenemos {plata} pesos para gastar." },
-    { "texto": "Sumamos los precios de cada opción." },
-    { "texto": "{opcionCorrecta} suma {total}: ¡no se pasa de {plata}!" } ] },
-  "repartir": { "visual": "alcancia", "pasos": [
-    { "texto": "Tenemos {plata} pesos." },
-    { "texto": "Sacamos lo que guardamos y lo que compartimos." },
-    { "texto": "{plata} − {guardo} − {comparto} = {r} pesos para gastar." } ] },
-  "ahorro": { "visual": "alcancia", "pasos": [
-    { "texto": "Queremos juntar {meta} pesos." },
-    { "texto": "Cada semana guardamos {porSemana} pesos en la alcancía." },
-    { "texto": "Contamos de a {porSemana}: en {r} semanas llegamos." } ] }
+  "contar": {
+    "visual": "contar",
+    "pasos": [
+      {
+        "texto": "Tocamos cada dibujo una sola vez."
+      },
+      {
+        "texto": "Decimos un número por cada dibujo."
+      },
+      {
+        "texto": "El último número que decimos es el total: {r}."
+      }
+    ]
+  },
+  "valor-posicional": {
+    "visual": "valor-posicional",
+    "pasos": [
+      {
+        "si": "tieneCentenas",
+        "texto": "El {n} tiene {cTxt}, {dTxt} y {uTxt}.",
+        "sino": "El {n} tiene {dTxt} y {uTxt}."
+      },
+      {
+        "texto": "Cada lugar tiene su valor: {descompuesto}."
+      },
+      {
+        "texto": "Se lee así: {letras}."
+      }
+    ]
+  },
+  "recta": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "En la recta, el siguiente está a la derecha: es uno más."
+      },
+      {
+        "texto": "El anterior está a la izquierda: es uno menos."
+      },
+      {
+        "texto": "El {cual} del {n} es el {r}."
+      }
+    ]
+  },
+  "comparar": {
+    "visual": "comparar",
+    "pasos": [
+      {
+        "texto": "Miramos primero la cifra de más a la izquierda."
+      },
+      {
+        "texto": "{comparacion}"
+      },
+      {
+        "texto": "Entonces {mayor} es más grande que {menor}."
+      }
+    ]
+  },
+  "columnas-suma": {
+    "visual": "columnas-suma",
+    "pasos": [
+      {
+        "si": "llevada",
+        "texto": "Sumamos las unidades: {u1} + {u2} = {su}. Escribimos {ru} y nos llevamos 1.",
+        "sino": "Sumamos las unidades: {u1} + {u2} = {su}."
+      },
+      {
+        "si": "llevada",
+        "texto": "Ahora las decenas: {d1} + {d2} + 1 que nos llevamos = {sd}.",
+        "sino": "Ahora las decenas: {d1} + {d2} = {sd}."
+      },
+      {
+        "texto": "Juntamos todo y ¡listo! {a} + {b} = {r}."
+      }
+    ]
+  },
+  "tres-sumandos": {
+    "visual": "columnas-suma",
+    "pasos": [
+      {
+        "texto": "Primero sumamos dos números: {a} + {b} = {ab}."
+      },
+      {
+        "texto": "Después sumamos el último: {ab} + {c} = {r}."
+      },
+      {
+        "texto": "¡Son tres números! Tachamos cada uno al sumarlo."
+      }
+    ]
+  },
+  "contar-suma": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Empezamos en el número más grande: {mayor}."
+      },
+      {
+        "texto": "Contamos {menor} más, de a uno, con los dedos."
+      },
+      {
+        "texto": "Llegamos al {r}. ¡Ese es el resultado!"
+      }
+    ]
+  },
+  "columnas-resta": {
+    "visual": "columnas-resta",
+    "pasos": [
+      {
+        "si": "prestamo",
+        "texto": "A {u1} no le podemos sacar {u2}: desarmamos una decena en 10 unidades.",
+        "sino": "Restamos las unidades: {u1} − {u2} = {ru}."
+      },
+      {
+        "si": "prestamo",
+        "texto": "Ahora tenemos {u1p} unidades: {u1p} − {u2} = {ru}.",
+        "sino": "Restamos las decenas: {d1} − {d2} = {rd}."
+      },
+      {
+        "si": "prestamo",
+        "texto": "Quedan {d1m} decenas: {d1m} − {d2} = {rd}. Resultado: {r}.",
+        "sino": "Juntamos todo y ¡listo! {a} − {b} = {r}."
+      }
+    ]
+  },
+  "contar-resta": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Empezamos en el {a}."
+      },
+      {
+        "texto": "Contamos {b} para atrás, de a uno."
+      },
+      {
+        "texto": "Llegamos al {r}. ¡Ese es el resultado!"
+      }
+    ]
+  },
+  "operacion": {
+    "visual": "operacion",
+    "pasos": [
+      {
+        "texto": "Miramos el signo: es un {signoNombre}."
+      },
+      {
+        "texto": "{signoExplica}"
+      },
+      {
+        "texto": "Entonces {a} {signo} {b} = {r}."
+      }
+    ]
+  },
+  "completar": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Empezamos en el {a} y queremos llegar al {meta}."
+      },
+      {
+        "texto": "Lo que falta es {meta} − {a}."
+      },
+      {
+        "texto": "Faltan {r}. Comprobamos: {a} + {r} = {meta}."
+      }
+    ]
+  },
+  "inversa": {
+    "visual": "operacion",
+    "pasos": [
+      {
+        "texto": "La suma y la resta son cuentas amigas."
+      },
+      {
+        "texto": "Si {a} − {b} = {r}, entonces {r} + {b} = {a}."
+      },
+      {
+        "texto": "Con la cuenta amiga comprobamos que está bien."
+      }
+    ]
+  },
+  "grupos": {
+    "visual": "grupos",
+    "pasos": [
+      {
+        "texto": "Son {gTxt} de {p}."
+      },
+      {
+        "texto": "Sumamos {p} una y otra vez: {sumaRepetida}."
+      },
+      {
+        "texto": "Entonces {g} × {p} = {r}. ¡Multiplicar es sumar grupos iguales!"
+      }
+    ]
+  },
+  "billetes": {
+    "visual": "billetes",
+    "pasos": [
+      {
+        "texto": "Cada billete y cada moneda tiene su número: es su valor."
+      },
+      {
+        "texto": "Sumamos los valores de a uno: {sumaTexto}."
+      },
+      {
+        "texto": "En total hay {r} pesos."
+      }
+    ]
+  },
+  "reconocer": {
+    "visual": "billetes",
+    "pasos": [
+      {
+        "texto": "Cada billete y cada moneda tiene un número grande: es su valor."
+      },
+      {
+        "texto": "Buscamos el que tiene escrito el {r}."
+      },
+      {
+        "texto": "¡Ese es el de {r} pesos!"
+      }
+    ]
+  },
+  "pagar": {
+    "visual": "billetes",
+    "pasos": [
+      {
+        "texto": "Hay que pagar {precio} pesos: ni más ni menos."
+      },
+      {
+        "texto": "Elegimos billetes grandes que no se pasen del precio."
+      },
+      {
+        "texto": "Por ejemplo: {sumaTexto} = {precio}."
+      }
+    ]
+  },
+  "vuelto": {
+    "visual": "billetes",
+    "pasos": [
+      {
+        "texto": "Pagamos {pago} pesos y la compra cuesta {precio}."
+      },
+      {
+        "texto": "El vuelto es lo que sobra: restamos."
+      },
+      {
+        "texto": "{pago} − {precio} = {r} pesos de vuelto."
+      }
+    ]
+  },
+  "comparar-precios": {
+    "visual": "comparar",
+    "pasos": [
+      {
+        "texto": "Miramos los dos precios."
+      },
+      {
+        "texto": "{comparacion}"
+      },
+      {
+        "texto": "Lo más barato es lo que cuesta menos: {r}."
+      }
+    ]
+  },
+  "compra-total": {
+    "visual": "billetes",
+    "pasos": [
+      {
+        "texto": "Anotamos el precio de cada producto."
+      },
+      {
+        "texto": "Sumamos todos: {sumaTexto}."
+      },
+      {
+        "texto": "En total pagamos {r} pesos."
+      }
+    ]
+  },
+  "historia": {
+    "visual": "historia",
+    "pasos": [
+      {
+        "texto": "Leemos la historia despacito y buscamos los números."
+      },
+      {
+        "texto": "{pistaOperacion}"
+      },
+      {
+        "texto": "{cuentaTexto}. ¡Esa es la respuesta!"
+      }
+    ]
+  },
+  "dos-pasos": {
+    "visual": "historia",
+    "pasos": [
+      {
+        "texto": "Este problema tiene dos pasos."
+      },
+      {
+        "texto": "Primero: {paso1}."
+      },
+      {
+        "texto": "Después: {paso2}."
+      }
+    ]
+  },
+  "concepto": {
+    "visual": "concepto",
+    "pasos": [
+      {
+        "texto": "{explica1}"
+      },
+      {
+        "texto": "{explica2}"
+      },
+      {
+        "texto": "La respuesta es: {respuestaTexto}."
+      }
+    ]
+  },
+  "necesidad-deseo": {
+    "visual": "concepto",
+    "pasos": [
+      {
+        "texto": "Una necesidad es algo que nos hace falta para vivir bien."
+      },
+      {
+        "texto": "Un deseo es algo lindo que queremos, pero puede esperar."
+      },
+      {
+        "texto": "Por eso, {cosa} es {tipoTexto}."
+      }
+    ]
+  },
+  "presupuesto": {
+    "visual": "concepto",
+    "pasos": [
+      {
+        "texto": "Tenemos {plata} pesos para gastar."
+      },
+      {
+        "texto": "Sumamos los precios de cada opción."
+      },
+      {
+        "texto": "{opcionCorrecta} suma {total}: ¡no se pasa de {plata}!"
+      }
+    ]
+  },
+  "repartir": {
+    "visual": "alcancia",
+    "pasos": [
+      {
+        "texto": "Tenemos {plata} pesos."
+      },
+      {
+        "texto": "Sacamos lo que guardamos y lo que compartimos."
+      },
+      {
+        "texto": "{plata} − {guardo} − {comparto} = {r} pesos para gastar."
+      }
+    ]
+  },
+  "ahorro": {
+    "visual": "alcancia",
+    "pasos": [
+      {
+        "texto": "Queremos juntar {meta} pesos."
+      },
+      {
+        "texto": "Cada semana guardamos {porSemana} pesos en la alcancía."
+      },
+      {
+        "texto": "Contamos de a {porSemana}: en {r} semanas llegamos."
+      }
+    ]
+  },
+  "secuencia": {
+    "visual": "recta",
+    "pasos": [
+      {
+        "texto": "Miramos cuánto aumenta cada número: va de {paso} en {paso}."
+      },
+      {
+        "texto": "{a} + {paso} = {b}. ¡Siempre suma lo mismo!"
+      },
+      {
+        "texto": "Entonces el número que falta es el {r}."
+      }
+    ]
+  }
 }

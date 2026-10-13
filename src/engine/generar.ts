@@ -32,10 +32,14 @@ export function generarEjercicio(
   rango: number,
   evitar: Set<string> = new Set(),
   plantillaFija?: PlantillaNivel,
+  /** Plantilla del ejercicio anterior: se evita repetirla si el nivel tiene otras. */
+  anterior?: string,
 ): Ejercicio {
   let ultimo: Ejercicio | undefined;
+  const variadas = new Set(nivel.plantillas.map((p) => p.id)).size > 1;
   for (let i = 0; i < 25; i++) {
-    const p = plantillaFija ?? elegirPlantilla(az, nivel.plantillas);
+    let p = plantillaFija ?? elegirPlantilla(az, nivel.plantillas);
+    for (let k = 0; !plantillaFija && variadas && anterior && p.id === anterior && k < 6; k++) p = elegirPlantilla(az, nivel.plantillas);
     const gen = GENERADORES[p.id];
     if (!gen) throw new Error(`Plantilla sin generador: ${p.id}`);
     ultimo = gen(az, contextoPara(nivel, p, grado, rango));
