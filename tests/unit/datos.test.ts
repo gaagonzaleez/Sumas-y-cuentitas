@@ -4,7 +4,8 @@ import * as db from '../../src/datos/db';
 import { borrarJugadora, crearCuenta, crearJugadora, elegirJugadora, iniciar, jugadoraActual, leerEstado, verificarAdulta } from '../../src/datos/estado';
 import { comprarItem, completarGrado, elegirMeta, guardarEnAlcancia, ofertasDeLaSemana, registrarIntento } from '../../src/datos/juego';
 import { ITEMS } from '../../src/content/catalogo';
-import { config } from '../../src/content';
+import { config, MUNDOS } from '../../src/content';
+import { esCreadora, gradoDesbloqueado, modoCreadora, mundoDesbloqueado } from '../../src/engine/progreso';
 
 beforeEach(async () => {
   await db.borrarTodo();
@@ -51,7 +52,7 @@ describe('premios y economía', () => {
     expect(r.estrellas).toBe(0);
   });
 
-  it('los 5 grados dan el accesorio raro y la estampita; la jefa da su avatar y abre mundos', async () => {
+  it('los 5 grados dan el accesorio raro y la estampita; la jefa da su avatar', async () => {
     const j = await crearJugadora('Estrellita', '2.º grado');
     elegirJugadora(j.id);
     for (let g = 1; g <= 4; g++) await completarGrado('isla-2', g, 2, 50, 300);
@@ -60,8 +61,30 @@ describe('premios y economía', () => {
     expect(p.estampita).toBe('estampita-isla-2');
     const jefe = await completarGrado('isla-jefe', 1, 3, 100, 300);
     expect(jefe.items.length).toBe(3);
-    expect(jefe.mundoNuevo).toBe('valle');
     expect(jefe.monedas).toBeGreaterThanOrEqual(config.economia.monedas.completarGrado + config.economia.monedas.vencerJefe);
+  });
+
+  it('el nivel 4 de un mundo abre el siguiente (no hace falta terminarlo entero)', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    elegirJugadora(j.id);
+    const tres = await completarGrado('isla-3', 1, 2, 50, 300);
+    expect(tres.mundoNuevo).toBeUndefined();
+    const cuatro = await completarGrado('isla-4', 1, 2, 50, 300);
+    expect(cuatro.mundoNuevo).toBe('valle');
+    expect(mundoDesbloqueado(jugadoraActual()!.progreso, 'valle')).toBe(true);
+    // Del Valle se abren dos: la Montaña y el Mercado.
+    const valle = await completarGrado('valle-4', 1, 2, 50, 300);
+    expect(valle.mundosNuevos).toEqual(expect.arrayContaining(['montana', 'mercado']));
+  });
+
+  it('el perfil de la creadora tiene todo abierto', () => {
+    expect(esCreadora('Kimbo')).toBe(true);
+    expect(esCreadora('Estrellita')).toBe(false);
+    modoCreadora(true);
+    expect(mundoDesbloqueado({}, 'tesoro')).toBe(true);
+    expect(gradoDesbloqueado({}, MUNDOS[6], 'tesoro-jefe', 5)).toBe(true);
+    modoCreadora(false);
+    expect(mundoDesbloqueado({}, 'tesoro')).toBe(false);
   });
 
   it('comprar descuenta monedas y no deja comprar sin saldo ni premios', async () => {

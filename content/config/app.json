@@ -3,9 +3,20 @@
   "zonaHoraria": "America/Argentina/Buenos_Aires",
   "recordatorioDescansoMin": 30,
   "pausaInactividadSeg": 60,
-  "apodo": { "min": 3, "max": 14 },
+  "apodo": {
+    "min": 3,
+    "max": 14
+  },
   "contrasenaAdultaMin": 6,
   "dibujosSecretos": 3,
   "maxPerfiles": 6,
-  "grados": ["1.º grado", "2.º grado", "3.º grado"]
+  "grados": [
+    "1.º grado",
+    "2.º grado",
+    "3.º grado"
+  ],
+  "_notaCreadora": "Perfiles de prueba de la creadora del juego: con estos apodos todo está abierto (mundos, niveles y grados) para poder probarlo sin jugar todo.",
+  "perfilesCreadora": [
+    "kimbo"
+  ]
 }

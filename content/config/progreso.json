@@ -1,5 +1,13 @@
 {
-  "mundosOrden": ["isla", "valle", "montana", "bosque", "mercado", "pueblo", "tesoro"],
+  "mundosOrden": [
+    "isla",
+    "valle",
+    "montana",
+    "bosque",
+    "mercado",
+    "pueblo",
+    "tesoro"
+  ],
   "desbloqueoMundos": {
     "isla": null,
     "valle": "isla",
@@ -9,6 +17,14 @@
     "pueblo": "bosque",
     "tesoro": "mercado"
   },
-  "repaso": { "erroresParaSugerir": 3, "dias": 7, "ejercicios": 8 },
-  "pistas": { "maximo": 3 }
+  "repaso": {
+    "erroresParaSugerir": 3,
+    "dias": 7,
+    "ejercicios": 8
+  },
+  "pistas": {
+    "maximo": 3
+  },
+  "_notaDesbloqueo": "Cada mundo se abre al completar el grado 1 del nivel 'nivelQueAbreSiguiente' del mundo que lo pide (o su Gran desafío).",
+  "nivelQueAbreSiguiente": 4
 }

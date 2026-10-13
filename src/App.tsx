@@ -4,7 +4,7 @@ import { configurarVoz } from './audio/voz';
 import { iniciar, useEstado, useJugadora } from './datos/estado';
 import { iniciarNube } from './datos/nube';
 import { nivelPorId } from './content';
-import { gradoDesbloqueado } from './engine/progreso';
+import { esCreadora, gradoDesbloqueado, modoCreadora } from './engine/progreso';
 import { Jugar } from './juego/Jugar';
 import { Ajustes } from './pantallas/Ajustes';
 import { CrearCuenta, EntrarAdulta } from './pantallas/Adulta';
@@ -63,6 +63,8 @@ function Rutas() {
   const ruta = useRuta();
   const e = useEstado();
   const j = useJugadora();
+  // Perfil de prueba de la creadora: todo abierto (antes de dibujar cualquier pantalla).
+  modoCreadora(esCreadora(j?.apodo));
   const camino = ruta.split('?')[0];
   const query = new URLSearchParams(ruta.split('?')[1] ?? '');
 

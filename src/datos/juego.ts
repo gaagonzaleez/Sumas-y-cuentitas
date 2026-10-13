@@ -3,7 +3,7 @@
 import { config, nivelPorId } from '../content';
 import { ITEM, MASCOTAS, PREMIOS, precioDe } from '../content/catalogo';
 import * as M from '../engine/mascota';
-import { clave, completado } from '../engine/progreso';
+import { clave, completado, mundoDesbloqueado } from '../engine/progreso';
 import { diaArgentina, lunesDeLaSemana, numeroDeSemana } from '../engine/semana';
 import { actualizar, jugadoraActual } from './estado';
 import { guardarIntento } from './db';
@@ -229,8 +229,11 @@ export async function completarGrado(nivelId: string, grado: number, estrellas: 
     mascota: totalEstrellas && x.mascota ? M.porEstrellas(x.mascota, totalEstrellas, hoy) : x.mascota,
     ultimaRachaPremiada: racha ? hoy : x.ultimaRachaPremiada,
   }));
-  if (info.esJefe && grado === 1 && primeraVez) {
-    const desbloqueados = Object.entries(config.progreso.desbloqueoMundos).filter(([, req]) => req === info.mundo.id).map(([m]) => m);
+  // El nivel 4 de un mundo abre los mundos que siguen.
+  if (!info.esJefe && grado === 1 && primeraVez && info.indice === config.progreso.nivelQueAbreSiguiente - 1) {
+    const desbloqueados = Object.entries(config.progreso.desbloqueoMundos)
+      .filter(([m, req]) => req === info.mundo.id && !mundoDesbloqueado(j.progreso, m))
+      .map(([m]) => m);
     mundoNuevo = desbloqueados[0];
     mundosNuevos = desbloqueados;
   }

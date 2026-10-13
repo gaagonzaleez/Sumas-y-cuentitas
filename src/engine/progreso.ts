@@ -18,15 +18,30 @@ export function completado(p: Progreso, nivelId: string, grado: number): boolean
   return Boolean(p[clave(nivelId, grado)]?.completadoEn);
 }
 
+// Modo creadora: con un perfil de prueba de la creadora (config.app.perfilesCreadora) todo está abierto.
+let todoAbierto = false;
+const normalizar = (s: string) => s.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+export function esCreadora(apodo?: string): boolean {
+  return Boolean(apodo) && config.app.perfilesCreadora.map(normalizar).includes(normalizar(apodo!));
+}
+export function modoCreadora(activo: boolean) {
+  todoAbierto = activo;
+}
+
+/** Un mundo se abre al pasar el grado 1 del nivel 4 del mundo anterior (no hace falta terminarlo entero). */
 export function mundoDesbloqueado(p: Progreso, mundoId: string): boolean {
+  if (todoAbierto) return true;
   const req = config.progreso.desbloqueoMundos[mundoId];
   if (req === undefined) return false;
   if (req === null) return true;
-  return completado(p, `${req}-jefe`, 1);
+  const previo = MUNDOS.find((m) => m.id === req);
+  const nivelQueAbre = previo?.niveles[config.progreso.nivelQueAbreSiguiente - 1];
+  return (nivelQueAbre !== undefined && completado(p, nivelQueAbre.id, 1)) || completado(p, `${req}-jefe`, 1);
 }
 
 /** ¿Se puede jugar este grado de este nivel (o del jefe)? */
 export function gradoDesbloqueado(p: Progreso, mundo: Mundo, nivelId: string, grado: number): boolean {
+  if (todoAbierto) return true;
   if (!mundoDesbloqueado(p, mundo.id)) return false;
   if (grado > 1) return completado(p, nivelId, grado - 1);
   if (nivelId === mundo.jefe.id) return completado(p, mundo.niveles[mundo.niveles.length - 1].id, 1);

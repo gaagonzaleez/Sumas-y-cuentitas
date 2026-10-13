@@ -6,7 +6,7 @@ import { Camino, EscenaMundo } from '../art/Mundos';
 import { config, mundoPorId } from '../content';
 import { frase } from '../content/catalogo';
 import { animoDe, etapaDe } from '../engine/mascota';
-import { estrellasMundo, mundoActual, mundoDesbloqueado, mundoTerminado, nivelActual } from '../engine/progreso';
+import { esCreadora, estrellasMundo, mundoActual, mundoDesbloqueado, mundoTerminado, nivelActual } from '../engine/progreso';
 import { diaArgentina } from '../engine/semana';
 import { infoError } from '../engine/leccion';
 import { useEstado, useJugadora } from '../datos/estado';
@@ -26,6 +26,7 @@ export function Encabezado() {
         {j.avatar && <AvatarCirculo avatar={j.avatar} size={48} />}
         <span className="col" style={{ gap: 0, minWidth: 0 }}>
           <span className="titulo recorte" style={{ fontSize: 20 }}>{j.apodo}</span>
+          {esCreadora(j.apodo) && <span className="chico recorte" style={{ fontWeight: 800, color: 'var(--violeta)' }}>Modo creadora · todo abierto</span>}
           <span className="suave chico recorte">{n.indice >= 8 ? 'Gran desafío' : `Nivel ${n.indice + 1}`} · {actual.nombre.split(' ').slice(-1)[0]}</span>
         </span>
       </button>
