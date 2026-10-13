@@ -15,11 +15,11 @@
   "peldanosPorGrado": { "numeros": 2, "sumas": 2, "restas": 2, "tablas": 1, "dinero": 2, "problemas": 2, "finanzas": 2 },
   "peldanosDeSubida": 3,
   "caracterGrado": [
-    { "ayudas": "siempre", "problemas": 0, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "con ayudas" },
+    { "ayudas": "siempre", "problemas": 0, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "con ayuditas" },
     { "ayudas": "a-veces", "problemas": 0, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "menos ayudas" },
-    { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "con problemas" },
+    { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": false, "tresTerminos": false, "desafioTablas": false, "descripcion": "sin ayudas" },
     { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": true, "tresTerminos": false, "desafioTablas": true, "descripcion": "más pasos" },
-    { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": true, "tresTerminos": true, "desafioTablas": true, "descripcion": "desafío" }
+    { "ayudas": "nunca", "problemas": 0.35, "llevadaForzada": true, "tresTerminos": true, "desafioTablas": true, "descripcion": "¡desafío!" }
   ],
   "tablasDesafio": [6, 7, 8, 9],
   "desafioDiezMil": { "probabilidad": 0.15, "desdeGrado": 5 }

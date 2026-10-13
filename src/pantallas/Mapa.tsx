@@ -22,14 +22,14 @@ export function Encabezado() {
   const n = nivelActual(j.progreso, actual);
   return (
     <header className="fila entre" style={{ background: '#fff', margin: '-20px -20px 0', padding: 'calc(14px + var(--seguro-arriba)) 16px 14px' }}>
-      <button className="fila" style={{ background: 'none', border: 0, padding: 0, textAlign: 'left', minHeight: 48 }} onClick={() => ir('/avatar')} aria-label="Cambiar mi personaje">
-        {j.avatar && <AvatarCirculo avatar={j.avatar} size={52} />}
-        <span className="col" style={{ gap: 0 }}>
-          <span className="titulo" style={{ fontSize: 20 }}>{j.apodo}</span>
-          <span className="suave chico">Nivel {n.indice + 1} · {actual.nombre.split(' ').slice(-1)[0]}</span>
+      <button className="fila" style={{ background: 'none', border: 0, padding: 0, textAlign: 'left', minHeight: 48, flex: 1, minWidth: 0 }} onClick={() => ir('/avatar')} aria-label="Cambiar mi personaje">
+        {j.avatar && <AvatarCirculo avatar={j.avatar} size={48} />}
+        <span className="col" style={{ gap: 0, minWidth: 0 }}>
+          <span className="titulo recorte" style={{ fontSize: 20 }}>{j.apodo}</span>
+          <span className="suave chico recorte">{n.indice >= 8 ? 'Gran desafío' : `Nivel ${n.indice + 1}`} · {actual.nombre.split(' ').slice(-1)[0]}</span>
         </span>
       </button>
-      <div className="fila" style={{ gap: 6 }}>
+      <div className="fila encabezado-pildoras" style={{ gap: 4, flex: 'none' }}>
         <PildoraMonedas n={j.monedas} />
         <PildoraEstrellas n={j.estrellas} />
         <button className="boton-icono" onClick={() => ir('/ajustes')} aria-label="Ajustes"><Icono nombre="ajustes" /></button>
@@ -80,7 +80,7 @@ export function Mapa() {
               <button
                 onClick={() => (abierto ? ir(`/mundo/${id}`) : undefined)}
                 aria-disabled={!abierto}
-                aria-label={`${m.nombre}${abierto ? (terminado ? ', terminado' : `, nivel ${nAct.indice + 1} de 8`) : ', bloqueado'}`}
+                aria-label={`${m.nombre}${abierto ? (terminado ? ', terminado' : (nAct.indice >= 8 ? ', gran desafío' : `, nivel ${nAct.indice + 1} de 8`)) : ', bloqueado'}`}
                 className={esActual ? 'late' : undefined}
                 style={{
                   width: tam, height: tam, borderRadius: '50%', border: `${esActual ? 6 : 4}px solid #fff`,
@@ -93,8 +93,8 @@ export function Mapa() {
               </button>
               <div style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', [izq ? 'left' : 'right']: tam + 12, width: 150, textAlign: izq ? 'left' : 'right' }}>
                 <div style={{ fontWeight: 800, fontSize: 16, lineHeight: 1.15, color: abierto ? 'var(--tinta)' : 'var(--tinta-suave)' }}>{m.nombre}</div>
-                {m.etiqueta && <span className="pildora chica" style={{ background: 'var(--amarillo)', minHeight: 24, fontSize: 13, marginTop: 2 }}>{m.etiqueta}</span>}
-                {esActual && !terminado && <div style={{ color: 'var(--violeta)', fontWeight: 800, fontSize: 14 }}>Nivel {nAct.indice + 1} de 8</div>}
+                {m.etiqueta && <span className="pildora chica" style={{ background: 'var(--amarillo)', minHeight: 24, fontSize: 16, marginTop: 2 }}>{m.etiqueta}</span>}
+                {esActual && !terminado && <div style={{ color: 'var(--violeta)', fontWeight: 800, fontSize: 16 }}>{nAct.indice >= 8 ? '¡Gran desafío!' : `Nivel ${nAct.indice + 1} de 8`}</div>}
                 {terminado && <Estrellas n={Math.min(3, Math.round(estrellasMundo(j.progreso, m) / 45))} size={18} />}
                 {abierto && !esActual && !terminado && <EscenaMundo id={id} size={40} />}
               </div>

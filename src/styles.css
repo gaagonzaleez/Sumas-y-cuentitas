@@ -71,7 +71,8 @@ button { cursor: pointer; }
 .col { display: flex; flex-direction: column; gap: 10px; }
 .centro { text-align: center; align-items: center; justify-content: center; }
 .suave { color: var(--tinta-suave); font-weight: 700; }
-.chico { font-size: 15px; }
+.chico { font-size: 16px; }
+.recorte { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tarjeta { background: var(--blanco); border-radius: 24px; padding: 18px; }
 .tarjeta.borde { border: 3px solid var(--lavanda); }
 .grilla-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -115,7 +116,7 @@ button { cursor: pointer; }
   display: inline-flex; align-items: center; justify-content: center;
 }
 .boton-icono.violeta { background: var(--violeta); color: var(--blanco); }
-.boton-link { background: none; border: 0; color: var(--violeta); text-decoration: underline; font-weight: 800; min-height: 44px; padding: 8px; }
+.boton-link { background: none; border: 0; color: var(--violeta); text-decoration: underline; font-weight: 800; min-height: 44px; padding: 8px; display: inline-flex; align-items: center; justify-content: center; }
 
 .chip {
   min-height: 44px; padding: 8px 16px; border-radius: 999px;
@@ -135,7 +136,7 @@ button { cursor: pointer; }
 .pildora.monedas { background: var(--amarillo-claro); }
 .pildora.estrellas { background: var(--lavanda); }
 .pildora.violeta { background: var(--violeta); color: var(--blanco); }
-.pildora.chica { min-height: 28px; padding: 3px 10px; font-size: 14px; }
+.pildora.chica { min-height: 28px; padding: 3px 10px; font-size: 16px; }
 
 /* ---------- Formularios ---------- */
 .campo { display: flex; flex-direction: column; gap: 6px; }
@@ -145,8 +146,8 @@ button { cursor: pointer; }
   font-size: 18px; font-weight: 700; background: #fbfaff; width: 100%;
 }
 .campo input:focus, .campo select:focus { border-color: var(--violeta); outline: none; box-shadow: 0 0 0 3px #d9d0ff; }
-.campo .ayuda { font-size: 15px; color: var(--tinta-suave); }
-.campo .aviso { font-size: 15px; color: var(--coral-oscuro); display: flex; gap: 6px; align-items: flex-start; }
+.campo .ayuda { font-size: 16px; color: var(--tinta-suave); }
+.campo .aviso { font-size: 16px; color: var(--coral-oscuro); display: flex; gap: 6px; align-items: flex-start; }
 .casilla { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; min-height: 44px; }
 .casilla input { width: 28px; height: 28px; accent-color: var(--violeta); flex: none; margin: 0; }
 
@@ -171,7 +172,7 @@ button { cursor: pointer; }
 .menu a {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
   min-height: 60px; border-radius: 18px; color: var(--tinta-suave); text-decoration: none;
-  font-weight: 800; font-size: 14px;
+  font-weight: 800; font-size: 16px;
 }
 .menu a[aria-current='page'] { background: var(--lavanda); color: var(--violeta); }
 
@@ -205,4 +206,10 @@ button { cursor: pointer; }
   margin-bottom: var(--seguro-abajo);
 }
 @media (min-width: 600px) { .modal-fondo { align-items: center; } }
-.sin-conexion { background: var(--naranja-claro); color: var(--naranja-texto); text-align: center; padding: 8px; font-size: 15px; }
+.sin-conexion { background: var(--naranja-claro); color: var(--naranja-texto); text-align: center; padding: 8px; font-size: 16px; }
+
+/* En celulares angostos, las píldoras del encabezado se achican para que entre todo. */
+@media (max-width: 380px) {
+  .encabezado-pildoras .pildora { padding: 6px 9px; gap: 4px; }
+  .encabezado-pildoras .pildora.estrellas { display: none; }
+}

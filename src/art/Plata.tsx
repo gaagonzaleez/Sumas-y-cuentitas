@@ -15,23 +15,23 @@ export function esMonedaValor(v: number) {
 
 export function Plata({ valor, size = 1 }: { valor: number; size?: number }) {
   if (esMonedaValor(valor)) {
-    const r = 22 * size;
+    const r = 26 * size;
     return (
       <svg width={r * 2} height={r * 2} viewBox="0 0 44 44" aria-hidden="true">
         <circle cx="22" cy="22" r="20" fill={valor >= 5 ? '#E8D9A0' : '#E6E0F5'} stroke="#2B2350" strokeWidth="2.5" />
         <circle cx="22" cy="22" r="15" fill="none" stroke="#2B2350" strokeWidth="1" strokeDasharray="2 2" />
-        <text x="22" y="27.5" textAnchor="middle" fontFamily="Fredoka, Nunito, sans-serif" fontWeight="700" fontSize="15" fill="#2B2350">${valor}</text>
+        <text x="22" y="27.5" textAnchor="middle" fontFamily="Fredoka, Nunito, sans-serif" fontWeight="700" fontSize="17" fill="#2B2350">${valor}</text>
       </svg>
     );
   }
   const [fondo, borde] = COLORES[valor] ?? COLORES[10];
-  const w = 80 * size;
+  const w = 96 * size;
   return (
     <svg width={w} height={w * 0.55} viewBox="0 0 80 44" aria-hidden="true">
       <rect x="1.5" y="1.5" width="77" height="41" rx="7" fill={fondo} stroke="#2B2350" strokeWidth="2.5" />
       <rect x="6" y="6" width="68" height="32" rx="4" fill="none" stroke={borde} strokeWidth="1.5" />
       <circle cx="16" cy="22" r="7" fill="none" stroke={borde} strokeWidth="1.5" />
-      <text x="48" y="29" textAnchor="middle" fontFamily="Fredoka, Nunito, sans-serif" fontWeight="700" fontSize={valor >= 1000 ? 15 : 18} fill="#2B2350">${valor}</text>
+      <text x="48" y="29" textAnchor="middle" fontFamily="Fredoka, Nunito, sans-serif" fontWeight="700" fontSize={valor >= 1000 ? 17 : 20} fill="#2B2350">${valor}</text>
     </svg>
   );
 }

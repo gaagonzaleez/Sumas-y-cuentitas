@@ -121,7 +121,7 @@ export function Panel() {
         <span style={{ fontWeight: 800 }}>Grupo</span>
         <p className="suave chico">{j.codigoGrupo ? `Código: ${j.codigoGrupo}` : 'Juega sin grupo.'}</p>
         <div className="fila" style={{ gap: 8 }}>
-          <input aria-label="Código del grupo" placeholder="LUNA-4821" value={codigo} onChange={(ev) => setCodigo(ev.target.value.toUpperCase())} style={{ flex: 1, height: 50, borderRadius: 14, border: '2px solid var(--lila)', padding: '0 12px', fontSize: 18 }} />
+          <input aria-label="Código del grupo" placeholder="LUNA-4821" value={codigo} onChange={(ev) => setCodigo(ev.target.value.toUpperCase())} style={{ flex: 1, minWidth: 0, height: 50, borderRadius: 14, border: '2px solid var(--lila)', padding: '0 12px', fontSize: 18 }} />
           <button className="boton chico" disabled={!validarCodigo(codigo)} onClick={async () => { await actualizarPorId(j.id, (x) => ({ ...x, codigoGrupo: normalizarCodigo(codigo) })); setCodigo(''); }}>Guardar</button>
         </div>
         {j.codigoGrupo && <button className="boton-link" style={{ alignSelf: 'flex-start' }} onClick={() => actualizarPorId(j.id, (x) => ({ ...x, codigoGrupo: undefined }))}>Salir del grupo</button>}

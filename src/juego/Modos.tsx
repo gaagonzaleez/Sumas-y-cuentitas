@@ -21,6 +21,8 @@ export function Opciones({ ej, responder, estado }: { ej: Ejercicio; responder: 
   const largas = ops.some((o) => (o.texto ?? o.valor).length > 14);
   // Cartón de lotería: 9 números en una grilla de 3.
   const carton = ops.length > 6 && !largas;
+  // Cuentas o textos medianos ("3 + 13 + 13", "Manzana: $11"): letra un poco más chica, sin cortarse.
+  const medianas = !largas && ops.some((o) => (o.texto ?? o.valor).length > 7);
   return (
     <div className={largas ? 'col' : carton ? 'grilla-3 carton' : 'grilla-2'} style={{ gap: carton ? 8 : 12 }}>
       {ops.map((o) => {
@@ -31,11 +33,11 @@ export function Opciones({ ej, responder, estado }: { ej: Ejercicio; responder: 
           <button key={o.valor} onClick={() => responder(o.valor)} disabled={!!estado.correcta || mal}
             aria-label={`${o.texto ?? o.valor}${ok ? ', correcta' : mal ? ', ya probaste esta' : ''}`}
             style={{
-              minHeight: carton ? 64 : 72, borderRadius: 20, padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+              minHeight: carton ? 64 : 72, borderRadius: 20, padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: largas ? 'flex-start' : 'center', gap: 10,
               border: `4px solid ${ok ? 'var(--turquesa-oscuro)' : mal ? '#E9B8BC' : 'var(--lavanda)'}`,
               background: ok ? 'var(--turquesa-claro)' : mal ? '#FBF3F4' : '#fff',
               color: ok ? 'var(--turquesa-oscuro)' : mal ? '#8C7F9E' : 'var(--tinta)',
-              fontFamily: largas ? 'var(--fuente-texto)' : 'var(--fuente-titulo)', fontWeight: largas ? 800 : 600, fontSize: largas ? 19 : carton ? 28 : 32, textAlign: largas ? 'left' : 'center',
+              fontFamily: largas ? 'var(--fuente-texto)' : 'var(--fuente-titulo)', fontWeight: largas ? 800 : 600, fontSize: largas ? 19 : carton ? 28 : medianas ? 22 : 32, textAlign: largas ? 'left' : 'center', whiteSpace: largas ? 'normal' : 'nowrap',
               textDecoration: mal ? 'line-through' : undefined,
             }}>
             {dibujo}
@@ -78,10 +80,10 @@ export function ArmarBloques({ ej, responder, bloqueado }: { ej: Ejercicio; resp
   const valor = c * 100 + d * 10 + u;
   const conCentenas = (ej.datos?.bloques?.numero ?? 0) >= 100;
   const Contador = ({ nombre, n, set, color }: { nombre: string; n: number; set: (f: (x: number) => number) => void; color: string }) => (
-    <div className="col centro" style={{ gap: 4, background: '#fff', borderRadius: 18, padding: 8, flex: 1 }}>
-      <span style={{ fontWeight: 800, color }}>{nombre}</span>
+    <div className="col centro" style={{ gap: 4, background: '#fff', borderRadius: 18, padding: 6, flex: 1, minWidth: 0 }}>
+      <span className="recorte" style={{ fontWeight: 800, color, maxWidth: '100%' }}>{nombre}</span>
       <span className="titulo" style={{ fontSize: 32 }}>{n}</span>
-      <div className="fila" style={{ gap: 6 }}>
+      <div className="fila" style={{ gap: 4 }}>
         <button className="boton-icono" style={{ background: 'var(--lavanda)', fontSize: 26, fontWeight: 800 }} aria-label={`Sacar ${nombre}`} onClick={() => set((x) => Math.max(0, x - 1))} disabled={bloqueado}>−</button>
         <button className="boton-icono violeta" style={{ fontSize: 26, fontWeight: 800 }} aria-label={`Agregar ${nombre}`} onClick={() => { sonido('toque'); set((x) => Math.min(9, x + 1)); }} disabled={bloqueado}>+</button>
       </div>
@@ -156,14 +158,14 @@ export function Dinero({ ej, responder, bloqueado }: { ej: Ejercicio; responder:
       <div style={{ minHeight: 84, border: '3px dashed #9C8FC4', borderRadius: 22, padding: 10, display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', alignItems: 'center' }} aria-label="Tu pago">
         {pago.length === 0 && <span className="suave chico">Tocá billetes y monedas para pagar</span>}
         {pago.map((v, i) => (
-          <button key={i} style={{ background: 'none', border: 0, padding: 0 }} onClick={() => setPago(pago.filter((_, k) => k !== i))} aria-label={`Sacar $${v}`} disabled={bloqueado}><Plata valor={v} size={0.8} /></button>
+          <button key={i} style={{ background: 'none', border: 0, padding: 0, minWidth: 48, minHeight: 48 }} onClick={() => setPago(pago.filter((_, k) => k !== i))} aria-label={`Sacar $${v}`} disabled={bloqueado}><Plata valor={v} size={0.9} /></button>
         ))}
       </div>
       <span className="etiqueta">Tu billetera · tocá para pagar</span>
       <div className="tarjeta fila" style={{ flexWrap: 'wrap', justifyContent: 'center', gap: 8 }}>
         {d.billetera.map((v) => (
-          <button key={v} style={{ background: 'none', border: 0, padding: 2, minHeight: 44 }} onClick={() => { sonido('toque'); setPago([...pago, v]); }} aria-label={`Agregar $${v}`} disabled={bloqueado}>
-            <Plata valor={v} size={0.85} />
+          <button key={v} style={{ background: 'none', border: 0, padding: 2, minWidth: 48, minHeight: 48 }} onClick={() => { sonido('toque'); setPago([...pago, v]); }} aria-label={`Agregar $${v}`} disabled={bloqueado}>
+            <Plata valor={v} size={1} />
           </button>
         ))}
       </div>
@@ -256,13 +258,16 @@ export function ArmarGrupos({ ej, responder, bloqueado }: { ej: Ejercicio; respo
     <div className="col" style={{ gap: 12 }}>
       <div className="fila" style={{ gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
         {canastas.map((n, i) => (
-          <div key={i} ref={(el) => { refs.current[i] = el; }} className="col centro" style={{ background: '#FFF4D1', borderRadius: 20, padding: 8, minWidth: 92, minHeight: 120, border: '3px solid #E7B36A', gap: 4 }}>
-            <button onClick={() => poner(i)} disabled={bloqueado} aria-label={`Poner en la canasta ${i + 1}. Tiene ${n}`} style={{ background: 'none', border: 0, display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', maxWidth: 90, minHeight: 60 }}>
-              {Array.from({ length: n }, (_, k) => <Objeto key={k} id={a.objeto} size={22} />)}
+          <div key={i} ref={(el) => { refs.current[i] = el; }} className="col centro" style={{ background: '#FFF4D1', borderRadius: 20, padding: 6, minWidth: 92, border: '3px solid #E7B36A', gap: 4 }}>
+            {/* Toda la canasta se puede tocar para poner uno adentro. */}
+            <button onClick={() => poner(i)} disabled={bloqueado} aria-label={`Poner en la canasta ${i + 1}. Tiene ${n}`} className="col centro" style={{ background: 'none', border: 0, gap: 4, minWidth: 88, minHeight: 130, padding: 0 }}>
+              <span style={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', maxWidth: 86, minHeight: 50, alignContent: 'flex-end' }}>
+                {Array.from({ length: n }, (_, k) => <Objeto key={k} id={a.objeto} size={22} />)}
+              </span>
+              <Objeto id="canasta" size={40} />
+              <span style={{ fontWeight: 800 }}>{n}</span>
             </button>
-            <Objeto id="canasta" size={40} />
-            <span style={{ fontWeight: 800 }}>{n}</span>
-            {n > 0 && <button className="boton-link" style={{ minHeight: 32, padding: 0 }} onClick={() => sacar(i)} disabled={bloqueado}>Sacar uno</button>}
+            <button className="boton-icono" style={{ background: 'var(--lavanda)', fontSize: 24, fontWeight: 800, visibility: n > 0 ? 'visible' : 'hidden' }} onClick={() => sacar(i)} disabled={bloqueado || n === 0} aria-label={`Sacar uno de la canasta ${i + 1}`}>−</button>
           </div>
         ))}
       </div>

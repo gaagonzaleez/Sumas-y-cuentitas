@@ -18,7 +18,7 @@ function Vacio({ titulo, texto }: { titulo: string; texto: string }) {
   const j = useJugadora();
   return (
     <div className="tarjeta col centro" style={{ gap: 10, textAlign: 'center', padding: 24 }}>
-      <Guia guia={j?.guia ?? 'chispa'} size={90} expr="pensando" />
+      <Guia guia={j?.guia ?? 'chispa'} size={90} expr="contenta" />
       <h2>{titulo}</h2>
       <p className="suave">{texto}</p>
     </div>
@@ -89,7 +89,7 @@ export function Grupo() {
                 <span style={{ fontWeight: 800 }}>{f.apodo}{f.player_id === j.id ? ' (vos)' : ''}</span>
                 <div className="col centro" style={{ width: '100%', height: alturas[i], borderRadius: '14px 14px 0 0', background: ['var(--amarillo)', '#C9C3E6', '#F2C8A0'][i], gap: 0 }}>
                   <span className="titulo" style={{ fontSize: 32 }}>{i + 1}</span>
-                  <span style={{ fontWeight: 800, fontSize: 15 }}>{f[tab]}</span>
+                  <span style={{ fontWeight: 800, fontSize: 16 }}>{f[tab]}</span>
                 </div>
               </div>
             );

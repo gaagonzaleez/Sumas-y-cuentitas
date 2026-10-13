@@ -28,6 +28,8 @@ import { VALORES_PLATA } from './dinero';
 
 type Op = '+' | '−' | '×' | 'num' | '$';
 const opDe = (ctx: Contexto, def: Op): Op => (ctx.params.op as Op) ?? def;
+/** Mínimo del nivel (por ejemplo, 100 en «Centenas»): los números no bajan de ahí. */
+const piso = (ctx: Contexto, def: number) => Math.max(def, Number(ctx.params.minimo) || 0);
 const max = (ctx: Contexto, min = 10) => Math.max(min, ctx.rango);
 
 function sinArticulo(nombre: string): string {
@@ -56,7 +58,7 @@ export const guerraCartas: Generador = (az, ctx): Ejercicio => {
   const op = opDe(ctx, 'num');
   const [rival] = az.mezclar(NOMBRES);
   const tope = op === '×' ? 10 : op === '$' ? 0 : op === 'num' ? max(ctx, 20) : Math.max(10, Math.floor(max(ctx) / 2));
-  const carta = () => (op === 'num' ? az.entero(1, tope) : az.entero(1, Math.max(2, tope)));
+  const carta = () => (op === 'num' ? az.entero(Math.min(piso(ctx, 1), tope), Math.max(tope, piso(ctx, 1) + 9)) : az.entero(1, Math.max(2, tope)));
   const valorDe = (c: number[]) =>
     op === '+' ? c[0] + c[1] : op === '−' ? Math.abs(c[0] - c[1]) : op === '×' ? c[0] * c[1] : op === '$' ? c.reduce((a, b) => a + b, 0) : c[0];
   const mano = (): number[] => {
@@ -125,7 +127,7 @@ export const escoba: Generador = (az, ctx): Ejercicio => {
   } else if (op === 'num') {
     // Formar un número con cartas de centenas, decenas y unidades: 300 + 40 + 7.
     // Siempre con por lo menos dos cartas: nada de números redondos.
-    do objetivo = az.entero(11, Math.max(20, Math.min(999, ctx.rango)));
+    do objetivo = az.entero(piso(ctx, 11), Math.max(piso(ctx, 11) + 9, Math.min(999, ctx.rango)));
     while (objetivo % 10 === 0);
     const [u, d, c = 0] = cifras(objetivo);
     solucion = [c * 100, d * 10, u].filter((x) => x > 0);
@@ -194,7 +196,7 @@ export const loteria: Generador = (az, ctx): Ejercicio => {
     previstos.push([k + t, 'tabla.suma-en-vez'], [(k + 1) * t, 'tabla.vecino'], [(k - 1) * t, 'tabla.vecino']);
     leccion = datosGrupos(k, t);
   } else {
-    r = az.entero(10, Math.max(20, Math.min(999, ctx.rango)));
+    r = az.entero(piso(ctx, 10), Math.max(piso(ctx, 10) + 10, Math.min(999, ctx.rango)));
     const inv = Number(String(r).split('').reverse().join(''));
     if (inv !== r && r % 10) previstos.push([inv, 'numeros.invierte-cifras']);
     leccion = datosValor(r);
@@ -365,7 +367,7 @@ export const piramide: Generador = (az, ctx): Ejercicio => {
 // Adivinanza: "Pensé un número: es mayor que 40, menor que 50 y termina en 3".
 export const adivinanza: Generador = (az, ctx): Ejercicio => {
   const m = Math.max(30, Math.min(999, ctx.rango));
-  const r = az.entero(12, m);
+  const r = az.entero(piso(ctx, 12), Math.max(piso(ctx, 12) + 9, m));
   const [u, d] = cifras(r);
   const desde = Math.floor(r / 10) * 10;
   const pistas: string[] = [];

@@ -14,7 +14,7 @@ function Encabezado() {
         <Chispa size={44} />
         <span className="titulo" style={{ color: 'var(--violeta)', fontSize: 22 }}>mateAventuras</span>
       </div>
-      <span className="pildora" style={{ border: '2px solid var(--violeta)', color: 'var(--violeta)', background: '#fff', fontSize: 14 }}>
+      <span className="pildora" style={{ border: '2px solid var(--violeta)', color: 'var(--violeta)', background: '#fff', fontSize: 16 }}>
         Para mamá o papá
       </span>
     </div>

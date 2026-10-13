@@ -1,5 +1,5 @@
 // Pantalla 7: cuidar a la mascota. Barra de crecimiento 0–300 que sube y baja, con avisos.
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Icono, Moneda } from '../art/Iconos';
 import { MascotaSVG } from '../art/Mascota';
 import { config } from '../content';
@@ -16,6 +16,11 @@ export function MiMascota() {
   const j = useJugadora();
   const e = useEstado();
   const [mensaje, setMensaje] = useState('');
+  const escenario = useRef<HTMLElement>(null);
+  // Después de alimentar o jugar, se vuelve a mostrar la mascota para ver qué dice.
+  useEffect(() => {
+    if (mensaje) escenario.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [mensaje]);
   const [salta, setSalta] = useState(false);
   const [vestir, setVestir] = useState(false);
   if (!j) return null;
@@ -64,14 +69,28 @@ export function MiMascota() {
         <h1>Mi mascota</h1>
         <PildoraMonedas n={j.monedas} />
       </div>
-      <section style={{ borderRadius: 28, overflow: 'hidden', background: 'linear-gradient(#CDE9FF 60%, #9ED9A8 60%)', padding: 16, position: 'relative', minHeight: 300 }}>
+      <section ref={escenario} style={{ borderRadius: 28, overflow: 'hidden', background: 'linear-gradient(#CDE9FF 60%, #9ED9A8 60%)', padding: 16, position: 'relative', minHeight: 240 }}>
         <p className="burbuja" style={{ display: 'inline-block', maxWidth: '85%' }} aria-live="polite">{saludo}</p>
         <div className="centro" style={{ display: 'flex', marginTop: 8 }}>
           <div className={salta ? 'rebota' : undefined}>
-            <MascotaSVG especie={m.especie} etapa={etapa} animo={mensaje ? 'contenta' : animo} size={200} accesorios={m.accesorios} />
+            <MascotaSVG especie={m.especie} etapa={etapa} animo={mensaje ? 'contenta' : animo} size={170} accesorios={m.accesorios} />
           </div>
         </div>
       </section>
+      {/* Las acciones quedan justo debajo de la mascota (antes quedaban tapadas por el menú). */}
+      <div className="grilla-3">
+        {[
+          { icono: 'manzana' as const, t: 'Alimentar', s: `${cfg.precioAlimentar} monedas`, f: alimentar },
+          { icono: 'pelota' as const, t: 'Jugar', s: 'Gratis', f: jugar },
+          { icono: 'gorro' as const, t: 'Vestir', s: 'Gorros y más', f: () => setVestir(true) },
+        ].map((b) => (
+          <button key={b.t} className="tarjeta col centro" style={{ gap: 2, padding: '14px 6px', border: 0, minHeight: 100 }} onClick={b.f}>
+            <span style={{ color: 'var(--violeta)' }}><Icono nombre={b.icono} size={30} /></span>
+            <span className="titulo" style={{ fontSize: 20 }}>{b.t}</span>
+            <span className="suave chico">{b.s}</span>
+          </button>
+        ))}
+      </div>
       <div className="fila entre">
         <h2>{m.nombre}</h2>
         <span className="pildora violeta">{especie.nombre} {nombreEtapa}</span>
@@ -104,25 +123,12 @@ export function MiMascota() {
       <div className="grilla-2">
         <div className="col" style={{ gap: 4 }}>
           <span className="etiqueta">Contento</span>
-          <div className="barra"><span style={{ width: `${m.contento}%`, background: 'var(--coral)' }} /></div>
+          <div className="barra" role="progressbar" aria-label="Contento" aria-valuenow={m.contento} aria-valuemin={0} aria-valuemax={100}><span style={{ width: `${m.contento}%`, background: 'var(--turquesa)' }} /></div>
         </div>
         <div className="col" style={{ gap: 4 }}>
           <span className="etiqueta">Panza llena</span>
           <div className="barra"><span style={{ width: `${m.panza}%`, background: 'var(--naranja)' }} /></div>
         </div>
-      </div>
-      <div className="grilla-3">
-        {[
-          { icono: 'manzana' as const, t: 'Alimentar', s: `${cfg.precioAlimentar} monedas`, f: alimentar },
-          { icono: 'pelota' as const, t: 'Jugar', s: 'Gratis', f: jugar },
-          { icono: 'gorro' as const, t: 'Vestir', s: 'Gorros y más', f: () => setVestir(true) },
-        ].map((b) => (
-          <button key={b.t} className="tarjeta col centro" style={{ gap: 2, padding: '14px 6px', border: 0, minHeight: 100 }} onClick={b.f}>
-            <span style={{ color: 'var(--violeta)' }}><Icono nombre={b.icono} size={30} /></span>
-            <span className="titulo" style={{ fontSize: 20 }}>{b.t}</span>
-            <span className="suave chico">{b.s}</span>
-          </button>
-        ))}
       </div>
       <button className="boton-link" onClick={() => ir('/mascota/elegir')}>Cambiar de mascota</button>
       {vestir && (
@@ -141,7 +147,7 @@ export function MiMascota() {
                     if (r === 'ok') { sonido('festejo'); vestirMascota(a.id); } else setMensaje(frase(guia, 'sinMonedas'));
                   }}>
                   <MascotaSVG especie={m.especie} etapa={etapa} animo="contenta" size={64} accesorios={[a.id]} />
-                  <span style={{ fontSize: 14, fontWeight: 800 }}>{a.nombre}</span>
+                  <span style={{ fontSize: 16, fontWeight: 800 }}>{a.nombre}</span>
                   {!tiene && <span className="fila chico" style={{ gap: 3 }}><Moneda size={16} /> {precioFinal(a.id)}</span>}
                 </button>
               );

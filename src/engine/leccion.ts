@@ -30,6 +30,8 @@ export function errorTagDe(ej: Ejercicio, respuesta: string): string {
     if (distancia(respuesta, ej.respuesta) <= Math.max(2, Math.floor(ej.respuesta.length / 6))) return 'numeros.ortografia';
     return ej.errorTagPorDefecto;
   }
+  // Pagar: si puso de más es "te pasaste", si puso de menos "falta un poco".
+  if (ej.modo === 'dinero' && !Number.isNaN(Number(respuesta))) return Number(respuesta) > Number(ej.respuesta) ? 'dinero.se-pasa' : 'dinero.falta';
   if (ej.erroresPrevistos?.[respuesta]) return ej.erroresPrevistos[respuesta];
   return ej.errorTagPorDefecto;
 }

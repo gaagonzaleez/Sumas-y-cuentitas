@@ -51,10 +51,10 @@ export function Mundo({ id }: { id: string }) {
               }}>
                 {!abierto ? <Icono nombre="candado" /> : esJefe ? <Icono nombre="trofeo" size={34} /> : i + 1}
               </span>
-              <span style={{ fontSize: 14, fontWeight: 800, background: 'rgba(255,255,255,.85)', borderRadius: 10, padding: '2px 6px', lineHeight: 1.15 }}>
+              <span style={{ fontSize: 16, fontWeight: 800, background: 'rgba(255,255,255,.85)', borderRadius: 10, padding: '2px 6px', lineHeight: 1.15 }}>
                 {esJefe ? n.nombre : n.nombre}
               </span>
-              {abierto && <span className="fila" style={{ gap: 2, fontSize: 13, fontWeight: 800 }}><Estrella size={14} /> {est}/15</span>}
+              {abierto && <span className="fila" style={{ gap: 2, fontSize: 16, fontWeight: 800 }}><Estrella size={14} /> {est}/15</span>}
             </button>
           );
         })}

@@ -11,7 +11,7 @@ export function Bloques({ numero, max = 9 }: { numero: number; max?: number }) {
   return (
     <div className="fila" style={{ flexWrap: 'wrap', justifyContent: 'center', gap: 10, alignItems: 'flex-end' }} aria-label={`${c} centenas, ${d} decenas y ${u} unidades`}>
       {Array.from({ length: Math.min(c, max) }, (_, i) => (
-        <svg key={`c${i}`} width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+        <svg key={`c${i}`} width="66" height="66" viewBox="0 0 46 46" aria-hidden="true">
           <rect x="2" y="2" width="42" height="42" rx="3" fill="#9A7BF0" stroke={T} strokeWidth="2.5" />
           {[1, 2, 3].map((k) => <path key={k} d={`M${2 + k * 10.5} 2v42M2 ${2 + k * 10.5}h42`} stroke={T} strokeWidth="0.8" opacity=".5" />)}
         </svg>
@@ -19,7 +19,7 @@ export function Bloques({ numero, max = 9 }: { numero: number; max?: number }) {
       {d > 0 && (
         <div className="fila" style={{ gap: 3 }}>
           {Array.from({ length: d }, (_, i) => (
-            <svg key={`d${i}`} width="12" height="46" viewBox="0 0 12 46" aria-hidden="true">
+            <svg key={`d${i}`} width="18" height="70" viewBox="0 0 12 46" aria-hidden="true">
               <rect x="1.5" y="1.5" width="9" height="43" rx="2" fill="#0FA88F" stroke={T} strokeWidth="2" />
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => <path key={k} d={`M1.5 ${1.5 + k * 4.3}h9`} stroke={T} strokeWidth=".7" opacity=".5" />)}
             </svg>
@@ -27,9 +27,9 @@ export function Bloques({ numero, max = 9 }: { numero: number; max?: number }) {
         </div>
       )}
       {u > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 12px)', gap: 3 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 18px)', gap: 4 }}>
           {Array.from({ length: u }, (_, i) => (
-            <svg key={`u${i}`} width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" rx="2" fill="#FFC93C" stroke={T} strokeWidth="2" /></svg>
+            <svg key={`u${i}`} width="18" height="18" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" rx="2" fill="#FFC93C" stroke={T} strokeWidth="2" /></svg>
           ))}
         </div>
       )}
@@ -109,7 +109,7 @@ export function Recta({ desde, hasta, marca, objetivo, saltos }: { desde: number
 function Objetos({ objeto, cantidad, tam = 34 }: { objeto: string; cantidad: number; tam?: number }) {
   const t = cantidad > 12 ? Math.max(24, tam - 8) : tam;
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(5, cantidad)}, ${t}px)`, gap: 6, justifyContent: 'center' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cantidad <= 5 ? cantidad : Math.ceil(cantidad / Math.ceil(cantidad / 5))}, ${t}px)`, gap: 6, justifyContent: 'center' }}>
       {Array.from({ length: cantidad }, (_, i) => <Objeto key={i} id={objeto} size={t} />)}
     </div>
   );
@@ -178,7 +178,7 @@ export function VisualEjercicio({ v }: { v: Visual }) {
           <div className="col" style={{ gap: 4, minWidth: 140 }}>
             <span className="suave chico">{v.titulo ?? 'Meta'}</span>
             <span className="titulo" style={{ fontSize: 28 }}>${v.meta.toLocaleString('es-AR')}</span>
-            <div className="barra" style={{ height: 16 }}><span style={{ width: `${Math.min(100, (v.guardado / v.meta) * 100)}%`, background: 'var(--coral)' }} /></div>
+            <div className="barra" style={{ height: 16 }}><span style={{ width: `${Math.min(100, (v.guardado / v.meta) * 100)}%`, background: 'var(--turquesa)' }} /></div>
           </div>
         </div>
       );

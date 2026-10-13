@@ -82,7 +82,7 @@ export function AvatarEditor() {
         style={{ minHeight: 96, borderRadius: 18, border: `3px ${bloqueado ? 'dashed #9C8FC4' : 'solid'} ${sel ? 'var(--violeta)' : bloqueado ? '#9C8FC4' : 'var(--lavanda)'}`, background: sel ? 'var(--lavanda)' : bloqueado ? 'var(--coral-claro)' : '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 4, gap: 2 }}>
         <ItemSVG id={id} size={54} piel={a.piel} pelo={ITEM[a.colorPelo]?.valor === 'arcoiris' ? '#9A7BF0' : ITEM[a.colorPelo]?.valor} />
         {bloqueado && (
-          <span className="fila" style={{ gap: 3, fontSize: 14, fontWeight: 800 }}>
+          <span className="fila" style={{ gap: 3, fontSize: 16, fontWeight: 800 }}>
             <Icono nombre="candado" size={16} /> {premio ? 'Premio' : <>{precioFinal(id)}</>}
           </span>
         )}
@@ -116,9 +116,16 @@ export function AvatarEditor() {
       </div>
       <GuiaDice guia={guia} texto={aviso || frase(guia, 'avatar')} />
       <div className="centro" style={{ display: 'flex' }}>
-        <div style={{ width: 200, height: 200, borderRadius: '50%', background: '#FFE3E6', border: '6px solid #fff', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
-          <AvatarSVG avatar={a} size={200} modo="busto" titulo="Tu personaje" />
-        </div>
+        {/* Piel, pelo y cara se ven mejor de cerca; ropa, zapatos y fondo, de cuerpo entero. */}
+        {['piel', 'pelo', 'cara'].includes(pestana) ? (
+          <div style={{ width: 200, height: 200, borderRadius: '50%', background: '#FFE3E6', border: '6px solid #fff', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
+            <AvatarSVG avatar={a} size={200} modo="busto" titulo="Tu personaje" />
+          </div>
+        ) : (
+          <div style={{ borderRadius: 28, background: '#FFE3E6', border: '6px solid #fff', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
+            <AvatarSVG avatar={a} size={160} modo="cuerpo" titulo="Tu personaje" />
+          </div>
+        )}
       </div>
       <div className="chips" role="tablist" aria-label="Partes del personaje">
         {PESTANAS.map((p) => (
@@ -178,8 +185,8 @@ export function AvatarEditor() {
                 <div key={i} className="col centro" style={{ border: '3px solid var(--lavanda)', borderRadius: 18, padding: 8, gap: 6 }}>
                   {r ? <AvatarSVG avatar={r} size={64} modo="busto" /> : <span className="suave chico" style={{ height: 64, display: 'flex', alignItems: 'center' }}>Vacío</span>}
                   <div className="fila" style={{ gap: 4 }}>
-                    {r && <button className="boton chico blanco" style={{ minHeight: 44, padding: '4px 8px', fontSize: 15 }} onClick={() => setA(r)}>Usar</button>}
-                    <button className="boton chico" style={{ minHeight: 44, padding: '4px 8px', fontSize: 15 }} onClick={() => guardarEnRopero(i, a)}>Guardar</button>
+                    {r && <button className="boton chico blanco" style={{ minHeight: 44, padding: '4px 8px', fontSize: 16 }} onClick={() => setA(r)}>Usar</button>}
+                    <button className="boton chico" style={{ minHeight: 44, padding: '4px 8px', fontSize: 16 }} onClick={() => guardarEnRopero(i, a)}>Guardar</button>
                   </div>
                 </div>
               ))}

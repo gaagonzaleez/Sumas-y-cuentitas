@@ -187,7 +187,7 @@ export const repartirAhorro: Generador = (az, ctx) => {
     tema: 'finanzas',
     modo: 'opciones',
     consigna: rellenar(texto(az, 'repartir-ahorro', 'consigna'), vars),
-    visual: { tipo: 'alcancia', meta: plata, guardado: guardo },
+    visual: { tipo: 'alcancia', meta: plata, guardado: plata, titulo: 'Tenés' },
     respuesta: String(r),
     opciones: opciones.map((o) => ({ ...o, texto: `$${o.valor}` })),
     erroresPrevistos,

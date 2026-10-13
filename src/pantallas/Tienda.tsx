@@ -1,5 +1,6 @@
 // Pantalla 12: tienda de ítems de avatar y mascotas, con ofertas semanales,
 // premios de jefe bloqueados y alcancía para ahorrar hacia una meta.
+import { ir } from '../ui/router';
 import { useState } from 'react';
 import { ItemSVG } from '../art/Avatar';
 import { Icono, Moneda } from '../art/Iconos';
@@ -42,10 +43,13 @@ export function Tienda() {
     if (!elegido) return;
     const r = elegido.tipo === 'item' ? await comprarItem(elegido.id) : await comprarMascota(elegido.id);
     if (r === 'ok') {
+      // La ventana queda abierta mostrando "¡Es tuyo!" (antes el aviso aparecía arriba de todo, fuera de la vista).
       sonido('festejo');
       setMensaje(frase(guia, 'compra'));
       decir(frase(guia, 'compra'));
-    } else if (r === 'sin-monedas') {
+      return;
+    }
+    if (r === 'sin-monedas') {
       setMensaje(frase(guia, 'sinMonedas'));
       decir(frase(guia, 'sinMonedas'));
     }
@@ -87,7 +91,7 @@ export function Tienda() {
       <button className="fila entre" style={{ background: 'linear-gradient(90deg, var(--violeta), #7A5BD9)', color: '#fff', borderRadius: 22, padding: '14px 16px', border: 0, textAlign: 'left' }} onClick={() => setElegido({ tipo: 'item', id: ofertas.find((o) => !j.items.includes(o)) ?? ofertas[0] })}>
         <span className="col" style={{ gap: 0 }}>
           <span className="titulo" style={{ fontSize: 22 }}>Ofertas de la semana</span>
-          <span style={{ fontSize: 15 }}>{ofertas.length} ítems · cambian el lunes</span>
+          <span style={{ fontSize: 16 }}>{ofertas.length} ítems · cambian el lunes</span>
         </span>
         <span className="pildora" style={{ background: 'var(--amarillo)', color: 'var(--tinta)' }}>−{Math.round(config.economia.tienda.descuentoOferta * 100)}%</span>
       </button>
@@ -140,16 +144,34 @@ export function Tienda() {
             // Si es la meta de la alcancía, lo ahorrado cuenta para pagar.
             const precio = elegido.tipo === 'item' ? faltaParaComprar(j, elegido.id) : MASCOTAS.find((m) => m.id === elegido.id)!.precio;
             const usaAlcancia = elegido.tipo === 'item' && j.alcancia?.itemId === elegido.id && j.alcancia.guardado > 0;
-            if (elegido.tipo === 'item' && j.items.includes(elegido.id)) return <p className="aviso-caja verde">¡Ya lo tenés! Ponételo en tu personaje.</p>;
+            // Recién comprado (o ya lo tenía): el festejo y el atajo quedan a la vista, en la misma ventana.
+            if (elegido.tipo === 'item' && j.items.includes(elegido.id))
+              return (
+                <>
+                  <p className="aviso-caja verde">¡Es tuyo! Ponételo en tu personaje.</p>
+                  <button className="boton ancho" onClick={() => ir('/avatar')}>¡Ponérmelo ahora!</button>
+                </>
+              );
+            if (elegido.tipo === 'mascota' && j.mascotasCompradas.includes(elegido.id))
+              return (
+                <>
+                  <p className="aviso-caja verde">¡Ya es tuya! La podés elegir cuando quieras.</p>
+                  <button className="boton ancho" onClick={() => ir('/mascota')}>Ir a mi mascota</button>
+                </>
+              );
+            const ahorrar = elegido.tipo === 'item' && j.alcancia?.itemId !== elegido.id && (
+              <button className="boton borde ancho" onClick={() => { elegirMeta(elegido.id); setElegido(null); setPestana('alcancia'); }}><Icono nombre="alcancia" /> Ahorrar para esto</button>
+            );
             return j.monedas >= precio ? (
               <>
                 <button className="boton ancho" onClick={comprar}><Moneda size={26} /> Comprar por {precio}</button>
                 {usaAlcancia && <p className="suave centro">Usás también las {j.alcancia!.guardado} monedas de tu alcancía.</p>}
+                {ahorrar}
               </>
             ) : (
               <>
                 <p className="aviso-caja amarillo">Te faltan {precio - j.monedas} monedas. ¡Jugando las conseguís!</p>
-                {elegido.tipo === 'item' && <button className="boton borde ancho" onClick={() => { elegirMeta(elegido.id); setElegido(null); setPestana('alcancia'); }}><Icono nombre="alcancia" /> Ahorrar para esto</button>}
+                {ahorrar}
               </>
             );
           })()}

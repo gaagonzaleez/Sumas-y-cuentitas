@@ -62,7 +62,7 @@ export function PerfilNuevo() {
         </div>
         <label className="casilla">
           <input type="checkbox" checked={acepto} onChange={(ev) => setAcepto(ev.target.checked)} />
-          <span>Acepto que mi hija juegue con apodo y avatar, sin fotos ni datos personales.</span>
+          <span>Acepto que la nena juegue con apodo y avatar, sin fotos ni datos personales.</span>
         </label>
         {tocado && !acepto && <p className="campo aviso" role="alert">Para seguir, marcá que aceptás.</p>}
         {lleno && <p className="campo aviso" role="alert">Ya hay {config.app.maxPerfiles} perfiles en este dispositivo.</p>}

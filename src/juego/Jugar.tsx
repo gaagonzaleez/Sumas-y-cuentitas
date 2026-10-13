@@ -240,7 +240,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     setIntento(n);
     if (n >= 2) {
       // En memoria y "tocá varias" la respuesta es un código interno: no se muestra.
-      abrirLeccion(tag, ['memoria', 'elegir'].includes(ejercicio.modo) ? undefined : valor);
+      abrirLeccion(tag, ['memoria', 'elegir'].includes(ejercicio.modo) ? undefined : ['ordenar', 'arrastrar'].includes(ejercicio.modo) ? valor.split(',').join(', ') : valor);
       return;
     }
     // Después del "¡Casi!" va qué mirar y una pista concreta para el segundo intento.
@@ -304,9 +304,9 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     <main className="pantalla angosta" style={{ gap: 14, paddingBottom: fase === 'acierto' ? 200 : undefined }}>
       <div className="fila" style={{ gap: 10 }}>
         <button className="boton-icono" onClick={() => setSalir(true)} aria-label="Salir"><Icono nombre="cruz" /></button>
-        <div className="col" style={{ flex: 1, gap: 4 }}>
-          <span className="suave chico" style={{ lineHeight: 1.1 }}>
-            {repaso ? 'Repaso' : base.mundo.nombre} · {numPregunta <= minimo ? `Pregunta ${numPregunta} de ${minimo}` : '¡Pregunta extra!'}
+        <div className="col" style={{ flex: 1, gap: 4, minWidth: 0 }}>
+          <span className="recorte" style={{ lineHeight: 1.1, fontWeight: 800, color: 'var(--tinta-suave)' }} aria-label={numPregunta <= minimo ? `Pregunta ${numPregunta} de ${minimo}` : 'Pregunta extra'}>
+            {repaso ? 'Repaso · ' : ''}{numPregunta <= minimo ? `${numPregunta} de ${minimo}` : '¡Extra!'}
           </span>
           <div className="barra" role="progressbar" aria-label="Avance del grado" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(avance * 100)}>
             <span style={{ width: `${avance * 100}%` }} />
@@ -337,7 +337,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
             <p className="tarjeta" style={{ padding: '10px 14px', fontSize: 18 }}>{ejercicio.consigna}</p>
           )}
           {verVisual && ejercicio.visual && (
-            <div className="tarjeta aparece" style={{ padding: 14 }}><VisualEjercicio v={ejercicio.visual} /></div>
+            <div className="tarjeta aparece" style={{ padding: 14 }}><VisualEjercicio v={fase === 'acierto' && ejercicio.visual.tipo === 'balanza' ? { ...ejercicio.visual, derecha: ejercicio.visual.derecha.replace('?', ejercicio.respuesta) } : ejercicio.visual} /></div>
           )}
           {ejercicio.cuenta && <Cuenta ej={ejercicio} resuelta={fase === 'acierto'} />}
           {reloj && fase === 'pregunta' && <Reloj key={ejercicio.uid} />}
@@ -416,12 +416,12 @@ function Reloj() {
 function Cuenta({ ej, resuelta }: { ej: Ejercicio; resuelta: boolean }) {
   const c = ej.cuenta!;
   const ok = (t: string) => <span style={{ color: 'var(--turquesa-oscuro)' }}>{t}</span>;
-  const falta = <span style={{ color: '#9C8FC4' }}>?</span>;
+  const falta = <span style={{ color: '#6B5FA3' }}>?</span>;
   let contenido;
   if (c.includes('= ?')) contenido = <>{c.replace(' = ?', ' = ')}{resuelta ? ok(ej.respuesta) : falta}</>;
   else if (c.includes('__')) {
     const [antes, despues] = c.split('__');
-    contenido = <>{antes}{resuelta ? ok(ej.respuesta) : <span style={{ color: '#9C8FC4' }}>__</span>}{despues}</>;
+    contenido = <>{antes}{resuelta ? ok(ej.respuesta) : <span style={{ color: '#6B5FA3' }}>__</span>}{despues}</>;
   } else if (ej.modo === 'letras') {
     contenido = (
       <>

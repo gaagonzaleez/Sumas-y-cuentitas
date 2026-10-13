@@ -490,7 +490,7 @@
     ]
   },
   "ordenar": {
-    "visual": "comparar",
+    "visual": "ordenar",
     "pasos": [
       {
         "texto": "Buscamos el más chico de todos: el {menor}."
@@ -504,7 +504,7 @@
     ]
   },
   "ordenar-precios": {
-    "visual": "comparar",
+    "visual": "ordenar",
     "pasos": [
       {
         "texto": "Buscamos el más barato de todos: el de {menor} pesos."

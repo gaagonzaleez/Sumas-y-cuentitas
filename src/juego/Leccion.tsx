@@ -51,6 +51,23 @@ function Dibujo({ lec, ej, paso }: { lec: LeccionArmada; ej: Ejercicio; paso: nu
       const r = num(d.r);
       return <Recta desde={Math.max(0, Math.min(desde, r) - 1)} hasta={Math.max(desde, r) + 1} marca={desde} objetivo={paso >= 1 ? r : undefined} />;
     }
+    case 'ordenar': {
+      // Los números ordenados de menor a mayor; en cada paso se van marcando.
+      const nums = [...(ej.datos?.ordenar ?? [])].sort((x, y) => x - y);
+      const conPesos = ej.plantillaId === 'ordenar-precios';
+      return (
+        <div className="fila" style={{ justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}>
+          {nums.map((n, i) => {
+            const marcado = paso >= 2 || i <= paso;
+            return (
+              <span key={n} className="titulo" style={{ fontSize: 28, padding: '4px 12px', borderRadius: 14, background: marcado ? 'var(--turquesa-claro)' : '#fff', border: `3px solid ${marcado ? 'var(--turquesa-oscuro)' : 'var(--lavanda)'}` }}>
+                {conPesos ? `$${n}` : n}
+              </span>
+            );
+          })}
+        </div>
+      );
+    }
     case 'comparar':
       return (
         <div className="fila" style={{ justifyContent: 'center', gap: 24 }}>
@@ -109,7 +126,7 @@ export function Leccion({
         {respuesta && respuesta !== 'ok' && (
           <div className="col" style={{ flex: '1 1 140px', gap: 6 }}>
             <div style={{ background: 'var(--naranja-claro)', borderRadius: 14, padding: '8px 12px' }}>
-              <span style={{ fontSize: 14, fontWeight: 800, color: 'var(--naranja-texto)' }}>Tu respuesta</span>
+              <span style={{ fontSize: 16, fontWeight: 800, color: 'var(--naranja-texto)' }}>Tu respuesta</span>
               <div className="titulo" style={{ fontSize: 26 }}>{respuesta}</div>
             </div>
             <p style={{ fontSize: 16 }}>{lec.diagnostico}</p>
