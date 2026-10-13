@@ -17,9 +17,11 @@ Si al entrar ya dice que el sitio está publicado en esa dirección, no hace fal
 
 ---
 
-## 2. Grupos y tabla de posiciones (etapa 5) — cuenta gratuita de Supabase (10 minutos)
+## 2. Nube: panel de creadora con todos los celulares, grupos y tabla de posiciones — cuenta gratuita de Supabase (10 minutos)
 
-Sin esto el juego funciona completo, pero sin tabla del grupo ni copia en la nube.
+Sin esto el juego funciona completo, pero el **Panel de creadora** solo muestra los perfiles del celular donde lo abrís, y no hay tabla del grupo ni copia en la nube.
+
+> Si ya hiciste este paso antes, solo repetí el paso 3 (pegar y correr `esquema.sql` otra vez): agrega lo nuevo del panel de creadora sin borrar nada.
 
 1. Entrá a https://supabase.com y tocá **Start your project**. Creá la cuenta con tu correo de GitHub (botón “Continue with GitHub”).
 2. Tocá **New project**:
@@ -41,11 +43,13 @@ Sin esto el juego funciona completo, pero sin tabla del grupo ni copia en la nub
 
 La clave “anon public” es pública a propósito (va dentro de la app); la seguridad la dan las reglas de acceso por fila que crea el paso 3. Supabase pausa los proyectos gratis sin uso: ya hay una acción automática que lo mantiene despierto cada 3 días.
 
+**Para ver todos los perfiles (Panel de creadora):** entrá con tu perfil **kimbo** → Ajustes → **Panel de creadora** → **Todos los celulares** → entrá con **gaagonzaleez@gmail.com** y una contraseña (la primera vez se crea la cuenta). Solo ese correo puede ver los perfiles de todos.
+
 **Para armar un grupo:** en el juego, Ajustes → Panel de la adulta → “Grupos y copia en la nube” → Conectar → “Crear grupo”. Aparece un código tipo `LUNA-4821` para pasarle a las otras familias.
 
 ---
 
 ## Para revisar cuando puedas (no frena nada)
 
-- **Ley 25.326 (datos personales):** el spec pide que un profesional revise las obligaciones antes de abrir el juego a más familias. El juego ya guarda lo mínimo (apodo, grado, avatar, progreso y puntos; nada de nombres reales ni fotos) y el borrado elimina todo.
+- **Ley 25.326 (datos personales):** el spec pide que un profesional revise las obligaciones antes de abrir el juego a más familias. El juego ya guarda lo mínimo (apodo, grado, avatar, progreso y puntos; nada de nombres reales ni fotos) y el borrado elimina todo. Con la nube activa, cada celular sube un resumen del avance (apodo, grado escolar y progreso) para el Panel de creadora; las adultas lo aceptan al crear el perfil.
 - **Voces:** en `docs/voces-muestras/` quedan muestras de cada voz para escucharlas. Si alguna no te gusta, avisame cuál preferís.

@@ -5,6 +5,7 @@ import { borrarJugadora, crearCuenta, crearJugadora, elegirJugadora, iniciar, ju
 import { comprarItem, completarGrado, elegirMeta, guardarEnAlcancia, ofertasDeLaSemana, registrarIntento } from '../../src/datos/juego';
 import { ITEMS } from '../../src/content/catalogo';
 import { config, MUNDOS } from '../../src/content';
+import { resumirJugadora, totales } from '../../src/datos/resumen';
 import { esCreadora, gradoDesbloqueado, modoCreadora, mundoDesbloqueado } from '../../src/engine/progreso';
 
 beforeEach(async () => {
@@ -108,5 +109,21 @@ describe('premios y economía', () => {
     expect(await guardarEnAlcancia(10)).toBe('meta');
     expect(jugadoraActual()!.items).toContain(meta.id);
     expect(jugadoraActual()!.monedas).toBe(config.economia.monedasIniciales - 20 + 2);
+  });
+});
+
+describe('panel de la creadora', () => {
+  it('resume el avance de un perfil sin datos personales', async () => {
+    const j = await crearJugadora('Kimbo', '2.º grado');
+    elegirJugadora(j.id);
+    await completarGrado('isla-1', 1, 3, 50, 300);
+    await completarGrado('isla-2', 1, 2, 50, 300);
+    const r = resumirJugadora(jugadoraActual()!);
+    expect(r.apodo).toBe('Kimbo');
+    expect(r.gradosCompletados).toBe(2);
+    expect(r.mundos[0]).toMatchObject({ id: 'isla', niveles: 2, abierto: true });
+    expect(r.dondeEsta).toContain('nivel 3');
+    expect(JSON.stringify(r)).not.toContain('dibujosHash');
+    expect(totales([r]).perfiles).toBe(1);
   });
 });

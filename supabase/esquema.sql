@@ -164,3 +164,45 @@ revoke all on function public.crear_grupo(text), public.unirse_grupo(uuid, text)
 grant execute on function public.crear_grupo(text), public.unirse_grupo(uuid, text), public.salir_grupo(uuid), public.sumar_estrellas(uuid, date, int),
   public.tabla_grupo(uuid, date), public.mis_grupos(), public.quitar_jugadora(uuid, uuid), public.cerrar_grupo(uuid, boolean) to authenticated;
 grant execute on function public.ping() to anon, authenticated;
+
+-- ---------- Panel de la creadora ----------
+-- Cada dispositivo sube un RESUMEN de cada perfil (apodo, grado escolar y avance; nada más), aunque la
+-- familia no haya conectado su cuenta. Solo la creadora (emails de la tabla creadoras) puede leerlos.
+-- Borrar un perfil en la app borra también su resumen.
+create table if not exists public.resumenes (
+  id uuid primary key,
+  apodo text not null check (char_length(apodo) between 1 and 14),
+  grado text,
+  datos jsonb not null check (octet_length(datos::text) < 20000),
+  actualizado_en timestamptz not null default now()
+);
+alter table public.resumenes enable row level security; -- sin políticas: solo se usa con las funciones de abajo
+
+create table if not exists public.creadoras (email text primary key);
+alter table public.creadoras enable row level security;
+insert into public.creadoras (email) values ('gaagonzaleez@gmail.com') on conflict do nothing;
+
+create or replace function public.guardar_resumen(p_id uuid, p_apodo text, p_grado text, p_datos jsonb) returns void
+language sql security definer set search_path = public as $$
+  insert into resumenes (id, apodo, grado, datos, actualizado_en) values (p_id, p_apodo, p_grado, p_datos, now())
+  on conflict (id) do update set apodo = excluded.apodo, grado = excluded.grado, datos = excluded.datos, actualizado_en = now();
+$$;
+
+create or replace function public.borrar_resumen(p_id uuid) returns void
+language sql security definer set search_path = public as $$
+  delete from resumenes where id = p_id;
+$$;
+
+create or replace function public.resumen_creadora()
+returns setof public.resumenes
+language plpgsql security definer set search_path = public as $$
+begin
+  if not exists (select 1 from creadoras where lower(email) = lower(auth.jwt() ->> 'email')) then
+    raise exception 'solo la creadora';
+  end if;
+  return query select * from resumenes order by actualizado_en desc;
+end $$;
+
+revoke all on function public.resumen_creadora() from anon;
+grant execute on function public.guardar_resumen(uuid, text, text, jsonb), public.borrar_resumen(uuid) to anon, authenticated;
+grant execute on function public.resumen_creadora() to authenticated;

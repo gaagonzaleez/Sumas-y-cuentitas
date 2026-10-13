@@ -27,6 +27,16 @@ export function esCreadora(apodo?: string): boolean {
 export function modoCreadora(activo: boolean) {
   todoAbierto = activo;
 }
+/** Calcula algo con las reglas normales (sin el modo creadora), por ejemplo, el avance real de un perfil. */
+export function sinModoCreadora<T>(f: () => T): T {
+  const antes = todoAbierto;
+  todoAbierto = false;
+  try {
+    return f();
+  } finally {
+    todoAbierto = antes;
+  }
+}
 
 /** Un mundo se abre al pasar el grado 1 del nivel 4 del mundo anterior (no hace falta terminarlo entero). */
 export function mundoDesbloqueado(p: Progreso, mundoId: string): boolean {

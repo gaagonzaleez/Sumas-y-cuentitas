@@ -5,6 +5,7 @@ import gruposCfg from '../../content/config/grupos.json';
 import { lunesDeLaSemana } from '../engine/semana';
 import { engancharNube, leerEstado, reemplazarJugadoras } from './estado';
 import type { Avatar, Jugadora } from './tipos';
+import { resumirJugadora, type ResumenPerfil } from './resumen';
 
 const URL = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const CLAVE = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
@@ -64,8 +65,15 @@ function guardarLocal(k: string, v: string | undefined) {
 /** Perfiles borrados: nunca se vuelven a subir ni a bajar (aunque el borrado en la nube falle). */
 const borradas = (): string[] => JSON.parse(leerLocal('borradas') ?? '[]') as string[];
 
+/** Resumen anónimo del avance para el panel de la creadora (no necesita que la familia se conecte). */
+async function subirResumen(j: Jugadora) {
+  if (borradas().includes(j.id)) return;
+  await (await sb()).rpc('guardar_resumen', { p_id: j.id, p_apodo: j.apodo, p_grado: j.grado, p_datos: resumirJugadora(j) });
+}
+
 async function subir(j: Jugadora) {
   if (borradas().includes(j.id)) return;
+  await subirResumen(j).catch(() => undefined);
   const c = await sb();
   const { data } = await c.auth.getSession();
   if (!data.session) return;
@@ -131,6 +139,7 @@ async function borrarRemota(id: string) {
 async function reintentarBorrados() {
   for (const id of borradas()) {
     try {
+      await (await sb()).rpc('borrar_resumen', { p_id: id });
       const { error } = await (await sb()).from('players').delete().eq('id', id);
       if (error) return;
     } catch {
@@ -148,6 +157,8 @@ export function iniciarNube() {
       .then((s) => s && reintentarBorrados().then(() => bajarYMezclar()))
       .catch(() => undefined);
   void sincronizar();
+  // Los resúmenes para la creadora se suben aunque la familia no haya conectado su cuenta.
+  leerEstado().jugadoras.forEach((j) => void subirResumen(j).catch(() => undefined));
   window.addEventListener('online', () => void sincronizar());
 }
 
@@ -210,4 +221,20 @@ export async function quitarJugadora(grupo: string, jugadora: string) {
 
 export async function cerrarGrupo(grupo: string, cerrado: boolean) {
   await (await sb()).rpc('cerrar_grupo', { p_group: grupo, p_cerrado: cerrado });
+}
+
+// ---------- Panel de la creadora ----------
+export type EstadoCreadora = { tipo: 'ok'; perfiles: ResumenPerfil[] } | { tipo: 'sin-nube' } | { tipo: 'sin-sesion' } | { tipo: 'no-creadora' } | { tipo: 'error' };
+
+/** Todos los perfiles de todos los dispositivos (solo si la cuenta conectada es de la creadora). */
+export async function perfilesDeTodos(): Promise<EstadoCreadora> {
+  if (!nubeConfigurada) return { tipo: 'sin-nube' };
+  try {
+    if (!(await sesionNube())) return { tipo: 'sin-sesion' };
+    const { data, error } = await (await sb()).rpc('resumen_creadora');
+    if (error) return /creadora/.test(error.message) ? { tipo: 'no-creadora' } : { tipo: 'error' };
+    return { tipo: 'ok', perfiles: ((data ?? []) as { datos: ResumenPerfil }[]).map((f) => f.datos) };
+  } catch {
+    return { tipo: 'error' };
+  }
 }

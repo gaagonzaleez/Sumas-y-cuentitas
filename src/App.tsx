@@ -7,6 +7,7 @@ import { nivelPorId } from './content';
 import { esCreadora, gradoDesbloqueado, modoCreadora } from './engine/progreso';
 import { Jugar } from './juego/Jugar';
 import { Ajustes } from './pantallas/Ajustes';
+import { Creadora } from './pantallas/Creadora';
 import { CrearCuenta, EntrarAdulta } from './pantallas/Adulta';
 import { AvatarEditor } from './pantallas/AvatarEditor';
 import { Bienvenida } from './pantallas/Bienvenida';
@@ -118,6 +119,7 @@ function Rutas() {
   if (camino === '/tienda') return <Tienda />;
   if (camino === '/grupo') return <Grupo />;
   if (camino === '/ajustes') return <Ajustes />;
+  if (camino === '/creadora') return esCreadora(j.apodo) ? <Creadora /> : (ir('/ajustes', true), null);
   if (camino === '/festejo') return <Festejo />;
   let p = coincide('/mundo/:id', camino);
   if (p) return <Mundo id={p.id} />;

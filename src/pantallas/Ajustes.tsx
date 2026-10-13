@@ -7,6 +7,7 @@ import { BotonVolver } from '../ui/comunes';
 import { ir } from '../ui/router';
 import { Estampita } from '../art/Estampita';
 import { useState } from 'react';
+import { esCreadora } from '../engine/progreso';
 import { actualizarAhora, hayVersionNueva } from '../actualizar';
 
 function Interruptor({ etiqueta, ayuda, valor, alCambiar }: { etiqueta: string; ayuda: string; valor: boolean; alCambiar: (v: boolean) => void }) {
@@ -51,6 +52,7 @@ export function Ajustes() {
         )}
       </div>
       <div className="empuja" />
+      {esCreadora(j.apodo) && <button className="boton ancho" onClick={() => ir('/creadora')}><Icono nombre="usuaria" /> Panel de creadora</button>}
       <button className="boton blanco ancho" onClick={() => ir('/adulta/entrar?a=/adulta/panel')}><Icono nombre="usuaria" /> Panel de la adulta</button>
       <button className="boton blanco ancho" onClick={() => { salir(); ir('/entrar'); }}><Icono nombre="salir" /> Salir</button>
       <BuscarActualizacion />
