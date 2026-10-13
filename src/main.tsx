@@ -9,6 +9,7 @@ import '@fontsource/nunito/800.css';
 import './styles.css';
 import { App } from './App';
 import { registerSW } from 'virtual:pwa-register';
+import { vigilarVersiones } from './actualizar';
 
 // Service worker: guarda el juego para usarlo sin internet y busca versiones nuevas
 // cada minuto y al volver a la app; cuando hay una, recarga sola.
@@ -21,6 +22,9 @@ registerSW({
     document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && buscar());
   },
 });
+
+// Plan B: si el service worker se traba, la app compara su versión con la publicada.
+vigilarVersiones();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -34,13 +34,26 @@ const base = process.env.BASE_PATH ?? '/Sumas-y-cuentitas/';
 
 // Versión visible en Ajustes (fecha y hora de compilación, hora de Argentina).
 const version = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires', dateStyle: 'short', timeStyle: 'short' });
+// Identificador único de cada compilación: la app lo compara con version.json del servidor.
+const versionId = `${process.env.GITHUB_SHA?.slice(0, 7) ?? 'local'}-${Date.now()}`;
+
+/** Publica version.json (fuera del service worker) para saber si hay una versión nueva. */
+function archivoVersion(): Plugin {
+  return {
+    name: 'archivo-de-version',
+    generateBundle() {
+      this.emitFile({ type: 'asset', fileName: 'version.json', source: JSON.stringify({ id: versionId, version }) });
+    },
+  };
+}
 
 export default defineConfig({
   base,
-  define: { __VERSION__: JSON.stringify(version) },
+  define: { __VERSION__: JSON.stringify(version), __VERSION_ID__: JSON.stringify(versionId) },
   plugins: [
     react(),
     audios(),
+    archivoVersion(),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: false,
@@ -65,6 +78,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
+        // version.json siempre se pide al servidor: es lo que avisa que hay algo nuevo.
+        globIgnores: ['version.json'],
         navigateFallback: `${base}index.html`,
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         runtimeCaching: [
@@ -74,7 +89,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'audios',
-              expiration: { maxEntries: 12000, purgeOnQuotaError: true },
+              expiration: { maxEntries: 4000, purgeOnQuotaError: true },
               cacheableResponse: { statuses: [0, 200] },
             },
           },

@@ -6,6 +6,8 @@ import { configurarVoz } from '../audio/voz';
 import { BotonVolver } from '../ui/comunes';
 import { ir } from '../ui/router';
 import { Estampita } from '../art/Estampita';
+import { useState } from 'react';
+import { actualizarAhora, hayVersionNueva } from '../actualizar';
 
 function Interruptor({ etiqueta, ayuda, valor, alCambiar }: { etiqueta: string; ayuda: string; valor: boolean; alCambiar: (v: boolean) => void }) {
   return (
@@ -51,9 +53,29 @@ export function Ajustes() {
       <div className="empuja" />
       <button className="boton blanco ancho" onClick={() => ir('/adulta/entrar?a=/adulta/panel')}><Icono nombre="usuaria" /> Panel de la adulta</button>
       <button className="boton blanco ancho" onClick={() => { salir(); ir('/entrar'); }}><Icono nombre="salir" /> Salir</button>
-      <button className="boton-link" style={{ alignSelf: 'center', color: 'var(--tinta-suave)' }} onClick={() => location.reload()}>
-        Versión del {__VERSION__} · tocá para buscar actualización
-      </button>
+      <BuscarActualizacion />
     </main>
+  );
+}
+
+function BuscarActualizacion() {
+  const [estado, setEstado] = useState<'listo' | 'buscando' | 'al-dia'>('listo');
+  async function buscar() {
+    setEstado('buscando');
+    const id = await hayVersionNueva();
+    if (id) return actualizarAhora(id, true);
+    setEstado('al-dia');
+  }
+  return (
+    <div className="col centro" style={{ gap: 4 }}>
+      <button className="boton-link" style={{ alignSelf: 'center', color: 'var(--tinta-suave)' }} onClick={buscar} disabled={estado === 'buscando'}>
+        Versión del {__VERSION__} · {estado === 'buscando' ? 'buscando…' : 'tocá para buscar actualización'}
+      </button>
+      {estado === 'al-dia' && (
+        <p className="chico" role="status" style={{ margin: 0, fontWeight: 800, color: 'var(--turquesa-oscuro)' }}>
+          ¡Ya tenés la última versión!
+        </p>
+      )}
+    </div>
   );
 }
