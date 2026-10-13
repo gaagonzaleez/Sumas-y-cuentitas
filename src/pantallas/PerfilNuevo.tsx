@@ -3,7 +3,7 @@ import { type FormEvent, useState } from 'react';
 import { Icono } from '../art/Iconos';
 import { config } from '../content';
 import { limpiarApodo, MENSAJES_APODO, validarApodo } from '../engine/apodo';
-import { crearJugadora, useEstado } from '../datos/estado';
+import { crearJugadora, salirAdulta, useEstado } from '../datos/estado';
 import { normalizarCodigo, validarCodigo } from '../datos/grupos';
 import { ir } from '../ui/router';
 import { EncabezadoAdulta } from './Adulta';
@@ -19,11 +19,15 @@ export function PerfilNuevo() {
   const codigoMal = codigo.trim() !== '' && !validarCodigo(codigo);
   const lleno = e.jugadoras.length >= config.app.maxPerfiles;
 
+  const [enviando, setEnviando] = useState(false);
   async function enviar(ev: FormEvent) {
     ev.preventDefault();
     setTocado(true);
-    if (problema || codigoMal || !acepto || lleno) return;
+    if (problema || codigoMal || !acepto || lleno || enviando) return;
+    setEnviando(true);
     await crearJugadora(limpiarApodo(apodo), grado, codigo.trim() ? normalizarCodigo(codigo) : undefined);
+    // El celular pasa a la nena: lo de la adulta vuelve a pedir contraseña.
+    salirAdulta();
     ir('/dibujos', true);
   }
 

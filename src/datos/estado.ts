@@ -1,6 +1,6 @@
 // Estado global de la app (sin librerías): una tienda simple con suscripción.
 import { useSyncExternalStore } from 'react';
-import { AVATAR_INICIAL, ITEMS_GRATIS } from '../content/catalogo';
+import { AVATAR_INICIAL, ITEM, ITEMS_GRATIS } from '../content/catalogo';
 import { config } from '../content';
 import { alVolver, diasEntre } from '../engine/mascota';
 import { diaArgentina } from '../engine/semana';
@@ -75,7 +75,8 @@ function guardarSesion(clave: string, valor: string | undefined) {
 
 export async function iniciar(): Promise<void> {
   try {
-    const [cuenta, jugadoras] = await Promise.all([db.leerCuenta(), db.leerJugadoras()]);
+    const [cuenta, guardadas] = await Promise.all([db.leerCuenta(), db.leerJugadoras()]);
+    const jugadoras = guardadas.map(normalizarJugadora);
     let ultima: string | undefined;
     try {
       ultima = localStorage.getItem(CLAVE_ULTIMA) ?? undefined;
@@ -85,6 +86,8 @@ export async function iniciar(): Promise<void> {
     const actualId = jugadoras.find((j) => j.id === ultima)?.id ?? (jugadoras.length === 1 ? jugadoras[0].id : undefined);
     const adentro = Boolean(actualId && leerSesion(CLAVE_ADENTRO) === actualId);
     emitir({ cargando: false, cuenta, jugadoras, actualId, adentro });
+    // Si la app se recargó (por ejemplo, al actualizarse) un día nuevo, igual se cuenta el día.
+    if (adentro) await nuevoDia();
   } catch (e) {
     emitir({ cargando: false, error: (e as Error).message });
   }
@@ -203,11 +206,26 @@ export async function comprobarDibujos(dibujos: string[]): Promise<boolean> {
 export async function alEntrar(): Promise<void> {
   const j = jugadoraActual();
   if (!j) return;
+  guardarSesion(CLAVE_ADENTRO, j.id);
+  // La adulta ya no está: lo suyo vuelve a pedir contraseña.
+  emitir({ adentro: true, adultaAdentro: false });
+  await contarDia();
+}
+
+/** Si cambió el día desde la última vez (app abierta toda la noche, recarga), lo cuenta. */
+export async function nuevoDia(): Promise<void> {
+  const j = jugadoraActual();
+  if (!j || !estado.adentro) return;
+  if (j.diasJugados[j.diasJugados.length - 1] === diaArgentina()) return;
+  await contarDia();
+}
+
+async function contarDia(): Promise<void> {
+  const j = jugadoraActual();
+  if (!j) return;
   const hoy = diaArgentina();
   const ultimo = j.diasJugados[j.diasJugados.length - 1];
-  const diasAusente = ultimo ? diasEntre(ultimo, hoy) : 0;
-  guardarSesion(CLAVE_ADENTRO, j.id);
-  emitir({ diasAusente, adentro: true });
+  emitir({ diasAusente: ultimo && ultimo !== hoy ? diasEntre(ultimo, hoy) : estado.diasAusente });
   await actualizar((x) => ({
     ...x,
     mascota: x.mascota ? alVolver(x.mascota, hoy) : null,
@@ -236,6 +254,31 @@ export function engancharNube(alCambiar: (j: Jugadora) => void, alBorrar: (id: s
 }
 
 export function reemplazarJugadoras(jugadoras: Jugadora[]) {
-  emitir({ jugadoras });
-  jugadoras.forEach((j) => db.guardarJugadora(j));
+  const normalizadas = jugadoras.map(normalizarJugadora);
+  emitir({ jugadoras: normalizadas });
+  normalizadas.forEach((j) => db.guardarJugadora(j).catch(() => undefined));
+}
+
+/**
+ * Datos guardados por versiones anteriores (o de la nube) pueden no tener los campos nuevos:
+ * se completan con los valores iniciales para que nada se rompa. Lo que ya no existe en el
+ * catálogo se saca (y lo ahorrado en la alcancía vuelve a la billetera).
+ */
+export function normalizarJugadora(raw: Jugadora): Jugadora {
+  const base = jugadoraNueva(raw.apodo ?? '', raw.grado ?? '');
+  const j = { ...base, ...raw, id: raw.id } as Jugadora;
+  for (const k of Object.keys(base) as (keyof Jugadora)[]) {
+    const b = base[k];
+    if (Array.isArray(b) && !Array.isArray(j[k])) (j as unknown as Record<string, unknown>)[k] = b;
+    else if (b && typeof b === 'object' && !Array.isArray(b) && (j[k] === null || typeof j[k] !== 'object'))
+      (j as unknown as Record<string, unknown>)[k] = b;
+  }
+  j.ajustes = { ...base.ajustes, ...raw.ajustes };
+  j.items = j.items.filter((i) => ITEM[i]);
+  if (j.mascota) j.mascota = { ...j.mascota, accesorios: Array.isArray(j.mascota.accesorios) ? j.mascota.accesorios : [] };
+  if (j.alcancia && !ITEM[j.alcancia.itemId]) {
+    j.monedas += j.alcancia.guardado ?? 0;
+    j.alcancia = undefined;
+  }
+  return j;
 }

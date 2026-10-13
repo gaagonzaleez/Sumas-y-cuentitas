@@ -10,6 +10,7 @@ import './styles.css';
 import { App } from './App';
 import { registerSW } from 'virtual:pwa-register';
 import { vigilarVersiones } from './actualizar';
+import { nuevoDia } from './datos/estado';
 
 // Service worker: guarda el juego para usarlo sin internet y busca versiones nuevas
 // cada minuto y al volver a la app; cuando hay una, recarga sola.
@@ -25,6 +26,9 @@ registerSW({
 
 // Plan B: si el service worker se traba, la app compara su versión con la publicada.
 vigilarVersiones();
+
+// Si la app quedó abierta de un día para otro, al volver se cuenta el día nuevo (mascota, racha).
+document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && void nuevoDia());
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

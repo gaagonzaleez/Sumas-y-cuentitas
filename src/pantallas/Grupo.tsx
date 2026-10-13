@@ -5,7 +5,7 @@ import { Guia } from '../art/Guias';
 import { Icono } from '../art/Iconos';
 import { ITEM } from '../content/catalogo';
 import { avatarInicial, actualizar, useJugadora } from '../datos/estado';
-import { ganar } from '../datos/juego';
+import { liquidarAlcancia } from '../datos/juego';
 import { configGrupos, type EstadoTabla, nubeConfigurada, tablaDelGrupo } from '../datos/nube';
 import { diasQueFaltan, lunesDeLaSemana } from '../engine/semana';
 import { crearAzar } from '../engine/azar';
@@ -56,11 +56,21 @@ export function Grupo() {
     const alturas = [110, 80, 56];
     const orden = [1, 0, 2].filter((i) => podio[i]);
     async function cobrar() {
-      const sorpresa = crearAzar(Date.parse(semana)).elegir(configGrupos.itemsSorpresa.filter((i) => !j!.items.includes(i)).concat(configGrupos.itemsSorpresa[0]));
-      await ganar(configGrupos.premioRetoMonedas);
-      await actualizar((x) => ({ ...x, retosCobrados: [...x.retosCobrados, semana], items: x.items.includes(sorpresa) ? x.items : [...x.items, sorpresa] }));
+      const quedan = configGrupos.itemsSorpresa.filter((i) => !j!.items.includes(i));
+      const sorpresa = quedan.length ? crearAzar(Date.parse(semana)).elegir(quedan) : '';
+      // Todo junto y comprobando adentro: tocar dos veces no cobra dos veces.
+      await actualizar((x) =>
+        x.retosCobrados.includes(semana)
+          ? x
+          : liquidarAlcancia({
+              ...x,
+              monedas: x.monedas + configGrupos.premioRetoMonedas,
+              retosCobrados: [...x.retosCobrados, semana],
+              items: !sorpresa || x.items.includes(sorpresa) ? x.items : [...x.items, sorpresa],
+            }),
+      );
       sonido('festejo');
-      setCobrado(sorpresa);
+      setCobrado(sorpresa || 'monedas');
     }
     cuerpo = (
       <>
@@ -108,7 +118,7 @@ export function Grupo() {
           </div>
           <span className="suave chico">{total.toLocaleString('es-AR')} de {meta.toLocaleString('es-AR')} estrellas</span>
           {cumplido && !yaCobrado && <button className="boton verde ancho" onClick={cobrar}><Icono nombre="regalo" /> ¡Abrir el cofre!</button>}
-          {cobrado && <p className="aviso-caja verde">¡Ganaste {configGrupos.premioRetoMonedas} monedas y {ITEM[cobrado]?.nombre}!</p>}
+          {cobrado && <p className="aviso-caja verde">¡Ganaste {configGrupos.premioRetoMonedas} monedas{ITEM[cobrado] ? ` y ${ITEM[cobrado].nombre}` : ''}!</p>}
         </section>
       </>
     );

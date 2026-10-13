@@ -26,20 +26,25 @@ export function precioFinal(itemId: string, fecha = new Date()): number {
 
 export type ResultadoCompra = 'ok' | 'sin-monedas' | 'ya-lo-tenes' | 'no-se-vende';
 
+/** Monedas que hacen falta para comprar un ítem: si es la meta de la alcancía, lo guardado cuenta. */
+export function faltaParaComprar(j: Jugadora, itemId: string): number {
+  const ahorrado = j.alcancia?.itemId === itemId ? j.alcancia.guardado : 0;
+  return Math.max(0, precioFinal(itemId) - ahorrado);
+}
+
 export async function comprarItem(itemId: string): Promise<ResultadoCompra> {
   const j = jugadoraActual();
   const it = ITEM[itemId];
   if (!j || !it) return 'no-se-vende';
   if (j.items.includes(itemId)) return 'ya-lo-tenes';
   if (it.desbloqueo !== 'tienda') return 'no-se-vende';
-  const precio = precioFinal(itemId);
-  if (j.monedas < precio) return 'sin-monedas';
-  await actualizar((x) => ({
-    ...x,
-    monedas: x.monedas - precio,
-    items: [...x.items, itemId],
-    alcancia: x.alcancia?.itemId === itemId ? undefined : x.alcancia,
-  }));
+  const paga = faltaParaComprar(j, itemId);
+  if (j.monedas < paga) return 'sin-monedas';
+  // Si era la meta de la alcancía, lo ahorrado se usa para pagar (nunca se pierde).
+  await actualizar((x) => {
+    if (x.items.includes(itemId) || x.monedas < paga) return x;
+    return { ...liquidarAlcancia({ ...x, monedas: x.monedas - paga, items: [...x.items, itemId] }), alcancia: x.alcancia?.itemId === itemId ? undefined : x.alcancia };
+  });
   return 'ok';
 }
 
@@ -87,7 +92,8 @@ export async function guardarEnRopero(i: number, a: Avatar) {
 
 // ---------- Mascota ----------
 export async function elegirMascota(especie: string, nombre: string) {
-  await actualizar((x) => ({ ...x, mascota: { ...M.nuevaMascota(especie, nombre, diaArgentina()), accesorios: x.mascota?.accesorios ?? [] } }));
+  // Cambiar de mascota o de nombre no le quita lo que creció: solo cambia la especie y el nombre.
+  await actualizar((x) => ({ ...x, mascota: x.mascota ? { ...x.mascota, especie, nombre } : M.nuevaMascota(especie, nombre, diaArgentina()) }));
 }
 
 export async function alimentarMascota(): Promise<ResultadoCompra> {
@@ -228,28 +234,43 @@ export async function completarGrado(nivelId: string, grado: number, estrellas: 
 }
 
 // ---------- Alcancía ----------
+/**
+ * Si la meta ya está cumplida (se guardó todo lo que cuesta, bajó de precio con una oferta) o la nena
+ * ya tiene el ítem (lo ganó de premio), la cierra: entrega el ítem y devuelve lo que sobre.
+ */
+export function liquidarAlcancia(x: Jugadora): Jugadora {
+  const a = x.alcancia;
+  if (!a) return x;
+  if (!ITEM[a.itemId] || x.items.includes(a.itemId)) return { ...x, alcancia: undefined, monedas: x.monedas + a.guardado };
+  const precio = precioFinal(a.itemId);
+  if (a.guardado < precio) return x;
+  const bono = Math.round(precio * config.economia.alcancia.bonoAlLlegar);
+  return { ...x, alcancia: undefined, items: [...x.items, a.itemId], monedas: x.monedas + (a.guardado - precio) + bono };
+}
+
 export async function elegirMeta(itemId: string | undefined) {
   // Lo ya guardado nunca se pierde: pasa a la nueva meta o vuelve a la billetera.
-  await actualizar((x) => ({ ...x, alcancia: itemId ? { itemId, guardado: x.alcancia?.guardado ?? 0 } : undefined, monedas: x.monedas + (itemId ? 0 : (x.alcancia?.guardado ?? 0)) }));
+  await actualizar((x) => {
+    const guardado = x.alcancia?.guardado ?? 0;
+    if (!itemId) return { ...x, alcancia: undefined, monedas: x.monedas + guardado };
+    return liquidarAlcancia({ ...x, alcancia: { itemId, guardado } });
+  });
 }
 
 /** Pasa monedas a la alcancía. Al llegar a la meta suma un bono y compra el ítem. */
 export async function guardarEnAlcancia(cuanto: number): Promise<'ok' | 'meta' | 'nada'> {
   const j = jugadoraActual();
   if (!j?.alcancia) return 'nada';
-  const precio = precioFinal(j.alcancia.itemId);
-  const falta = precio - j.alcancia.guardado;
-  const pone = Math.min(cuanto, j.monedas, falta);
-  if (pone <= 0) return 'nada';
-  const guardado = j.alcancia.guardado + pone;
-  if (guardado >= precio) {
-    const bono = Math.round(precio * config.economia.alcancia.bonoAlLlegar);
-    const itemId = j.alcancia.itemId;
-    await actualizar((x) => ({ ...x, monedas: x.monedas - pone + bono, items: [...x.items, itemId], alcancia: undefined }));
-    return 'meta';
-  }
-  await actualizar((x) => ({ ...x, monedas: x.monedas - pone, alcancia: { ...x.alcancia!, guardado } }));
-  return 'ok';
+  let resultado: 'ok' | 'meta' | 'nada' = 'nada';
+  await actualizar((x) => {
+    if (!x.alcancia) return x;
+    const falta = Math.max(0, precioFinal(x.alcancia.itemId) - x.alcancia.guardado);
+    const pone = Math.min(cuanto, x.monedas, falta);
+    const nueva = liquidarAlcancia({ ...x, monedas: x.monedas - pone, alcancia: { ...x.alcancia, guardado: x.alcancia.guardado + pone } });
+    resultado = !nueva.alcancia ? 'meta' : pone > 0 ? 'ok' : 'nada';
+    return nueva;
+  });
+  return resultado;
 }
 
 /** Errores repetidos en la semana que conviene repasar (3 o más del mismo tipo). */

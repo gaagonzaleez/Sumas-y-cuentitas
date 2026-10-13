@@ -8,7 +8,7 @@ import { Objeto } from '../art/Objetos';
 import { config } from '../content';
 import { frase, ITEM, ITEMS, MASCOTAS, precioDe } from '../content/catalogo';
 import { useJugadora } from '../datos/estado';
-import { comprarItem, comprarMascota, elegirMeta, guardarEnAlcancia, ofertasDeLaSemana, precioFinal, tieneMascota } from '../datos/juego';
+import { comprarItem, comprarMascota, elegirMeta, faltaParaComprar, guardarEnAlcancia, ofertasDeLaSemana, precioFinal, tieneMascota } from '../datos/juego';
 import { decir, sonido } from '../audio/voz';
 import { MenuInferior, Modal, PildoraMonedas } from '../ui/comunes';
 
@@ -137,10 +137,15 @@ export function Tienda() {
             <div className="centro col"><MascotaSVG especie={elegido.id} etapa="bebe" animo="contenta" size={110} /><h2>{MASCOTAS.find((m) => m.id === elegido.id)!.nombre}</h2></div>
           )}
           {(() => {
-            const precio = elegido.tipo === 'item' ? precioFinal(elegido.id) : MASCOTAS.find((m) => m.id === elegido.id)!.precio;
+            // Si es la meta de la alcancía, lo ahorrado cuenta para pagar.
+            const precio = elegido.tipo === 'item' ? faltaParaComprar(j, elegido.id) : MASCOTAS.find((m) => m.id === elegido.id)!.precio;
+            const usaAlcancia = elegido.tipo === 'item' && j.alcancia?.itemId === elegido.id && j.alcancia.guardado > 0;
             if (elegido.tipo === 'item' && j.items.includes(elegido.id)) return <p className="aviso-caja verde">¡Ya lo tenés! Ponételo en tu personaje.</p>;
             return j.monedas >= precio ? (
-              <button className="boton ancho" onClick={comprar}><Moneda size={26} /> Comprar por {precio}</button>
+              <>
+                <button className="boton ancho" onClick={comprar}><Moneda size={26} /> Comprar por {precio}</button>
+                {usaAlcancia && <p className="suave centro">Usás también las {j.alcancia!.guardado} monedas de tu alcancía.</p>}
+              </>
             ) : (
               <>
                 <p className="aviso-caja amarillo">Te faltan {precio - j.monedas} monedas. ¡Jugando las conseguís!</p>
@@ -171,6 +176,7 @@ function Alcancia() {
       </div>
     );
   }
+  if (!ITEM[a.itemId]) return null;
   const precio = precioFinal(a.itemId);
   const pct = Math.min(100, (a.guardado / precio) * 100);
   async function poner(n: number) {
@@ -195,7 +201,7 @@ function Alcancia() {
       <div className="barra" style={{ height: 20 }} role="progressbar" aria-valuenow={a.guardado} aria-valuemin={0} aria-valuemax={precio} aria-label="Ahorro">
         <span style={{ width: `${pct}%`, background: 'var(--coral)' }} />
       </div>
-      <p style={{ fontWeight: 800 }}>Guardaste {a.guardado} de {precio} monedas. Te faltan {precio - a.guardado}.</p>
+      <p style={{ fontWeight: 800 }}>Guardaste {a.guardado} de {precio} monedas. Te faltan {Math.max(0, precio - a.guardado)}.</p>
       <div className="fila" style={{ gap: 8 }}>
         {[5, 10, 20].map((n) => <button key={n} className="boton chico" style={{ flex: 1 }} onClick={() => poner(n)}>+{n}</button>)}
       </div>

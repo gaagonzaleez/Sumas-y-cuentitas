@@ -57,6 +57,8 @@ export function Entrar() {
     return null;
   }
   async function tocar(id: string) {
+    // Mientras se comprueban los 3 dibujos, los toques de más no cuentan.
+    if (elegidos.length >= N()) return;
     sonido('toque');
     const nuevos = [...elegidos, id];
     setElegidos(nuevos);
@@ -108,6 +110,8 @@ export function ElegirDibujos() {
     return null;
   }
   async function tocar(id: string) {
+    // Mientras se comprueban los 3 dibujos, los toques de más no cuentan.
+    if (elegidos.length >= N()) return;
     sonido('toque');
     const nuevos = [...elegidos, id];
     setElegidos(nuevos);

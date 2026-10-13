@@ -152,7 +152,7 @@ export function Panel() {
         <Modal titulo="Borrar perfil" alCerrar={() => setBorrar(false)}>
           <h2>¿Borrar el perfil de {j.apodo}?</h2>
           <p>Se eliminan para siempre su avatar, su mascota, sus monedas, su progreso y sus respuestas, en este dispositivo y en la nube si estaba conectada. No se puede deshacer.</p>
-          <button className="boton peligro ancho" onClick={async () => { await borrarJugadora(j.id); setBorrar(false); elegirJugadora(undefined); setVerId(undefined); }}>Sí, borrar todo</button>
+          <button className="boton peligro ancho" onClick={async () => { const eraLaActual = e.actualId === j.id; await borrarJugadora(j.id); setBorrar(false); if (eraLaActual) elegirJugadora(undefined); setVerId(undefined); }}>Sí, borrar todo</button>
           <button className="boton ancho" onClick={() => setBorrar(false)}>No, volver</button>
         </Modal>
       )}

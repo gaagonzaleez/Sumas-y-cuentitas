@@ -45,17 +45,44 @@ export async function desconectar() {
 }
 
 // ---------- Subir y bajar perfiles ----------
+function leerLocal(k: string): string | undefined {
+  try {
+    return localStorage.getItem(`mateaventuras:${k}`) ?? undefined;
+  } catch {
+    return undefined;
+  }
+}
+function guardarLocal(k: string, v: string | undefined) {
+  try {
+    if (v === undefined) localStorage.removeItem(`mateaventuras:${k}`);
+    else localStorage.setItem(`mateaventuras:${k}`, v);
+  } catch {
+    /* sin almacenamiento */
+  }
+}
+
+/** Perfiles borrados: nunca se vuelven a subir ni a bajar (aunque el borrado en la nube falle). */
+const borradas = (): string[] => JSON.parse(leerLocal('borradas') ?? '[]') as string[];
+
 async function subir(j: Jugadora) {
+  if (borradas().includes(j.id)) return;
   const c = await sb();
   const { data } = await c.auth.getSession();
   if (!data.session) return;
   await c.from('players').upsert({ id: j.id, apodo: j.apodo, avatar: j.avatar });
   await c.from('player_snapshots').upsert({ player_id: j.id, datos: j, actualizado_en: new Date(j.actualizadaEn).toISOString() });
   if (j.codigoGrupo) {
-    await c.rpc('unirse_grupo', { p_player: j.id, p_codigo: j.codigoGrupo });
-    const semana = lunesDeLaSemana();
-    await c.rpc('sumar_estrellas', { p_player: j.id, p_semana: semana, p_estrellas: j.estrellasPorSemana[semana] ?? 0 });
+    // Solo se une cuando el código es nuevo: si la organizadora la quitó, no vuelve a entrar sola.
+    if (leerLocal(`unida:${j.id}`) !== j.codigoGrupo) {
+      const { error } = await c.rpc('unirse_grupo', { p_player: j.id, p_codigo: j.codigoGrupo });
+      if (!error) guardarLocal(`unida:${j.id}`, j.codigoGrupo);
+    }
+    // Esta semana y la anterior (por si jugó el domingo sin internet).
+    const semanas = Object.keys(j.estrellasPorSemana).sort().slice(-2);
+    for (const semana of semanas.length ? semanas : [lunesDeLaSemana()])
+      await c.rpc('sumar_estrellas', { p_player: j.id, p_semana: semana, p_estrellas: j.estrellasPorSemana[semana] ?? 0 });
   } else {
+    guardarLocal(`unida:${j.id}`, undefined);
     await c.rpc('salir_grupo', { p_player: j.id });
   }
 }
@@ -65,7 +92,8 @@ export async function bajarYMezclar(): Promise<number> {
   const c = await sb();
   const { data, error } = await c.from('player_snapshots').select('datos');
   if (error || !data) return 0;
-  const remotas = data.map((d) => d.datos as Jugadora);
+  const fuera = borradas();
+  const remotas = data.map((d) => d.datos as Jugadora).filter((r) => !fuera.includes(r.id));
   const locales = leerEstado().jugadoras;
   const porId = new Map(locales.map((j) => [j.id, j]));
   for (const r of remotas) {
@@ -74,7 +102,15 @@ export async function bajarYMezclar(): Promise<number> {
   }
   const todas = [...porId.values()];
   reemplazarJugadoras(todas);
-  await Promise.all(todas.filter((j) => !remotas.some((r) => r.id === j.id)).map(subir));
+  // Se suben las que la nube no tiene o tiene más viejas.
+  await Promise.all(
+    todas
+      .filter((j) => {
+        const r = remotas.find((x) => x.id === j.id);
+        return !r || j.actualizadaEn > r.actualizadaEn;
+      })
+      .map(subir),
+  );
   return remotas.length;
 }
 
@@ -85,18 +121,34 @@ function programar(j: Jugadora) {
 }
 
 async function borrarRemota(id: string) {
-  try {
-    await (await sb()).from('players').delete().eq('id', id);
-  } catch {
-    /* si no hay conexión, se borra la próxima vez que se sincronice */
+  clearTimeout(pendientes.get(id));
+  pendientes.delete(id);
+  if (!borradas().includes(id)) guardarLocal('borradas', JSON.stringify([...borradas(), id]));
+  await reintentarBorrados();
+}
+
+/** Borra en la nube los perfiles borrados acá (si antes no había conexión, se reintenta). */
+async function reintentarBorrados() {
+  for (const id of borradas()) {
+    try {
+      const { error } = await (await sb()).from('players').delete().eq('id', id);
+      if (error) return;
+    } catch {
+      return;
+    }
   }
 }
 
 export function iniciarNube() {
   if (!nubeConfigurada) return;
   engancharNube(programar, borrarRemota);
-  sesionNube().then((s) => s && bajarYMezclar().catch(() => undefined));
-  window.addEventListener('online', () => sesionNube().then((s) => s && leerEstado().jugadoras.forEach(programar)));
+  // Primero se baja y se mezcla (así no se pisa lo jugado en otro dispositivo) y después se sube.
+  const sincronizar = () =>
+    sesionNube()
+      .then((s) => s && reintentarBorrados().then(() => bajarYMezclar()))
+      .catch(() => undefined);
+  void sincronizar();
+  window.addEventListener('online', () => void sincronizar());
 }
 
 // ---------- Tabla de posiciones ----------

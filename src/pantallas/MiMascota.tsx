@@ -90,12 +90,12 @@ export function MiMascota() {
         </div>
         {aviso.tipo === 'crecer' && (
           <p className="aviso-caja verde"><Icono nombre="flecha_arriba" size={20} />
-            {aviso.faltan <= cfg.avisoFaltaParaCrecer ? `¡${m.nombre} está por crecer! Faltan ${aviso.faltan} puntos.` : `Jugá hoy y sumá: faltan ${aviso.faltan} para ser ${etapa === 'bebe' ? 'joven' : 'grande'}.`}
+            {aviso.faltan <= cfg.avisoFaltaParaCrecer ? `¡${m.nombre} está por crecer! ${aviso.faltan === 1 ? 'Falta 1 punto' : `Faltan ${aviso.faltan} puntos`}.` : `Jugá hoy y sumá: faltan ${aviso.faltan} para ser ${etapa === 'bebe' ? 'joven' : 'grande'}.`}
           </p>
         )}
         {aviso.tipo === 'max' && <p className="aviso-caja verde"><Icono nombre="estrella" size={20} />¡{m.nombre} creció todo lo que puede!</p>}
         {aviso.tipo === 'bajar' ? (
-          <p className="aviso-caja naranja"><Icono nombre="flecha_abajo" size={20} />{m.nombre} te extraña, ¡jugá hoy para que no se achique!</p>
+          <p className="aviso-caja naranja"><Icono nombre="flecha_abajo" size={20} />{m.nombre} te extraña. ¡Vení a jugar un ratito!</p>
         ) : (
           <p className="aviso-caja naranja"><Icono nombre="flecha_abajo" size={20} />Si pasan {cfg.diasDeGracia} días sin jugar, empieza a bajar.</p>
         )}
