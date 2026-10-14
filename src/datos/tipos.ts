@@ -45,7 +45,7 @@ export interface Jugadora {
   codigoGrupo?: string;
   creadaEn: number;
   dibujosHash?: string;
-  guia: 'chispa' | 'cande' | null;
+  guia: 'chispa' | 'cande' | 'lucho' | null;
   avatar: Avatar | null;
   mascota: EstadoMascota | null;
   mascotasCompradas: string[];

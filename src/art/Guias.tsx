@@ -1,4 +1,4 @@
-// Personajes guía: Chispa (estrellita mágica) y Seño Cande (maestra).
+// Personajes guía: Chispa (estrellita mágica), Seño Cande (maestra) y Lucho (carpincho explorador).
 // Arte original. Ver docs/guia-de-estilo.md.
 export type Expresion = 'contenta' | 'feliz' | 'pensando' | 'animando';
 
@@ -84,6 +84,44 @@ export function SenoCande({ size = 56, expr = 'contenta', className, fondo = tru
   );
 }
 
-export function Guia({ guia, size, expr }: { guia: 'chispa' | 'cande'; size?: number; expr?: Expresion }) {
-  return guia === 'cande' ? <SenoCande size={size} expr={expr} /> : <Chispa size={size} expr={expr} />;
+export function Lucho({ size = 56, expr = 'contenta', className, fondo = true }: { size?: number; expr?: Expresion; className?: string; fondo?: boolean }) {
+  // Carpincho explorador: cara ancha, hocico grande, orejitas redondas, sombrero de explorador y pañuelo.
+  const c = '#9A673F';
+  const c2 = '#C4925F';
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true" className={className}>
+      {fondo && <circle cx="50" cy="50" r="50" fill="#D7F5EE" />}
+      <defs>
+        <clipPath id="lucho-clip"><circle cx="50" cy="50" r="50" /></clipPath>
+      </defs>
+      <g clipPath={fondo ? 'url(#lucho-clip)' : undefined}>
+        <path d="M14 106 Q14 78 50 76 Q86 78 86 106 Z" fill={c} stroke={T} strokeWidth={3} />
+        <path d="M34 78 L50 92 L66 78 Q50 84 34 78 Z" fill="#F29A2E" stroke={T} strokeWidth={2.5} strokeLinejoin="round" />
+        <ellipse cx="25" cy="38" rx="4.5" ry="5.5" fill={c} stroke={T} strokeWidth={3} />
+        <ellipse cx="75" cy="38" rx="4.5" ry="5.5" fill={c} stroke={T} strokeWidth={3} />
+        <path d="M25 44 Q25 28 50 28 Q75 28 75 44 L78 64 Q78 78 50 78 Q22 78 22 64 Z" fill={c} stroke={T} strokeWidth={3} strokeLinejoin="round" />
+        <rect x="28" y="49" width="44" height="27" rx="13" fill={c2} stroke={T} strokeWidth={2.5} />
+        <rect x="38" y="52" width="24" height="9" rx="4.5" fill="#5A3825" />
+        <path d="M43 55 v3 M57 55 v3" stroke="#C9976A" strokeWidth={2} strokeLinecap="round" />
+        <Ojos cx={50} cy={41} sep={13} expr={expr} r={3} />
+        <circle cx="26" cy="52" r="3.4" fill="#E8505B" opacity={0.4} />
+        <circle cx="74" cy="52" r="3.4" fill="#E8505B" opacity={0.4} />
+        <Boca cx={50} cy={67} w={5} expr={expr} />
+        <path d="M18 30 Q50 22 82 30 Q78 24 70 22 Q66 8 50 8 Q34 8 30 22 Q22 24 18 30 Z" fill="#3DBE7A" stroke={T} strokeWidth={3} strokeLinejoin="round" />
+        <path d="M31 21 Q50 16 69 21" fill="none" stroke="#FFC93C" strokeWidth={3.5} />
+        {expr === 'animando' && (
+          <g fill="#FFC93C" stroke={T} strokeWidth={2}>
+            <path d="M10 46 l2 4 4 1 -3 3 1 4 -4-2 -4 2 1-4 -3-3 4-1z" />
+            <path d="M88 44 l2 4 4 1 -3 3 1 4 -4-2 -4 2 1-4 -3-3 4-1z" />
+          </g>
+        )}
+      </g>
+    </svg>
+  );
+}
+
+export function Guia({ guia, size, expr }: { guia: 'chispa' | 'cande' | 'lucho'; size?: number; expr?: Expresion }) {
+  if (guia === 'cande') return <SenoCande size={size} expr={expr} />;
+  if (guia === 'lucho') return <Lucho size={size} expr={expr} />;
+  return <Chispa size={size} expr={expr} />;
 }

@@ -277,6 +277,6 @@ export function AvatarEditor() {
 }
 
 /** Guarda la guía elegida y vuelve (usado por la pantalla de ajustes). */
-export async function cambiarGuia(g: 'chispa' | 'cande') {
+export async function cambiarGuia(g: 'chispa' | 'cande' | 'lucho') {
   await actualizar((x) => ({ ...x, guia: g }));
 }

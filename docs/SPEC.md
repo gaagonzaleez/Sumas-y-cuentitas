@@ -700,3 +700,5 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
   - Ropa nueva en la tienda: camisetas de fútbol, remeras con rayo y con dino, buzos, campera, shorts, zapatillas, gorras, mochila azul, capa de superhéroe, pelota, barrilete, fondos de cancha y de espacio.
   - Los nombres de los problemas son parejos (de nenas y de nenes), y el filtro de apodos también frena nombres reales de varones.
   - La mascota habla en neutro ("me aburro", "no me siento bien").
+- **Tercer guía: Lucho, el carpincho explorador (14/10/2026, pedido de Ga):** guía varón, tranquilo y gracioso, con sombrero de explorador. Voz de varón (Kokoro "em_alex" con acento latino, Apache 2.0; respaldo Piper es_MX "ald"). Sus frases están en `content/frases.json` → `lucho`.
+- La generación de voces corta a las 4 horas, guarda lo hecho y se vuelve a lanzar sola hasta terminar.

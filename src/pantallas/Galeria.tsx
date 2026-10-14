@@ -1,6 +1,6 @@
 // Galería interna para revisar el arte (no aparece en el menú): #/galeria
 import { AvatarSVG } from '../art/Avatar';
-import { Chispa, SenoCande } from '../art/Guias';
+import { Chispa, Lucho, SenoCande } from '../art/Guias';
 import { MascotaSVG } from '../art/Mascota';
 import { EscenaMundo } from '../art/Mundos';
 import { Objeto, OBJETOS_DIBUJADOS } from '../art/Objetos';
@@ -42,6 +42,7 @@ export function Galeria() {
       <div className="fila" style={{ gap: 12 }}>
         {(['contenta', 'feliz', 'pensando', 'animando'] as const).map((e) => <Chispa key={e} size={80} expr={e} />)}
         {(['contenta', 'feliz', 'pensando'] as const).map((e) => <SenoCande key={e} size={80} expr={e} />)}
+        {(['contenta', 'feliz', 'pensando', 'animando'] as const).map((e) => <Lucho key={e} size={80} expr={e} />)}
       </div>
       <h2>Avatares ({ITEMS.length} ítems en el catálogo)</h2>
       <div className="fila" style={{ flexWrap: 'wrap', gap: 8 }}>{avatares.map((a, i) => <AvatarSVG key={i} avatar={a} size={120} />)}</div>

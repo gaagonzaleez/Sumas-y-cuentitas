@@ -75,7 +75,11 @@ def kokoro_wav(c: dict, texto: str, salida: Path):
         m = bajar(KOKORO + 'kokoro-v1.0.onnx', MODELOS / 'kokoro-v1.0.onnx')
         v = bajar(KOKORO + 'voices-v1.0.bin', MODELOS / 'voices-v1.0.bin')
         _cache['kokoro'] = Kokoro(str(m), str(v))
-    muestras, sr = _cache['kokoro'].create(texto, voice=c['voz'], speed=c.get('velocidad', 1.0), lang='es')
+    # es-419: español latinoamericano (con seseo), no el de España.
+    try:
+        muestras, sr = _cache['kokoro'].create(texto, voice=c['voz'], speed=c.get('velocidad', 1.0), lang=c.get('idioma', 'es'))
+    except Exception:
+        muestras, sr = _cache['kokoro'].create(texto, voice=c['voz'], speed=c.get('velocidad', 1.0), lang='es')
     sf.write(str(salida), muestras, sr)
 
 
@@ -138,6 +142,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--solo-muestras', action='store_true')
     ap.add_argument('--limite', type=int, default=0)
+    # Para no pasarse del tiempo de GitHub: guarda lo hecho y sigue en la próxima corrida.
+    ap.add_argument('--minutos', type=float, default=float(os.environ.get('MINUTOS_VOZ', 0)))
     args = ap.parse_args()
     MODELOS.mkdir(parents=True, exist_ok=True)
 
@@ -159,6 +165,8 @@ def main():
         return
 
     manifiesto = json.loads((RAIZ / 'content/audio/manifiesto.json').read_text())['claves']
+    import time
+    fin = time.time() + args.minutos * 60 if args.minutos else None
     elegidas = {}
     for guia, g in CFG['guias'].items():
         c = elegir(g['candidatas'])
@@ -185,6 +193,10 @@ def main():
             if hechos % 200 == 0:
                 print(f'  {guia}: {hechos} audios nuevos', flush=True)
             if args.limite and hechos >= args.limite:
+                break
+            if fin and time.time() > fin:
+                print(f'  {guia}: se terminó el tiempo; sigue en la próxima corrida', flush=True)
+                (RAIZ / '.faltan-voces').write_text('si')
                 break
         # Se borran audios que ya no se usan.
         for f in carpeta.glob('*.mp3'):

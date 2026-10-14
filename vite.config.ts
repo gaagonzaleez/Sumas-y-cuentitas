@@ -13,7 +13,7 @@ function audios(): Plugin {
     name: 'audios-de-las-guias',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        const m = req.url?.match(/\/audio\/(chispa|cande)\/([\w-]+\.(?:mp3|json))$/);
+        const m = req.url?.match(/\/audio\/(chispa|cande|lucho)\/([\w-]+\.(?:mp3|json))$/);
         const archivo = m && join(origen, m[1], m[2]);
         if (!archivo || !existsSync(archivo)) return next();
         res.setHeader('Content-Type', archivo.endsWith('.mp3') ? 'audio/mpeg' : 'application/json');
@@ -21,7 +21,7 @@ function audios(): Plugin {
       });
     },
     writeBundle(opciones) {
-      for (const guia of ['chispa', 'cande']) {
+      for (const guia of ['chispa', 'cande', 'lucho']) {
         const dir = join(origen, guia);
         if (existsSync(dir)) cpSync(dir, join(opciones.dir ?? 'dist', 'audio', guia), { recursive: true });
       }

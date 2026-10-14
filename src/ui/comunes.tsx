@@ -4,6 +4,7 @@ import { Estrella, Icono, Moneda, type NombreIcono } from '../art/Iconos';
 import { Guia, type Expresion } from '../art/Guias';
 import { ir } from './router';
 import { decir, useAudioEstado } from '../audio/voz';
+import type { Guia as NombreGuia } from '../content/catalogo';
 
 export function PildoraMonedas({ n }: { n: number }) {
   return (
@@ -45,7 +46,7 @@ export function GuiaDice({
   autoLeer = true,
   tamGuia = 52,
 }: {
-  guia: 'chispa' | 'cande';
+  guia: NombreGuia;
   texto: string;
   expr?: Expresion;
   autoLeer?: boolean;

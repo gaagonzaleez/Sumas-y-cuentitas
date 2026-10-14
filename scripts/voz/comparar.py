@@ -68,6 +68,8 @@ def main():
         ('actual-chispa', 'Voz actual de Chispa (Piper, acento argentino)', lambda t, w: g.piper_wav(g.CFG['guias']['chispa']['candidatas'][0], t, w)),
         ('actual-cande', 'Voz actual de la Seño Cande (Piper, acento mexicano)', lambda t, w: g.piper_wav(g.CFG['guias']['cande']['candidatas'][0], t, w)),
         ('kokoro-dora', 'Kokoro, voz Dora', lambda t, w: g.kokoro_wav({'voz': 'ef_dora', 'velocidad': 1.0}, t, w)),
+        ('kokoro-alex', 'Kokoro, voz Alex (varón, para Lucho)', lambda t, w: g.kokoro_wav({'voz': 'em_alex', 'velocidad': 1.0, 'idioma': 'es-419'}, t, w)),
+        ('kokoro-dora-latina', 'Kokoro, voz Dora con acento latino', lambda t, w: g.kokoro_wav({'voz': 'ef_dora', 'velocidad': 1.0, 'idioma': 'es-419'}, t, w)),
         ('chatterbox', 'Chatterbox, voz propia en español', lambda t, w: chatterbox(t, w, None, 0.5, 0.5)),
         ('chatterbox-alegre', 'Chatterbox, voz propia, más alegre', lambda t, w: chatterbox(t, w, None, 0.8, 0.4)),
         ('chatterbox-daniela', 'Chatterbox imitando a la voz argentina', lambda t, w: chatterbox(t, w, refs.get('daniela'), 0.6, 0.5)),

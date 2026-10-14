@@ -26,7 +26,9 @@ El script **descarga la tarjeta de cada modelo (MODEL_CARD) y lee su licencia an
 - **Chispa** (estrellita, aguda y juguetona): Piper **es_AR-daniela-high**, la única voz neuronal abierta con acento rioplatense, con el tono 3 semitonos más agudo y un poco más rápida.
 - **Seño Cande** (maestra, pausada y maternal): Piper **es_MX-claude-high**, una voz base distinta, más lenta y con el tono apenas más grave.
 
-Así las dos guías suenan claramente distintas: voz base, tono y velocidad. Si una voz deja de estar disponible, el script usa la siguiente candidata de `scripts/voz/voces.json` (Kokoro ef_dora como respaldo).
+- **Lucho** (carpincho explorador, varón): Kokoro **em_alex** con acento latinoamericano (`es-419`), Apache 2.0. Respaldo: Piper es_MX-ald (si su licencia lo permite).
+
+Así las tres guías suenan claramente distintas: voz base, tono y velocidad. Si una voz deja de estar disponible, el script usa la siguiente candidata de `scripts/voz/voces.json` (Kokoro ef_dora como respaldo).
 
 **Atribución (CC BY-SA 4.0):** voz de Chispa basada en el modelo Piper “es_AR-daniela”, entrenado con el conjunto “Crowdsourced high-quality Argentinian Spanish speech data set” (OpenSLR 61). Voz de la Seño Cande: Piper “es_MX-claude” (Apache 2.0). Respaldo: Kokoro-82M (Apache 2.0).
 

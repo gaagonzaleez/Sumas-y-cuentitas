@@ -64,6 +64,26 @@
           "semitonos": -1.5
         }
       ]
+    },
+    "lucho": {
+      "descripcion": "Carpincho explorador: voz de varón, tranquila y graciosa. Voz base distinta de Chispa y de Cande.",
+      "candidatas": [
+        {
+          "motor": "kokoro",
+          "voz": "em_alex",
+          "velocidad": 0.98,
+          "semitonos": 0,
+          "idioma": "es-419"
+        },
+        {
+          "motor": "piper",
+          "modelo": "es/es_MX/ald/medium/es_MX-ald-medium",
+          "velocidad": 1.05,
+          "variacion": 0.7,
+          "ritmo": 0.85,
+          "semitonos": 0
+        }
+      ]
     }
   },
   "muestras": {

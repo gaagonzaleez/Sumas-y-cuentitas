@@ -4,7 +4,7 @@
 import { useSyncExternalStore } from 'react';
 import { clavesAudio, partirTexto } from '../engine/voz';
 
-type Guia = 'chispa' | 'cande';
+type Guia = 'chispa' | 'cande' | 'lucho';
 
 interface EstadoAudio {
   silencio: boolean;

@@ -117,5 +117,62 @@
     "repaso": "¿Repasamos este tema?",
     "compra": "¡Qué lindo! Te va a quedar hermoso.",
     "sinMonedas": "Te faltan algunas monedas. Jugando las conseguís."
+  },
+  "lucho": {
+    "presentacion": "¡Hola! Soy Lucho, el carpincho explorador. ¿Vamos de aventura con los números?",
+    "bienvenida": [
+      "¡Eh, volviste! ¡Qué bueno!",
+      "¡Hola, crack! ¿Salimos a explorar?",
+      "¡Llegaste! Te estaba esperando en la laguna."
+    ],
+    "despedida": [
+      "¡Chau, crack! Hoy exploramos un montón.",
+      "¡Nos vemos! Yo me quedo tomando sol en la laguna."
+    ],
+    "avatar": "¡Armá tu personaje! Va a explorar con nosotros en todo el juego.",
+    "avatarListo": [
+      "¡Uh, qué personaje bárbaro!",
+      "¡Quedó buenísimo tu personaje!"
+    ],
+    "mascota": "¡Elegí a tu mascota y ponele un nombre!",
+    "mascotaLista": "¡Qué buena mascota! Va a crecer con vos.",
+    "mapa": "¡Tocá el mundo que brilla y salimos de aventura!",
+    "aciertos": [
+      "¡Bien ahí!",
+      "¡Bárbaro!",
+      "¡Eso, crack!",
+      "¡Excelente!",
+      "¡Tremendo!",
+      "¡Lo sacaste!",
+      "¡Impecable!",
+      "¡Re bien!",
+      "¡Qué capo de los números!",
+      "¡Perfecto!"
+    ],
+    "errores": [
+      "¡Casi! Tranqui, los carpinchos nunca se apuran.",
+      "¡Uy, casi! Mirá otra vez.",
+      "¡Casi! Probemos de nuevo.",
+      "No pasa nada, equivocarse también es aprender.",
+      "¡Casi casi! Vos podés.",
+      "¡Casi! Respirá hondo y probá otra vez."
+    ],
+    "leccion": "¡Casi! No pasa nada, equivocarse también es aprender. Vamos a verlo paso a paso.",
+    "parecida": "¡Ahora probá con una parecida!",
+    "pista": "¡Te tiro una pista!",
+    "pistaDibujo": "Mirá este dibujo, te va a ayudar.",
+    "subio": "¡Los números ahora son un poquito más grandes! ¡Vamos que podés!",
+    "mascotaExtrana": [
+      "¡Te extrañé! ¿Jugamos?",
+      "¡Volviste! ¡Qué alegría!"
+    ],
+    "festejoGrado": "¡Terminaste el grado! ¡Qué aventura!",
+    "festejoNivel": "¡Pasaste de nivel! ¡Ganaste un premio nuevo!",
+    "festejoJefe": "¡Superaste el gran desafío! ¡Qué valentía!",
+    "festejoReto": "¡Lo lograron en equipo! ¡Cofre sorpresa!",
+    "descanso": "¡Hora de descansar! Tomá agua y estirá las patas… digo, las piernas.",
+    "repaso": "¿Repasamos este tema?",
+    "compra": "¡Qué bueno! Te va a quedar bárbaro.",
+    "sinMonedas": "Te faltan algunas monedas. ¡Jugando las conseguís!"
   }
 }

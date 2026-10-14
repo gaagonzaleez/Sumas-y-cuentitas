@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: voces
@@ -49,6 +50,9 @@ jobs:
           path: scripts/voz/.modelos
           key: modelos-voz-v1
       - name: Generar audios
+        # Corta a tiempo para guardar lo hecho (el resto sigue en la próxima corrida).
+        env:
+          MINUTOS_VOZ: '240'
         run: python scripts/voz/generar.py
       - name: Guardar en el repo
         id: commit
@@ -60,6 +64,12 @@ jobs:
           git commit -m "Voces de las guías generadas automáticamente"
           for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main && break || sleep $((i*5)); done
           echo "cambios=si" >> "$GITHUB_OUTPUT"
+      - name: Si faltaron audios, seguir en otra corrida
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f .faltan-voces ]; then gh workflow run voces.yml --ref main; fi
 
   desplegar:
     needs: generar

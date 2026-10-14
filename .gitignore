@@ -9,3 +9,4 @@ playwright-report
 .env.local
 scripts/voz/.modelos
 scripts/voz/.venv
+.faltan-voces

@@ -77,7 +77,7 @@ export const PREMIOS = premiosJson as unknown as {
   sets: { id: string; nombre: string; mundo: string; items: string[]; dorado: string[] }[];
 };
 
-export type Guia = 'chispa' | 'cande';
+export type Guia = 'chispa' | 'cande' | 'lucho';
 type Frases = Record<string, string | string[]>;
 export const FRASES = frasesJson as unknown as Record<Guia, Frases>;
 
