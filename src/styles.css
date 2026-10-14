@@ -185,6 +185,35 @@ button { cursor: pointer; }
 .rebota { animation: rebote 1.6s ease-in-out infinite; }
 .aparece { animation: aparecer 0.35s ease both; }
 .late { animation: latido 1.2s ease-in-out infinite; }
+
+/* Mascota viva: respira, parpadea, mastica, salta y se pone contenta. */
+@keyframes respira { 0%, 100% { transform: translateY(0) scale(1, 1); } 50% { transform: translateY(-3px) scale(1.015, 0.985); } }
+@keyframes parpadeo { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes mastica { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.25); } }
+@keyframes saltito { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(-34px) rotate(-4deg); } 60% { transform: translateY(0) scale(1.06, 0.94); } }
+@keyframes giro { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+@keyframes noNo { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
+@keyframes subeYSeVa { 0% { opacity: 0; transform: translateY(0) scale(0.6); } 20% { opacity: 1; transform: translateY(-10px) scale(1); } 100% { opacity: 0; transform: translateY(-90px) scale(1.1); } }
+@keyframes migas { 0% { opacity: 1; transform: translate(0, 0); } 100% { opacity: 0; transform: translate(var(--dx), 50px) rotate(160deg); } }
+@keyframes gotas { from { transform: translateY(-40px); opacity: 0.9; } to { transform: translateY(220px); opacity: 0; } }
+@keyframes brillo { 0%, 100% { opacity: 0; transform: scale(0.4) rotate(0); } 50% { opacity: 1; transform: scale(1.1) rotate(45deg); } }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.08) rotate(-2deg); } 100% { transform: scale(1); } }
+@keyframes peinar { 0% { transform: translate(-70px, -10px) rotate(-20deg); opacity: 0; } 15% { opacity: 1; } 50% { transform: translate(40px, 10px) rotate(10deg); } 85% { opacity: 1; } 100% { transform: translate(70px, -6px) rotate(20deg); opacity: 0; } }
+@keyframes balanceo { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+.respira { animation: respira 3.2s ease-in-out infinite; transform-origin: 50% 100%; }
+.parpadeo { animation: parpadeo 4.6s infinite; transform-box: fill-box; transform-origin: center; }
+.mastica { animation: mastica 0.32s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.saltito { animation: saltito 0.7s ease both; }
+.giro { animation: giro 0.8s ease both; }
+.no-no { animation: noNo 0.45s ease 2; }
+.se-va { animation: subeYSeVa 1.5s ease-out both; pointer-events: none; }
+.pop { animation: pop 0.45s ease both; }
+.balanceo { animation: balanceo 3s ease-in-out infinite; transform-origin: 50% 100%; }
+.escena-mascota { position: relative; border-radius: 28px; overflow: hidden; padding: 16px; min-height: 300px; touch-action: none; user-select: none; -webkit-user-select: none; }
+.escena-mascota .flota { position: absolute; pointer-events: none; }
+.bandeja { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.bandeja button { min-height: 92px; border-radius: 18px; border: 3px solid var(--lavanda); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-weight: 800; font-size: 16px; touch-action: none; }
+.bandeja button[aria-disabled='true'] { opacity: 0.55; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }

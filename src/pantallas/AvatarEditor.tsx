@@ -1,12 +1,13 @@
-// Pantalla 2: crear y cambiar el avatar. Ítems bloqueados muestran su precio en monedas.
+// Pantalla 2: crear y cambiar el avatar. Es un probador: todo se puede probar puesto (lo que no está
+// comprado muestra su precio y se compra ahí mismo). Peinar tiene su cepillo y hay un «¡Sorprendeme!».
 import { useState } from 'react';
 import { AvatarSVG, ItemSVG } from '../art/Avatar';
 import { Icono, Moneda } from '../art/Iconos';
 import { ITEMS, ITEM, OPCIONES_AVATAR, frase } from '../content/catalogo';
 import { actualizar, avatarInicial, useJugadora } from '../datos/estado';
-import { comprarItem, equipar, guardarAvatar, guardarEnRopero, precioFinal } from '../datos/juego';
+import { comprarItem, equipar, guardarAvatar, guardarEnRopero, precioFinal, sinLoNoComprado } from '../datos/juego';
 import type { Avatar } from '../datos/tipos';
-import { GuiaDice, Modal, PildoraMonedas } from '../ui/comunes';
+import { GuiaDice, PildoraMonedas } from '../ui/comunes';
 import { ir } from '../ui/router';
 import { sonido } from '../audio/voz';
 
@@ -39,35 +40,67 @@ export function AvatarEditor() {
   const j = useJugadora();
   const [a, setA] = useState<Avatar>(j?.avatar ?? avatarInicial());
   const [pestana, setPestana] = useState<Pestana>('piel');
-  const [comprar, setComprar] = useState<string | null>(null);
   const [aviso, setAviso] = useState('');
+  const [anim, setAnim] = useState(0);
+  const [peinando, setPeinando] = useState(0);
+  const [chispas, setChispas] = useState(0);
   if (!j) return null;
   const primeraVez = !j.avatar;
   const guia = j.guia ?? 'chispa';
-  const tiene = (id: string) => j.items.includes(id);
+  const tiene = (id: string) => j.items.includes(id) || ITEM[id]?.desbloqueo === 'gratis';
+  const campos = a as unknown as Record<string, string | undefined>;
+  // Lo que tiene puesto para probar y todavía no compró.
+  const probando = Object.entries(campos).filter(([, v]) => v && ITEM[v] && !tiene(v)) as [string, string][];
 
   function elegir(id: string | undefined, capa: string) {
-    if (id && !tiene(id)) {
-      setComprar(id);
-      return;
-    }
-    sonido('toque');
+    sonido(capa === 'pelo' || capa === 'colorPelo' ? 'cepillo' : 'toque');
+    if (capa === 'pelo' || capa === 'colorPelo') setPeinando((n) => n + 1);
+    setAnim((n) => n + 1);
     setA((x) => equipar(x, id, capa));
+    if (id && !tiene(id)) setAviso(`¡Te lo estás probando! Si te gusta, compralo abajo.`);
   }
 
-  async function confirmarCompra() {
-    if (!comprar) return;
-    const r = await comprarItem(comprar);
+  async function comprar(id: string) {
+    const r = await comprarItem(id);
     if (r === 'ok') {
       sonido('festejo');
-      setA((x) => equipar(x, comprar, ITEM[comprar].capa));
+      setChispas((n) => n + 1);
       setAviso(frase(guia, 'compra'));
     } else if (r === 'sin-monedas') setAviso(frase(guia, 'sinMonedas'));
-    setComprar(null);
+  }
+
+  function sacar(capa: string) {
+    sonido('toque');
+    const antes = (j!.avatar ?? avatarInicial()) as unknown as Record<string, string | undefined>;
+    setA((x) => ({ ...x, [capa]: antes[capa] && tiene(antes[capa]!) ? antes[capa] : capa === 'pelo' || capa === 'colorPelo' ? (avatarInicial() as unknown as Record<string, string>)[capa] : undefined }));
+  }
+
+  /** Arma un look al azar con lo que ya tiene. */
+  function sorprendeme() {
+    const al = <T,>(l: T[]) => l[Math.floor(Math.random() * l.length)];
+    const propios = (capa: string) => ITEMS.filter((i) => i.capa === capa && tiene(i.id)).map((i) => i.id);
+    let n: Avatar = { ...a, ojos: al(OPCIONES_AVATAR.ojos).id, expresion: al(OPCIONES_AVATAR.expresiones).id, colorOjos: al(OPCIONES_AVATAR.coloresOjos) };
+    for (const capa of ['pelo', 'colorPelo', 'calzado', 'fondo']) {
+      const l = propios(capa);
+      if (l.length) n = equipar(n, al(l), capa);
+    }
+    const vestidos = propios('vestido');
+    if (vestidos.length && Math.random() < 0.35) n = equipar(n, al(vestidos), 'vestido');
+    else for (const capa of ['arriba', 'abajo']) { const l = propios(capa); if (l.length) n = equipar(n, al(l), capa); }
+    for (const capa of ['cabeza', 'cara', 'cuello', 'espalda', 'mano', 'detalle', 'marco']) {
+      const l = propios(capa);
+      n = equipar(n, l.length && Math.random() < 0.45 ? al(l) : undefined, capa);
+    }
+    sonido('boing');
+    setPeinando((x) => x + 1);
+    setAnim((x) => x + 1);
+    setA(n);
+    setAviso('¡Mirá este look! Si no te gusta, tocá otra vez.');
   }
 
   async function seguir() {
-    await guardarAvatar(a);
+    sonido('festejo');
+    await guardarAvatar(sinLoNoComprado(a, j!.items, j!.avatar));
     ir(primeraVez ? '/mascota/elegir' : '/mapa', true);
   }
 
@@ -78,12 +111,12 @@ export function AvatarEditor() {
     const premio = it.desbloqueo === 'premio';
     return (
       <button onClick={() => (premio && bloqueado ? setAviso('Este es un premio: se gana jugando.') : elegir(id, capa))} aria-pressed={sel}
-        aria-label={`${it.nombre}${bloqueado ? (premio ? ', premio especial' : `, cuesta ${precioFinal(id)} monedas`) : ''}`}
+        aria-label={`${it.nombre}${bloqueado ? (premio ? ', premio especial' : `, para probar, cuesta ${precioFinal(id)} monedas`) : ''}`}
         style={{ minHeight: 96, borderRadius: 18, border: `3px ${bloqueado ? 'dashed #9C8FC4' : 'solid'} ${sel ? 'var(--violeta)' : bloqueado ? '#9C8FC4' : 'var(--lavanda)'}`, background: sel ? 'var(--lavanda)' : bloqueado ? 'var(--coral-claro)' : '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 4, gap: 2 }}>
         <ItemSVG id={id} size={54} piel={a.piel} pelo={ITEM[a.colorPelo]?.valor === 'arcoiris' ? '#9A7BF0' : ITEM[a.colorPelo]?.valor} />
         {bloqueado && (
           <span className="fila" style={{ gap: 3, fontSize: 16, fontWeight: 800 }}>
-            <Icono nombre="candado" size={16} /> {premio ? 'Premio' : <>{precioFinal(id)}</>}
+            {premio ? <><Icono nombre="candado" size={16} /> Premio</> : <><Moneda size={16} /> {precioFinal(id)}</>}
           </span>
         )}
       </button>
@@ -115,18 +148,60 @@ export function AvatarEditor() {
         <PildoraMonedas n={j.monedas} />
       </div>
       <GuiaDice guia={guia} texto={aviso || frase(guia, 'avatar')} />
-      <div className="centro" style={{ display: 'flex' }}>
+      <div className="centro" style={{ display: 'flex', position: 'relative' }}>
         {/* Piel, pelo y cara se ven mejor de cerca; ropa, zapatos y fondo, de cuerpo entero. */}
-        {['piel', 'pelo', 'cara'].includes(pestana) ? (
-          <div style={{ width: 200, height: 200, borderRadius: '50%', background: '#FFE3E6', border: '6px solid #fff', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
-            <AvatarSVG avatar={a} size={200} modo="busto" titulo="Tu personaje" />
-          </div>
-        ) : (
-          <div style={{ borderRadius: 28, background: '#FFE3E6', border: '6px solid #fff', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
-            <AvatarSVG avatar={a} size={160} modo="cuerpo" titulo="Tu personaje" />
-          </div>
+        <div key={anim} className={anim ? 'pop' : undefined}>
+          {['piel', 'pelo', 'cara'].includes(pestana) ? (
+            <div style={{ width: 200, height: 200, borderRadius: '50%', background: '#FFE3E6', border: '6px solid #fff', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
+              <AvatarSVG avatar={a} size={200} modo="busto" titulo="Tu personaje" />
+            </div>
+          ) : (
+            <div className="balanceo" style={{ borderRadius: 28, background: '#FFE3E6', border: '6px solid #fff', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
+              <AvatarSVG avatar={a} size={160} modo="cuerpo" titulo="Tu personaje" />
+            </div>
+          )}
+        </div>
+        {peinando > 0 && (
+          <span key={`p${peinando}`} aria-hidden="true" style={{ position: 'absolute', top: 18, left: '50%', marginLeft: -22, color: 'var(--violeta)', animation: 'peinar 0.9s ease-in-out both', pointerEvents: 'none' }}>
+            <Icono nombre="peine" size={44} grosor={2.6} />
+          </span>
+        )}
+        {(chispas > 0 || peinando > 0) && (
+          <span key={`c${chispas}-${peinando}`} aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+            {[[15, 20], [80, 12], [88, 60], [8, 70], [50, 4]].map(([x, y], i) => (
+              <span key={i} style={{ position: 'absolute', left: `${x}%`, top: `${y}%`, color: '#FFC93C', animation: `brillo 0.9s ${i * 0.08}s ease both` }}>
+                <Icono nombre="estrella" size={22} grosor={3} />
+              </span>
+            ))}
+          </span>
         )}
       </div>
+      {probando.length > 0 && (
+        <section className="tarjeta col" style={{ gap: 8, border: '3px dashed var(--violeta)' }} aria-label="Probador">
+          <span className="etiqueta">Te estás probando</span>
+          {probando.map(([capa, id]) => {
+            const precio = precioFinal(id);
+            const alcanza = j.monedas >= precio;
+            return (
+              <div key={capa} className="fila entre" style={{ gap: 8 }}>
+                <span className="fila" style={{ gap: 8, minWidth: 0 }}>
+                  <ItemSVG id={id} size={40} piel={a.piel} />
+                  <span className="col" style={{ gap: 0, minWidth: 0 }}>
+                    <b className="recorte">{ITEM[id].nombre}</b>
+                    <span className="fila chico" style={{ gap: 3 }}><Moneda size={16} /> {precio}{!alcanza && ` · te faltan ${precio - j.monedas}`}</span>
+                  </span>
+                </span>
+                <span className="fila" style={{ gap: 6, flex: 'none' }}>
+                  <button className="boton chico blanco" style={{ minHeight: 44, padding: '4px 10px', fontSize: 16 }} onClick={() => sacar(capa)}>Sacar</button>
+                  <button className="boton chico" style={{ minHeight: 44, padding: '4px 10px', fontSize: 16 }} disabled={!alcanza} onClick={() => comprar(id)}>Comprar</button>
+                </span>
+              </div>
+            );
+          })}
+          <p className="suave chico" style={{ margin: 0 }}>Lo que no compres se saca cuando guardes.</p>
+        </section>
+      )}
+      <button className="boton blanco ancho" onClick={sorprendeme}><Icono nombre="dados" /> ¡Sorprendeme!</button>
       <div className="chips" role="tablist" aria-label="Partes del personaje">
         {PESTANAS.map((p) => (
           <button key={p.id} role="tab" className="chip" aria-selected={pestana === p.id} onClick={() => setPestana(p.id)}>{p.texto}</button>
@@ -197,23 +272,6 @@ export function AvatarEditor() {
       <div style={{ position: 'sticky', bottom: 'calc(12px + var(--seguro-abajo))' }}>
         <button className="boton ancho" onClick={seguir}>¡Me encanta! Seguir</button>
       </div>
-      {comprar && (
-        <Modal titulo="Comprar" alCerrar={() => setComprar(null)}>
-          <div className="fila" style={{ gap: 16 }}>
-            <div style={{ background: 'var(--fondo)', borderRadius: 18, padding: 8 }}><ItemSVG id={comprar} size={80} piel={a.piel} /></div>
-            <div className="col" style={{ gap: 4 }}>
-              <h3>{ITEM[comprar].nombre}</h3>
-              <span className="fila" style={{ gap: 6 }}><Moneda size={22} /> {precioFinal(comprar)} monedas</span>
-            </div>
-          </div>
-          {j.monedas >= precioFinal(comprar) ? (
-            <button className="boton ancho" onClick={confirmarCompra}>Comprar</button>
-          ) : (
-            <p className="aviso-caja amarillo">Te faltan {precioFinal(comprar) - j.monedas} monedas. ¡Jugando las conseguís!</p>
-          )}
-          <button className="boton blanco ancho" onClick={() => setComprar(null)}>Ahora no</button>
-        </Modal>
-      )}
     </main>
   );
 }

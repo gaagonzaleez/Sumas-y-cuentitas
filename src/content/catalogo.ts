@@ -51,12 +51,20 @@ export interface Mascota {
   nombre: string;
   tipo: 'real' | 'fantasia' | 'mar';
   precio: number;
+  /** Comida favorita (id de config.mascota.comidas). */
+  favorita?: string;
   color: string;
   color2: string;
 }
 export const MASCOTAS = mascotasJson.mascotas as Mascota[];
 export const TIPOS_MASCOTA = mascotasJson.tipos;
 export const mascotaPorId = (id: string) => MASCOTAS.find((m) => m.id === id) ?? MASCOTAS[0];
+
+/** Una frase de la mascota (content/mascotas.json → frases), con el apodo de la nena. */
+export function fraseMascota(clave: string, apodo = '', azar = Math.random): string {
+  const lista = (mascotasJson.frases as unknown as Record<string, string[]>)[clave] ?? [''];
+  return lista[Math.floor(azar() * lista.length)].replace(/\{apodo\}/g, apodo);
+}
 
 export interface PremioNivel {
   grado1: string;

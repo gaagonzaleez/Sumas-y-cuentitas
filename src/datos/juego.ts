@@ -1,7 +1,7 @@
 // Acciones del juego que cambian a la jugadora: comprar, equipar, cuidar la mascota,
 // terminar un grado y repartir premios. Los errores nunca restan monedas ni estrellas.
 import { config, nivelPorId } from '../content';
-import { ITEM, MASCOTAS, PREMIOS, precioDe } from '../content/catalogo';
+import { AVATAR_INICIAL, ITEM, MASCOTAS, mascotaPorId, PREMIOS, precioDe } from '../content/catalogo';
 import * as M from '../engine/mascota';
 import { clave, completado, mundoDesbloqueado } from '../engine/progreso';
 import { diaArgentina, lunesDeLaSemana, numeroDeSemana } from '../engine/semana';
@@ -82,12 +82,27 @@ export function equipar(a: Avatar, itemId: string | undefined, capa: string): Av
   return n;
 }
 
+/**
+ * En el probador se puede poner cualquier cosa de la tienda para ver cómo queda; al guardar,
+ * lo que no se compró vuelve a lo que tenía antes (o se saca).
+ */
+export function sinLoNoComprado(a: Avatar, items: string[], antes?: Avatar | null): Avatar {
+  const n = { ...a } as unknown as Record<string, string | undefined>;
+  const previo = (antes ?? {}) as unknown as Record<string, string | undefined>;
+  for (const [k, v] of Object.entries(n)) {
+    if (!v || !ITEM[v] || items.includes(v) || ITEM[v].desbloqueo === 'gratis') continue;
+    const p = previo[k];
+    n[k] = p && (!ITEM[p] || items.includes(p)) ? p : k === 'pelo' || k === 'colorPelo' ? (AVATAR_INICIAL as unknown as Record<string, string>)[k] : undefined;
+  }
+  return n as unknown as Avatar;
+}
+
 export async function guardarAvatar(a: Avatar) {
-  await actualizar((x) => ({ ...x, avatar: a }));
+  await actualizar((x) => ({ ...x, avatar: sinLoNoComprado(a, x.items, x.avatar) }));
 }
 
 export async function guardarEnRopero(i: number, a: Avatar) {
-  await actualizar((x) => ({ ...x, ropero: x.ropero.map((r, k) => (k === i ? a : r)) }));
+  await actualizar((x) => ({ ...x, ropero: x.ropero.map((r, k) => (k === i ? sinLoNoComprado(a, x.items, x.avatar) : r)) }));
 }
 
 // ---------- Mascota ----------
@@ -96,13 +111,30 @@ export async function elegirMascota(especie: string, nombre: string) {
   await actualizar((x) => ({ ...x, mascota: x.mascota ? { ...x.mascota, especie, nombre } : M.nuevaMascota(especie, nombre, diaArgentina()) }));
 }
 
-export async function alimentarMascota(): Promise<ResultadoCompra> {
+export type ResultadoComida = ResultadoCompra | 'llena';
+
+export async function alimentarMascota(comidaId = 'manzana'): Promise<ResultadoComida> {
   const j = jugadoraActual();
   if (!j?.mascota) return 'no-se-vende';
-  const precio = config.mascota.precioAlimentar;
+  if (M.panzaLlena(j.mascota)) return 'llena';
+  const precio = M.comidaPorId(comidaId).precio;
   if (j.monedas < precio) return 'sin-monedas';
-  await actualizar((x) => ({ ...x, monedas: x.monedas - precio, mascota: M.alimentar(x.mascota!, diaArgentina()) }));
+  const favorita = mascotaPorId(j.mascota.especie).favorita;
+  await actualizar((x) => ({ ...x, monedas: x.monedas - precio, mascota: M.alimentar(x.mascota!, diaArgentina(), comidaId, favorita) }));
   return 'ok';
+}
+
+/** Bañar es gratis; devuelve si sumó puntos de crecimiento (una vez por día). */
+export async function banarMascota(): Promise<boolean> {
+  const j = jugadoraActual();
+  if (!j?.mascota) return false;
+  const sumo = j.mascota.ultimoBano !== diaArgentina();
+  await actualizar((x) => ({ ...x, mascota: M.banar(x.mascota!, diaArgentina()) }));
+  return sumo;
+}
+
+export async function mimarMascota() {
+  await actualizar((x) => (x.mascota ? { ...x, mascota: M.mimar(x.mascota) } : x));
 }
 
 export async function jugarConMascota(): Promise<boolean> {
@@ -139,6 +171,18 @@ export async function ganar(monedas: number, estrellas = 0) {
     estrellasPorSemana: estrellas ? { ...x.estrellasPorSemana, [semana]: (x.estrellasPorSemana[semana] ?? 0) + estrellas } : x.estrellasPorSemana,
     mascota: estrellas && x.mascota ? M.porEstrellas(x.mascota, estrellas, hoy) : x.mascota,
   }));
+}
+
+/**
+ * Decisión de Ga: equivocarse resta monedas (config.economia.errores). Nunca baja de 0
+ * y nunca toca las estrellas. Devuelve cuántas monedas restó de verdad.
+ */
+export async function perderMonedas(n: number): Promise<number> {
+  const j = jugadoraActual();
+  if (!j || n <= 0) return 0;
+  const resta = Math.min(n, j.monedas);
+  if (resta > 0) await actualizar((x) => ({ ...x, monedas: Math.max(0, x.monedas - resta) }));
+  return resta;
 }
 
 export async function anotarError(tag: string, nivelId?: string) {

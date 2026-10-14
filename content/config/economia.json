@@ -1,13 +1,14 @@
 {
+  "_nota": "Decisión de Ga (14/10/2026): que cueste un poco. Un grado (10 preguntas) da unas 25 monedas; una cosa común cuesta 40 (unos 2 grados) y comprar toda la tienda lleva más de 200 grados. Equivocarse resta 1 moneda (hasta 2 por pregunta, nunca por debajo de 0, nunca en el repaso).",
   "monedas": {
-    "correctaPrimerIntento": 5,
-    "correctaConAyuda": 2,
-    "correctaDespuesDeLeccion": 5,
-    "completarGrado": 20,
-    "repetirGrado": 10,
-    "vencerJefe": 50,
-    "racha3Dias": 15,
-    "retoGrupal": 30
+    "correctaPrimerIntento": 2,
+    "correctaConAyuda": 1,
+    "correctaDespuesDeLeccion": 1,
+    "completarGrado": 10,
+    "repetirGrado": 5,
+    "vencerJefe": 25,
+    "racha3Dias": 10,
+    "retoGrupal": 15
   },
   "estrellas": {
     "completarGrado": 1,
@@ -19,5 +20,14 @@
   "monedasIniciales": 40,
   "tienda": { "ofertasPorSemana": 4, "descuentoOferta": 0.2 },
   "alcancia": { "bonoAlLlegar": 0.1 },
-  "precioPorRareza": { "comun": 20, "lindo": 30, "especial": 45, "raro": 60, "brillante": 100, "magico": 150, "legendario": 300 }
+  "precioPorRareza": {
+    "comun": 40,
+    "lindo": 60,
+    "especial": 90,
+    "raro": 130,
+    "brillante": 200,
+    "magico": 300,
+    "legendario": 500
+  },
+  "errores": { "restaPorError": 1, "maximoPorPregunta": 2, "enRepaso": false }
 }

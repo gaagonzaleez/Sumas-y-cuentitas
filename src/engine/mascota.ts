@@ -11,6 +11,10 @@ export interface EstadoMascota {
   crecimiento: number;
   contento: number;
   panza: number;
+  /** Qué tan limpia está (0 a 100): baja con los días y sube al bañarla. */
+  limpieza: number;
+  /** Día en que la bañó por última vez (bañar suma puntos una vez por día). */
+  ultimoBano?: string;
   /** Día (AAAA-MM-DD, hora de Argentina) de la última vez que jugó. */
   ultimaVisita: string;
   /** Hasta qué día (inclusive) dura el "regreso feliz" con puntos dobles. */
@@ -44,6 +48,7 @@ export function nuevaMascota(especie: string, nombre: string, hoy: string): Esta
     crecimiento: 0,
     contento: C().contento.inicial,
     panza: C().panza.inicial,
+    limpieza: C().limpieza.inicial,
     ultimaVisita: hoy,
     accesorios: [],
   };
@@ -62,8 +67,9 @@ export function alVolver(m: EstadoMascota, hoy: string): EstadoMascota {
   const crecimiento = Math.max(0, m.crecimiento - diasDePerdida * cfg.perdidaPorDia);
   const contento = Math.max(cfg.contento.minimo, m.contento - dias * cfg.contento.bajaPorDia);
   const panza = Math.max(cfg.panza.minimo, m.panza - dias * cfg.panza.bajaPorDia);
+  const limpieza = Math.max(cfg.limpieza.minimo, (m.limpieza ?? cfg.limpieza.inicial) - dias * cfg.limpieza.bajaPorDia);
   const regresoFelizHasta = diasDePerdida > 0 ? sumarDias(hoy, cfg.diasRegresoFeliz - 1) : m.regresoFelizHasta;
-  return { ...m, crecimiento, contento, panza, ultimaVisita: hoy, regresoFelizHasta };
+  return { ...m, crecimiento, contento, panza, limpieza, ultimaVisita: hoy, regresoFelizHasta };
 }
 
 export function enRegresoFeliz(m: EstadoMascota, hoy: string): boolean {
@@ -79,9 +85,47 @@ export function porEstrellas(m: EstadoMascota, estrellas: number, hoy: string): 
   return sumar(m, estrellas * C().puntosPorEstrella, hoy);
 }
 
-export function alimentar(m: EstadoMascota, hoy: string): EstadoMascota {
+export type Comida = (typeof import('../../content/config/mascota.json'))['comidas'][number];
+
+export function comidaPorId(id: string): Comida {
+  return C().comidas.find((c) => c.id === id) ?? C().comidas[0];
+}
+
+/** Con la panza llena no quiere comer más (así no se gastan todas las monedas en comida). */
+export function panzaLlena(m: EstadoMascota): boolean {
+  return m.panza >= C().panzaLlena;
+}
+
+export function alimentar(m: EstadoMascota, hoy: string, comidaId = 'manzana', favorita?: string): EstadoMascota {
+  const comida = comidaPorId(comidaId);
   const r = sumar(m, C().puntosAlimentar, hoy);
-  return { ...r, panza: Math.min(100, m.panza + C().panza.subeAlAlimentar) };
+  const extra = favorita === comida.id ? C().contentoFavorita : 0;
+  return { ...r, panza: Math.min(100, m.panza + comida.panza), contento: Math.min(100, m.contento + extra) };
+}
+
+/** Bañarla la deja limpita; suma puntos de crecimiento una vez por día. */
+export function banar(m: EstadoMascota, hoy: string): EstadoMascota {
+  const base = m.ultimoBano !== hoy ? sumar(m, C().puntosBanar, hoy) : { ...m, ultimaVisita: hoy };
+  return { ...base, limpieza: 100, contento: Math.min(100, m.contento + C().mimos.subeContento), ultimoBano: hoy };
+}
+
+/** Mimos y cosquillas: siempre la ponen un poquito más contenta. */
+export function mimar(m: EstadoMascota): EstadoMascota {
+  return { ...m, contento: Math.min(100, m.contento + C().mimos.subeContento) };
+}
+
+export type Necesidad = 'hambre' | 'aburrida' | 'sucia' | null;
+
+/** Lo que más necesita ahora (para que lo pida en su globito). */
+export function necesidadDe(m: EstadoMascota): Necesidad {
+  const n = C().necesidad;
+  const faltas: [Necesidad, number][] = [
+    ['hambre', n.panza - m.panza],
+    ['aburrida', n.contento - m.contento],
+    ['sucia', n.limpieza - (m.limpieza ?? 100)],
+  ];
+  const peor = faltas.sort((a, b) => b[1] - a[1])[0];
+  return peor[1] > 0 ? peor[0] : null;
 }
 
 export function puedeJugar(m: EstadoMascota, hoy: string): boolean {

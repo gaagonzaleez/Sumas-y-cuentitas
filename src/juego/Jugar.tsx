@@ -14,7 +14,7 @@ import type { Ejercicio } from '../engine/tipos';
 import { mundoDesbloqueado } from '../engine/progreso';
 import type { Jugadora } from '../datos/tipos';
 import { actualizar, useJugadora } from '../datos/estado';
-import { anotarError, completarGrado, ganar, registrarIntento, sumarTiempoDeJuego } from '../datos/juego';
+import { anotarError, completarGrado, ganar, perderMonedas, registrarIntento, sumarTiempoDeJuego } from '../datos/juego';
 import { callar, configurarVoz, decir, precargar, sonido, useAudioEstado } from '../audio/voz';
 import { Modal } from '../ui/comunes';
 import { ir } from '../ui/router';
@@ -84,6 +84,9 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
   const [opEstado, setOpEstado] = useState<EstadoOpcion>({ descartadas: [] });
   const [leccion, setLeccion] = useState<{ lec: LeccionArmada; respuesta?: string; pedida: boolean } | null>(null);
   const [ultimas, setUltimas] = useState(0);
+  // Monedas que se fueron por equivocarse (decisión de Ga) y cuántas van en esta pregunta.
+  const [perdida, setPerdida] = useState(0);
+  const restadasEnPregunta = useRef(0);
   const [salir, setSalir] = useState(false);
   const [descanso, setDescanso] = useState(false);
   const [segundos, setSegundos] = useState(0);
@@ -116,6 +119,7 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
       setIntento(0);
       setPista(0);
       setPidioPista(false);
+      restadasEnPregunta.current = 0;
       respondiendo.current = false;
       setOpEstado({ descartadas: [] });
       setMensaje([e.consigna]);
@@ -236,6 +240,16 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
     anotarError(tag, repaso ? undefined : base!.nivel.id);
     registrarIntento({ nivelId: base!.nivel.id, plantillaId: ejercicio.plantillaId, params: JSON.stringify(ejercicio.params), respuesta: valor, correcta: false, errorTag: tag, pistas: pista, ms });
     sonido('casi');
+    const cfgErr = config.economia.errores;
+    if ((!repaso || cfgErr.enRepaso) && restadasEnPregunta.current < cfgErr.maximoPorPregunta) {
+      restadasEnPregunta.current += 1;
+      void perderMonedas(cfgErr.restaPorError).then((n) => {
+        if (!n) return;
+        setPerdida(n);
+        setTimeout(() => setPerdida(0), 1600);
+      });
+      s = { ...s, monedas: Math.max(0, s.monedas - cfgErr.restaPorError) };
+    }
     setSesion(s);
     setOpEstado((o) => ({ ...o, descartadas: [...o.descartadas, valor] }));
     const n = intento + 1;
@@ -363,6 +377,12 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
           )}
         </>
       ) : null}
+
+      {perdida > 0 && (
+        <span className="pildora se-va" role="status" style={{ position: 'fixed', top: 'calc(70px + var(--seguro-arriba, 0px))', right: 16, zIndex: 30, background: '#fff', color: 'var(--coral-oscuro, #B3261E)' }}>
+          <Moneda size={22} /> −{perdida} {perdida === 1 ? 'moneda' : 'monedas'}
+        </span>
+      )}
 
       {fase === 'acierto' && ejercicio && (
         <div className="aparece" style={{ position: 'fixed', left: 0, right: 0, bottom: 0, background: 'var(--turquesa-claro)', borderRadius: '28px 28px 0 0', padding: '20px 20px calc(20px + var(--seguro-abajo))', zIndex: 20, display: 'flex', justifyContent: 'center' }}>

@@ -1,8 +1,8 @@
 import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, it } from 'vitest';
 import * as db from '../../src/datos/db';
-import { borrarJugadora, crearCuenta, crearJugadora, elegirJugadora, iniciar, jugadoraActual, leerEstado, verificarAdulta } from '../../src/datos/estado';
-import { comprarItem, completarGrado, elegirMeta, guardarEnAlcancia, ofertasDeLaSemana, registrarIntento } from '../../src/datos/juego';
+import { avatarInicial, borrarJugadora, crearCuenta, crearJugadora, elegirJugadora, iniciar, jugadoraActual, leerEstado, verificarAdulta } from '../../src/datos/estado';
+import { alimentarMascota, banarMascota, comprarItem, completarGrado, elegirMascota, elegirMeta, guardarEnAlcancia, ofertasDeLaSemana, perderMonedas, registrarIntento, sinLoNoComprado } from '../../src/datos/juego';
 import { ITEMS } from '../../src/content/catalogo';
 import { config, MUNDOS } from '../../src/content';
 import { resumirJugadora, totales } from '../../src/datos/resumen';
@@ -94,7 +94,7 @@ describe('premios y economía', () => {
     const barato = ITEMS.find((i) => i.desbloqueo === 'tienda' && !ofertasDeLaSemana().includes(i.id) && i.rareza === 'comun')!;
     const m0 = jugadoraActual()!.monedas;
     expect(await comprarItem(barato.id)).toBe('ok');
-    expect(jugadoraActual()!.monedas).toBe(m0 - 20);
+    expect(jugadoraActual()!.monedas).toBe(m0 - config.economia.precioPorRareza.comun);
     expect(await comprarItem(barato.id)).toBe('ya-lo-tenes');
     expect(await comprarItem('alas-cristal')).toBe('no-se-vende');
     expect(await comprarItem('vestido-estrellas')).toBe('sin-monedas');
@@ -105,10 +105,47 @@ describe('premios y economía', () => {
     elegirJugadora(j.id);
     const meta = ITEMS.find((i) => i.desbloqueo === 'tienda' && i.rareza === 'comun' && !ofertasDeLaSemana().includes(i.id))!;
     await elegirMeta(meta.id);
-    expect(await guardarEnAlcancia(10)).toBe('ok');
-    expect(await guardarEnAlcancia(10)).toBe('meta');
+    const precio = config.economia.precioPorRareza.comun;
+    expect(await guardarEnAlcancia(precio / 2)).toBe('ok');
+    expect(await guardarEnAlcancia(precio / 2)).toBe('meta');
     expect(jugadoraActual()!.items).toContain(meta.id);
-    expect(jugadoraActual()!.monedas).toBe(config.economia.monedasIniciales - 20 + 2);
+    expect(jugadoraActual()!.monedas).toBe(config.economia.monedasIniciales - precio + Math.round(precio * config.economia.alcancia.bonoAlLlegar));
+  });
+});
+
+describe('equivocarse, comida y probador (pedidos de Ga)', () => {
+  it('equivocarse resta monedas, pero nunca por debajo de 0', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    elegirJugadora(j.id);
+    const m0 = jugadoraActual()!.monedas;
+    expect(await perderMonedas(1)).toBe(1);
+    expect(jugadoraActual()!.monedas).toBe(m0 - 1);
+    expect(await perderMonedas(m0 + 50)).toBe(m0 - 1);
+    expect(jugadoraActual()!.monedas).toBe(0);
+    expect(await perderMonedas(1)).toBe(0);
+  });
+
+  it('la mascota come (cuesta monedas) y con la panza llena no quiere más', async () => {
+    const j = await crearJugadora('Estrellita', '2.º grado');
+    elegirJugadora(j.id);
+    await elegirMascota('gatito', 'Michi');
+    const m0 = jugadoraActual()!.monedas;
+    const manzana = config.mascota.comidas.find((c) => c.id === 'manzana')!;
+    expect(await alimentarMascota('manzana')).toBe('ok');
+    expect(jugadoraActual()!.monedas).toBe(m0 - manzana.precio);
+    while ((await alimentarMascota('manzana')) === 'ok');
+    expect(jugadoraActual()!.mascota!.panza).toBeGreaterThanOrEqual(config.mascota.panzaLlena);
+    expect(await alimentarMascota('manzana')).toBe('llena');
+    expect(await banarMascota()).toBe(true);
+    expect(jugadoraActual()!.mascota!.limpieza).toBe(100);
+    expect(await banarMascota()).toBe(false);
+  });
+
+  it('lo que se probó y no se compró no queda puesto al guardar', () => {
+    const caro = ITEMS.find((i) => i.desbloqueo === 'tienda' && i.capa === 'cabeza')!;
+    const a = sinLoNoComprado({ ...avatarInicial(), cabeza: caro.id }, [], avatarInicial());
+    expect(a.cabeza).toBeUndefined();
+    expect(sinLoNoComprado({ ...avatarInicial(), cabeza: caro.id }, [caro.id], avatarInicial()).cabeza).toBe(caro.id);
   });
 });
 

@@ -30,7 +30,7 @@ Casi nunca. Si necesitás algo que solo ella puede dar (crear una cuenta, pegar 
 - **Todo gratis.** Ningún servicio pago, sin publicidad, sin analítica de terceros, sin compras con dinero real.
 - **Privacidad de menores.** Sin nombre real, apellido, foto, ubicación, chat ni texto libre entre nenas. Solo apodo (con filtro de palabras), avatar y puntos. Borrar un perfil elimina todos sus datos.
 - **Arte 100 % original.** Inspiración general de Avatar World (avatar protagonista, mundos, premios visuales) pero **no copies** personajes, escenarios, íconos ni logos de ese juego ni de otro.
-- **Tono.** Cálido, paciente, español rioplatense. Nunca “mal” ni “incorrecto”; usá “¡Casi!”. Los errores no restan monedas ni estrellas ya ganadas.
+- **Tono.** Cálido, paciente, español rioplatense. Nunca “mal” ni “incorrecto”; usá “¡Casi!”. Los errores no restan estrellas. Decisión de Ga (14/10/2026): equivocarse resta 1 moneda (hasta 2 por pregunta, nunca por debajo de 0, nunca en el repaso).
 - **Accesibilidad.** Botones ≥ 44 px, texto ≥ 16 px, contraste 4,5:1, el color nunca es la única señal, todo audio con subtítulo y botón de silenciar.
 - **Nombre en pantalla:** siempre `mateAventuras`.
 

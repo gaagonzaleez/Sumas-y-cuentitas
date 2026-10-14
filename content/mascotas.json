@@ -1,21 +1,123 @@
 {
   "_nota": "Mascotas. tipo: real, fantasia o mar. precio 0 = gratis al empezar.",
   "mascotas": [
-    { "id": "gatito", "nombre": "Gatito", "tipo": "real", "precio": 0, "color": "#F4A259", "color2": "#FFE3E6" },
-    { "id": "perrito", "nombre": "Perrito", "tipo": "real", "precio": 0, "color": "#C98A5C", "color2": "#FFF4D1" },
-    { "id": "conejito", "nombre": "Conejito", "tipo": "real", "precio": 0, "color": "#F7F3FF", "color2": "#F7B6D2" },
-    { "id": "dragoncito", "nombre": "Dragoncito", "tipo": "fantasia", "precio": 0, "color": "#3DBE7A", "color2": "#D7F5EE" },
-    { "id": "unicornio", "nombre": "Unicornio bebé", "tipo": "fantasia", "precio": 60, "color": "#FBF8FF", "color2": "#F7B6D2" },
-    { "id": "fenix", "nombre": "Fénix", "tipo": "fantasia", "precio": 80, "color": "#F29A2E", "color2": "#FFC93C" },
-    { "id": "tiburoncito", "nombre": "Tiburoncito", "tipo": "mar", "precio": 40, "color": "#9DB7E8", "color2": "#F3F7FF" },
-    { "id": "delfin", "nombre": "Delfín", "tipo": "mar", "precio": 50, "color": "#7CC6F2", "color2": "#E8F6FF" },
-    { "id": "pulpito", "nombre": "Pulpito", "tipo": "mar", "precio": 45, "color": "#E87AA0", "color2": "#FFE3E6" },
-    { "id": "tortuga", "nombre": "Tortuga marina", "tipo": "mar", "precio": 50, "color": "#5FBF8F", "color2": "#C9A46A" }
+    {
+      "id": "gatito",
+      "nombre": "Gatito",
+      "tipo": "real",
+      "precio": 0,
+      "color": "#F4A259",
+      "color2": "#FFE3E6",
+      "favorita": "helado"
+    },
+    {
+      "id": "perrito",
+      "nombre": "Perrito",
+      "tipo": "real",
+      "precio": 0,
+      "color": "#C98A5C",
+      "color2": "#FFF4D1",
+      "favorita": "galletita"
+    },
+    {
+      "id": "conejito",
+      "nombre": "Conejito",
+      "tipo": "real",
+      "precio": 0,
+      "color": "#F7F3FF",
+      "color2": "#F7B6D2",
+      "favorita": "banana"
+    },
+    {
+      "id": "dragoncito",
+      "nombre": "Dragoncito",
+      "tipo": "fantasia",
+      "precio": 0,
+      "color": "#3DBE7A",
+      "color2": "#D7F5EE",
+      "favorita": "alfajor"
+    },
+    {
+      "id": "unicornio",
+      "nombre": "Unicornio bebé",
+      "tipo": "fantasia",
+      "precio": 150,
+      "color": "#FBF8FF",
+      "color2": "#F7B6D2",
+      "favorita": "frutilla"
+    },
+    {
+      "id": "fenix",
+      "nombre": "Fénix",
+      "tipo": "fantasia",
+      "precio": 200,
+      "color": "#F29A2E",
+      "color2": "#FFC93C",
+      "favorita": "manzana"
+    },
+    {
+      "id": "tiburoncito",
+      "nombre": "Tiburoncito",
+      "tipo": "mar",
+      "precio": 100,
+      "color": "#9DB7E8",
+      "color2": "#F3F7FF",
+      "favorita": "galletita"
+    },
+    {
+      "id": "delfin",
+      "nombre": "Delfín",
+      "tipo": "mar",
+      "precio": 120,
+      "color": "#7CC6F2",
+      "color2": "#E8F6FF",
+      "favorita": "helado"
+    },
+    {
+      "id": "pulpito",
+      "nombre": "Pulpito",
+      "tipo": "mar",
+      "precio": 110,
+      "color": "#E87AA0",
+      "color2": "#FFE3E6",
+      "favorita": "frutilla"
+    },
+    {
+      "id": "tortuga",
+      "nombre": "Tortuga marina",
+      "tipo": "mar",
+      "precio": 120,
+      "color": "#5FBF8F",
+      "color2": "#C9A46A",
+      "favorita": "banana"
+    }
   ],
   "tipos": [
     { "id": "todas", "nombre": "Todas" },
     { "id": "real", "nombre": "Reales" },
     { "id": "fantasia", "nombre": "Fantasía" },
     { "id": "mar", "nombre": "Mar" }
-  ]
+  ],
+  "frases": {
+    "_nota": "Lo que dice la mascota en su globito. {apodo} es el apodo de la nena.",
+    "contenta": ["¡Hola, {apodo}! ¡Estoy feliz!", "¡{apodo}! ¡Qué lindo verte!"],
+    "normal": ["¡Hola, {apodo}! ¿Qué hacemos hoy?"],
+    "extrana": ["¡Te extrañé, {apodo}! ¿Jugamos?"],
+    "hambre": ["Tengo hambre… ¿me das algo rico?", "Me suena la panza. ¿Me das de comer?"],
+    "aburrida": ["¿Jugamos a la pelota?", "Estoy aburrida… ¿jugamos un ratito?"],
+    "sucia": ["¡Uy, me ensucié! ¿Me bañás?", "Tengo barro por todos lados. ¿Me das un baño?"],
+    "elegirComida": ["Tocá una comida o arrastrala hasta mi boca."],
+    "comer": ["¡Ñam ñam! ¡Qué rico!", "¡Gracias! Me encantó.", "¡Mmm! ¡Riquísimo!"],
+    "favorita": ["¡Mi favorita! ¡Gracias, {apodo}!", "¡Siii! ¡Es lo que más me gusta!"],
+    "llena": ["¡Estoy llena! Mejor después.", "Ya no me entra nada. ¡Gracias igual!"],
+    "mimos": ["¡Jiji, me hacés cosquillas!", "¡Te quiero, {apodo}!", "¡Más mimos!", "¡Qué lindo!"],
+    "pelotaEmpezar": ["Tirá la pelota cuando esté en el medio."],
+    "pelotaAtrapa": ["¡La atrapé!", "¡Bien! ¡Otra!", "¡Siii!"],
+    "pelotaErra": ["¡Uy! Esperá que esté en el medio.", "¡Casi! Probá de nuevo."],
+    "pelotaGana": ["¡Qué divertido! ¡Me encanta jugar con vos!"],
+    "pelotaYaJugo": ["¡Qué divertido! Hoy ya sumamos puntos jugando, pero igual me encanta."],
+    "banioEmpezar": ["Pasá la esponja por arriba mío."],
+    "banioRisa": ["¡Jiji, cuántas burbujas!", "¡Qué espuma!"],
+    "banioListo": ["¡Quedé limpita y brillante!", "¡Qué rico baño! ¡Gracias!"]
+  }
 }

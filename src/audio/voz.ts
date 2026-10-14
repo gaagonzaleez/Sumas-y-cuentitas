@@ -111,15 +111,29 @@ export async function precargar(textos: string[], numerosHasta = 100): Promise<v
 
 /** Sonidos cortos de acierto y festejo, generados con Web Audio (sin archivos). */
 let ctx: AudioContext | null = null;
-export function sonido(tipo: 'acierto' | 'casi' | 'festejo' | 'toque') {
+export type Sonido = 'acierto' | 'casi' | 'festejo' | 'toque' | 'nam' | 'burbuja' | 'boing' | 'risa' | 'agua' | 'cepillo' | 'moneda';
+
+export function sonido(tipo: Sonido) {
   if (est.silencio) return;
   try {
     ctx ??= new AudioContext();
-    const notas = { acierto: [660, 880], casi: [440, 392], festejo: [523, 659, 784, 1047], toque: [520] }[tipo];
+    const notas = {
+      acierto: [660, 880],
+      casi: [440, 392],
+      festejo: [523, 659, 784, 1047],
+      toque: [520],
+      nam: [260, 210],
+      burbuja: [900 + Math.random() * 400],
+      boing: [330, 495, 660],
+      risa: [784, 880, 784, 988],
+      agua: [1200, 1000, 1300, 900],
+      cepillo: [700, 760],
+      moneda: [988, 1319],
+    }[tipo];
     notas.forEach((f, i) => {
       const o = ctx!.createOscillator();
       const g = ctx!.createGain();
-      o.type = 'sine';
+      o.type = tipo === 'nam' ? 'triangle' : 'sine';
       o.frequency.value = f;
       const t = ctx!.currentTime + i * 0.11;
       g.gain.setValueAtTime(0.0001, t);

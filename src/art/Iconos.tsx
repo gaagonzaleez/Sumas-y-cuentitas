@@ -36,6 +36,9 @@ const P: Record<string, ReactNode> = {
   corazon: <path d="M12 20s-8-5-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15 12 20 12 20z" />,
   ropero: <><rect x="4.5" y="3.5" width="15" height="17" rx="1.5" /><path d="M12 3.5v17M10 11v2M14 11v2" /></>,
   lupa: <><circle cx="10.5" cy="10.5" r="6" /><path d="M15 15l5 5" /></>,
+  gota: <path d="M12 3.5c3 4 6 7.5 6 10.5a6 6 0 0 1-12 0c0-3 3-6.5 6-10.5z" />,
+  peine: <><path d="M4 9.5h16v3H4z" /><path d="M6 12.5v6M9 12.5v6M12 12.5v6M15 12.5v6M18 12.5v6" /></>,
+  dados: <><rect x="4" y="4" width="16" height="16" rx="4" /><circle cx="9" cy="9" r="1" /><circle cx="15" cy="15" r="1" /><circle cx="15" cy="9" r="1" /><circle cx="9" cy="15" r="1" /></>,
   copia: <><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8" /></>,
 };
 

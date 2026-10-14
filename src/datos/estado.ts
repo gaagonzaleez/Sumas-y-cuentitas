@@ -275,7 +275,12 @@ export function normalizarJugadora(raw: Jugadora): Jugadora {
   }
   j.ajustes = { ...base.ajustes, ...raw.ajustes };
   j.items = j.items.filter((i) => ITEM[i]);
-  if (j.mascota) j.mascota = { ...j.mascota, accesorios: Array.isArray(j.mascota.accesorios) ? j.mascota.accesorios : [] };
+  if (j.mascota)
+    j.mascota = {
+      ...j.mascota,
+      accesorios: Array.isArray(j.mascota.accesorios) ? j.mascota.accesorios : [],
+      limpieza: typeof j.mascota.limpieza === 'number' ? j.mascota.limpieza : config.mascota.limpieza.inicial,
+    };
   if (j.alcancia && !ITEM[j.alcancia.itemId]) {
     j.monedas += j.alcancia.guardado ?? 0;
     j.alcancia = undefined;

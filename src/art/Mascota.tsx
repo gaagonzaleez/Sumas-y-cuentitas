@@ -13,7 +13,9 @@ const ETAPA = {
   grande: { cy: 70, r: 42, by: 140, brx: 54, bry: 48, ojo: 7 },
 };
 
-function Cara({ cx, cy, r, ojo, animo }: { cx: number; cy: number; r: number; ojo: number; animo: Animo }) {
+export type Boca = 'abierta' | 'mastica';
+
+function Cara({ cx, cy, r, ojo, animo, boca }: { cx: number; cy: number; r: number; ojo: number; animo: Animo; boca?: Boca }) {
   const sep = r * 0.42;
   const oy = cy - r * 0.02;
   const by = cy + r * 0.36;
@@ -26,7 +28,7 @@ function Cara({ cx, cy, r, ojo, animo }: { cx: number; cy: number; r: number; oj
         </g>
       )}
       {[cx - sep, cx + sep].map((x) => (
-        <g key={x}>
+        <g key={x} className="parpadeo">
           <ellipse cx={x} cy={oy} rx={ojo} ry={ojo * 1.15} fill={T} />
           <circle cx={x + ojo * 0.35} cy={oy - ojo * 0.45} r={ojo * (animo === 'extranando' ? 0.55 : 0.4)} fill="#fff" />
           {animo === 'extranando' && <circle cx={x - ojo * 0.35} cy={oy + ojo * 0.4} r={ojo * 0.2} fill="#fff" />}
@@ -34,9 +36,16 @@ function Cara({ cx, cy, r, ojo, animo }: { cx: number; cy: number; r: number; oj
       ))}
       <circle cx={cx - sep - ojo * 1.4} cy={by - 4} r={ojo * 0.8} fill="#E8505B" opacity={0.4} />
       <circle cx={cx + sep + ojo * 1.4} cy={by - 4} r={ojo * 0.8} fill="#E8505B" opacity={0.4} />
-      {animo === 'contenta' && <path d={`M${cx - 9} ${by - 2} Q${cx} ${by + 12} ${cx + 9} ${by - 2} Z`} fill={T} {...s} strokeWidth={3} />}
-      {animo === 'normal' && <path d={`M${cx - 8} ${by} Q${cx} ${by + 7} ${cx + 8} ${by}`} fill="none" {...s} strokeWidth={3.5} />}
-      {animo === 'extranando' && <path d={`M${cx - 6} ${by + 4} Q${cx} ${by - 1} ${cx + 6} ${by + 4}`} fill="none" {...s} strokeWidth={3.5} />}
+      {boca === 'abierta' && (
+        <g>
+          <ellipse cx={cx} cy={by + 3} rx={11} ry={12} fill={T} {...s} strokeWidth={3} />
+          <ellipse cx={cx} cy={by + 9} rx={6} ry={4} fill="#F28FB8" />
+        </g>
+      )}
+      {boca === 'mastica' && <ellipse className="mastica" cx={cx} cy={by + 2} rx={9} ry={5} fill={T} {...s} strokeWidth={3} />}
+      {!boca && animo === 'contenta' && <path d={`M${cx - 9} ${by - 2} Q${cx} ${by + 12} ${cx + 9} ${by - 2} Z`} fill={T} {...s} strokeWidth={3} />}
+      {!boca && animo === 'normal' && <path d={`M${cx - 8} ${by} Q${cx} ${by + 7} ${cx + 8} ${by}`} fill="none" {...s} strokeWidth={3.5} />}
+      {!boca && animo === 'extranando' && <path d={`M${cx - 6} ${by + 4} Q${cx} ${by - 1} ${cx + 6} ${by + 4}`} fill="none" {...s} strokeWidth={3.5} />}
     </g>
   );
 }
@@ -159,6 +168,14 @@ function Especie({ especie, etapa, c, c2 }: { especie: string; etapa: Etapa; c: 
   );
 }
 
+/** Dónde está la boca, en coordenadas del dibujo (sirve para llevar la comida a la boca). */
+export function bocaDe(etapa: Etapa): { x: number; y: number } {
+  const e = ETAPA[etapa];
+  return { x: 100, y: e.cy + e.r * 0.36 + 2 };
+}
+/** El dibujo usa viewBox "0 -14 200 214": para pasar de coordenadas a porcentaje del tamaño. */
+export const VISTA = { x: 0, y: -14, ancho: 200, alto: 214 };
+
 export const MascotaSVG = memo(function MascotaSVG({
   especie,
   etapa,
@@ -166,6 +183,8 @@ export const MascotaSVG = memo(function MascotaSVG({
   size = 120,
   accesorios = [],
   className,
+  boca,
+  sucia = false,
 }: {
   especie: string;
   etapa: Etapa;
@@ -173,6 +192,9 @@ export const MascotaSVG = memo(function MascotaSVG({
   size?: number;
   accesorios?: string[];
   className?: string;
+  boca?: Boca;
+  /** Manchitas de barro: le pide un baño. */
+  sucia?: boolean;
 }) {
   const m = mascotaPorId(especie);
   const e = ETAPA[etapa];
@@ -180,7 +202,15 @@ export const MascotaSVG = memo(function MascotaSVG({
   return (
     <svg width={size} height={size} viewBox="0 -14 200 214" aria-hidden="true" className={className}>
       <Especie especie={especie} etapa={etapa} c={m.color} c2={m.color2} />
-      <Cara cx={100} cy={e.cy} r={e.r} ojo={e.ojo} animo={animo} />
+      {sucia && (
+        <g fill="#8A5A3B" opacity={0.45}>
+          <ellipse cx={100 - e.brx * 0.45} cy={e.by + 6} rx={9} ry={6} />
+          <ellipse cx={100 + e.brx * 0.35} cy={e.by - 8} rx={6} ry={4} />
+          <ellipse cx={100 + e.r * 0.55} cy={e.cy - e.r * 0.55} rx={7} ry={5} />
+          <circle cx={100 - e.r * 0.6} cy={e.cy - e.r * 0.4} r={3.5} />
+        </g>
+      )}
+      <Cara cx={100} cy={e.cy} r={e.r} ojo={e.ojo} animo={animo} boca={boca} />
       {accesorios.map((a) => {
         const id = a.replace(/^mascota-/, '');
         return <Accesorio key={a} id={id} cx={100} cy={e.cy} r={e.r} color={colorAcc[id] ?? '#5B3FE0'} />;

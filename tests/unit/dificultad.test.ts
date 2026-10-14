@@ -102,10 +102,11 @@ describe('sesión de un grado', () => {
     expect(estrellasDe(jugar(20, () => true, 6, true))).toBe(2);
   });
 
-  it('monedas: 5 al primer intento, 2 con ayuda, nunca resta', () => {
-    expect(monedasPorAcierto({ correcta: true, conAyuda: false, despuesDeLeccion: false })).toBe(5);
-    expect(monedasPorAcierto({ correcta: true, conAyuda: true, despuesDeLeccion: false })).toBe(2);
-    expect(monedasPorAcierto({ correcta: true, conAyuda: false, despuesDeLeccion: true })).toBe(5);
+  it('monedas por acierto según la configuración (los errores se restan aparte, en el juego)', () => {
+    const mc = config.economia.monedas;
+    expect(monedasPorAcierto({ correcta: true, conAyuda: false, despuesDeLeccion: false })).toBe(mc.correctaPrimerIntento);
+    expect(monedasPorAcierto({ correcta: true, conAyuda: true, despuesDeLeccion: false })).toBe(mc.correctaConAyuda);
+    expect(monedasPorAcierto({ correcta: true, conAyuda: false, despuesDeLeccion: true })).toBe(mc.correctaDespuesDeLeccion);
     expect(monedasPorAcierto({ correcta: false, conAyuda: false, despuesDeLeccion: false })).toBe(0);
     let s = nuevaSesion('valle-1', 1, lim);
     s = responder(s, { correcta: true, conAyuda: false, despuesDeLeccion: false }).sesion;

@@ -11,12 +11,27 @@
   "puntosAlimentar": 3,
   "puntosJugar": 2,
   "jugarVecesPorDia": 1,
-  "precioAlimentar": 10,
   "diasRegresoFeliz": 3,
   "multiplicadorRegreso": 2,
   "avisoFaltaParaCrecer": 15,
   "avisoCercaDeBajar": 15,
   "contento": { "inicial": 80, "minimo": 30, "subeAlJugar": 15, "bajaPorDia": 10 },
   "panza": { "inicial": 70, "minimo": 20, "subeAlAlimentar": 25, "bajaPorDia": 15 },
-  "estadoAnimo": { "extrananoDesdeDias": 2, "contentaDesdeContento": 70 }
+  "estadoAnimo": { "extrananoDesdeDias": 2, "contentaDesdeContento": 70 },
+  "_notaComidas": "Comidas para darle a la mascota: precio en monedas y cuánto llena la panza. Con la panza llena no quiere más. La favorita de cada mascota (mascotas.json) la pone más contenta.",
+  "comidas": [
+    { "id": "manzana", "nombre": "Manzana", "precio": 3, "panza": 20 },
+    { "id": "banana", "nombre": "Banana", "precio": 3, "panza": 20 },
+    { "id": "frutilla", "nombre": "Frutilla", "precio": 4, "panza": 15 },
+    { "id": "galletita", "nombre": "Galletita", "precio": 5, "panza": 25 },
+    { "id": "alfajor", "nombre": "Alfajor", "precio": 6, "panza": 30 },
+    { "id": "helado", "nombre": "Helado", "precio": 8, "panza": 20 }
+  ],
+  "panzaLlena": 90,
+  "contentoFavorita": 10,
+  "limpieza": { "inicial": 80, "minimo": 20, "bajaPorDia": 20, "burbujasParaLimpiar": 24 },
+  "puntosBanar": 1,
+  "mimos": { "subeContento": 2 },
+  "pelota": { "atrapadasParaGanar": 5, "zonaCentro": 0.22 },
+  "necesidad": { "panza": 50, "contento": 50, "limpieza": 50 }
 }

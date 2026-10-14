@@ -43,3 +43,28 @@ export function Objeto({ id, size = 40 }: { id: string; size?: number }) {
 }
 
 export const OBJETOS_DIBUJADOS = Object.keys(D);
+
+/** La comida con mordiscos (0 = entera, 1 y 2 = mordida). */
+export function ObjetoMordido({ id, size = 64, mordidas = 0 }: { id: string; size?: number; mordidas?: number }) {
+  const bocados = [
+    [50, 14, 13],
+    [14, 44, 14],
+    [52, 46, 12],
+  ].slice(0, mordidas);
+  const m = `mordida-${id}-${mordidas}`;
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
+      <mask id={m}>
+        <rect width="64" height="64" fill="#fff" />
+        {bocados.map(([x, y, r]) => (
+          <g key={`${x}-${y}`} fill="#000">
+            <circle cx={x} cy={y} r={r} />
+            <circle cx={x - r * 0.7} cy={y + r * 0.6} r={r * 0.45} />
+            <circle cx={x + r * 0.5} cy={y + r * 0.8} r={r * 0.4} />
+          </g>
+        ))}
+      </mask>
+      <g mask={`url(#${m})`}>{D[id] ?? D.estrella}</g>
+    </svg>
+  );
+}
