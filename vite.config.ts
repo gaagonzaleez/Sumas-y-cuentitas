@@ -79,8 +79,10 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
         // version.json siempre se pide al servidor: es lo que avisa que hay algo nuevo.
-        globIgnores: ['version.json'],
+        globIgnores: ['version.json', 'muestras-voz/**'],
         navigateFallback: `${base}index.html`,
+        // La página para comparar voces es aparte de la app.
+        navigateFallbackDenylist: [/\/muestras-voz\//],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         runtimeCaching: [
           {
