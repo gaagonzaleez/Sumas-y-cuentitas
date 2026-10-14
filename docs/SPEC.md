@@ -693,3 +693,4 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
   - **Caca:** 2 minutos después de comer hace caca (y una por cada día sin visitarla, hasta 4). Se toca para limpiarla (con brillitos y una mosquita dando vueltas).
   - **Enfermedad:** se enferma si se junta caca (3 o más), si está muy sucia o con mucha hambre. Enfermita tiene cachetes verdes, termómetro y estornuda ("¡Achís!"); no puede jugar a la pelota. El remedio (5 monedas) la cura con una cucharada y queda protegida unas horas. Nunca se muere ni se va. Valores en `config.mascota.caca` y `config.mascota.enfermedad`.
   - **Dormir:** siestita con la escena de noche, ojos cerrados y Zzz.
+- **Voz más natural (14/10/2026, pedido de Ga):** tono con formantes preservados, pedacitos del medio de la frase generados con coma, unión sin cortes con Web Audio (fundido y pausas naturales), más expresividad y mp3 de 48 kbps. Detalle en `docs/voces.md`.

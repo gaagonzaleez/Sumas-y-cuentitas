@@ -59,7 +59,11 @@ def piper_wav(c: dict, texto: str, salida: Path):
     with wave.open(str(salida), 'wb') as w:
         try:
             from piper import SynthesisConfig  # piper-tts >= 1.3
-            voz.synthesize_wav(texto, w, syn_config=SynthesisConfig(length_scale=c.get('velocidad', 1.0), noise_scale=c.get('variacion', 0.667)))
+            voz.synthesize_wav(texto, w, syn_config=SynthesisConfig(
+                length_scale=c.get('velocidad', 1.0),
+                noise_scale=c.get('variacion', 0.667),
+                noise_w_scale=c.get('ritmo', 0.8),
+            ))
         except ImportError:
             voz.synthesize(texto, w, length_scale=c.get('velocidad', 1.0), noise_scale=c.get('variacion', 0.667))
 
@@ -79,13 +83,26 @@ def a_mp3(wav: Path, mp3: Path, semitonos: float):
     f = CFG['mp3']['frecuencia']
     filtros = []
     if abs(semitonos) > 0.01:
+        # Cambia el tono SIN cambiar el timbre (formantes preservados): antes se usaba
+        # asetrate, que suena a "voz de ardilla" y muy robótica.
         k = 2 ** (semitonos / 12)
-        filtros.append(f'asetrate={f}*{k:.5f},aresample={f},atempo={1 / k:.5f}')
+        filtros.append(f'rubberband=pitch={k:.5f}:formant=preserved:transients=smooth:window=standard')
+    # Un poco más cálida y pareja: saca graves inútiles y empareja el volumen entre pedacitos.
+    filtros += CFG['mp3'].get('filtros', [])
     # Recorta el silencio del principio y del final (sin tocar las pausas del medio).
     recorte = 'silenceremove=start_periods=1:start_threshold=-50dB:start_silence=0.03'
     filtros += [recorte, 'areverse', recorte, 'areverse']
-    filtros.append('apad=pad_dur=0.06')
+    filtros.append(f"apad=pad_dur={CFG['mp3'].get('colaSegundos', 0.02)}")
     subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', str(wav), '-ar', str(f), '-af', ','.join(filtros), '-ac', '1', '-b:a', CFG['mp3']['bitrate'], str(mp3)], check=True)
+
+
+def texto_para_voz(clave: str, texto: str) -> str:
+    """Los pedacitos que van en el medio de una frase (números y textos sin punto final) se leen
+    con una coma al final: así la voz no "cierra" la frase y al unirlos suena de corrido."""
+    t = texto.strip()
+    if clave.startswith(('n-', 'm-')) or not t.endswith(('.', '?', '!', '…', ':')):
+        return t + ','
+    return t
 
 
 def decir(c: dict, texto: str, mp3: Path):
@@ -109,8 +126,12 @@ def elegir(candidatas: list) -> dict:
     raise SystemExit('Ninguna voz candidata tiene licencia válida')
 
 
+# Cambiar este número obliga a regenerar todos los audios (por ejemplo, si cambia cómo se procesan).
+VERSION_PROCESO = 2
+
+
 def hash_cfg(c: dict) -> str:
-    return hashlib.sha1(json.dumps({**c, 'mp3': CFG['mp3']}, sort_keys=True).encode()).hexdigest()[:12]
+    return hashlib.sha1(json.dumps({**c, 'mp3': CFG['mp3'], 'proceso': VERSION_PROCESO}, sort_keys=True).encode()).hexdigest()[:12]
 
 
 def main():
@@ -156,7 +177,7 @@ def main():
             if mp3.exists():
                 continue
             try:
-                decir(c, texto, mp3)
+                decir(c, texto_para_voz(clave, texto), mp3)
             except Exception as e:
                 print('  error con', clave, texto, e)
                 continue

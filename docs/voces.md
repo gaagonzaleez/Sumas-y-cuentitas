@@ -30,6 +30,17 @@ Así las dos guías suenan claramente distintas: voz base, tono y velocidad. Si 
 
 **Atribución (CC BY-SA 4.0):** voz de Chispa basada en el modelo Piper “es_AR-daniela”, entrenado con el conjunto “Crowdsourced high-quality Argentinian Spanish speech data set” (OpenSLR 61). Voz de la Seño Cande: Piper “es_MX-claude” (Apache 2.0). Respaldo: Kokoro-82M (Apache 2.0).
 
+## Para que suene natural (octubre 2026)
+
+Ga pidió que la voz suene menos robótica. Cambios:
+
+1. **Tono sin "voz de ardilla":** antes el tono se subía con `asetrate`, que también cambia el timbre. Ahora se usa `rubberband` con los formantes preservados, y el cambio es más chico (Chispa +1,5 semitonos, Cande sin cambio).
+2. **Pedacitos que no cierran la frase:** los números y los textos que van en el medio de una frase se generan con una coma al final, así la voz no baja el tono como si terminara.
+3. **Sin cortes al unir:** la app ya no reproduce un archivo después del otro (quedaban huecos). Ahora decodifica todos los pedacitos con Web Audio, les recorta el silencio y los encadena con un fundido de 8 ms y una pausa natural de 30 ms (300 ms entre frases).
+4. **Más expresiva y mejor calidad:** más variación de entonación y de ritmo (`variacion`, `ritmo`), mp3 a 48 kbps (antes 32), filtro de graves, compresión suave y limitador para que todos los pedacitos tengan el mismo volumen.
+
+Todo se ajusta en `scripts/voz/voces.json`. Cambiar `VERSION_PROCESO` en `generar.py` obliga a regenerar todos los audios.
+
 ## Límites
 
 Las voces gratuitas suenan bien, pero son menos expresivas que las pagas. Si en algún momento no alcanza, Ga puede decidir pagar una voz: solo hay que cambiar el motor en `scripts/voz/generar.py`.
