@@ -33,8 +33,14 @@ jobs:
       - name: Instalar voces
         run: |
           sudo apt-get update -y && sudo apt-get install -y ffmpeg rubberband-cli
+          pip install piper-tts==1.3.0 kokoro-onnx==0.4.9 soundfile
+      - name: Instalar Chatterbox
+        continue-on-error: true
+        run: |
           pip install torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
-          pip install chatterbox-tts piper-tts==1.3.0 kokoro-onnx==0.4.9 soundfile
+          pip install "numpy<2" setuptools wheel cython
+          pip install --no-build-isolation pkuseg==0.0.25
+          pip install chatterbox-tts
       - uses: actions/cache@v4
         with:
           path: |
