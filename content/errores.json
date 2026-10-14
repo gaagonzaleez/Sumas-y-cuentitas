@@ -232,7 +232,7 @@
     "leccion": "compra-total",
     "tema": "Compras con varios productos",
     "frase": "Hay que sumar todos los productos.",
-    "consejo": "Hacer la lista de compras juntas."
+    "consejo": "Hacer la lista de compras en familia."
   },
   "compra.calculo": {
     "leccion": "compra-total",
@@ -280,7 +280,7 @@
     "leccion": "necesidad-deseo",
     "tema": "Necesidad o deseo",
     "frase": "¿Nos hace falta, o solo tenemos ganas?",
-    "consejo": "Clasificar la lista del súper juntas."
+    "consejo": "Clasificar la lista del súper en familia."
   },
   "finanzas.presupuesto": {
     "leccion": "presupuesto",
@@ -310,7 +310,7 @@
     "leccion": "escribir-letras",
     "tema": "Escribir números con letras",
     "frase": "¡Casi casi! Revisá cómo se escribe.",
-    "consejo": "Escribir juntas los números del calendario o de la casa."
+    "consejo": "Escribir en familia los números del calendario o de la casa."
   },
   "igualdad.balanza": {
     "leccion": "balanza",
@@ -322,7 +322,7 @@
     "leccion": "alcanza",
     "tema": "¿Me alcanza la plata?",
     "frase": "Sumemos los precios y comparemos con la plata.",
-    "consejo": "Antes de comprar, sumar juntas los precios."
+    "consejo": "Antes de comprar, sumar en familia los precios."
   },
   "problema.pregunta": {
     "leccion": "historia",
@@ -352,6 +352,6 @@
     "leccion": "ordenar-precios",
     "tema": "Ordenar precios",
     "frase": "Empezá por el más barato de todos.",
-    "consejo": "Ordenar juntas los precios de un folleto del súper."
+    "consejo": "Ordenar en familia los precios de un folleto del súper."
   }
 }

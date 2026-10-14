@@ -694,3 +694,9 @@ Ga cerró estas decisiones el 12 de octubre de 2026. Codex no necesita volver a 
   - **Enfermedad:** se enferma si se junta caca (3 o más), si está muy sucia o con mucha hambre. Enfermita tiene cachetes verdes, termómetro y estornuda ("¡Achís!"); no puede jugar a la pelota. El remedio (5 monedas) la cura con una cucharada y queda protegida unas horas. Nunca se muere ni se va. Valores en `config.mascota.caca` y `config.mascota.enfermedad`.
   - **Dormir:** siestita con la escena de noche, ojos cerrados y Zzz.
 - **Voz más natural (14/10/2026, pedido de Ga):** tono con formantes preservados, pedacitos del medio de la frase generados con coma, unión sin cortes con Web Audio (fundido y pausas naturales), más expresividad y mp3 de 48 kbps. Detalle en `docs/voces.md`.
+- **Unisex (14/10/2026, pedido de Ga):** el juego es para chicos y chicas, no "de nenas".
+  - Textos neutros: nada de "campeona", "lista", "juntas" ni "la nena"; las guías dicen "crack", "paso a paso", etc. En las pantallas de la persona adulta se dice "persona adulta" y "quien juega".
+  - El avatar arranca con pelo corto, remera turquesa y fondo de cielo. Hay peinados y ropa para todos gratis (pelo parado, cortito, short, remera rayada).
+  - Ropa nueva en la tienda: camisetas de fútbol, remeras con rayo y con dino, buzos, campera, shorts, zapatillas, gorras, mochila azul, capa de superhéroe, pelota, barrilete, fondos de cancha y de espacio.
+  - Los nombres de los problemas son parejos (de nenas y de nenes), y el filtro de apodos también frena nombres reales de varones.
+  - La mascota habla en neutro ("me aburro", "no me siento bien").

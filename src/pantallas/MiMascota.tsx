@@ -498,7 +498,7 @@ export function MiMascota() {
         <div className="grilla-2" style={{ gap: 8 }}>
           {(
             [
-              ...(m.enferma ? [{ icono: 'botiquin', t: 'Remedio', s: `¡Está enfermita! ${cfg.enfermedad.precioRemedio} monedas`, f: remedio }] : []),
+              ...(m.enferma ? [{ icono: 'botiquin', t: 'Remedio', s: `¡No se siente bien! ${cfg.enfermedad.precioRemedio} monedas`, f: remedio }] : []),
               { icono: 'manzana', t: 'Comer', s: necesidad === 'hambre' ? '¡Tiene hambre!' : 'Comidas ricas', f: () => cambiarModo('comer') },
               { icono: 'pelota', t: 'Jugar', s: necesidad === 'aburrida' ? '¡Quiere jugar!' : 'A la pelota', f: () => cambiarModo('pelota') },
               { icono: 'gota', t: 'Bañar', s: necesidad === 'sucia' ? '¡Se ensució!' : 'Con burbujas', f: () => cambiarModo('banio') },

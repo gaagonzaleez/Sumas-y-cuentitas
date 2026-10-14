@@ -37,12 +37,12 @@ export function Grupo() {
   if (!j) return null;
 
   let cuerpo;
-  if (!j.codigoGrupo) cuerpo = <Vacio titulo="Jugás sin grupo" texto="Si tu familia tiene un código de grupo, la adulta lo puede cargar en su panel. ¡Igual podés jugar y ganar todo!" />;
+  if (!j.codigoGrupo) cuerpo = <Vacio titulo="Jugás sin grupo" texto="Si tu familia tiene un código de grupo, una persona adulta lo puede cargar en su panel. ¡Igual podés jugar y ganar todo!" />;
   else if (!nubeConfigurada) cuerpo = <Vacio titulo="¡Muy pronto!" texto="La tabla del grupo se activa en una próxima actualización. Tus estrellas ya se están guardando." />;
   else if (!enLinea) cuerpo = <Vacio titulo="Sin conexión" texto="La tabla del grupo necesita internet. Podés seguir jugando y tus estrellas se suman cuando vuelva la conexión." />;
   else if (!estado) return <Cargando texto="Buscando a tu grupo…" />;
-  else if (estado.tipo === 'sin-sesion') cuerpo = <Vacio titulo="Falta conectar" texto="La adulta tiene que conectar mateAventuras a la nube desde su panel para ver la tabla." />;
-  else if (estado.tipo === 'sin-grupo') cuerpo = <Vacio titulo="No encontramos el grupo" texto="Revisá el código con la adulta. Puede que el grupo esté lleno o cerrado." />;
+  else if (estado.tipo === 'sin-sesion') cuerpo = <Vacio titulo="Falta conectar" texto="Una persona adulta tiene que conectar mateAventuras a la nube desde su panel para ver la tabla." />;
+  else if (estado.tipo === 'sin-grupo') cuerpo = <Vacio titulo="No encontramos el grupo" texto="Revisá el código con una persona adulta. Puede que el grupo esté lleno o cerrado." />;
   else if (estado.tipo === 'error') cuerpo = <Vacio titulo="Uy, algo no anduvo" texto="No pudimos traer la tabla. Probá de nuevo en un ratito." />;
   else {
     const filas = [...estado.filas].sort((a, b) => b[tab] - a[tab] || a.apodo.localeCompare(b.apodo));

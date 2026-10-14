@@ -53,7 +53,7 @@ export function Panel() {
   if (!j) {
     return (
       <main className="pantalla angosta">
-        <div className="fila"><BotonVolver a="/" /><h1>Panel para adultas</h1></div>
+        <div className="fila"><BotonVolver a="/" /><h1>Panel para personas adultas</h1></div>
         <div className="tarjeta col centro"><p>Todavía no hay perfiles.</p><button className="boton" onClick={() => ir('/adulta/perfil')}>Crear un perfil</button></div>
       </main>
     );
@@ -70,7 +70,7 @@ export function Panel() {
       <div className="fila">
         <BotonVolver a={e.adentro ? '/mapa' : '/'} />
         <div className="col" style={{ gap: 0, flex: 1 }}>
-          <span className="suave chico">Panel para adultas</span>
+          <span className="suave chico">Panel para personas adultas</span>
           <h1 style={{ fontSize: 26 }}>{j.apodo} · {j.grado}</h1>
         </div>
       </div>
@@ -131,9 +131,9 @@ export function Panel() {
         <button className="boton blanco" style={{ flex: 1, fontSize: 18 }} onClick={() => { setApodo(j.apodo); setEditar(true); }}>Cambiar apodo</button>
         <button className="boton peligro" style={{ flex: 1, fontSize: 18 }} onClick={() => setBorrar(true)}>Borrar perfil</button>
       </div>
-      <p className="suave chico" style={{ textAlign: 'center' }}>Borrar el perfil elimina todos sus datos. Para entrar acá hace falta la contraseña de la adulta.</p>
+      <p className="suave chico" style={{ textAlign: 'center' }}>Borrar el perfil elimina todos sus datos. Para entrar acá hace falta la contraseña de la persona adulta.</p>
       <div className="fila" style={{ gap: 10 }}>
-        <button className="boton blanco chico" style={{ flex: 1 }} onClick={() => ir('/adulta/perfil')}><Icono nombre="usuaria" /> Otra nena</button>
+        <button className="boton blanco chico" style={{ flex: 1 }} onClick={() => ir('/adulta/perfil')}><Icono nombre="usuaria" /> Otro perfil</button>
         <button className="boton blanco chico" style={{ flex: 1 }} onClick={() => { salirAdulta(); ir(e.adentro ? '/mapa' : '/'); }}><Icono nombre="salir" /> Salir</button>
       </div>
       {editar && (

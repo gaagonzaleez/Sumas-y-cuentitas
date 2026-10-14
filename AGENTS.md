@@ -1,11 +1,11 @@
 # AGENTS.md — instrucciones para Codex
 
-Estás construyendo **mateAventuras**, un juego educativo de matemáticas y finanzas para nenas de 8 años (2.º grado, Argentina). La dueña del proyecto es Ga, que **no programa y quiere hacer lo menos posible**. Trabajá con autonomía total.
+Estás construyendo **mateAventuras**, un juego educativo de matemáticas y finanzas para chicos y chicas de 8 años (2.º grado, Argentina). Decisión de Ga (14/10/2026): es unisex, no “de nenas”: textos neutros, ropa y peinados para todos. La dueña del proyecto es Ga, que **no programa y quiere hacer lo menos posible**. Trabajá con autonomía total.
 
 ## Libertad creativa (decisión de Ga, octubre 2026)
 Ga dio **100 % de libertad creativa** para hacer y mejorar el juego. Este archivo, el spec y los diseños son **un punto de partida, no un contrato**: podés cambiar pantallas, mecánicas, mundos, premios, textos, paleta, estructura o lo que sea si eso hace que mateAventuras sea más divertida y enseñe mejor. Inspirate en los mejores juegos y apps para chicos (copiando mecánicas, no arte ni marcas), proponé y hacé sin pedir permiso. Si cambiás algo importante, anotalo en la sección “Decisiones finales” de `docs/SPEC.md`.
 
-Lo único que se mantiene siempre, porque cuida a las nenas: todo gratis y sin publicidad ni compras, privacidad de menores (sin datos reales ni chat), arte propio, tono cálido sin castigar errores y accesibilidad.
+Lo único que se mantiene siempre, porque cuida a quienes juegan: todo gratis y sin publicidad ni compras, privacidad de menores (sin datos reales ni chat), arte propio, tono cálido sin castigar errores y accesibilidad.
 
 ## Leé esto primero, en este orden
 1. `docs/SPEC.md` — especificación completa. La sección **“Decisiones finales”** (al final) prevalece sobre todo lo demás.
@@ -28,14 +28,14 @@ Casi nunca. Si necesitás algo que solo ella puede dar (crear una cuenta, pegar 
 
 ## Reglas que no se negocian
 - **Todo gratis.** Ningún servicio pago, sin publicidad, sin analítica de terceros, sin compras con dinero real.
-- **Privacidad de menores.** Sin nombre real, apellido, foto, ubicación, chat ni texto libre entre nenas. Solo apodo (con filtro de palabras), avatar y puntos. Borrar un perfil elimina todos sus datos.
+- **Privacidad de menores.** Sin nombre real, apellido, foto, ubicación, chat ni texto libre entre quienes juegan. Solo apodo (con filtro de palabras), avatar y puntos. Borrar un perfil elimina todos sus datos.
 - **Arte 100 % original.** Inspiración general de Avatar World (avatar protagonista, mundos, premios visuales) pero **no copies** personajes, escenarios, íconos ni logos de ese juego ni de otro.
 - **Tono.** Cálido, paciente, español rioplatense. Nunca “mal” ni “incorrecto”; usá “¡Casi!”. Los errores no restan estrellas. Decisión de Ga (14/10/2026): equivocarse resta 1 moneda (hasta 2 por pregunta, nunca por debajo de 0, nunca en el repaso).
 - **Accesibilidad.** Botones ≥ 44 px, texto ≥ 16 px, contraste 4,5:1, el color nunca es la única señal, todo audio con subtítulo y botón de silenciar.
 - **Nombre en pantalla:** siempre `mateAventuras`.
 
 ## Voz (gratis y lo más natural posible)
-Script reproducible que genera los audios una vez y los guarda en el repo (`content/audio/`). Probá Piper (voz es_AR si existe) y otras voces abiertas gratuitas; comparalas y elegí la más cálida para una nena de 8 años. Chispa (aguda, juguetona) y Seño Cande (pausada, maternal) deben sonar claramente distintas. Anotá la licencia de cada voz en `docs/voces.md` y descartá las que no permitan uso comercial. El script debe poder cambiarse por otra voz sin tocar la app.
+Script reproducible que genera los audios una vez y los guarda en el repo (`content/audio/`). Probá Piper (voz es_AR si existe) y otras voces abiertas gratuitas; comparalas y elegí la más cálida para chicos y chicas de 8 años. Chispa (aguda, juguetona) y Seño Cande (pausada, maternal) deben sonar claramente distintas. Anotá la licencia de cada voz en `docs/voces.md` y descartá las que no permitan uso comercial. El script debe poder cambiarse por otra voz sin tocar la app.
 
 ## Arte
 Armá primero `docs/guia-de-estilo.md` (proporciones, grosor de línea, paleta, expresiones) y hacé todo el arte siguiéndola. Avatar por capas SVG (cuerpo, piel, ojos, boca, pelo, ropa, calzado, accesorios, fondo) con 3–4 tonos de piel y 25 estilos de pelo como meta; **lanzamiento con unos 100 ítems**, y un sistema para sumar más cada mes solo agregando JSON + SVG. Mascotas con una versión por etapa (bebé, joven, grande) y por ánimo (contenta, normal, extrañando).

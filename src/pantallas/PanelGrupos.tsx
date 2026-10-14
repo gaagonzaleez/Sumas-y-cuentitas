@@ -55,7 +55,7 @@ export function PanelGrupos() {
         <>
           <p className="suave chico">Conectá tu cuenta para jugar en grupo y seguir en otro dispositivo. Se guardan solo apodo, avatar, progreso y puntos.</p>
           <div className="campo">
-            <label htmlFor="clave-nube">Contraseña de la adulta ({e.cuenta?.email})</label>
+            <label htmlFor="clave-nube">Contraseña de la persona adulta ({e.cuenta?.email})</label>
             <input id="clave-nube" type="password" value={clave} onChange={(ev) => setClave(ev.target.value)} />
           </div>
           <button className="boton chico" disabled={!clave || cargando} onClick={entrar}>Conectar</button>

@@ -11,18 +11,18 @@
   "expresiones": [
     { "id": "sonrisa", "nombre": "Sonrisa" },
     { "id": "feliz", "nombre": "Muy feliz" },
-    { "id": "timida", "nombre": "Tímida" }
+    { "id": "timida", "nombre": "Vergüenza" }
   ],
   "inicial": {
     "piel": "#F3C49A",
     "ojos": "redondos",
     "colorOjos": "#2B2350",
     "expresion": "sonrisa",
-    "pelo": "pelo-largo",
+    "pelo": "pelo-corto",
     "colorPelo": "color-castano",
-    "arriba": "remera-violeta",
+    "arriba": "remera-turquesa",
     "abajo": "pantalon-azul",
     "calzado": "zapatillas-blancas",
-    "fondo": "fondo-rosa"
+    "fondo": "fondo-cielo"
   }
 }

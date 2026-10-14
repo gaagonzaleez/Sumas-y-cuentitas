@@ -42,13 +42,13 @@ export function CrearCuenta() {
   return (
     <main className="pantalla angosta">
       <Encabezado />
-      <h1>Creá tu cuenta de adulta</h1>
-      <p className="suave">Con esta contraseña vas a entrar al panel, ver el progreso y cuidar el perfil de la nena.</p>
+      <h1>Creá tu cuenta de persona adulta</h1>
+      <p className="suave">Con esta contraseña vas a entrar al panel, ver el progreso y cuidar los perfiles de quienes juegan.</p>
       <form className="tarjeta col" style={{ gap: 16 }} onSubmit={enviar} noValidate>
         <div className="campo">
           <label htmlFor="correo">Tu correo</label>
           <input id="correo" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <span className="ayuda">Es tuyo, no de la nena. No mandamos publicidad.</span>
+          <span className="ayuda">Es tuyo, no de quien juega. No mandamos publicidad.</span>
         </div>
         <div className="campo">
           <label htmlFor="clave">Contraseña</label>
@@ -83,12 +83,12 @@ export function EntrarAdulta({ destino }: { destino: string }) {
     <main className="pantalla angosta">
       <div className="fila">
         <BotonVolver />
-        <h2>Entrar como adulta</h2>
+        <h2>Entrar como persona adulta</h2>
       </div>
       <form className="tarjeta col" style={{ gap: 16 }} onSubmit={enviar}>
         <p className="suave">Cuenta: {e.cuenta.email}</p>
         <div className="campo">
-          <label htmlFor="clave-adulta">Contraseña de la adulta</label>
+          <label htmlFor="clave-adulta">Contraseña de la persona adulta</label>
           <input id="clave-adulta" type="password" autoComplete="current-password" value={clave} onChange={(ev) => setClave(ev.target.value)} autoFocus />
         </div>
         {error && <p className="campo aviso" role="alert">{error}</p>}

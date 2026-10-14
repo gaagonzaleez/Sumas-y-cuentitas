@@ -11,7 +11,7 @@ export const MENSAJES_APODO: Record<ProblemaApodo, string> = {
   numeros: 'Usá como mucho 2 números (nada de teléfonos ni fechas).',
   groseria: 'Ese apodo no se puede usar. Probá con otro más tierno.',
   contacto: 'El apodo no puede tener datos de contacto ni redes.',
-  nombre: 'Parece un nombre real. Mejor un apodo de juego, como "Estrellita".',
+  nombre: 'Parece un nombre real. Mejor un apodo de juego, como "Cometa".',
 };
 
 export function normalizar(s: string): string {

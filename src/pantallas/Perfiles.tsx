@@ -26,7 +26,7 @@ export function Perfiles() {
       </div>
       <div className="empuja" />
       <button className="boton blanco ancho" onClick={() => ir(e.adultaAdentro ? '/adulta/perfil' : '/adulta/entrar?a=/adulta/perfil')}>
-        <Icono nombre="usuaria" /> Agregar otra nena (adulta)
+        <Icono nombre="usuaria" /> Agregar otro perfil (persona adulta)
       </button>
     </main>
   );

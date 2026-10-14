@@ -274,7 +274,7 @@ export function normalizarJugadora(raw: Jugadora): Jugadora {
       (j as unknown as Record<string, unknown>)[k] = b;
   }
   j.ajustes = { ...base.ajustes, ...raw.ajustes };
-  j.items = j.items.filter((i) => ITEM[i]);
+  j.items = [...new Set([...j.items.filter((i) => ITEM[i]), ...ITEMS_GRATIS])];
   if (j.mascota)
     j.mascota = {
       ...j.mascota,

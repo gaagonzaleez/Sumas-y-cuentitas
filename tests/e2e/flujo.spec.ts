@@ -23,7 +23,7 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
   await page.getByRole('button', { name: 'Seguir' }).click();
 
   // Pantalla 1: perfil de la nena (con validación de apodo)
-  await expect(page.getByRole('heading', { name: 'Creá el perfil de la nena' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Creá el perfil de quien va a jugar' })).toBeVisible();
   await page.getByLabel('Apodo de juego').fill('Sofía');
   await page.getByRole('button', { name: 'Crear perfil' }).click();
   await expect(page.getByText('Parece un nombre real')).toBeVisible();
@@ -127,9 +127,9 @@ test('una nena nueva crea su avatar y llega al mapa, y juega un ejercicio', asyn
 
   // Panel de la adulta: pide contraseña y permite borrar el perfil.
   await page.goto('./#/adulta/panel');
-  await page.getByLabel('Contraseña de la adulta').fill('secreta123');
+  await page.getByLabel('Contraseña de la persona adulta').fill('secreta123');
   await page.getByRole('button', { name: 'Entrar' }).click();
-  await expect(page.getByText('Panel para adultas')).toBeVisible();
+  await expect(page.getByText('Panel para personas adultas')).toBeVisible();
   await foto(page, '14-panel');
   await page.getByRole('button', { name: 'Borrar perfil' }).click();
   await page.getByRole('button', { name: 'Sí, borrar todo' }).click();

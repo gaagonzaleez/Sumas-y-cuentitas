@@ -30,7 +30,7 @@
       "objeto": "libro"
     },
     {
-      "texto": "En el álbum, {nombre} pegó {a} figuritas y {nombre2} pegó {b}. ¿Cuántas figuritas pegaron entre las dos?",
+      "texto": "En el álbum, {nombre} pegó {a} figuritas y {nombre2} pegó {b}. ¿Cuántas figuritas pegaron en total?",
       "op": "+",
       "objeto": "figurita"
     },

@@ -89,7 +89,7 @@ export function Entrar() {
       <div className="empuja" />
       <p className="suave chico">
         <a href="#/perfiles" className="boton-link" style={{ color: 'var(--tinta-suave)' }}>No soy {j.apodo}</a>·
-        <a href="#/adulta/entrar?a=/adulta/panel" className="boton-link" style={{ color: 'var(--tinta-suave)' }}>Entrar como adulta</a>
+        <a href="#/adulta/entrar?a=/adulta/panel" className="boton-link" style={{ color: 'var(--tinta-suave)' }}>Entrar como persona adulta</a>
       </p>
     </main>
   );

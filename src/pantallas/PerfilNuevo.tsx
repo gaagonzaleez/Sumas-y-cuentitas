@@ -36,14 +36,14 @@ export function PerfilNuevo() {
     <main className="pantalla angosta">
       <EncabezadoAdulta />
       <div className="col" style={{ gap: 6 }}>
-        <h1>Creá el perfil de la nena</h1>
-        <p className="suave">Solo lo hacés una vez. Después ella entra sola y empieza a jugar.</p>
+        <h1>Creá el perfil de quien va a jugar</h1>
+        <p className="suave">Solo lo hacés una vez. Después entra con sus dibujos y empieza a jugar.</p>
       </div>
       <form className="col" style={{ gap: 16 }} onSubmit={enviar} noValidate>
         <div className="tarjeta col" style={{ gap: 16 }}>
           <div className="campo">
             <label htmlFor="apodo">Apodo de juego</label>
-            <input id="apodo" value={apodo} maxLength={config.app.apodo.max + 4} placeholder="Estrellita" autoComplete="off" onChange={(ev) => setApodo(ev.target.value)} onBlur={() => setTocado(true)} aria-describedby="apodo-ayuda" aria-invalid={tocado && !!problema} />
+            <input id="apodo" value={apodo} maxLength={config.app.apodo.max + 4} placeholder="Cometa" autoComplete="off" onChange={(ev) => setApodo(ev.target.value)} onBlur={() => setTocado(true)} aria-describedby="apodo-ayuda" aria-invalid={tocado && !!problema} />
             <span id="apodo-ayuda" className="ayuda">No uses su nombre real ni apellido.</span>
             {tocado && problema && <span className="aviso" role="alert"><Icono nombre="foco" size={18} />{MENSAJES_APODO[problema]}</span>}
           </div>
@@ -62,7 +62,7 @@ export function PerfilNuevo() {
         </div>
         <label className="casilla">
           <input type="checkbox" checked={acepto} onChange={(ev) => setAcepto(ev.target.checked)} />
-          <span>Acepto que la nena juegue con apodo y avatar, sin fotos ni datos personales. El apodo y el avance pueden guardarse en la nube del juego para mejorarlo.</span>
+          <span>Acepto que juegue con apodo y avatar, sin fotos ni datos personales. El apodo y el avance pueden guardarse en la nube del juego para mejorarlo.</span>
         </label>
         {tocado && !acepto && <p className="campo aviso" role="alert">Para seguir, marcá que aceptás.</p>}
         {lleno && <p className="campo aviso" role="alert">Ya hay {config.app.maxPerfiles} perfiles en este dispositivo.</p>}

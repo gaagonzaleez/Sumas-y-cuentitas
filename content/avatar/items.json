@@ -166,7 +166,18 @@
     "tela2": "#E8505B"
    },
    "rareza": "comun",
-   "desbloqueo": "tienda"
+   "desbloqueo": "gratis"
+  },
+  {
+   "id": "pelo-pinches",
+   "capa": "pelo",
+   "nombre": "Parado",
+   "svg": "pelo-pinches",
+   "colores": {
+    "tela2": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "gratis"
   },
   {
    "id": "color-negro",
@@ -307,7 +318,7 @@
     "tela2": "#7CC6F2"
    },
    "rareza": "comun",
-   "desbloqueo": "tienda"
+   "desbloqueo": "gratis"
   },
   {
    "id": "remera-rayada-rosa",
@@ -458,7 +469,7 @@
     "tela": "#7CC6F2"
    },
    "rareza": "comun",
-   "desbloqueo": "tienda"
+   "desbloqueo": "gratis"
   },
   {
    "id": "pollera-violeta",
@@ -999,6 +1010,22 @@
    "nombre": "Fondo del mar",
    "svg": "fondo-mar",
    "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-cancha",
+   "capa": "fondo",
+   "nombre": "Cancha",
+   "svg": "fondo-cancha",
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "fondo-espacio",
+   "capa": "fondo",
+   "nombre": "Espacio",
+   "svg": "fondo-espacio",
+   "rareza": "especial",
    "desbloqueo": "tienda"
   },
   {
@@ -2510,6 +2537,39 @@
    "mundo": "tesoro"
   },
   {
+   "id": "short-verde",
+   "capa": "abajo",
+   "nombre": "Short verde",
+   "svg": "short",
+   "colores": {
+    "tela": "#3DBE7A"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "short-rojo",
+   "capa": "abajo",
+   "nombre": "Short rojo",
+   "svg": "short",
+   "colores": {
+    "tela": "#E8505B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "pantalon-verde",
+   "capa": "abajo",
+   "nombre": "Pantalón verde",
+   "svg": "pantalon",
+   "colores": {
+    "tela": "#2E7D5B"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
    "id": "raro-tesoro-7",
    "capa": "cabeza",
    "nombre": "Ramo de joyas",
@@ -3322,6 +3382,101 @@
    "brilla": true
   },
   {
+   "id": "remera-rayo",
+   "capa": "arriba",
+   "nombre": "Remera con rayo",
+   "svg": "remera-rayo",
+   "colores": {
+    "tela": "#3B6FD9",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "camiseta-futbol",
+   "capa": "arriba",
+   "nombre": "Camiseta de fútbol",
+   "svg": "camiseta-futbol",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "camiseta-futbol-roja",
+   "capa": "arriba",
+   "nombre": "Camiseta roja y blanca",
+   "svg": "camiseta-futbol",
+   "colores": {
+    "tela": "#FFFFFF",
+    "tela2": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "remera-dino",
+   "capa": "arriba",
+   "nombre": "Remera con dino",
+   "svg": "remera-dino",
+   "colores": {
+    "tela": "#FFC93C",
+    "tela2": "#3DBE7A"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "remera-naranja",
+   "capa": "arriba",
+   "nombre": "Remera naranja",
+   "svg": "remera",
+   "colores": {
+    "tela": "#F29A2E"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "buzo-azul",
+   "capa": "arriba",
+   "nombre": "Buzo azul",
+   "svg": "buzo",
+   "colores": {
+    "tela": "#3B6FD9",
+    "tela2": "#FFF4D1"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "buzo-gris",
+   "capa": "arriba",
+   "nombre": "Buzo gris",
+   "svg": "buzo",
+   "colores": {
+    "tela": "#9A9AB0",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "campera-verde",
+   "capa": "arriba",
+   "nombre": "Campera verde",
+   "svg": "campera",
+   "colores": {
+    "tela": "#3DBE7A",
+    "tela2": "#FFC93C"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
    "id": "jefe-pueblo-2",
    "capa": "cabeza",
    "nombre": "Sombrero de detective",
@@ -3497,6 +3652,30 @@
    "brilla": true
   },
   {
+   "id": "gorra-roja",
+   "capa": "cabeza",
+   "nombre": "Gorra roja",
+   "svg": "gorra",
+   "colores": {
+    "tela": "#E8505B",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "gorra-azul",
+   "capa": "cabeza",
+   "nombre": "Gorra azul",
+   "svg": "gorra",
+   "colores": {
+    "tela": "#3B6FD9",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
    "id": "jefe-tesoro-3",
    "capa": "calzado",
    "nombre": "Botas de capitana",
@@ -3522,6 +3701,28 @@
    "desbloqueo": "premio",
    "mundo": "tesoro",
    "brilla": true
+  },
+  {
+   "id": "zapatillas-negras",
+   "capa": "calzado",
+   "nombre": "Zapatillas negras",
+   "svg": "zapatillas",
+   "colores": {
+    "tela": "#2B2350"
+   },
+   "rareza": "comun",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "zapatillas-rojas",
+   "capa": "calzado",
+   "nombre": "Zapatillas rojas",
+   "svg": "zapatillas",
+   "colores": {
+    "tela": "#E8505B"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
   },
   {
    "id": "jefe-tesoro-4",
@@ -3551,6 +3752,30 @@
    "brilla": true
   },
   {
+   "id": "mochila-azul",
+   "capa": "espalda",
+   "nombre": "Mochila azul",
+   "svg": "mochila",
+   "colores": {
+    "tela": "#3B6FD9",
+    "tela2": "#7CC6F2"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda",
+   "svgFrente": "mochila-tiras"
+  },
+  {
+   "id": "capa-heroe",
+   "capa": "espalda",
+   "nombre": "Capa de superhéroe",
+   "svg": "capa",
+   "colores": {
+    "tela": "#E8505B"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
+  },
+  {
    "id": "jefe-tesoro-5",
    "capa": "mano",
    "nombre": "Brújula mágica",
@@ -3576,6 +3801,29 @@
    "desbloqueo": "premio",
    "mundo": "tesoro",
    "brilla": true
+  },
+  {
+   "id": "pelota-mano",
+   "capa": "mano",
+   "nombre": "Pelota de fútbol",
+   "svg": "pelota-mano",
+   "colores": {
+    "tela": "#2B2350"
+   },
+   "rareza": "lindo",
+   "desbloqueo": "tienda"
+  },
+  {
+   "id": "barrilete",
+   "capa": "mano",
+   "nombre": "Barrilete",
+   "svg": "barrilete",
+   "colores": {
+    "tela": "#F29A2E",
+    "tela2": "#FFFFFF"
+   },
+   "rareza": "especial",
+   "desbloqueo": "tienda"
   },
   {
    "id": "marco-dorado-tesoro",
