@@ -3,16 +3,18 @@
   "chispa": {
    "motor": "piper",
    "modelo": "es/es_AR/daniela/high/es_AR-daniela-high",
-   "velocidad": 0.92,
-   "variacion": 0.75,
-   "semitonos": 3.0
+   "velocidad": 0.95,
+   "variacion": 0.8,
+   "semitonos": 1.5,
+   "ritmo": 0.9
   },
   "cande": {
    "motor": "piper",
    "modelo": "es/es_MX/claude/high/es_MX-claude-high",
-   "velocidad": 1.12,
-   "variacion": 0.6,
-   "semitonos": -0.5
+   "velocidad": 1.08,
+   "variacion": 0.7,
+   "semitonos": 0,
+   "ritmo": 0.85
   }
  },
  "verificadas": {
