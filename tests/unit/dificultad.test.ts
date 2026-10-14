@@ -11,10 +11,10 @@ describe('escalera de dificultad', () => {
       if (m.escala === 'tablas') continue;
       for (const n of [...m.niveles, m.jefe]) {
         const inicios = [1, 2, 3, 4, 5].map((g) => limitesGrado(n, m.escala, g).inicio);
-        expect(inicios, n.id).toEqual([150, 300, 450, 600, 750]);
+        expect(inicios, n.id).toEqual([100, 250, 400, 550, 700]);
       }
     }
-    expect(limitesGrado(valle.niveles[4], 'sumas', 1).techo).toBe(250);
+    expect([1, 2, 3, 4, 5].map((g) => limitesGrado(valle.niveles[4], 'sumas', g).techo)).toEqual([150, 300, 450, 600, 750]);
   });
 
   it('ningún grado queda trabado en un solo número (salvo en el techo del nivel)', () => {
@@ -31,7 +31,7 @@ describe('escalera de dificultad', () => {
   it('sube un peldaño tras 5 aciertos seguidos sin ayuda', () => {
     const lim = limitesGrado(valle.niveles[1], 'sumas', 1);
     let e = nuevaEscalera(lim);
-    expect(e.rango).toBe(150);
+    expect(e.rango).toBe(100);
     for (let i = 0; i < 4; i++) {
       const r = registrar(e, lim, true, false);
       expect(r.subio).toBe(false);
@@ -39,7 +39,7 @@ describe('escalera de dificultad', () => {
     }
     const r = registrar(e, lim, true, false);
     expect(r.subio).toBe(true);
-    expect(r.estado.rango).toBe(200);
+    expect(r.estado.rango).toBe(150);
   });
 
   it('una respuesta con ayuda corta la racha', () => {
@@ -52,30 +52,30 @@ describe('escalera de dificultad', () => {
 
   it('un error no cambia el rango; dos seguidos bajan un peldaño y activan una pista', () => {
     const lim = limitesGrado(valle.niveles[4], 'sumas', 3);
-    const e = { ...nuevaEscalera(lim), rango: 500 };
+    const e = { ...nuevaEscalera(lim), rango: 450 };
     const r1 = registrar(e, lim, false, false);
-    expect(r1.estado.rango).toBe(500);
+    expect(r1.estado.rango).toBe(450);
     expect(r1.activarPista).toBe(false);
     const r2 = registrar(r1.estado, lim, false, true);
-    expect(r2.estado.rango).toBe(450);
+    expect(r2.estado.rango).toBe(400);
     expect(r2.bajo).toBe(true);
     expect(r2.activarPista).toBe(true);
   });
 
   it('sube de a 50 y no supera el techo del grado', () => {
     const lim = limitesGrado(valle.niveles[4], 'sumas', 3);
-    let e = { ...nuevaEscalera(lim), rango: 450 };
+    let e = { ...nuevaEscalera(lim), rango: 400 };
     for (let i = 0; i < 5; i++) e = registrar(e, lim, true, false).estado;
-    expect(e.rango).toBe(500);
+    expect(e.rango).toBe(450);
     for (let i = 0; i < 20; i++) e = registrar(e, lim, true, false).estado;
-    expect(e.rango).toBe(550); // techo del grado 3
+    expect(e.rango).toBe(450); // techo del grado 3
   });
 
   it('las tablas suben los factores', () => {
     const lim = limitesGrado(MUNDOS[3].niveles[2], 'tablas', 1);
-    expect(lim.inicio).toBe(8);
-    expect(lim.techo).toBe(10);
-    expect(limitesGrado(MUNDOS[3].niveles[2], 'tablas', 3).inicio).toBe(10);
+    expect(lim.inicio).toBe(6);
+    expect(lim.techo).toBe(7);
+    expect(limitesGrado(MUNDOS[3].niveles[2], 'tablas', 3).inicio).toBe(8);
   });
 });
 
