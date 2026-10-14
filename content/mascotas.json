@@ -118,6 +118,15 @@
     "pelotaYaJugo": ["¡Qué divertido! Hoy ya sumamos puntos jugando, pero igual me encanta."],
     "banioEmpezar": ["Pasá la esponja por arriba mío."],
     "banioRisa": ["¡Jiji, cuántas burbujas!", "¡Qué espuma!"],
-    "banioListo": ["¡Quedé limpita y brillante!", "¡Qué rico baño! ¡Gracias!"]
+    "banioListo": ["¡Quedé limpita y brillante!", "¡Qué rico baño! ¡Gracias!"],
+    "enferma": ["Me siento mal… ¿me das el remedio?", "¡Achís! Estoy enfermita…"],
+    "caca": ["¡Uy! Hice caca… ¿la limpiás?", "¡Perdón! Hice caca. ¿Me ayudás a limpiar?"],
+    "limpiarCaca": ["¡Puaj! ¡Gracias por limpiar!", "¡Qué limpito quedó!"],
+    "remedio": ["¡Puaj, qué feo! Pero ya me siento mejor.", "¡Gracias! Ya me curé."],
+    "noPuedeJugar": ["Estoy enfermita, no puedo jugar. ¿Me das el remedio?"],
+    "consejo": ["Para no enfermarme: dame de comer, bañame y limpiá la caca."],
+    "sueno": ["Tengo sueño… ¿me hacés dormir?"],
+    "dormir": ["Zzz… zzz…"],
+    "despertar": ["¡Qué rica siesta! ¡Buen día!"]
   }
 }

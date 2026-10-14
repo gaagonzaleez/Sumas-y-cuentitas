@@ -15,7 +15,7 @@ const ETAPA = {
 
 export type Boca = 'abierta' | 'mastica';
 
-function Cara({ cx, cy, r, ojo, animo, boca }: { cx: number; cy: number; r: number; ojo: number; animo: Animo; boca?: Boca }) {
+function Cara({ cx, cy, r, ojo, animo, boca, enferma, dormida }: { cx: number; cy: number; r: number; ojo: number; animo: Animo; boca?: Boca; enferma?: boolean; dormida?: boolean }) {
   const sep = r * 0.42;
   const oy = cy - r * 0.02;
   const by = cy + r * 0.36;
@@ -27,6 +27,12 @@ function Cara({ cx, cy, r, ojo, animo, boca }: { cx: number; cy: number; r: numb
           <path d={`M${cx + sep + ojo} ${oy - ojo * 1.9} L${cx + sep - ojo * 0.8} ${oy - ojo * 2.4}`} />
         </g>
       )}
+      {dormida ? (
+        <g fill="none" {...s} strokeWidth={3.5}>
+          {[cx - sep, cx + sep].map((x) => <path key={x} d={`M${x - ojo} ${oy} Q${x} ${oy + ojo} ${x + ojo} ${oy}`} />)}
+        </g>
+      ) : (
+        <>
       {[cx - sep, cx + sep].map((x) => (
         <g key={x} className="parpadeo">
           <ellipse cx={x} cy={oy} rx={ojo} ry={ojo * 1.15} fill={T} />
@@ -34,8 +40,25 @@ function Cara({ cx, cy, r, ojo, animo, boca }: { cx: number; cy: number; r: numb
           {animo === 'extranando' && <circle cx={x - ojo * 0.35} cy={oy + ojo * 0.4} r={ojo * 0.2} fill="#fff" />}
         </g>
       ))}
-      <circle cx={cx - sep - ojo * 1.4} cy={by - 4} r={ojo * 0.8} fill="#E8505B" opacity={0.4} />
-      <circle cx={cx + sep + ojo * 1.4} cy={by - 4} r={ojo * 0.8} fill="#E8505B" opacity={0.4} />
+          {enferma && (
+            <g fill="none" {...s} strokeWidth={3}>
+              {[cx - sep, cx + sep].map((x) => <path key={x} d={`M${x - ojo * 1.3} ${oy - ojo * 0.35} h${ojo * 2.6}`} />)}
+            </g>
+          )}
+        </>
+      )}
+      <circle cx={cx - sep - ojo * 1.4} cy={by - 4} r={ojo * 0.8} fill={enferma ? '#7BBF4E' : '#E8505B'} opacity={enferma ? 0.7 : 0.4} />
+      <circle cx={cx + sep + ojo * 1.4} cy={by - 4} r={ojo * 0.8} fill={enferma ? '#7BBF4E' : '#E8505B'} opacity={enferma ? 0.7 : 0.4} />
+      {enferma && !boca && (
+        <g>
+          <path d={`M${cx - 7} ${by + 5} Q${cx} ${by} ${cx + 7} ${by + 5}`} fill="none" {...s} strokeWidth={3.5} />
+          <g transform={`rotate(-25 ${cx + 6} ${by + 4})`}>
+            <rect x={cx + 6} y={by + 1} width={30} height={7} rx={3.5} fill="#fff" {...s} strokeWidth={2.5} />
+            <circle cx={cx + 36} cy={by + 4.5} r={5} fill="#E8505B" {...s} strokeWidth={2.5} />
+          </g>
+          <path d={`M${cx + r * 0.75} ${cy - r * 0.55} q5 8 0 12 q-5 -4 0 -12z`} fill="#7CC6F2" {...s} strokeWidth={2} />
+        </g>
+      )}
       {boca === 'abierta' && (
         <g>
           <ellipse cx={cx} cy={by + 3} rx={11} ry={12} fill={T} {...s} strokeWidth={3} />
@@ -43,9 +66,9 @@ function Cara({ cx, cy, r, ojo, animo, boca }: { cx: number; cy: number; r: numb
         </g>
       )}
       {boca === 'mastica' && <ellipse className="mastica" cx={cx} cy={by + 2} rx={9} ry={5} fill={T} {...s} strokeWidth={3} />}
-      {!boca && animo === 'contenta' && <path d={`M${cx - 9} ${by - 2} Q${cx} ${by + 12} ${cx + 9} ${by - 2} Z`} fill={T} {...s} strokeWidth={3} />}
-      {!boca && animo === 'normal' && <path d={`M${cx - 8} ${by} Q${cx} ${by + 7} ${cx + 8} ${by}`} fill="none" {...s} strokeWidth={3.5} />}
-      {!boca && animo === 'extranando' && <path d={`M${cx - 6} ${by + 4} Q${cx} ${by - 1} ${cx + 6} ${by + 4}`} fill="none" {...s} strokeWidth={3.5} />}
+      {!boca && !enferma && !dormida && animo === 'contenta' && <path d={`M${cx - 9} ${by - 2} Q${cx} ${by + 12} ${cx + 9} ${by - 2} Z`} fill={T} {...s} strokeWidth={3} />}
+      {!boca && !enferma && (animo === 'normal' || (dormida && animo === 'contenta')) && <path d={`M${cx - 8} ${by} Q${cx} ${by + 7} ${cx + 8} ${by}`} fill="none" {...s} strokeWidth={3.5} />}
+      {!boca && !enferma && animo === 'extranando' && <path d={`M${cx - 6} ${by + 4} Q${cx} ${by - 1} ${cx + 6} ${by + 4}`} fill="none" {...s} strokeWidth={3.5} />}
     </g>
   );
 }
@@ -185,6 +208,8 @@ export const MascotaSVG = memo(function MascotaSVG({
   className,
   boca,
   sucia = false,
+  enferma = false,
+  dormida = false,
 }: {
   especie: string;
   etapa: Etapa;
@@ -195,6 +220,10 @@ export const MascotaSVG = memo(function MascotaSVG({
   boca?: Boca;
   /** Manchitas de barro: le pide un baño. */
   sucia?: boolean;
+  /** Enfermita: cachetes verdes, termómetro y una gotita de sudor. */
+  enferma?: boolean;
+  /** Durmiendo: ojos cerrados. */
+  dormida?: boolean;
 }) {
   const m = mascotaPorId(especie);
   const e = ETAPA[etapa];
@@ -210,7 +239,7 @@ export const MascotaSVG = memo(function MascotaSVG({
           <circle cx={100 - e.r * 0.6} cy={e.cy - e.r * 0.4} r={3.5} />
         </g>
       )}
-      <Cara cx={100} cy={e.cy} r={e.r} ojo={e.ojo} animo={animo} boca={boca} />
+      <Cara cx={100} cy={e.cy} r={e.r} ojo={e.ojo} animo={animo} boca={boca} enferma={enferma} dormida={dormida} />
       {accesorios.map((a) => {
         const id = a.replace(/^mascota-/, '');
         return <Accesorio key={a} id={id} cx={100} cy={e.cy} r={e.r} color={colorAcc[id] ?? '#5B3FE0'} />;

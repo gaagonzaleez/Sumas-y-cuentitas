@@ -6,6 +6,8 @@ const s = { stroke: T, strokeWidth: 3, strokeLinejoin: 'round' as const, strokeL
 
 const D: Record<string, ReactNode> = {
   manzana: <><path d="M32 18c-6-5-20-4-20 10 0 12 9 24 15 24 3 0 3-2 5-2s2 2 5 2c6 0 15-12 15-24 0-14-14-15-20-10z" fill="#E8505B" {...s} /><path d="M32 18c0-5 2-9 7-11" fill="none" {...s} /><path d="M33 13c4-5 10-4 12-2-3 3-8 4-12 2z" fill="#3DBE7A" {...s} /><ellipse cx="22" cy="28" rx="3" ry="5" fill="#fff" opacity=".5" /></>,
+  caca: <><path d="M14 52c-6 0-8-8-2-10-3-6 3-11 8-9 0-6 6-10 12-8 0-5 4-9 6-11 2 6 6 9 6 14 6 1 9 7 6 11 6 2 6 11-1 13z" fill="#8A5A3B" {...s} /><path d="M20 42c6 2 18 2 24 0M24 32c4 2 12 2 16 0" fill="none" stroke="#B9875F" strokeWidth="2.5" strokeLinecap="round" /><circle cx="26" cy="46" r="2.6" fill={T} /><circle cx="38" cy="46" r="2.6" fill={T} /></>,
+  remedio: <><path d="M6 40l22-10" stroke="#9C8FC4" strokeWidth="5" strokeLinecap="round" /><ellipse cx="40" cy="27" rx="16" ry="10" fill="#C9C2E6" {...s} /><ellipse cx="40" cy="26" rx="11" ry="6" fill="#F28FB8" /></>,
   estrella: <path d="M32 6l7.5 15.5 17 2.3-12.3 11.8 3 16.8L32 44.3l-15.2 8.1 3-16.8L7.5 23.8l17-2.3z" fill="#FFC93C" {...s} />,
   flor: <>{[0, 72, 144, 216, 288].map((a) => <ellipse key={a} cx="32" cy="18" rx="8" ry="11" transform={`rotate(${a} 32 30)`} fill="#F28FB8" {...s} />)}<circle cx="32" cy="30" r="7" fill="#FFC93C" {...s} /><path d="M32 42v16" {...s} fill="none" /></>,
   pez: <><path d="M8 32c10-14 30-14 40 0-10 14-30 14-40 0z" fill="#0FA88F" {...s} /><path d="M48 32l10-9v18z" fill="#0FA88F" {...s} /><circle cx="20" cy="29" r="3" fill={T} /></>,

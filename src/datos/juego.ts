@@ -133,6 +133,26 @@ export async function banarMascota(): Promise<boolean> {
   return sumo;
 }
 
+export async function limpiarCacaMascota() {
+  await actualizar((x) => (x.mascota ? { ...x, mascota: M.limpiarCaca(x.mascota) } : x));
+}
+
+/** El remedio cuesta unas monedas y la cura enseguida. */
+export async function darRemedio(): Promise<ResultadoCompra> {
+  const j = jugadoraActual();
+  if (!j?.mascota) return 'no-se-vende';
+  const precio = config.mascota.enfermedad.precioRemedio;
+  if (j.monedas < precio) return 'sin-monedas';
+  await actualizar((x) => ({ ...x, monedas: x.monedas - precio, mascota: M.curar(x.mascota!) }));
+  return 'ok';
+}
+
+/** Se fija si se enfermó (mucha caca, sucia o con hambre) y lo guarda. */
+export async function revisarSalud() {
+  const j = jugadoraActual();
+  if (j?.mascota && M.debeEnfermarse(j.mascota)) await actualizar((x) => (x.mascota ? { ...x, mascota: { ...x.mascota, enferma: true } } : x));
+}
+
 export async function mimarMascota() {
   await actualizar((x) => (x.mascota ? { ...x, mascota: M.mimar(x.mascota) } : x));
 }

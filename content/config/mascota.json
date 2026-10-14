@@ -33,5 +33,17 @@
   "puntosBanar": 1,
   "mimos": { "subeContento": 2 },
   "pelota": { "atrapadasParaGanar": 5, "zonaCentro": 0.22 },
-  "necesidad": { "panza": 50, "contento": 50, "limpieza": 50 }
+  "necesidad": { "panza": 50, "contento": 50, "limpieza": 50 },
+  "_notaCaca": "Un rato después de comer hace caca (y una por cada día que no la visitaron). Hay que tocarla para limpiarla.",
+  "caca": { "minutosDespuesDeComer": 2, "porDiaAusente": 1, "maximo": 4, "contentoAlLimpiar": 3 },
+  "_notaEnfermedad": "Se enferma si está muy sucia, con mucha hambre o con mucha caca sin limpiar. Nunca se muere ni se va: con el remedio se cura. Después de curarse queda unas horas sin volver a enfermarse.",
+  "enfermedad": {
+    "limpiezaMenorA": 30,
+    "panzaMenorA": 25,
+    "cacasDesde": 3,
+    "horasProtegidaDespuesDeCurar": 6,
+    "precioRemedio": 5,
+    "contentoAlCurar": 10,
+    "segundosEntreEstornudos": 6
+  }
 }

@@ -6,17 +6,17 @@ import { bocaDe, MascotaSVG, VISTA, type Boca } from '../art/Mascota';
 import { Objeto, ObjetoMordido } from '../art/Objetos';
 import { config } from '../content';
 import { frase, fraseMascota, ITEMS, mascotaPorId } from '../content/catalogo';
-import { animoDe, avisoBarra, enRegresoFeliz, etapaDe, necesidadDe, panzaLlena } from '../engine/mascota';
+import { animoDe, avisoBarra, cacasVisibles, enRegresoFeliz, etapaDe, necesidadDe, panzaLlena } from '../engine/mascota';
 import { diaArgentina } from '../engine/semana';
 import { useEstado, useJugadora } from '../datos/estado';
-import { alimentarMascota, banarMascota, comprarItem, jugarConMascota, mimarMascota, precioFinal, vestirMascota } from '../datos/juego';
+import { alimentarMascota, banarMascota, comprarItem, darRemedio, jugarConMascota, limpiarCacaMascota, mimarMascota, precioFinal, revisarSalud, vestirMascota } from '../datos/juego';
 import { sonido } from '../audio/voz';
 import { MenuInferior, Modal, PildoraMonedas } from '../ui/comunes';
 import { ir } from '../ui/router';
 
-type Modo = 'casa' | 'comer' | 'pelota' | 'banio';
+type Modo = 'casa' | 'comer' | 'pelota' | 'banio' | 'dormir';
 type Reaccion = '' | 'saltito' | 'giro' | 'no-no';
-interface Flotante { id: number; x: number; y: number; tipo: 'corazon' | 'miga' | 'brillo' | 'burbuja' | 'gota' | 'nota'; dx?: number; }
+interface Flotante { id: number; x: number; y: number; tipo: 'corazon' | 'miga' | 'brillo' | 'burbuja' | 'gota' | 'nota' | 'zzz' | 'achis'; dx?: number; }
 
 const TAM = 190;
 let siguienteId = 1;
@@ -37,6 +37,10 @@ export function MiMascota() {
   const [burbujas, setBurbujas] = useState(0);
   const [enjuagando, setEnjuagando] = useState(false);
   const ocupada = useRef(false);
+  // Para los intervalos: siempre la versión más nueva de estas funciones.
+  const flotarRef = useRef<(t: Flotante['tipo'], x: number, y: number, n?: number, ms?: number) => void>(() => {});
+  const reaccionarRef = useRef<(r: Reaccion, ms?: number) => void>(() => {});
+  const bocaEnEscenaRef = useRef<() => { x: number; y: number }>(() => ({ x: 150, y: 120 }));
   const escena = useRef<HTMLElement>(null);
   const mascotaRef = useRef<HTMLDivElement>(null);
   const comidaRef = useRef<HTMLDivElement>(null);
@@ -46,6 +50,16 @@ export function MiMascota() {
   const tocarComida = useRef<{ id: string; x: number; y: number; movio: boolean } | null>(null);
   const ultimaBurbuja = useRef<{ x: number; y: number } | null>(null);
   const cuentaBurbujas = useRef(0);
+  // El reloj de la escena: las cacas aparecen un ratito después de comer y la salud se revisa sola.
+  const [ahora, setAhora] = useState(Date.now());
+  useEffect(() => {
+    void revisarSalud();
+    const t = window.setInterval(() => {
+      setAhora(Date.now());
+      void revisarSalud();
+    }, 5000);
+    return () => clearInterval(t);
+  }, []);
 
   const despues = (ms: number, f: () => void) => {
     timers.current.push(window.setTimeout(f, ms));
@@ -74,6 +88,27 @@ export function MiMascota() {
     return () => cancelAnimationFrame(raf);
   }, [modo, atrapadas]);
 
+  // Enfermita estornuda de a ratos; dormida, salen Zzz.
+  const enfermaAhora = Boolean(j?.mascota?.enferma);
+  useEffect(() => {
+    if (modo === 'dormir') {
+      const t = window.setInterval(() => {
+        const b = bocaEnEscenaRef.current();
+        flotarRef.current('zzz', b.x + 40, b.y - 50, 1, 1600);
+      }, 1100);
+      return () => clearInterval(t);
+    }
+    if (!enfermaAhora || modo !== 'casa') return;
+    const t = window.setInterval(() => {
+      if (ocupada.current) return;
+      const b = bocaEnEscenaRef.current();
+      flotarRef.current('achis', b.x + 20, b.y - 20, 1, 1300);
+      reaccionarRef.current('no-no', 900);
+      sonido('casi');
+    }, config.mascota.enfermedad.segundosEntreEstornudos * 1000);
+    return () => clearInterval(t);
+  }, [modo, enfermaAhora]);
+
   // La comida vuela desde la bandeja hasta la boca.
   useLayoutEffect(() => {
     const el = comidaRef.current;
@@ -98,11 +133,14 @@ export function MiMascota() {
   const especie = mascotaPorId(m.especie);
   const nombreEtapa = cfg.etapas.find((x) => x.id === etapa)!.nombre;
   const guia = j.guia ?? 'chispa';
-  const necesidad = necesidadDe(m);
+  const necesidad = necesidadDe(m, ahora);
+  const cacas = cacasVisibles(m, ahora);
   const limpieza = m.limpieza ?? 100;
   const saludo =
     mensaje ||
-    (animo === 'extranando'
+    (modo === 'dormir'
+      ? fraseMascota('dormir')
+      : animo === 'extranando' && !necesidad
       ? fraseMascota('extrana', j.apodo)
       : necesidad
         ? fraseMascota(necesidad, j.apodo, () => 0)
@@ -133,6 +171,54 @@ export function MiMascota() {
     const mas = mascotaRef.current?.getBoundingClientRect();
     if (!esc || !mas) return { x: 150, y: 120 };
     return { x: mas.left - esc.left + bocaPx.x, y: mas.top - esc.top + bocaPx.y };
+  }
+
+  flotarRef.current = flotar;
+  reaccionarRef.current = reaccionar;
+  bocaEnEscenaRef.current = bocaEnEscena;
+
+  // ---------- Caca y remedio ----------
+  function limpiar() {
+    if (ocupada.current) return;
+    sonido('burbuja');
+    const b = bocaEnEscena();
+    flotar('brillo', b.x, b.y + 60, 4, 900);
+    reaccionar('saltito', 700);
+    setMensaje(fraseMascota('limpiarCaca', j!.apodo));
+    void limpiarCacaMascota();
+  }
+
+  async function remedio() {
+    if (ocupada.current) return;
+    ocupada.current = true;
+    const r = await darRemedio();
+    if (r !== 'ok') {
+      ocupada.current = false;
+      setMensaje(frase(guia, 'sinMonedas'));
+      return;
+    }
+    setModo('casa');
+    setMensaje('');
+    setBoca('abierta');
+    const esc = escena.current?.getBoundingClientRect();
+    setComiendo({ id: 'remedio', mordidas: 0, desde: esc ? { x: esc.left + esc.width / 2, y: esc.bottom - 20 } : undefined });
+    despues(700, () => {
+      sonido('nam');
+      setComiendo(null);
+      setBoca('mastica');
+    });
+    despues(1300, () => {
+      setBoca(undefined);
+      reaccionar('no-no', 900);
+      setMensaje(fraseMascota('remedio', j!.apodo));
+    });
+    despues(2300, () => {
+      sonido('festejo');
+      const b = bocaEnEscena();
+      flotar('brillo', b.x, b.y - 30, 7, 1300);
+      reaccionar('giro', 900);
+      ocupada.current = false;
+    });
   }
 
   // ---------- Comer ----------
@@ -309,12 +395,24 @@ export function MiMascota() {
 
   function cambiarModo(n: Modo) {
     if (ocupada.current) return;
+    if (n === 'pelota' && m!.enferma) {
+      setMensaje(fraseMascota('noPuedeJugar', j!.apodo));
+      reaccionar('no-no', 900);
+      return;
+    }
     sonido('toque');
     setFlotantes([]);
     setAtrapadas(0);
     setBurbujas(0);
     cuentaBurbujas.current = 0;
     setModo(n);
+    if (n === 'dormir') sonido('toque');
+    if (modo === 'dormir' && n === 'casa') {
+      void mimarMascota();
+      setMensaje(fraseMascota('despertar'));
+      despues(50, () => reaccionar('saltito', 700));
+      return;
+    }
     setMensaje(n === 'comer' ? fraseMascota('elegirComida') : n === 'pelota' ? fraseMascota('pelotaEmpezar') : n === 'banio' ? fraseMascota('banioEmpezar') : '');
     escena.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -322,7 +420,7 @@ export function MiMascota() {
   const marcas = cfg.etapas.slice(1).map((x) => x.desde / cfg.maximo);
   const accesorios = ITEMS.filter((i) => i.capa === 'mascota');
   const llenaBurbujas = burbujas >= cfg.limpieza.burbujasParaLimpiar;
-  const fondo = modo === 'banio' ? 'linear-gradient(#D7F5EE 62%, #B9E6F5 62%)' : 'linear-gradient(#CDE9FF 60%, #9ED9A8 60%)';
+  const fondo = modo === 'dormir' ? 'linear-gradient(#2B2350 60%, #3B3170 60%)' : modo === 'banio' ? 'linear-gradient(#D7F5EE 62%, #B9E6F5 62%)' : 'linear-gradient(#CDE9FF 60%, #9ED9A8 60%)';
 
   return (
     <main className="pantalla con-menu" style={{ gap: 14, maxWidth: 560, margin: '0 auto' }}>
@@ -341,7 +439,7 @@ export function MiMascota() {
           {modo === 'pelota' && <span aria-hidden="true" style={{ position: 'absolute', bottom: 0, width: TAM * 0.9, height: 22, borderRadius: '50%', border: '4px dashed #fff', opacity: 0.9 }} />}
           <div ref={mascotaRef} style={{ position: 'relative', width: TAM, height: TAM }}>
             <div
-              className={reaccion || 'respira'}
+              className={reaccion || (modo === 'dormir' ? 'respira lento' : 'respira')}
               onPointerDown={modo === 'casa' ? mimos : undefined}
               role={modo === 'casa' ? 'button' : undefined}
               aria-label={modo === 'casa' ? `Hacerle mimos a ${m.nombre}` : undefined}
@@ -349,7 +447,7 @@ export function MiMascota() {
               onKeyDown={(ev) => modo === 'casa' && ev.key === 'Enter' && mimos(ev as unknown as PE<HTMLDivElement>)}
               style={{ cursor: modo === 'casa' ? 'pointer' : undefined }}
             >
-              <MascotaSVG especie={m.especie} etapa={etapa} animo={mensaje && modo === 'casa' ? 'contenta' : animo} size={TAM} accesorios={m.accesorios} boca={boca} sucia={limpieza < 40 && modo !== 'banio'} />
+              <MascotaSVG especie={m.especie} etapa={etapa} animo={mensaje && modo === 'casa' ? 'contenta' : animo} size={TAM} accesorios={m.accesorios} boca={boca} sucia={limpieza < 40 && modo !== 'banio'} enferma={m.enferma} dormida={modo === 'dormir'} />
             </div>
             {comiendo && (
               <div ref={comidaRef} className="flota" style={{ left: bocaPx.x - 26, top: bocaPx.y - 30, zIndex: 3 }}>
@@ -358,6 +456,17 @@ export function MiMascota() {
             )}
           </div>
         </div>
+        {cacas > 0 && modo !== 'banio' && (
+          <div className="fila" style={{ position: 'absolute', left: 0, right: 0, bottom: 10, justifyContent: 'space-between', padding: '0 14px', pointerEvents: 'none' }}>
+            {Array.from({ length: Math.min(cacas, 4) }, (_, i) => (
+              <button key={i} onClick={limpiar} aria-label="Limpiar la caca" className="boton-icono"
+                style={{ pointerEvents: 'auto', width: 56, height: 56, background: 'transparent', border: 0, boxShadow: 'none', position: 'relative', marginLeft: i === 1 ? 'auto' : undefined, order: i % 2 }}>
+                <Objeto id="caca" size={46} />
+                <span aria-hidden="true" style={{ position: 'absolute', left: 6, top: -4, width: 6, height: 6, borderRadius: 3, background: '#2B2350', animation: 'mosca 1.4s linear infinite' }} />
+              </button>
+            ))}
+          </div>
+        )}
         {modo === 'pelota' && (
           <div ref={pelotaRef} style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
             <button className="boton-icono" style={{ width: 72, height: 72, borderRadius: '50%', background: '#fff' }} onClick={tirarPelota} aria-label="Tirar la pelota">
@@ -373,6 +482,8 @@ export function MiMascota() {
               ...(f.tipo === 'miga' ? { animation: 'migas 0.9s ease-out both', ['--dx' as string]: `${f.dx}px` } : f.tipo === 'gota' ? { animation: `gotas 1.1s ${(f.id % 5) / 10}s ease-in both` } : f.tipo === 'burbuja' ? { animation: 'aparecer 0.25s ease both' } : f.tipo === 'brillo' ? { animation: 'brillo 1s ease both' } : { animation: 'subeYSeVa 1.5s ease-out both' }),
             }}>
             {f.tipo === 'corazon' && <span style={{ color: '#E8505B' }}><Icono nombre="corazon" size={28} grosor={3} /></span>}
+            {f.tipo === 'zzz' && <span style={{ fontSize: 26, fontWeight: 800, color: '#fff' }}>Z z z</span>}
+            {f.tipo === 'achis' && <span style={{ fontSize: 22, fontWeight: 800, color: 'var(--tinta)', background: '#fff', borderRadius: 12, padding: '2px 8px' }}>¡Achís!</span>}
             {f.tipo === 'nota' && <span style={{ fontSize: 26, fontWeight: 800, color: 'var(--violeta)' }}>♪</span>}
             {f.tipo === 'miga' && <span style={{ display: 'block', width: 9, height: 9, borderRadius: 3, background: '#D9A066' }} />}
             {f.tipo === 'brillo' && <span style={{ color: '#FFC93C' }}><Icono nombre="estrella" size={26} grosor={3} /></span>}
@@ -387,9 +498,11 @@ export function MiMascota() {
         <div className="grilla-2" style={{ gap: 8 }}>
           {(
             [
+              ...(m.enferma ? [{ icono: 'botiquin', t: 'Remedio', s: `¡Está enfermita! ${cfg.enfermedad.precioRemedio} monedas`, f: remedio }] : []),
               { icono: 'manzana', t: 'Comer', s: necesidad === 'hambre' ? '¡Tiene hambre!' : 'Comidas ricas', f: () => cambiarModo('comer') },
               { icono: 'pelota', t: 'Jugar', s: necesidad === 'aburrida' ? '¡Quiere jugar!' : 'A la pelota', f: () => cambiarModo('pelota') },
               { icono: 'gota', t: 'Bañar', s: necesidad === 'sucia' ? '¡Se ensució!' : 'Con burbujas', f: () => cambiarModo('banio') },
+              { icono: 'luna', t: 'Dormir', s: 'Una siestita', f: () => cambiarModo('dormir') },
               { icono: 'gorro', t: 'Vestir', s: 'Gorros y más', f: () => setVestir(true) },
             ] as { icono: NombreIcono; t: string; s: string; f: () => void }[]
           ).map((b) => (
@@ -448,6 +561,14 @@ export function MiMascota() {
           )}
         </section>
       )}
+
+      {modo === 'dormir' && (
+        <section className="tarjeta col" style={{ gap: 8 }}>
+          <p style={{ margin: 0 }}>{m.nombre} está durmiendo una siestita. ¡Shhh!</p>
+          <button className="boton ancho" onClick={() => cambiarModo('casa')}>Despertar</button>
+        </section>
+      )}
+      {cacas > 0 && modo === 'casa' && <p className="aviso-caja naranja" style={{ margin: 0 }}>Tocá la caca para limpiarla. Si se junta mucha, {m.nombre} se puede enfermar.</p>}
 
       <div className="fila entre">
         <h2>{m.nombre}</h2>

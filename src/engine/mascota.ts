@@ -13,6 +13,12 @@ export interface EstadoMascota {
   panza: number;
   /** Qué tan limpia está (0 a 100): baja con los días y sube al bañarla. */
   limpieza: number;
+  /** Cuándo aparece cada caca (milisegundos). Las que ya llegaron se ven en la escena. */
+  cacas?: number[];
+  /** Está enfermita: necesita el remedio. Nunca se muere ni se va. */
+  enferma?: boolean;
+  /** Cuándo se curó por última vez (después queda protegida unas horas). */
+  curadaEn?: number;
   /** Día en que la bañó por última vez (bañar suma puntos una vez por día). */
   ultimoBano?: string;
   /** Día (AAAA-MM-DD, hora de Argentina) de la última vez que jugó. */
@@ -59,9 +65,12 @@ export function nuevaMascota(especie: string, nombre: string, hoy: string): Esta
  * (sin bajar de 0), y bajan Contento y Panza llena hasta su mínimo. Al volver, empieza el
  * "regreso feliz" (puntos dobles por 3 días). Nunca desaparece ni se enferma.
  */
-export function alVolver(m: EstadoMascota, hoy: string): EstadoMascota {
+export function alVolver(m: EstadoMascota, hoy: string, ahora = Date.now()): EstadoMascota {
   const dias = diasEntre(m.ultimaVisita, hoy);
   if (dias <= 0) return m;
+  // Mientras no estuvo, hizo caca (una por día, con un tope).
+  const nuevas = Array.from({ length: Math.min(dias * C().caca.porDiaAusente, C().caca.maximo) }, () => ahora);
+  m = { ...m, cacas: [...(m.cacas ?? []), ...nuevas].slice(-C().caca.maximo) };
   const cfg = C();
   const diasDePerdida = Math.max(0, dias - cfg.diasDeGracia);
   const crecimiento = Math.max(0, m.crecimiento - diasDePerdida * cfg.perdidaPorDia);
@@ -69,7 +78,33 @@ export function alVolver(m: EstadoMascota, hoy: string): EstadoMascota {
   const panza = Math.max(cfg.panza.minimo, m.panza - dias * cfg.panza.bajaPorDia);
   const limpieza = Math.max(cfg.limpieza.minimo, (m.limpieza ?? cfg.limpieza.inicial) - dias * cfg.limpieza.bajaPorDia);
   const regresoFelizHasta = diasDePerdida > 0 ? sumarDias(hoy, cfg.diasRegresoFeliz - 1) : m.regresoFelizHasta;
-  return { ...m, crecimiento, contento, panza, limpieza, ultimaVisita: hoy, regresoFelizHasta };
+  const r = { ...m, crecimiento, contento, panza, limpieza, ultimaVisita: hoy, regresoFelizHasta };
+  return debeEnfermarse(r, ahora) ? { ...r, enferma: true } : r;
+}
+
+export function cacasVisibles(m: EstadoMascota, ahora = Date.now()): number {
+  return (m.cacas ?? []).filter((t) => t <= ahora).length;
+}
+
+/** Limpia una caca (la más vieja). */
+export function limpiarCaca(m: EstadoMascota, ahora = Date.now()): EstadoMascota {
+  const lista = [...(m.cacas ?? [])].sort((a, b) => a - b);
+  const i = lista.findIndex((t) => t <= ahora);
+  if (i < 0) return m;
+  lista.splice(i, 1);
+  return { ...m, cacas: lista, contento: Math.min(100, m.contento + C().caca.contentoAlLimpiar) };
+}
+
+/** Se enferma si está muy sucia, con mucha hambre o con mucha caca, salvo recién curada. */
+export function debeEnfermarse(m: EstadoMascota, ahora = Date.now()): boolean {
+  const e = C().enfermedad;
+  if (m.enferma) return false;
+  if (m.curadaEn && ahora - m.curadaEn < e.horasProtegidaDespuesDeCurar * 3_600_000) return false;
+  return (m.limpieza ?? 100) < e.limpiezaMenorA || m.panza < e.panzaMenorA || cacasVisibles(m, ahora) >= e.cacasDesde;
+}
+
+export function curar(m: EstadoMascota, ahora = Date.now()): EstadoMascota {
+  return { ...m, enferma: false, curadaEn: ahora, contento: Math.min(100, m.contento + C().enfermedad.contentoAlCurar) };
 }
 
 export function enRegresoFeliz(m: EstadoMascota, hoy: string): boolean {
@@ -96,11 +131,13 @@ export function panzaLlena(m: EstadoMascota): boolean {
   return m.panza >= C().panzaLlena;
 }
 
-export function alimentar(m: EstadoMascota, hoy: string, comidaId = 'manzana', favorita?: string): EstadoMascota {
+export function alimentar(m: EstadoMascota, hoy: string, comidaId = 'manzana', favorita?: string, ahora = Date.now()): EstadoMascota {
   const comida = comidaPorId(comidaId);
   const r = sumar(m, C().puntosAlimentar, hoy);
   const extra = favorita === comida.id ? C().contentoFavorita : 0;
-  return { ...r, panza: Math.min(100, m.panza + comida.panza), contento: Math.min(100, m.contento + extra) };
+  // Lo que entra… sale: un ratito después hace caca.
+  const cacas = [...(m.cacas ?? []), ahora + C().caca.minutosDespuesDeComer * 60_000].slice(-C().caca.maximo);
+  return { ...r, panza: Math.min(100, m.panza + comida.panza), contento: Math.min(100, m.contento + extra), cacas };
 }
 
 /** Bañarla la deja limpita; suma puntos de crecimiento una vez por día. */
@@ -114,10 +151,12 @@ export function mimar(m: EstadoMascota): EstadoMascota {
   return { ...m, contento: Math.min(100, m.contento + C().mimos.subeContento) };
 }
 
-export type Necesidad = 'hambre' | 'aburrida' | 'sucia' | null;
+export type Necesidad = 'enferma' | 'caca' | 'hambre' | 'aburrida' | 'sucia' | null;
 
 /** Lo que más necesita ahora (para que lo pida en su globito). */
-export function necesidadDe(m: EstadoMascota): Necesidad {
+export function necesidadDe(m: EstadoMascota, ahora = Date.now()): Necesidad {
+  if (m.enferma) return 'enferma';
+  if (cacasVisibles(m, ahora) > 0) return 'caca';
   const n = C().necesidad;
   const faltas: [Necesidad, number][] = [
     ['hambre', n.panza - m.panza],

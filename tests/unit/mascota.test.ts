@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { alimentar, alVolver, avisoBarra, enRegresoFeliz, etapaDe, jugar, nuevaMascota, porEstrellas, sumarDias } from '../../src/engine/mascota';
+import { type EstadoMascota, alimentar, alVolver, avisoBarra, cacasVisibles, curar, debeEnfermarse, enRegresoFeliz, etapaDe, jugar, limpiarCaca, necesidadDe, nuevaMascota, porEstrellas, sumarDias } from '../../src/engine/mascota';
 
 const hoy = '2026-10-12';
 
@@ -74,5 +74,34 @@ describe('mascota', () => {
     expect(avisoBarra({ ...base, crecimiento: 190 })).toEqual({ tipo: 'crecer', faltan: 10 });
     expect(avisoBarra({ ...base, crecimiento: 205 }).tipo).toBe('bajar');
     expect(avisoBarra({ ...base, crecimiento: 160 })).toEqual({ tipo: 'crecer', faltan: 40 });
+  });
+});
+
+describe('caca y enfermedad (pedido de Ga)', () => {
+  const T0 = Date.parse('2026-10-12T15:00:00Z');
+  it('un ratito después de comer hace caca, y se limpia tocándola', () => {
+    let m = alimentar(nuevaMascota('gatito', 'Michi', hoy), hoy, 'manzana', undefined, T0);
+    expect(cacasVisibles(m, T0)).toBe(0);
+    expect(cacasVisibles(m, T0 + 3 * 60_000)).toBe(1);
+    expect(necesidadDe(m, T0 + 3 * 60_000)).toBe('caca');
+    m = limpiarCaca(m, T0 + 3 * 60_000);
+    expect(cacasVisibles(m, T0 + 3 * 60_000)).toBe(0);
+  });
+
+  it('con mucha caca o muy sucia se enferma; el remedio la cura y queda protegida un rato', () => {
+    let m: EstadoMascota = { ...nuevaMascota('gatito', 'Michi', hoy), cacas: [T0, T0, T0] };
+    expect(debeEnfermarse(m, T0)).toBe(true);
+    m = { ...m, enferma: true };
+    expect(necesidadDe(m, T0)).toBe('enferma');
+    m = curar(m, T0);
+    expect(m.enferma).toBe(false);
+    expect(debeEnfermarse(m, T0 + 60_000)).toBe(false);
+    expect(debeEnfermarse(m, T0 + 7 * 3_600_000)).toBe(true);
+  });
+
+  it('si no la visitan, al volver hay caca y puede estar enfermita (nunca se va)', () => {
+    const m = alVolver(nuevaMascota('gatito', 'Michi', hoy), sumarDias(hoy, 5), T0);
+    expect(cacasVisibles(m, T0)).toBeGreaterThan(0);
+    expect(m.enferma).toBe(true);
   });
 });
