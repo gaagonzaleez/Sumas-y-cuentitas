@@ -9,7 +9,9 @@ test('me olvidé la contraseña', async ({ page }) => {
   await page.getByLabel('Apodo de juego').fill('Cometa');
   await page.getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Crear perfil' }).click();
+  await expect(page.getByText('Elegí 3 dibujos secretos')).toBeVisible();
   await page.goto('./#/adulta/entrar?a=/adulta/panel');
+  await expect(page.getByRole('heading', { name: 'Entrar como persona adulta' })).toBeVisible();
   await page.getByRole('button', { name: 'Me olvidé la contraseña' }).click();
   const etiqueta = await page.getByText(/cuánto es/).textContent();
   const [, a, b, c] = etiqueta!.match(/(\d+) × (\d+) \+ (\d+)/)!.map(Number);
