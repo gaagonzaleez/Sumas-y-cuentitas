@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, it } from 'vitest';
 import * as db from '../../src/datos/db';
-import { avatarInicial, borrarJugadora, crearCuenta, crearJugadora, elegirJugadora, iniciar, jugadoraActual, leerEstado, verificarAdulta } from '../../src/datos/estado';
+import { avatarInicial, borrarJugadora, cambiarClaveAdulta, crearCuenta, crearJugadora, elegirJugadora, iniciar, jugadoraActual, leerEstado, verificarAdulta } from '../../src/datos/estado';
 import { alimentarMascota, banarMascota, comprarItem, completarGrado, elegirMascota, elegirMeta, guardarEnAlcancia, ofertasDeLaSemana, perderMonedas, registrarIntento, sinLoNoComprado } from '../../src/datos/juego';
 import { ITEMS } from '../../src/content/catalogo';
 import { config, MUNDOS } from '../../src/content';
@@ -14,6 +14,16 @@ beforeEach(async () => {
 });
 
 describe('cuenta y perfiles', () => {
+  it('si se olvida la contraseña, se crea otra y los perfiles quedan', async () => {
+    await crearCuenta('mama@ejemplo.com', 'secreta123');
+    await crearJugadora('Cometa', '2.º grado');
+    await cambiarClaveAdulta('nuevaclave9');
+    expect(await verificarAdulta('secreta123')).toBe(false);
+    expect(await verificarAdulta('nuevaclave9')).toBe(true);
+    expect(leerEstado().jugadoras).toHaveLength(1);
+    expect(leerEstado().cuenta?.email).toBe('mama@ejemplo.com');
+  });
+
   it('la contraseña de la adulta se guarda como hash', async () => {
     await crearCuenta('mama@ejemplo.com', 'secreta123');
     const c = await db.leerCuenta();

@@ -1,0 +1,21 @@
+import { expect, test } from '@playwright/test';
+test('me olvidé la contraseña', async ({ page }) => {
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Empezar' }).click();
+  await page.getByLabel('Tu correo').fill('mama@ejemplo.com');
+  await page.getByLabel('Contraseña', { exact: true }).fill('secreta123');
+  await page.getByLabel('Repetí la contraseña').fill('secreta123');
+  await page.getByRole('button', { name: 'Seguir' }).click();
+  await page.getByLabel('Apodo de juego').fill('Cometa');
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Crear perfil' }).click();
+  await page.goto('./#/adulta/entrar?a=/adulta/panel');
+  await page.getByRole('button', { name: 'Me olvidé la contraseña' }).click();
+  const etiqueta = await page.getByText(/cuánto es/).textContent();
+  const [, a, b, c] = etiqueta!.match(/(\d+) × (\d+) \+ (\d+)/)!.map(Number);
+  await page.getByLabel(/cuánto es/).fill(String(a * b + c));
+  await page.getByLabel('Contraseña nueva', { exact: true }).fill('otraclave9');
+  await page.getByLabel('Repetí la contraseña nueva').fill('otraclave9');
+  await page.getByRole('button', { name: 'Guardar y entrar' }).click();
+  await expect(page.getByText('Panel para personas adultas').first()).toBeVisible();
+});

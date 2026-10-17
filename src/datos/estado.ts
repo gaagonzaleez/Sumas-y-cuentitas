@@ -109,6 +109,16 @@ export async function verificarAdulta(clave: string): Promise<boolean> {
   return ok;
 }
 
+/** Olvido de contraseña: se crea una nueva (el correo, los perfiles y su avance no cambian). */
+export async function cambiarClaveAdulta(clave: string): Promise<void> {
+  const c = estado.cuenta;
+  if (!c) return;
+  const sal = nuevaSal();
+  const cuenta: CuentaAdulta = { ...c, sal, hash: await hashClave(clave, sal) };
+  await db.guardarCuenta(cuenta);
+  emitir({ cuenta, adultaAdentro: true });
+}
+
 export function salirAdulta() {
   emitir({ adultaAdentro: false });
 }
