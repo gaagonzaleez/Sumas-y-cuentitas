@@ -1,0 +1,110 @@
+[
+ {
+  "clave": "actual-chispa",
+  "nombre": "Voz actual de Chispa (Piper, acento argentino)",
+  "archivos": [
+   "actual-chispa-1.mp3",
+   "actual-chispa-2.mp3",
+   "actual-chispa-3.mp3",
+   "actual-chispa-4.mp3"
+  ],
+  "tardaPorSegundo": 0.35,
+  "error": ""
+ },
+ {
+  "clave": "actual-cande",
+  "nombre": "Voz actual de la Seño Cande (Piper, acento mexicano)",
+  "archivos": [
+   "actual-cande-1.mp3",
+   "actual-cande-2.mp3",
+   "actual-cande-3.mp3",
+   "actual-cande-4.mp3"
+  ],
+  "tardaPorSegundo": 0.14,
+  "error": ""
+ },
+ {
+  "clave": "kokoro-dora",
+  "nombre": "Kokoro, voz Dora",
+  "archivos": [
+   "kokoro-dora-1.mp3",
+   "kokoro-dora-2.mp3",
+   "kokoro-dora-3.mp3",
+   "kokoro-dora-4.mp3"
+  ],
+  "tardaPorSegundo": 0.47,
+  "error": ""
+ },
+ {
+  "clave": "kokoro-alex",
+  "nombre": "Kokoro, voz Alex (varón, para Lucho)",
+  "archivos": [
+   "kokoro-alex-1.mp3",
+   "kokoro-alex-2.mp3",
+   "kokoro-alex-3.mp3",
+   "kokoro-alex-4.mp3"
+  ],
+  "tardaPorSegundo": 0.48,
+  "error": ""
+ },
+ {
+  "clave": "kokoro-dora-latina",
+  "nombre": "Kokoro, voz Dora con acento latino",
+  "archivos": [
+   "kokoro-dora-latina-1.mp3",
+   "kokoro-dora-latina-2.mp3",
+   "kokoro-dora-latina-3.mp3",
+   "kokoro-dora-latina-4.mp3"
+  ],
+  "tardaPorSegundo": 0.48,
+  "error": ""
+ },
+ {
+  "clave": "chatterbox",
+  "nombre": "Chatterbox, voz propia en español",
+  "archivos": [
+   "chatterbox-1.mp3",
+   "chatterbox-2.mp3",
+   "chatterbox-3.mp3",
+   "chatterbox-4.mp3"
+  ],
+  "tardaPorSegundo": 13.34,
+  "error": ""
+ },
+ {
+  "clave": "chatterbox-alegre",
+  "nombre": "Chatterbox, voz propia, más alegre",
+  "archivos": [
+   "chatterbox-alegre-1.mp3",
+   "chatterbox-alegre-2.mp3",
+   "chatterbox-alegre-3.mp3",
+   "chatterbox-alegre-4.mp3"
+  ],
+  "tardaPorSegundo": 10.32,
+  "error": ""
+ },
+ {
+  "clave": "chatterbox-daniela",
+  "nombre": "Chatterbox imitando a la voz argentina",
+  "archivos": [
+   "chatterbox-daniela-1.mp3",
+   "chatterbox-daniela-2.mp3",
+   "chatterbox-daniela-3.mp3",
+   "chatterbox-daniela-4.mp3"
+  ],
+  "tardaPorSegundo": 10.74,
+  "error": ""
+ },
+ {
+  "clave": "chatterbox-dora",
+  "nombre": "Chatterbox imitando a Dora",
+  "archivos": [
+   "chatterbox-dora-1.mp3",
+   "chatterbox-dora-2.mp3",
+   "chatterbox-dora-3.mp3",
+   "chatterbox-dora-4.mp3"
+  ],
+  "tardaPorSegundo": 11.47,
+  "error": ""
+ }
+]
