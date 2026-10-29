@@ -32,11 +32,9 @@ export function Opciones({ ej, responder, estado }: { ej: Ejercicio; responder: 
         return (
           <button key={o.valor} onClick={() => responder(o.valor)} disabled={!!estado.correcta || mal}
             aria-label={`${o.texto ?? o.valor}${ok ? ', correcta' : mal ? ', ya probaste esta' : ''}`}
+            className={`opcion${ok ? ' ok' : mal ? ' mal' : ''}`}
             style={{
-              minHeight: carton ? 64 : 72, borderRadius: 20, padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: largas ? 'flex-start' : 'center', gap: 10,
-              border: `4px solid ${ok ? 'var(--turquesa-oscuro)' : mal ? '#E9B8BC' : 'var(--lavanda)'}`,
-              background: ok ? 'var(--turquesa-claro)' : mal ? '#FBF3F4' : '#fff',
-              color: ok ? 'var(--turquesa-oscuro)' : mal ? '#8C7F9E' : 'var(--tinta)',
+              minHeight: carton ? 64 : 72, padding: '10px 12px', justifyContent: largas ? 'flex-start' : 'center',
               fontFamily: largas ? 'var(--fuente-texto)' : 'var(--fuente-titulo)', fontWeight: largas ? 800 : 600, fontSize: largas ? 19 : carton ? 28 : medianas ? 22 : 32, textAlign: largas ? 'left' : 'center', whiteSpace: largas ? 'normal' : 'nowrap',
               textDecoration: mal ? 'line-through' : undefined,
             }}>

@@ -2,7 +2,7 @@
 import { AvatarCirculo } from '../art/Avatar';
 import { Icono } from '../art/Iconos';
 import { MascotaSVG } from '../art/Mascota';
-import { Camino, EscenaMundo } from '../art/Mundos';
+import { Camino, CieloMapa, IslaMundo } from '../art/Mundos';
 import { config, mundoPorId } from '../content';
 import { frase } from '../content/catalogo';
 import { animoDe, etapaDe } from '../engine/mascota';
@@ -14,7 +14,7 @@ import { erroresParaRepasar } from '../datos/juego';
 import { AvisoSinConexion, Estrellas, GuiaDice, MenuInferior, PildoraEstrellas, PildoraMonedas } from '../ui/comunes';
 import { ir } from '../ui/router';
 
-const ALTO = 112;
+const ALTO = 150;
 
 export function Encabezado() {
   const j = useJugadora()!;
@@ -48,8 +48,8 @@ export function Mapa() {
   const hoy = diaArgentina();
   const repasar = erroresParaRepasar(j)[0];
   const guia = j.guia ?? 'chispa';
-  const puntos = orden.map((_, i) => ({ x: i % 2 === 0 ? 24 : 72, y: (orden.length - 1 - i) * ALTO + 60 }));
-  const altoTotal = orden.length * ALTO + 20;
+  const puntos = orden.map((_, i) => ({ x: i % 2 === 0 ? 24 : 72, y: (orden.length - 1 - i) * ALTO + 90 }));
+  const altoTotal = orden.length * ALTO + 40;
   return (
     <main className="pantalla con-menu" style={{ paddingTop: 20, gap: 12 }}>
       <Encabezado />
@@ -65,7 +65,8 @@ export function Mapa() {
           <Icono nombre="adelante" />
         </button>
       )}
-      <div style={{ position: 'relative', height: altoTotal, background: 'linear-gradient(#E3F4EC, #D7F5EE)', borderRadius: 28, margin: '0 -8px', maxWidth: 560, alignSelf: 'center', width: '100%' }}>
+      <div style={{ position: 'relative', height: altoTotal, borderRadius: 32, margin: '0 -8px', maxWidth: 560, alignSelf: 'center', width: '100%', boxShadow: 'var(--sombra-tarjeta)' }}>
+        <CieloMapa alto={altoTotal} />
         <Camino puntos={puntos.map((p) => ({ x: p.x, y: p.y }))} alto={altoTotal} />
         {orden.map((id, i) => {
           const m = mundoPorId(id)!;
@@ -75,32 +76,34 @@ export function Mapa() {
           const p = puntos[i];
           const izq = p.x < 50;
           const nAct = nivelActual(j.progreso, m);
-          const tam = esActual ? 84 : 70;
+          const tam = esActual ? 120 : 96;
           return (
-            <div key={id} ref={esActual ? (el) => el?.scrollIntoView({ block: 'center' }) : undefined} style={{ position: 'absolute', left: `${p.x}%`, top: p.y, transform: 'translate(-50%, -50%)' }}>
+            <div key={id} ref={esActual ? (el) => el?.scrollIntoView({ block: 'center' }) : undefined} style={{ position: 'absolute', left: `${p.x}%`, top: p.y, transform: 'translate(-50%, -50%)', zIndex: esActual ? 2 : 1 }}>
               <button
                 onClick={() => (abierto ? ir(`/mundo/${id}`) : undefined)}
                 aria-disabled={!abierto}
                 aria-label={`${m.nombre}${abierto ? (terminado ? ', terminado' : (nAct.indice >= 8 ? ', gran desafío' : `, nivel ${nAct.indice + 1} de 8`)) : ', bloqueado'}`}
-                className={esActual ? 'late' : undefined}
-                style={{
-                  width: tam, height: tam, borderRadius: '50%', border: `${esActual ? 6 : 4}px solid #fff`,
-                  boxShadow: esActual ? '0 0 0 5px var(--violeta)' : '0 3px 0 rgba(43,35,80,.15)',
-                  background: terminado ? 'var(--amarillo)' : esActual ? 'var(--violeta)' : abierto ? '#fff' : '#CFC6F5',
-                  color: esActual ? '#fff' : 'var(--tinta)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontFamily: 'var(--fuente-titulo)', fontWeight: 700, fontSize: 32, cursor: abierto ? 'pointer' : 'default',
-                }}>
-                {!abierto ? <Icono nombre="candado" size={28} /> : esActual || terminado ? m.numero : <EscenaMundo id={id} size={50} />}
+                className={`isla-boton ${esActual ? '' : 'flota-suave'}`}
+                style={{ width: tam, height: tam, animationDelay: `${-i * 0.7}s`, cursor: abierto ? 'pointer' : 'default' }}>
+                {esActual && <span className="halo" />}
+                <IslaMundo id={id} suelo={m.colores.suelo} acento={m.colores.acento} size={tam} abierta={abierto} />
+                {!abierto && (
+                  <span className="isla-insignia" style={{ background: '#fff', color: 'var(--tinta-suave)' }}><Icono nombre="candado" size={20} /></span>
+                )}
+                {abierto && (
+                  <span className="isla-insignia" style={{ background: terminado ? 'linear-gradient(180deg,#FFE27A,#FFC93C)' : esActual ? 'linear-gradient(180deg,var(--violeta-claro),var(--violeta))' : '#fff', color: esActual ? '#fff' : 'var(--tinta)' }}>
+                    {terminado ? <Icono nombre="estrella" size={18} /> : m.numero}
+                  </span>
+                )}
               </button>
-              <div style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', [izq ? 'left' : 'right']: tam + 12, width: 150, textAlign: izq ? 'left' : 'right' }}>
+              <div className="cartel" style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', [izq ? 'left' : 'right']: tam - 4, width: 140, textAlign: izq ? 'left' : 'right' }}>
                 <div style={{ fontWeight: 800, fontSize: 16, lineHeight: 1.15, color: abierto ? 'var(--tinta)' : 'var(--tinta-suave)' }}>{m.nombre}</div>
                 {m.etiqueta && <span className="pildora chica" style={{ background: 'var(--amarillo)', minHeight: 24, fontSize: 16, marginTop: 2 }}>{m.etiqueta}</span>}
                 {esActual && !terminado && <div style={{ color: 'var(--violeta)', fontWeight: 800, fontSize: 16 }}>{nAct.indice >= 8 ? '¡Gran desafío!' : `Nivel ${nAct.indice + 1} de 8`}</div>}
                 {terminado && <Estrellas n={Math.min(3, Math.round(estrellasMundo(j.progreso, m) / 45))} size={18} />}
-                {abierto && !esActual && !terminado && <EscenaMundo id={id} size={40} />}
               </div>
               {esActual && j.mascota && (
-                <div style={{ position: 'absolute', [izq ? 'right' : 'left']: tam * 0.45, top: -62 }} className="rebota">
+                <div style={{ position: 'absolute', [izq ? 'right' : 'left']: tam * 0.55, top: -40, zIndex: 3 }} className="rebota">
                   <MascotaSVG especie={j.mascota.especie} etapa={etapaDe(j.mascota.crecimiento)} animo={animoDe(j.mascota, hoy, e.diasAusente)} size={68} accesorios={j.mascota.accesorios} />
                 </div>
               )}

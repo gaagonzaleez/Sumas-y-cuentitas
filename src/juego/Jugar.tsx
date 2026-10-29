@@ -384,6 +384,14 @@ export function Jugar({ nivelId, grado, repasoTag }: Props) {
         </span>
       )}
 
+      {fase === 'acierto' && ultimas > 0 && (
+        <div aria-hidden="true">
+          {Array.from({ length: Math.min(5, ultimas + 2) }, (_, i) => (
+            <span key={i} className="moneda-vuela" style={{ animationDelay: `${i * 0.09}s`, marginLeft: (i - 2) * 16 }}><Moneda size={30} /></span>
+          ))}
+        </div>
+      )}
+
       {fase === 'acierto' && ejercicio && (
         <div className="aparece" style={{ position: 'fixed', left: 0, right: 0, bottom: 0, background: 'var(--turquesa-claro)', borderRadius: '28px 28px 0 0', padding: '20px 20px calc(20px + var(--seguro-abajo))', zIndex: 20, display: 'flex', justifyContent: 'center' }}>
           <div className="col" style={{ width: '100%', maxWidth: 440, gap: 12 }}>

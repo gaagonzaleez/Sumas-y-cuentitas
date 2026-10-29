@@ -34,8 +34,59 @@ export function Camino({ puntos, alto }: { puntos: { x: number; y: number }[]; a
   }
   return (
     <svg viewBox={`0 0 100 ${alto}`} preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} aria-hidden="true">
-      <path d={d} fill="none" stroke="#9ED9C4" strokeWidth="9" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-      <path d={d} fill="none" stroke="#fff" strokeWidth="4" strokeDasharray="0 14" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      <path d={d} fill="none" stroke="rgba(91,63,224,0.12)" strokeWidth="18" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      <path d={d} fill="none" stroke="#FFF4D1" strokeWidth="11" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      <path className="camino-anda" d={d} fill="none" stroke="#FFC93C" strokeWidth="4" strokeDasharray="2 14" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
     </svg>
+  );
+}
+
+/**
+ * Islita flotante con volumen: la escena del mundo arriba de un pedazo de tierra con pasto,
+ * luz de arriba, costado más oscuro y sombra en el piso. Bloqueada, se ve apagada.
+ */
+export function IslaMundo({ id, suelo, acento, size = 96, abierta = true }: { id: string; suelo: string; acento: string; size?: number; abierta?: boolean }) {
+  const g = `isla-${id}`;
+  return (
+    <svg width={size} height={size} viewBox="0 0 120 120" aria-hidden="true" style={{ overflow: 'visible', filter: abierta ? undefined : 'grayscale(0.85) opacity(0.75)' }}>
+      <defs>
+        <linearGradient id={`${g}-tierra`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#C98A5C" />
+          <stop offset="1" stopColor="#7E4F31" />
+        </linearGradient>
+        <radialGradient id={`${g}-pasto`} cx="0.35" cy="0.3" r="0.9">
+          <stop offset="0" stopColor="#fff" stopOpacity="0.55" />
+          <stop offset="0.35" stopColor={suelo} />
+          <stop offset="1" stopColor={acento} />
+        </radialGradient>
+      </defs>
+      <ellipse cx="60" cy="116" rx="34" ry="5" fill="#2B2350" opacity="0.14" />
+      <path d="M14 72 Q60 62 106 72 L94 90 Q80 104 60 108 Q40 104 26 90 Z" fill={`url(#${g}-tierra)`} />
+      <path d="M40 98 Q46 103 52 100 M70 101 Q76 98 80 92" stroke="#5A3825" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.6" />
+      <ellipse cx="60" cy="72" rx="47" ry="14" fill={`url(#${g}-pasto)`} />
+      <ellipse cx="46" cy="68" rx="18" ry="4" fill="#fff" opacity="0.35" />
+      <g transform="translate(20 6)">
+        <svg width="80" height="72" viewBox="0 0 80 72">{E[id]}</svg>
+      </g>
+    </svg>
+  );
+}
+
+/** Cielo del mapa: degradado, sol, nubes que pasan lento y colinas lejanas. */
+export function CieloMapa({ alto }: { alto: number }) {
+  return (
+    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', borderRadius: 32 }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, #B9DCFF 0%, #DDEBFF 35%, #E8F7EE 75%, #CFEFD9 100%)' }} />
+      <div style={{ position: 'absolute', right: -40, top: -40, width: 200, height: 200, borderRadius: '50%', background: 'radial-gradient(circle, #FFF6C9 0%, rgba(255,233,140,0.6) 35%, rgba(255,233,140,0) 70%)' }} />
+      {[0.08, 0.3, 0.55, 0.78].map((y, i) => (
+        <svg key={y} className="nube" width={i % 2 ? 120 : 90} height={44} viewBox="0 0 120 44" style={{ position: 'absolute', top: y * alto, left: 0, animationDuration: `${48 + i * 14}s`, animationDelay: `${-i * 13}s`, opacity: 0.9 }}>
+          <path d="M14 38 Q2 38 4 28 Q6 18 20 20 Q24 6 42 8 Q56 0 66 12 Q82 6 90 20 Q108 18 112 30 Q114 38 102 38 Z" fill="#fff" />
+        </svg>
+      ))}
+      <svg viewBox="0 0 400 120" preserveAspectRatio="none" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', height: 140 }}>
+        <path d="M0 70 Q60 30 130 60 T260 50 T400 60 V120 H0 Z" fill="#BDE8C8" />
+        <path d="M0 95 Q90 60 190 90 T400 85 V120 H0 Z" fill="#A6DEB4" />
+      </svg>
+    </div>
   );
 }

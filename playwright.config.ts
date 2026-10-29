@@ -9,6 +9,8 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:4173/Sumas-y-cuentitas/',
     ...devices['Pixel 7'],
+    // Las islas y fichas flotan todo el tiempo: en las pruebas se apaga el movimiento para poder tocarlas.
+    reducedMotion: 'reduce',
     launchOptions: exe ? { executablePath: exe } : {},
   },
   webServer: {
